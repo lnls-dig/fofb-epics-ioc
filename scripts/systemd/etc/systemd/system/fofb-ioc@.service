@@ -20,7 +20,7 @@ ExecStartPre=/bin/sh -c " \
     HALCS_IDX=$$(expr 1 - $${INSTANCE_IDX} % 2); \
     /opt/epics/ioc/fofb-epics-ioc/iocBoot/iocFOFB/FOFBCheckInitTries.sh ipc:///tmp/malamute $${BOARD_IDX} $${HALCS_IDX} $${FOFB_TRY_READ} \
 "
-WorkingDirectory=/opt/epics/startup/ioc/fofb-epics-ioc/iocBoot/iocFOFB
+WorkingDirectory=/opt/epics/ioc/fofb-epics-ioc/iocBoot/iocFOFB
 # Run procServ with user ioc
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_PORT_PREFIX}%i ./runFOFB.sh ${FOFB_ENDPOINT} ${FOFB_NUMBER}
 
