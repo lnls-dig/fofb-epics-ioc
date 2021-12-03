@@ -1,0 +1,89 @@
+# RELEASE - Location of external support modules
+#
+# IF YOU MAKE ANY CHANGES to this file you must subsequently
+# do a "gnumake rebuild" in this application's top level
+# directory.
+#
+# The build process does not check dependencies against files
+# that are outside this application, thus you should do a
+# "gnumake rebuild" in the top level directory after EPICS_BASE
+# or any other external module pointed to below is rebuilt.
+#
+# Host- or target-specific settings can be given in files named
+#  RELEASE.$(EPICS_HOST_ARCH).Common
+#  RELEASE.Common.$(T_A)
+#  RELEASE.$(EPICS_HOST_ARCH).$(T_A)
+#
+# This file should ONLY define paths to other support modules,
+# or include statements that pull in similar RELEASE files.
+# Build settings that are NOT module paths should appear in a
+# CONFIG_SITE file.
+
+TEMPLATE_TOP=${EPICS_BASE}/templates/makeBaseApp/top
+
+###################### Paths for synApps_5_7 ##################################
+#
+## EPICS_BASE usually appears last so other apps can override stuff:
+#SUPPORT=/opt/epics/base/../synApps_5_7/support
+##SUPPORT=/usr/local/epics/synApps_5_7/support
+#
+#EPICS_BASE=/opt/epics/base
+#
+## Paths must be below $(SUPPORT)/configure/RELEASE so we can override
+## them
+#ASYN=$(SUPPORT)/asyn-4-21
+#SSCAN=$(SUPPORT)/sscan-2-9
+#CALC=$(SUPPORT)/calc-3-2
+#AUTOSAVE=$(SUPPORT)/autosave-5-1
+#BUSY=$(SUPPORT)/busy-1-6
+#AREA_DETECTOR=$(SUPPORT)/areaDetector-1-9-1
+## Set our custom variable so Area Detector path remains the same
+## for synApps_5_7 and synApps_5_8
+#AREA_DETECTOR_COMPAT=$(AREA_DETECTOR)
+
+###################### Paths for synApps_5_8 ##################################
+#
+## EPICS_BASE usually appears last so other apps can override stuff:
+#SUPPORT=/opt/epics/base/../synApps_5_8/support
+##SUPPORT=/usr/local/epics/synApps_5_8/support
+#
+#EPICS_BASE=/opt/epics/base
+#
+## Paths must be below $(SUPPORT)/configure/RELEASE so we can override
+## them
+#ASYN=$(SUPPORT)/asyn-4-26
+#SSCAN=$(SUPPORT)/sscan-2-10-1
+#CALC=$(SUPPORT)/calc-3-4-2-1
+#AUTOSAVE=$(SUPPORT)/autosave-5-6-1
+#BUSY=$(SUPPORT)/busy-1-6-1
+#AREA_DETECTOR=$(SUPPORT)/areaDetector-R2-0
+#ADCORE=$(AREA_DETECTOR)/ADCore-R2-2
+### Set our custom variable so Area Detector path remains the same
+### for synApps_5_7 and synApps_5_8
+#AREA_DETECTOR_COMPAT=$(ADCORE)
+
+##################### Paths for synApps-lnls-R1-2-1 ###########################
+#
+# EPICS_BASE usually appears last so other apps can override stuff:
+SUPPORT=/opt/epics/synApps-lnls-R1-2-1/support
+
+EPICS_BASE=/opt/epics/base
+
+# Paths must be below $(SUPPORT)/configure/RELEASE so we can override
+# them
+ASYN=$(SUPPORT)/asyn-R4-35
+SSCAN=$(SUPPORT)/sscan-R2-11-2
+CALC=$(SUPPORT)/calc-R3-7-2
+AUTOSAVE=$(SUPPORT)/autosave-R5-9
+BUSY=$(SUPPORT)/busy-R1-7-1
+AREA_DETECTOR=$(SUPPORT)/areaDetector-R3-6
+DEVIOCSTATS=$(SUPPORT)/iocStats-3-1-15
+ADCORE=$(AREA_DETECTOR)/ADCore
+## Set our custom variable so Area Detector path remains the same
+## for synApps_5_7 and synApps_5_8
+AREA_DETECTOR_COMPAT=$(ADCORE)
+
+# Set RULES here if you want to take build rules from somewhere
+#EPICS_BASE=/usr/local/epics/base
+# other than EPICS_BASE:
+#RULES=/path/to/epics/support/module/rules/x-y

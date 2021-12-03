@@ -1,0 +1,27 @@
+[Unit]
+Description=FOFB IOC %p%I
+After=rc-local.service
+Requires=halcs-be@%i.service
+After=halcs-be@%i.service
+
+[Service]
+# Source environment
+EnvironmentFile=/etc/sysconfig/fofb-epics-ioc
+EnvironmentFile=/etc/sysconfig/fofb-epics-ioc-slot-mapping
+Environment=FOFB_NUMBER=%i
+Environment=FOFB_TRY_READ=3
+# Execute pre with root
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
+ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
+ExecStartPre=/bin/sh -c " \
+    INSTANCE_IDX=$$(echo ${TIM_RX_NUMBER} | sed 's|.*-||g'); \
+    BOARD_IDX=$$(expr $${INSTANCE_IDX} / 2 + $${INSTANCE_IDX} % 2); \
+    HALCS_IDX=$$(expr 1 - $${INSTANCE_IDX} % 2); \
+    /opt/epics/startup/ioc/fofb-processing-epics-ioc/iocBoot/iocFOFB/FOFBCheckInitTries.sh ipc:///tmp/malamute $${BOARD_IDX} $${HALCS_IDX} $${FOFB_TRY_READ} \
+"
+WorkingDirectory=<INSTALL_PREFIX>/<IOC_NAME>/iocBoot/iocFOFB
+# Run procServ with user ioc
+ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_PORT_PREFIX}%i ./runFOFB.sh ${FOFB_ENDPOINT} ${FOFB_NUMBER}
+
+# [Install]

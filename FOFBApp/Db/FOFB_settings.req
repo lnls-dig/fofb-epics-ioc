@@ -1,0 +1,3 @@
+$(P)$(R)RamWriteEnable-SP
+$(P)$(R)RamAddr-SP
+$(P)$(R)RamDataIn-SP

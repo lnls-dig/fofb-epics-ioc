@@ -1,0 +1,71 @@
+#
+# FOFB database file
+#
+# Authors: Melissa Aguiar
+#
+# Created Dez. 03, 2021 
+#
+
+#########################
+# RAM parameters
+#########################
+
+record(longout,"$(P)$(R)RamWriteEnable-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ram enable bit")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_WRITE")
+}
+
+record(longin,"$(P)$(R)RamWriteEnable-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ram enable bit")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_WRITE")
+}
+
+record(longout,"$(P)$(R)RamAddr-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ram address")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_ADDR")
+}
+
+record(longin,"$(P)$(R)RamAddr-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ram address")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_ADDR")
+}
+
+record(longout,"$(P)$(R)RamDataIn-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ram data input")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_IN")
+}
+
+record(longin,"$(P)$(R)RamDataIn-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ram data input")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_IN")
+}
+
+record(longout,"$(P)$(R)RamDataOut-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ram data output")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
+}
+
+record(longin,"$(P)$(R)RamDataOut-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ram data output")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
+}
