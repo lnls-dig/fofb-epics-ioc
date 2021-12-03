@@ -15,10 +15,10 @@ PermissionsStartOnly=true
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
 ExecStartPre=/bin/sh -c " \
-    INSTANCE_IDX=$$(echo ${TIM_RX_NUMBER} | sed 's|.*-||g'); \
+    INSTANCE_IDX=$$(echo ${FOFB_NUMBER} | sed 's|.*-||g'); \
     BOARD_IDX=$$(expr $${INSTANCE_IDX} / 2 + $${INSTANCE_IDX} % 2); \
     HALCS_IDX=$$(expr 1 - $${INSTANCE_IDX} % 2); \
-    /opt/epics/startup/ioc/fofb-processing-epics-ioc/iocBoot/iocFOFB/FOFBCheckInitTries.sh ipc:///tmp/malamute $${BOARD_IDX} $${HALCS_IDX} $${FOFB_TRY_READ} \
+    /opt/epics/ioc/fofb-epics-ioc/iocBoot/iocFOFB/FOFBCheckInitTries.sh ipc:///tmp/malamute $${BOARD_IDX} $${HALCS_IDX} $${FOFB_TRY_READ} \
 "
 WorkingDirectory=/opt/epics/startup/ioc/fofb-epics-ioc/iocBoot/iocFOFB
 # Run procServ with user ioc
