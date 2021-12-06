@@ -3,6 +3,7 @@ Description=FOFB IOC %p%I
 After=rc-local.service
 Requires=halcs-be@%i.service
 After=halcs-be@%i.service
+PartOf=halcs-ioc@i.target
 
 [Service]
 # Source environment
@@ -25,3 +26,4 @@ WorkingDirectory=/opt/epics/ioc/fofb-epics-ioc/iocBoot/iocFOFB
 ExecStart=/usr/local/bin/procServ -f -n %p%i -i ^C^D ${PROCSERV_PORT_PREFIX}%i ./runFOFB.sh ${FOFB_ENDPOINT} ${FOFB_NUMBER}
 
 # [Install]
+WantedBy=halcs-ioc@%i.target
