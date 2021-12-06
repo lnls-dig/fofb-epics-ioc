@@ -1,2 +1,3 @@
-# fofb-epics-ioc
-Fast Orbit Feedback EPICS Support
+# Fast Orbit Feedback EPICS Support
+
+EPICS IOC for the LNLS FOFB boards
