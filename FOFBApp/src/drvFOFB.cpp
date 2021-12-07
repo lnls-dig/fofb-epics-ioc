@@ -68,33 +68,33 @@ static const functionsAny_t rtmlamp_ohwrSetGetRtmLampStatusFunc        = {functi
                                                                           halcs_get_rtmlamp_ohwr_sta}};
 static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFromWbFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
                                                                           halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_l,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagLFunc     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_l,
                                                                           halcs_get_rtmlamp_ohwr_amp_iflag_l}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_l,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagLFunc     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_l,
                                                                           halcs_get_rtmlamp_ohwr_amp_tflag_l}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_r,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagRFunc     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_r,
                                                                           halcs_get_rtmlamp_ohwr_amp_iflag_r}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_r,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagRFunc     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_r,
                                                                           halcs_get_rtmlamp_ohwr_amp_tflag_r}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpEnFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpEnFunc         = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en,
                                                                           halcs_get_rtmlamp_ohwr_amp_en}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLTriangEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLTriangEnFunc  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable,
                                                                           halcs_get_rtmlamp_ohwr_pi_ol_triang_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLSquareEnFunc  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable,
                                                                           halcs_get_rtmlamp_ohwr_pi_ol_square_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPSquareEnFunc  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable,
                                                                           halcs_get_rtmlamp_ohwr_pi_sp_square_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIEnFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIEnFunc          = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable,
                                                                           halcs_get_rtmlamp_ohwr_pi_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFunc       = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFunc       = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
                                                                           halcs_get_rtmlamp_ohwr_dac_data}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacWrFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacWrFunc         = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr,
                                                                           halcs_get_rtmlamp_ohwr_dac_wr}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIKPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIKPFunc          = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp,
                                                                           halcs_get_rtmlamp_ohwr_pi_kp}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPITIFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPITIFunc          = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti,
                                                                           halcs_get_rtmlamp_ohwr_pi_ti}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp,
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPFunc          = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp,
                                                                           halcs_get_rtmlamp_ohwr_pi_sp}};
 static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLDacCntMaxFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_dac_cnt_max,
                                                                           halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
@@ -575,6 +575,46 @@ get_service_err:
         return (asynStatus)status;
 }
 
+asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsUInt32Chan_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    char serviceChanStr[SERVICE_NAME_SIZE];
+    int serviceID = 0;
+    epicsUInt32 serviceChan = 0;
+
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+            serviceChanStr, sizeof(serviceChanStr));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Get correct service channel */
+    getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
+
+    /* Execute registered function */
+    err = func.write(bpmClient, serviceChanStr, serviceChan, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, serviceChanStr,
+                functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+get_service_err:
+    return (asynStatus) status;
+}
+
 /********************************************************************/
 /************ Function Mapping Overloaded Read functions ************/
 /********************************************************************/
@@ -660,6 +700,44 @@ asynStatus drvFOFB::executeHwReadFunction(int functionId, int addr,
 get_reg_func_err:
 get_service_err:
         return (asynStatus)status;
+}
+
+asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsUInt32Chan_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    char serviceChanStr[SERVICE_NAME_SIZE];
+    int status = asynSuccess;
+    int serviceID = 0;
+    epicsUInt32 serviceChan = 0;
+
+    /* Create full service name*/
+    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+            serviceChanStr, sizeof(serviceChanStr));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Get correct service channel */
+    getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
+
+    /* Execute registered function */
+    err = func.read(bpmClient, serviceChanStr, serviceChan, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, serviceChanStr);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+get_service_err:
+    return (asynStatus) status;
 }
 
 /********************************************************************/
