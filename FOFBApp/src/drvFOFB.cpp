@@ -56,29 +56,50 @@ static const boardMap_t boardMap[MAX_FOFBS+1] = {
 };
 
 /* Int32 functions mapping */
-static const functionsAny_t fofb_processingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write, halcs_get_fofb_processing_ram_write}};
-static const functionsAny_t fofb_processingSetGetRamAddrFunc           = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr, halcs_get_fofb_processing_ram_addr}};
-static const functionsAny_t fofb_processingSetGetRamDataInFunc         =  {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_in, halcs_get_fofb_processing_ram_data_in}};
-static const functionsAny_t fofb_processingSetGetRamDataOutFunc        = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_out, halcs_get_fofb_processing_ram_data_out}};
-
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampStatusFunc        = {functionsUInt32_t{"RTMLAMP_OHWR", , halcs_get_rtmlamp_ohwr_sta}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFromWbFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb, halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_l, halcs_get_rtmlamp_ohwr_amp_iflag_l}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_l, halcs_get_rtmlamp_ohwr_amp_tflag_l}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_r, halcs_get_rtmlamp_ohwr_amp_iflag_r}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_r, halcs_get_rtmlamp_ohwr_amp_tflag_r}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpEnFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en, halcs_get_rtmlamp_ohwr_amp_en}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLTriangEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable, halcs_get_rtmlamp_ohwr_pi_ol_triang_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable, halcs_get_rtmlamp_ohwr_pi_ol_square_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable, halcs_get_rtmlamp_ohwr_pi_sp_square_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIEnFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable, halcs_get_rtmlamp_ohwr_pi_enable}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFunc       = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data, halcs_get_rtmlamp_ohwr_dac_data}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacWrFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr, halcs_get_rtmlamp_ohwr_dac_wr}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIKPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp, halcs_get_rtmlamp_ohwr_pi_kp}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPITIFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti, halcs_get_rtmlamp_ohwr_pi_ti}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp, halcs_get_rtmlamp_ohwr_pi_sp}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLDacCntMaxFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_dac_cnt_max, halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
-static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPLimInfFunc    = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf, halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
+static const functionsAny_t fofb_processingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write,
+                                                                          halcs_get_fofb_processing_ram_write}};
+static const functionsAny_t fofb_processingSetGetRamAddrFunc           = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr,
+                                                                          halcs_get_fofb_processing_ram_addr}};
+static const functionsAny_t fofb_processingSetGetRamDataInFunc         =  {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_in,
+                                                                          halcs_get_fofb_processing_ram_data_in}};
+static const functionsAny_t fofb_processingSetGetRamDataOutFunc        = {functionsUInt32_t{"FOFB_PROCESSING", NULL,
+                                                                          halcs_get_fofb_processing_ram_data_out}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampStatusFunc        = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
+                                                                          halcs_get_rtmlamp_ohwr_sta}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFromWbFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
+                                                                          halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_l,
+                                                                          halcs_get_rtmlamp_ohwr_amp_iflag_l}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_l,
+                                                                          halcs_get_rtmlamp_ohwr_amp_tflag_l}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_r,
+                                                                          halcs_get_rtmlamp_ohwr_amp_iflag_r}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_r,
+                                                                          halcs_get_rtmlamp_ohwr_amp_tflag_r}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpEnFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en,
+                                                                          halcs_get_rtmlamp_ohwr_amp_en}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLTriangEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable,
+                                                                          halcs_get_rtmlamp_ohwr_pi_ol_triang_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable,
+                                                                          halcs_get_rtmlamp_ohwr_pi_ol_square_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable,
+                                                                          halcs_get_rtmlamp_ohwr_pi_sp_square_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIEnFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable,
+                                                                          halcs_get_rtmlamp_ohwr_pi_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFunc       = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
+                                                                          halcs_get_rtmlamp_ohwr_dac_data}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacWrFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr,
+                                                                          halcs_get_rtmlamp_ohwr_dac_wr}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIKPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp,
+                                                                          halcs_get_rtmlamp_ohwr_pi_kp}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPITIFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti,
+                                                                          halcs_get_rtmlamp_ohwr_pi_ti}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp,
+                                                                          halcs_get_rtmlamp_ohwr_pi_sp}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLDacCntMaxFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_dac_cnt_max,
+                                                                          halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPLimInfFunc    = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf,
+                                                                          halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
 
 static const char *driverName="drvFOFB";
 void acqTask(void *drvPvt);
