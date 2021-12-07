@@ -110,7 +110,7 @@ static void exitHandlerC(void *pPvt)
     pdrvFOFB->~drvFOFB();
 }
 
-asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceName,
+asynStatus drvFOFB::getServiceChan (int fofbNumber, int addr, const char *serviceName,
         epicsUInt32 *chanArg) const
 {
     static const char *functionName = "getServiceChan";
@@ -609,7 +609,7 @@ asynStatus drvFOFB::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *
     }
 
     /* Get correct service channel */
-    getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
+    getServiceChan (this->fofbNumber, addr, func.serviceName, &serviceChan);
 
     /* Execute registered function */
     err = func.write(fofbClient, serviceChanStr, serviceChan, functionParam.argUInt32);
