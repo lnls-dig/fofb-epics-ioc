@@ -208,6 +208,11 @@ class drvFOFB : public asynPortDriver {
             return func.serviceName;
         }
 
+        const char *doGetServiceNameFromFunc (functionsUInt32Chan_t &func) const
+        {
+            return func.serviceName;
+        }
+
         /* Overloaded function mappings called by functionsAny_t */
         asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
@@ -215,6 +220,8 @@ class drvFOFB : public asynPortDriver {
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwWriteFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);
+        asynStatus doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
 
         asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
@@ -222,6 +229,8 @@ class drvFOFB : public asynPortDriver {
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwReadFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);
+        asynStatus doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
 
         /* General service name handling utilities */
         asynStatus getServiceChan (int fofbNumber, int addr, const char *serviceName,
