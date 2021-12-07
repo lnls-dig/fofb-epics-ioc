@@ -65,13 +65,6 @@ typedef struct {
     readUInt32Fp read;
 } functionsUInt32_t;
 
-typedef struct {
-    union {
-        epicsUInt32 argUInt32;
-        epicsFloat64 argFloat64;
-    };
-} functionsArgs_t;
-
 /* Write 32-bit function pointer with channel selection */
 typedef halcs_client_err_e (*writeUInt32ChanFp)(halcs_client_t *self, char *service,
     uint32_t chan, uint32_t param);

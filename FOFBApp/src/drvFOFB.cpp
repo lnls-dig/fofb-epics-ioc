@@ -575,7 +575,7 @@ get_service_err:
         return (asynStatus)status;
 }
 
-asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
+asynStatus drvFOFB::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
     const char *functionName = "doExecuteHwWriteFunction<functionsUInt32Chan_t>";
@@ -586,7 +586,7 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *s
     epicsUInt32 serviceChan = 0;
 
     /* Create full service name*/
-    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+    status = getFullServiceName (this->fofbNumber, addr, func.serviceName,
             serviceChanStr, sizeof(serviceChanStr));
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -599,7 +599,7 @@ asynStatus drvBPM::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *s
     getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
 
     /* Execute registered function */
-    err = func.write(bpmClient, serviceChanStr, serviceChan, functionParam.argUInt32);
+    err = func.write(fofbClient, serviceChanStr, serviceChan, functionParam.argUInt32);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: failure executing write function for service %s,"
@@ -702,7 +702,7 @@ get_service_err:
         return (asynStatus)status;
 }
 
-asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
+asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
     const char *functionName = "doExecuteHwReadFunction<functionsUInt32Chan_t>";
@@ -713,7 +713,7 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *se
     epicsUInt32 serviceChan = 0;
 
     /* Create full service name*/
-    status = getFullServiceName (this->bpmNumber, addr, func.serviceName,
+    status = getFullServiceName (this->fofbNumber, addr, func.serviceName,
             serviceChanStr, sizeof(serviceChanStr));
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -723,10 +723,10 @@ asynStatus drvBPM::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *se
     }
 
     /* Get correct service channel */
-    getServiceChan (this->bpmNumber, addr, func.serviceName, &serviceChan);
+    getServiceChan (this->fofbNumber, addr, func.serviceName, &serviceChan);
 
     /* Execute registered function */
-    err = func.read(bpmClient, serviceChanStr, serviceChan, &functionParam.argUInt32);
+    err = func.read(fofbClient, serviceChanStr, serviceChan, &functionParam.argUInt32);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: failure executing read function for service %s\n",
