@@ -1,3 +1,32 @@
+#########################
+# RAM parameters
+#########################
+
 $(P)$(R)RamWriteEnable-SP
 $(P)$(R)RamAddr-SP
 $(P)$(R)RamDataIn-SP
+$(P)$(R)RamDataOut-SP
+
+#########################
+# RTM LAMP parameters
+#########################
+
+$(P)$(R)RtmLampStatus-SP
+$(P)$(R)RtmLampDacDataFromWb-SP
+$(P)$(R)RtmLampAmpIFlagL-SP
+$(P)$(R)RtmLampAmpTFlagL-SP
+$(P)$(R)RtmLampAmpIFlagR-SP
+$(P)$(R)RtmLampAmpTFlagR-SP
+$(P)$(R)RtmLampAmpE-SP
+$(P)$(R)RtmLampPIOLTriangEn-SP
+$(P)$(R)RtmLampPIOLSquareEn-SP
+$(P)$(R)RtmLampPISPSquareEn-SP
+$(P)$(R)RtmLampPIEn-SP
+$(P)$(R)RtmLampDacData-SP
+$(P)$(R)RtmLampDacWr-SP
+$(P)$(R)RtmLampPIKP-SP
+$(P)$(R)RtmLampPITI-SP
+$(P)$(R)RtmLampPISP-SP
+$(P)$(R)RtmLampPIOLDacCntMax-SP
+$(P)$(R)RtmLampPISPLimInf-SP
+
