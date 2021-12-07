@@ -56,10 +56,29 @@ static const boardMap_t boardMap[MAX_FOFBS+1] = {
 };
 
 /* Int32 functions mapping */
-static const functionsAny_t fofb_processingSetGetRamWriteFunc   =            {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write, halcs_get_fofb_processing_ram_write}};
-static const functionsAny_t fofb_processingSetGetRamAddrFunc    =            {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr, halcs_get_fofb_processing_ram_addr}};
-static const functionsAny_t fofb_processingSetGetRamDataInFunc  =            {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_in, halcs_get_fofb_processing_ram_data_in}};
-static const functionsAny_t fofb_processingSetGetRamDataOutFunc =            {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_out, halcs_get_fofb_processing_ram_data_out}};
+static const functionsAny_t fofb_processingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write, halcs_get_fofb_processing_ram_write}};
+static const functionsAny_t fofb_processingSetGetRamAddrFunc           = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr, halcs_get_fofb_processing_ram_addr}};
+static const functionsAny_t fofb_processingSetGetRamDataInFunc         =  {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_in, halcs_get_fofb_processing_ram_data_in}};
+static const functionsAny_t fofb_processingSetGetRamDataOutFunc        = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_out, halcs_get_fofb_processing_ram_data_out}};
+
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampStatusFunc        = {functionsUInt32_t{"RTMLAMP_OHWR", , halcs_get_rtmlamp_ohwr_sta}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFromWbFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb, halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_l, halcs_get_rtmlamp_ohwr_amp_iflag_l}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagLFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_l, halcs_get_rtmlamp_ohwr_amp_tflag_l}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpIFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_r, halcs_get_rtmlamp_ohwr_amp_iflag_r}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpTFlagRFunc     = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_r, halcs_get_rtmlamp_ohwr_amp_tflag_r}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampAmpEnFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en, halcs_get_rtmlamp_ohwr_amp_en}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLTriangEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable, halcs_get_rtmlamp_ohwr_pi_ol_triang_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable, halcs_get_rtmlamp_ohwr_pi_ol_square_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPSquareEnFunc  = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable, halcs_get_rtmlamp_ohwr_pi_sp_square_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIEnFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable, halcs_get_rtmlamp_ohwr_pi_enable}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacDataFunc       = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data, halcs_get_rtmlamp_ohwr_dac_data}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampDacWrFunc         = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr, halcs_get_rtmlamp_ohwr_dac_wr}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIKPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp, halcs_get_rtmlamp_ohwr_pi_kp}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPITIFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti, halcs_get_rtmlamp_ohwr_pi_ti}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPFunc          = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp, halcs_get_rtmlamp_ohwr_pi_sp}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPIOLDacCntMaxFunc = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_dac_cnt_max, halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
+static const functionsAny_t rtmlamp_ohwrSetGetRtmLampPISPLimInfFunc    = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf, halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
 
 static const char *driverName="drvFOFB";
 void acqTask(void *drvPvt);
@@ -164,17 +183,53 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
  *  *      * Otherwise, checking for FIRST_PARAM/LAST_PARAM won't work */
 
     /* Create general parameters */
-    createParam(P_RamWriteString,    asynParamUInt32Digital,        &P_RamWrite);
-    createParam(P_RamAddrString,     asynParamUInt32Digital,        &P_RamAddr);
-    createParam(P_RamDataInString,   asynParamUInt32Digital,        &P_RamDataIn);
-    createParam(P_RamDataOutString,  asynParamUInt32Digital,        &P_RamDataOut);
+    createParam(P_RamWriteString,              asynParamUInt32Digital,        &P_RamWrite);
+    createParam(P_RamAddrString,               asynParamUInt32Digital,        &P_RamAddr);
+    createParam(P_RamDataInString,             asynParamUInt32Digital,        &P_RamDataIn);
+    createParam(P_RamDataOutString,            asynParamUInt32Digital,        &P_RamDataOut);
+    createParam(P_RtmLampStatusString,         asynParamUInt32Digital,        &P_RtmLampStatus);
+    createParam(P_RtmLampDacDataFromWbString,  asynParamUInt32Digital,        &P_RtmLampDacDataFromWb);
+    createParam(P_RtmLampAmpIFlagLString,      asynParamUInt32Digital,        &P_RtmLampAmpIFlagL);
+    createParam(P_RtmLampAmpTFlagLString,      asynParamUInt32Digital,        &P_RtmLampAmpTFlagL);
+    createParam(P_RtmLampAmpIFlagRString,      asynParamUInt32Digital,        &P_RtmLampAmpIFlagR);
+    createParam(P_RtmLampAmpTFlagRString,      asynParamUInt32Digital,        &P_RtmLampAmpTFlagR);
+    createParam(P_RtmLampAmpEnString,          asynParamUInt32Digital,        &P_RtmLampAmpEn);
+    createParam(P_RtmLampPIOLTriangEnString,   asynParamUInt32Digital,        &P_RtmLampPIOLTriangEn);
+    createParam(P_RtmLampPIOLSquareEnString,   asynParamUInt32Digital,        &P_RtmLampPIOLSquareEn);
+    createParam(P_RtmLampPISPSquareEnString,   asynParamUInt32Digital,        &P_RtmLampPISPSquareEn);
+    createParam(P_RtmLampPIEnString,           asynParamUInt32Digital,        &P_RtmLampPIEn);
+    createParam(P_RtmLampDacDataString,        asynParamUInt32Digital,        &P_RtmLampDacData);
+    createParam(P_RtmLampDacWrString,          asynParamUInt32Digital,        &P_RtmLampDacWr);
+    createParam(P_RtmLampPIKPString,           asynParamUInt32Digital,        &P_RtmLampPIKP);
+    createParam(P_RtmLampPITIString,           asynParamUInt32Digital,        &P_RtmLampPITI);
+    createParam(P_RtmLampPISPString,           asynParamUInt32Digital,        &P_RtmLampPISP);
+    createParam(P_RtmLampPIOLDacCntMaxString,  asynParamUInt32Digital,        &P_RtmLampPIOLDacCntMax);
+    createParam(P_RtmLampPISPLimInfString,     asynParamUInt32Digital,        &P_RtmLampPISPLimInf);
 
     /* FOFB HW Int32 Functions mapping. Functions not mapped here are just written
  *  *      * to the parameter library */
-    fofbHwFunc.emplace(P_RamWrite,   fofb_processingSetGetRamWriteFunc);
-    fofbHwFunc.emplace(P_RamAddr,    fofb_processingSetGetRamAddrFunc);
-    fofbHwFunc.emplace(P_RamDataIn,  fofb_processingSetGetRamDataInFunc);
-    fofbHwFunc.emplace(P_RamDataOut, fofb_processingSetGetRamDataOutFunc);
+    fofbHwFunc.emplace(P_RamWrite,             fofb_processingSetGetRamWriteFunc);
+    fofbHwFunc.emplace(P_RamAddr,              fofb_processingSetGetRamAddrFunc);
+    fofbHwFunc.emplace(P_RamDataIn,            fofb_processingSetGetRamDataInFunc);
+    fofbHwFunc.emplace(P_RamDataOut,           fofb_processingSetGetRamDataOutFunc);
+    fofbHwFunc.emplace(P_RtmLampStatus,        rtmlamp_ohwrSetGetRtmLampStatusFunc);
+    fofbHwFunc.emplace(P_RtmLampDacDataFromWb, rtmlamp_ohwrSetGetRtmLampDacDataFromWbFunc);
+    fofbHwFunc.emplace(P_RtmLampAmpIFlagL,     rtmlamp_ohwrSetGetRtmLampAmpIFlagLFunc);
+    fofbHwFunc.emplace(P_RtmLampAmpTFlagL,     rtmlamp_ohwrSetGetRtmLampAmpTFlagLFunc);
+    fofbHwFunc.emplace(P_RtmLampAmpIFlagR,     rtmlamp_ohwrSetGetRtmLampAmpIFlagRFunc);
+    fofbHwFunc.emplace(P_RtmLampAmpTFlagR,     rtmlamp_ohwrSetGetRtmLampAmpTFlagRFunc);
+    fofbHwFunc.emplace(P_RtmLampAmpEn,         rtmlamp_ohwrSetGetRtmLampAmpEnFunc);
+    fofbHwFunc.emplace(P_RtmLampPIOLTriangEn,  rtmlamp_ohwrSetGetRtmLampPIOLTriangEnFunc);
+    fofbHwFunc.emplace(P_RtmLampPIOLSquareEn,  rtmlamp_ohwrSetGetRtmLampPIOLSquareEnFunc);
+    fofbHwFunc.emplace(P_RtmLampPISPSquareEn,  rtmlamp_ohwrSetGetRtmLampPISPSquareEnFunc);
+    fofbHwFunc.emplace(P_RtmLampPIEn,          rtmlamp_ohwrSetGetRtmLampPIEnFunc);
+    fofbHwFunc.emplace(P_RtmLampDacData,       rtmlamp_ohwrSetGetRtmLampDacDataFunc);
+    fofbHwFunc.emplace(P_RtmLampDacWr,         rtmlamp_ohwrSetGetRtmLampDacWrFunc);
+    fofbHwFunc.emplace(P_RtmLampPIKP,          rtmlamp_ohwrSetGetRtmLampPIKPFunc);
+    fofbHwFunc.emplace(P_RtmLampPITI,          rtmlamp_ohwrSetGetRtmLampPITIFunc);
+    fofbHwFunc.emplace(P_RtmLampPISP,          rtmlamp_ohwrSetGetRtmLampPISPFunc);
+    fofbHwFunc.emplace(P_RtmLampPIOLDacCntMax, rtmlamp_ohwrSetGetRtmLampPIOLDacCntMaxFunc);
+    fofbHwFunc.emplace(P_RtmLampPISPLimInf,    rtmlamp_ohwrSetGetRtmLampPISPLimInfFunc);
 
 
     lock();
@@ -193,10 +248,28 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
     /* Set the initial values of some parameters */
 
-    setUIntDigitalParam(P_RamWrite,       0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RamAddr,        0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RamDataIn,      0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RamDataOut,     0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RamWrite,             0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RamAddr,              0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RamDataIn,            0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RamDataOut,           0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampStatus,        0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampDacDataFromWb, 0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampAmpIFlagL,     0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampAmpTFlagL,     0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampAmpIFlagR,     0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampAmpTFlagR,     0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampAmpEn,         0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPIOLTriangEn,  0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPIOLSquareEn,  0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPISPSquareEn,  0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPIEn,          0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampDacData,       0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampDacWr,         0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPIKP,          0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPITI,          0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPISP,          0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPIOLDacCntMax, 0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPISPLimInf,    0,              0xFFFFFFFF);
 
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
