@@ -72,6 +72,28 @@ typedef struct {
     };
 } functionsArgs_t;
 
+/* Write 32-bit function pointer with channel selection */
+typedef halcs_client_err_e (*writeUInt32ChanFp)(halcs_client_t *self, char *service,
+    uint32_t chan, uint32_t param);
+/* Read 32-bit function pointer with channel selection */
+typedef halcs_client_err_e (*readUInt32ChanFp)(halcs_client_t *self, char *service,
+    uint32_t chan, uint32_t *param);
+
+/* FOFB command dispatch table */
+typedef struct {
+    const char *serviceName;
+    writeUInt32ChanFp write;
+    readUInt32ChanFp read;
+} functionsUInt32Chan_t;
+
+typedef struct {
+    union {
+        epicsInt32 argInt32;
+        epicsUInt32 argUInt32;
+        epicsFloat64 argFloat64;
+    };
+} functionsArgs_t;
+
 /* Forward declaration as struct functionsAny_t needs it */
 class drvFOFB;
 
