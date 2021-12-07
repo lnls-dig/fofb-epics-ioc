@@ -110,6 +110,19 @@ static void exitHandlerC(void *pPvt)
     pdrvFOFB->~drvFOFB();
 }
 
+asynStatus drvBPM::getServiceChan (int bpmNumber, int addr, const char *serviceName,
+        epicsUInt32 *chanArg) const
+{
+    static const char *functionName = "getServiceChan";
+    asynStatus status = asynSuccess;
+    epicsUInt32 chan = 0;
+
+    chan = addr;
+
+    *chanArg = chan;
+    return status;
+}
+
 asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceName,
         int *serviceIDArg) const
 {
