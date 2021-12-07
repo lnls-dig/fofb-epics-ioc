@@ -17,7 +17,7 @@ $(P)$(R)RtmLampAmpIFlagL-SP
 $(P)$(R)RtmLampAmpTFlagL-SP
 $(P)$(R)RtmLampAmpIFlagR-SP
 $(P)$(R)RtmLampAmpTFlagR-SP
-$(P)$(R)RtmLampAmpE-SP
+$(P)$(R)RtmLampAmpEn-SP
 $(P)$(R)RtmLampPIOLTriangEn-SP
 $(P)$(R)RtmLampPIOLSquareEn-SP
 $(P)$(R)RtmLampPISPSquareEn-SP

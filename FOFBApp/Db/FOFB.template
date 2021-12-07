@@ -154,7 +154,7 @@ record(longin,"$(P)$(R)RtmLampAmpTFlagR-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R")
 }
 
-record(longout,"$(P)$(R)RtmLampAmpE-SP"){
+record(longout,"$(P)$(R)RtmLampAmpEn-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier enable")
     field(PINI,"YES")
