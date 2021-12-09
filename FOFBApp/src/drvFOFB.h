@@ -158,10 +158,10 @@ private:
 
 /* These are the drvInfo strings that are used to identify the parameters.
  *  *  * They are used by asyn clients, including standard asyn device support */
-#define P_RamWriteString                        "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
-#define P_RamAddrString                         "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
-#define P_RamDataInString                       "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
-#define P_RamDataOutString                      "FOFB_PROCESSING_RAM_DATA_OUT"              /* asynUInt32Digital,      r/o */
+#define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
+#define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
+#define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
+#define P_FofbProcessingRamDataOutString        "FOFB_PROCESSING_RAM_DATA_OUT"              /* asynUInt32Digital,      r/o */
 #define P_RtmLampStatusString                   "RTMLAMP_OHWR_STA"                          /* asynUInt32Digital,      r/o */
 #define P_RtmLampDacDataFromWbString            "RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB"         /* asynUInt32Digital,      r/w */
 #define P_RtmLampAmpIFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L"         /* asynUInt32Digital,      r/w */
@@ -242,11 +242,11 @@ class drvFOFB : public asynPortDriver {
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
-        int P_RamWrite;
-#define FIRST_COMMAND P_RamWrite
-        int P_RamAddr;
-        int P_RamDataIn;
-        int P_RamDataOut;
+        int P_FofbProcessingRamWrite;
+#define FIRST_COMMAND P_FofbProcessingRamWrite
+        int P_FofbProcessingRamAddr;
+        int P_FofbProcessingRamDataIn;
+        int P_FofbProcessingRamDataOut;
         int P_RtmLampStatus;
         int P_RtmLampDacDataFromWb;
         int P_RtmLampAmpIFlagL;
