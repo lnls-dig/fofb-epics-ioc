@@ -64,7 +64,7 @@ static const functionsAny_t fofbProcessingSetGetRamDataInFunc         = {functio
                                                                           halcs_get_fofb_processing_ram_data_in}};
 static const functionsAny_t fofbProcessingSetGetRamDataOutFunc        = {functionsUInt32_t{"FOFB_PROCESSING", NULL,
                                                                           halcs_get_fofb_processing_ram_data_out}};
-static const functionsAny_t rtmLampOhwrSetGetStatusFunc               = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
+static const functionsAny_t rtmLampSetGetStatusFunc                   = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
                                                                           halcs_get_rtmlamp_ohwr_sta}};
 static const functionsAny_t rtmLampSetGetDacDataFromWbFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
                                                                           halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
@@ -105,7 +105,7 @@ static const functionsAny_t fofbCtrlSetGetActPartFunc                 = {functio
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
 static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_cc_enable,
-                                                                          fofb_ctrl_cc_enable}};
+                                                                          halcs_get_fofb_ctrl_cc_enable}};
 static const functionsAny_t fofbCtrlSetGetTfsOverrideFunc             = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_tfs_override,
                                                                           halcs_get_fofb_ctrl_tfs_override}};
 static const functionsAny_t fofbCtrlSetGetBpmIdFunc                   = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_bpm_id,
@@ -379,7 +379,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_RtmLampPIOLDacCntMax,        rtmLampSetGetPIOLDacCntMaxFunc);
     fofbHwFunc.emplace(P_RtmLampPISPLimInf,           rtmLampSetGetPISPLimInfFunc);
     fofbHwFunc.emplace(P_FofbCtrlActPart,             fofbCtrlSetGetActPartFunc);
-    fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeFofbCtrlErrClrFunc);
+    fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
     fofbHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
     fofbHwFunc.emplace(P_FofbCtrlBpmId,               fofbCtrlSetGetBpmIdFunc);
