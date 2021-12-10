@@ -1,10 +1,10 @@
 /*
- *  *  * drvFOFB.cpp
- *   *   *
- *    *    * Authors: Melissa Aguiar
- *     *     *
- *      *      * Created Dec. 03, 2021
- *       *       */
+ *  *  *  * drvFOFB.cpp
+ *   *   *   *
+ *    *    *    * Authors: Melissa Aguiar
+ *     *     *     *
+ *      *      *      * Created Dec. 03, 2021
+ *       *       *       */
 
 #include <stdlib.h>
 #include <string.h>
@@ -24,38 +24,81 @@
 #include "drvFOFB.h"
 #include <epicsExport.h>
 
+/** The polling interval when checking to see if acquisition is complete */
+#define FOFB_POLL_TIME                  .1
+#define FOFB_SP_POLL_TIME               .01
+#define FOFB_PM_POLL_TIME               1
+
 #define SERVICE_NAME_SIZE               50
+
+typedef struct {
+    drvFOFB *drvFOFBp;
+    fofb_coreID_types coreID;
+    double pollTime;
+    bool autoStart;
+} taskParams_t;
 
 static const boardMap_t boardMap[MAX_FOFBS+1] = {
     /* board,   fofb*/
-    /* 0 (INVALID)  */ {-1, -1},
-    /* 1            */ {1,   0},
-    /* 2            */ {1,   1},
-    /* 3            */ {2,   0},
-    /* 4            */ {2,   1},
-    /* 5            */ {3,   0},
-    /* 6            */ {3,   1},
-    /* 7            */ {4,   0},
-    /* 8            */ {4,   1},
-    /* 9            */ {5,   0},
-    /* 10           */ {5,   1},
-    /* 11           */ {6,   0},
-    /* 12           */ {6,   1},
-    /* 13           */ {7,   0},
-    /* 14           */ {7,   1},
-    /* 15           */ {8,   0},
-    /* 16           */ {8,   1},
-    /* 17           */ {9,   0},
-    /* 18           */ {9,   1},
-    /* 19           */ {10,  0},
-    /* 20           */ {10,  1},
-    /* 21           */ {11,  0},
-    /* 22           */ {11,  1},
-    /* 23           */ {12,  0},
-    /* 24           */ {12,  1}
+    /* 0 (INVALID)  */ {-1, -1,  -1},
+    /* 1            */ {1,   0,   2},
+    /* 2            */ {1,   1,   3},
+    /* 3            */ {2,   0,   2},
+    /* 4            */ {2,   1,   3},
+    /* 5            */ {3,   0,   2},
+    /* 6            */ {3,   1,   3},
+    /* 7            */ {4,   0,   2},
+    /* 8            */ {4,   1,   3},
+    /* 9            */ {5,   0,   2},
+    /* 10           */ {5,   1,   3},
+    /* 11           */ {6,   0,   2},
+    /* 12           */ {6,   1,   3},
+    /* 13           */ {7,   0,   2},
+    /* 14           */ {7,   1,   3},
+    /* 15           */ {8,   0,   2},
+    /* 16           */ {8,   1,   3},
+    /* 17           */ {9,   0,   2},
+    /* 18           */ {9,   1,   3},
+    /* 19           */ {10,  0,   2},
+    /* 20           */ {10,  1,   3},
+    /* 21           */ {11,  0,   2},
+    /* 22           */ {11,  1,   3},
+    /* 23           */ {12,  0,   2},
+    /* 24           */ {12,  1,   3}
 };
 
+/* This function should not be called, as there is no client function to replace it and
+ *  *  * the EPICS Db should not export PVs that maps here.
+ *   *   * FIXME: not sure why, but some unavailable functions are called even with no
+ *    *    * "apperently" Db record mapped to it. When this happens, segfault occurs. So,
+ *     *     * until we figure out what s happening we keep "NULL" function mapped to this dummy
+ *      *      * fcuntions */
+static halcs_client_err_e halcs_dummy_read_32 (halcs_client_t *self, char *service, uint32_t *param)
+{
+    (void) self;
+    (void) service;
+    (void) param;
+    return HALCS_CLIENT_ERR_INV_FUNCTION;
+}
+
+static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *service,
+        uint32_t chan, uint32_t *param)
+{
+    (void) self;
+    (void) service;
+    (void) chan;
+    (void) param;
+    return HALCS_CLIENT_ERR_INV_FUNCTION;
+}
+
 /* Int32 functions mapping */
+static const functionsAny_t fofbSetGetAcqDataTrigThresFunc            = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres, acq_get_data_trig_thres}};
+static const functionsAny_t fofbSetGetAcqDataTrigPolFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol,   acq_get_data_trig_pol}};
+static const functionsAny_t fofbSetGetAcqDataTrigSelFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_sel,   acq_get_data_trig_sel}};
+static const functionsAny_t fofbSetGetAcqDataTrigFiltFunc             = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_filt,  acq_get_data_trig_filt}};
+static const functionsAny_t fofbSetGetAcqHwDlyFunc                    = {functionsUInt32Acq_t{"ACQ", acq_set_hw_trig_dly,     acq_get_hw_trig_dly}};
+static const functionsAny_t fofbSetGetAcqDataTrigChanFunc             = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_chan,  acq_get_data_trig_chan}};
+
 static const functionsAny_t fofbProcessingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write,
                                                                           halcs_get_fofb_processing_ram_write}};
 static const functionsAny_t fofbProcessingSetGetRamAddrFunc           = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr,
@@ -178,7 +221,51 @@ static const functionsAny_t fofbCtrlSetGetRcbDataFunc                 = {functio
                                                                           halcs_get_fofb_ctrl_rcb_data}};
 
 static const char *driverName="drvFOFB";
+
+static taskParams_t taskParams[NUM_ACQ_CORES_PER_FOFB] = {
+    /* Regular Core */
+    {
+        NULL,                          // drvFOFBp
+        FOFBIDReg,                     // coreID
+        FOFB_POLL_TIME,                // pollTime
+        false                          // autoStart
+    },
+    /* Post-Mortem Core */
+    {
+        NULL,                          // drvFOFBp
+        FOFBIDPM,                      // coreID
+        FOFB_PM_POLL_TIME,             // pollTime
+        true                           // autoStart
+    },
+};
+static taskParams_t taskSPParams[NUM_ACQ_CORES_PER_FOFB] = {
+    /* Regular Core */
+    {
+        NULL,                          // drvFOFBp
+        FOFBIDReg,                     // coreID
+        FOFB_SP_POLL_TIME,             // pollTime
+        false                          // autoStart
+    },
+#if 0
+    /* Post-Mortem Core */
+    {
+        NULL,                          // drvFOFBp
+        FOFBIDPM,                      // coreID
+        FOFB_PM_POLL_TIME,             // pollTime
+        false                          // autoStart
+    },
+#endif
+};
+static taskParams_t taskMonitParams = {
+    NULL,                              // drvFOFBp
+    FOFBIDReg,                         // coreID
+    FOFB_POLL_TIME,                    // pollTime
+    false                              // autoStart
+};
+
 void acqTask(void *drvPvt);
+void acqSPTask(void *drvPvt);
+void acqMonitTask(void *drvPvt);
 
 static void exitHandlerC(void *pPvt)
 {
@@ -204,9 +291,35 @@ asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceN
 {
     static const char *functionName = "getServiceID";
     asynStatus status = asynSuccess;
+    int serviceID = 0;
+    int addrMod = 0;
 
-    *serviceIDArg = boardMap[fofbNumber].fofb;
+    if (streq(serviceName, "ACQ")) {
+        addrMod = addr;
+    }
+    else {
+        addrMod = 0;
+    }
 
+    switch (addrMod) {
+        case FOFBIDReg:
+            serviceID = boardMap[fofbNumber].fofb;
+            break;
+
+        case FOFBIDPM:
+            serviceID = boardMap[fofbNumber].core_id;
+            break;
+
+        default:
+            status = asynError;
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error getting serviceID for addr = %d for service = %s\n",
+                driverName, functionName, addr, serviceName);
+            goto err_exit;
+    }
+    *serviceIDArg = serviceID;
+
+err_exit:
     return status;
 }
 
@@ -242,16 +355,18 @@ get_service_id_err:
 }
 
 /** Constructor for the drvFOFB class.
- *  *  * Calls constructor for the asynPortDriver base class.
- *   *   * \param[in] portName The name of the asyn port driver to be created.
- *    *    * \param[in] endpoint The device address string ]
- *     *     * */
+ *  *  *  * Calls constructor for the asynPortDriver base class.
+ *   *   *   * \param[in] portName The name of the asyn port driver to be created.
+ *    *    *    * \param[in] endpoint The device address string ]
+ *     *     *     * */
 drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
-        int verbose, int timeout)
-   : asynPortDriver(portName,
+        const char *type, int verbose, int timeout, int maxPoints,
+        int maxBuffers, size_t maxMemory)
+   : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
-                    asynUInt32DigitalMask | asynFloat64Mask  | asynDrvUserMask,    /* Interface mask     */
-                    asynUInt32DigitalMask | asynFloat64Mask ,                      /* Interrupt mask     */
+                    maxBuffers, maxMemory, /* maxBuffers, maxMemory */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
                     1, /* Autoconnect */
                     0, /* Default priority */
@@ -260,8 +375,12 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     asynStatus status;
     const char *functionName = "drvFOFB";
 
+    srand(time(NULL));
+
     /* Create portName so we can create a new AsynUser later */
     fofbPortName = epicsStrDup(portName);
+    fofbType = epicsStrDup(type);
+    fofbMaxPoints = maxPoints;
 
     this->endpoint = strdup(endpoint);
     if (this->endpoint == NULL) {
@@ -284,15 +403,72 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     this->verbose = verbose;
     this->timeout = timeout;
 
-    /* Create parameters for all addresses without specifying the ones that don't
- *  *      * make sense to be on a specified list. Without this we woudl have to create
- *   *           * different parameterIndex structures to store each index, as they could be
- *    *                * differently if created in just a few lists */
+    for (int i = 0; i < NUM_FOFB_MODES; ++i) {
+        for (int j = 0; j < NUM_ACQ_CORES_PER_FOFB; ++j) {
+            this->readingActive[i][j] = 0;
+            this->repetitiveTrigger[i][j] = 0;
+        }
+    }
 
-    /* CAUTION. The order of craetion must be the same as defined in .h file.
- *  *      * Otherwise, checking for FIRST_PARAM/LAST_PARAM won't work */
+    for (int i = 0; i < NUM_FOFB_MODES; ++i) {
+
+        this->reconfSPassAcqEventId[i] = epicsEventCreate(epicsEventEmpty);
+        if (!this->reconfSPassAcqEventId[i]) {
+            printf("%s:%s: epicsEventCreate[%d] failure for SP reconfig. event\n",
+                    driverName, functionName, i);
+            return;
+        }
+
+        for (int j = 0; j < NUM_ACQ_CORES_PER_FOFB; ++j) {
+            /* Create events for signalling acquisition thread */
+            this->startAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->startAcqEventId[i][j]) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s epicsEventCreate[%d] failure for start event\n",
+                        driverName, functionName, i);
+                return;
+            }
+
+            this->stopAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->stopAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for stop event\n",
+                        driverName, functionName, i);
+                return;
+            }
+
+            this->abortAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->abortAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for abort event\n",
+                        driverName, functionName, i);
+                return;
+            }
+
+            this->activeAcqEventId[i][j] = epicsEventCreate(epicsEventEmpty);
+            if (!this->activeAcqEventId[i][j]) {
+                printf("%s:%s: epicsEventCreate[%d] failure for active event\n",
+                        driverName, functionName, i);
+                return;
+            }
+        }
+    }
+
+    this->activeMonitEnableEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->activeMonitEnableEventId) {
+        printf("%s:%s: epicsEventCreate failure for activeMonitEnableEventId\n",
+                driverName, functionName);
+        return;
+    }
+
+    /* Create parameters for all addresses without specifying the ones that don't
+ *  *  *      * make sense to be on a specified list. Without this we woudl have to create
+ *   *   *           * different parameterIndex structures to store each index, as they could be
+ *    *    *                * differently if created in just a few lists */
+
+    /* CAUTION. The order of creation must be the same as defined in .h file.
+ *  *  *      * Otherwise, checking for FIRST_PARAM/LAST_PARAM won't work */
 
     /* Create general parameters */
+
     createParam(P_FofbProcessingRamWriteString,      asynParamUInt32Digital,        &P_FofbProcessingRamWrite);
     createParam(P_FofbProcessingRamAddrString,       asynParamUInt32Digital,        &P_FofbProcessingRamAddr);
     createParam(P_FofbProcessingRamDataInString,     asynParamUInt32Digital,        &P_FofbProcessingRamDataIn);
@@ -354,8 +530,31 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_FofbCtrlRcbRdStrString,            asynParamUInt32Digital,        &P_FofbCtrlRcbRdStr);
     createParam(P_FofbCtrlRcbDataString,             asynParamUInt32Digital,        &P_FofbCtrlRcbData);
 
+    /* Create acquistion parameters */
+    createParam(P_SamplesPreString,                  asynParamUInt32Digital,        &P_SamplesPre);
+    createParam(P_SamplesPostString,                 asynParamUInt32Digital,        &P_SamplesPost);
+    createParam(P_NumShotsString,                    asynParamUInt32Digital,        &P_NumShots);
+    createParam(P_ChannelString,                     asynParamInt32,                &P_Channel);
+    createParam(P_UpdateTimeString,                  asynParamFloat64,              &P_UpdateTime);
+    createParam(P_TriggerString,                     asynParamUInt32Digital,        &P_Trigger);
+    createParam(P_TriggerEventString,                asynParamUInt32Digital,        &P_TriggerEvent);
+    createParam(P_TriggerRepString,                  asynParamUInt32Digital,        &P_TriggerRep);
+    createParam(P_TriggerDataThresString,            asynParamUInt32Digital,        &P_TriggerDataThres);
+    createParam(P_TriggerDataPolString,              asynParamUInt32Digital,        &P_TriggerDataPol);
+    createParam(P_TriggerDataSelString,              asynParamUInt32Digital,        &P_TriggerDataSel);
+    createParam(P_TriggerDataFiltString,             asynParamUInt32Digital,        &P_TriggerDataFilt);
+    createParam(P_TriggerHwDlyString,                asynParamUInt32Digital,        &P_TriggerHwDly);
+    createParam(P_DataTrigChanString,                asynParamUInt32Digital,        &P_DataTrigChan);
+    createParam(P_ChannelSampleSizeString,           asynParamUInt32Digital,        &P_ChannelSampleSize);
+    createParam(P_ChannelNumAtomsString,             asynParamUInt32Digital,        &P_ChannelNumAtoms);
+    createParam(P_ChannelAtomWidthString,            asynParamUInt32Digital,        &P_ChannelAtomWidth);
+
+    /* Create FOFB Status parameters */
+    createParam(P_FOFBModeString,                    asynParamInt32,                &P_FOFBMode);
+    createParam(P_FOFBStatusString,                  asynParamInt32,                &P_FOFBStatus);
+
     /* FOFB HW Int32 Functions mapping. Functions not mapped here are just written
- *  *      * to the parameter library */
+ *  *  *      * to the parameter library */
     fofbHwFunc.emplace(P_FofbProcessingRamWrite,      fofbProcessingSetGetRamWriteFunc);
     fofbHwFunc.emplace(P_FofbProcessingRamAddr,       fofbProcessingSetGetRamAddrFunc);
     fofbHwFunc.emplace(P_FofbProcessingRamDataIn,     fofbProcessingSetGetRamDataInFunc);
@@ -422,8 +621,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     unlock();
 
     /* If we correct connect for this first time, liclient
- *  *      * will ensure the reconnection to server if necessary, but we
- *   *           * must succeed here or we must abort completely */
+ *  *  *      * will ensure the reconnection to server if necessary, but we
+ *   *   *           * must succeed here or we must abort completely */
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling fofbClientConnect, status=%d\n",
@@ -432,7 +631,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     /* Set the initial values of some parameters */
-
     setUIntDigitalParam(P_FofbProcessingRamWrite,             0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbProcessingRamAddr,              0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbProcessingRamDataIn,            0,              0xFFFFFFFF);
@@ -494,10 +692,134 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setUIntDigitalParam(P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
 
+    /* Set acquisition parameters */
+    for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
+        setUIntDigitalParam(addr, P_SamplesPre,    1000,                      0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_SamplesPost,   0,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_NumShots,      1,                         0xFFFFFFFF);
+        setIntegerParam(    addr, P_Channel,                                      CH_ADC);
+        setDoubleParam(     addr, P_UpdateTime,                                      1.0);
+        setUIntDigitalParam(addr, P_Trigger,       ACQ_CLIENT_TRIG_SKIP,      0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerEvent,  TRIG_ACQ_STOP,             0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerRep,    0,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataThres,
+                                                   100,                       0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataPol,
+                                                   0,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataSel,
+                                                   0,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerDataFilt,
+                                                   1,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_TriggerHwDly,
+                                                   0,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_DataTrigChan,
+                                                   0,                         0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_ChannelSampleSize,
+                                                   DFLT_SAMPLE_SIZE,          0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_ChannelNumAtoms,
+                                                   DFLT_NUM_ATOMS,            0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_ChannelAtomWidth,
+                                                   DFLT_ATOM_WIDTH,           0xFFFFFFFF);
+    }
+
+    /* Acquisition PM parameters */
+    setUIntDigitalParam(FOFBIDPM, P_SamplesPre,    SAMPLES_PRE_DEFAULT_PM(fofbMaxPoints),
+                                                                              0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_SamplesPost,   SAMPLES_POST_DEFAULT_PM(fofbMaxPoints),
+                                                                              0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_NumShots,      NUM_SHOTS_DEFAULT_PM,
+                                                                              0xFFFFFFFF);
+    setIntegerParam(    FOFBIDPM, P_Channel,                               CH_DEFAULT_PM);
+    setDoubleParam(     FOFBIDPM, P_UpdateTime,                                      1.0);
+    setUIntDigitalParam(FOFBIDPM, P_Trigger,       ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerEvent,
+                                                   TRIG_ACQ_START,            0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerRep,    1,                         0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerDataThres,
+                                                   100,                       0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerDataPol,
+                                                   0,                         0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerDataSel,
+                                                   0,                         0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerDataFilt,
+                                                   1,                         0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_TriggerHwDly,
+                                                   0,                         0xFFFFFFFF);
+    setUIntDigitalParam(FOFBIDPM, P_DataTrigChan,
+                                                   0,                         0xFFFFFFFF);
+
+    /* Write to HW */
+    for (int i = P_SamplesPre; i < P_DataTrigChan+1; ++i) {
+        setParamGeneric(i, FOFBIDPM);
+    }
+
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
         callParamCallbacks(i);
     }
+
+    /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
+    for (int i = 0; i < MAX_ADDR; ++i) {
+        callParamCallbacks(i);
+    }
+
+    /* Create the thread that computes the waveforms in the background */
+    for (int i = 0; i < NUM_ACQ_CORES_PER_FOFB; ++i) {
+        /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
+ *  *          * The other parameters are already set-up*/
+        taskParams[i].drvFOFBp = this;
+        status = (asynStatus)(epicsThreadCreate("drvFOFBTask",
+                    epicsThreadPriorityMedium,
+                    epicsThreadGetStackSize(epicsThreadStackMedium),
+                    (EPICSTHREADFUNC)::acqTask,
+                    &taskParams[i]) == NULL);
+        if (status) {
+            printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+            return;
+        }
+    }
+
+    /* Create the thread that computes the SP waveforms in the background */
+    /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
+ *  *      * The other parameters are already set-up*/
+    taskSPParams[FOFBIDReg].drvFOFBp = this;
+    status = (asynStatus)(epicsThreadCreate("drvFOFBSPTask",
+                epicsThreadPriorityMedium,
+                epicsThreadGetStackSize(epicsThreadStackMedium),
+                (EPICSTHREADFUNC)::acqSPTask,
+                &taskSPParams[FOFBIDReg]) == NULL);
+    if (status) {
+        printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+        return;
+    }
+
+    /* Create monitoring thread */
+    taskMonitParams.drvFOFBp = this;
+    status = (asynStatus)(epicsThreadCreate("drvFOFBMonitTask",
+                epicsThreadPriorityHigh,
+                epicsThreadGetStackSize(epicsThreadStackMedium),
+                (EPICSTHREADFUNC)::acqMonitTask,
+                &taskMonitParams) == NULL);
+    if (status) {
+        printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+        return;
+    }
+
+#if 0
+    /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
+ *  *     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
+ *   *         * since nothing ever calls pasynManager->queueRequest.  So we do an
+ *    *             * exceptionConnect to each address so asynManager will show them as connected.
+ *     *                 * Note that this is NOT necessary for the driver to function correctly, the
+ *      *                     * NDPlugins will still get called even for addresses that are not "connected".
+ *       *                         * It is just to avoid confusion.
+ *        *                             * */
+    for (i=0; i<MAX_ADDR; ++i) {
+        pasynUser = pasynManager->createAsynUser(0,0);
+        pasynManager->connectDevice(pasynUser, portName, i);
+        pasynManager->exceptionConnect(pasynUser);
+    }
+#endif
 
     epicsAtExit(exitHandlerC, this);
 
@@ -508,7 +830,7 @@ endpoint_dup_err:
 }
 
 /** Destructor for the drvFOFB class.
- *  *  */
+ *  *  *  */
 drvFOFB::~drvFOFB()
 {
     asynStatus status = asynSuccess;
@@ -525,6 +847,8 @@ drvFOFB::~drvFOFB()
 
     free (this->endpoint);
     this->endpoint = NULL;
+    free (this->fofbType);
+    this->fofbType = NULL;
     free (this->fofbPortName);
     this->fofbPortName = NULL;
 }
@@ -552,6 +876,47 @@ asynStatus drvFOFB::fofbClientConnect(asynUser* pasynUser)
         }
     }
 
+    /* Connect FOFB Monit */
+    if (fofbClientMonit == NULL) {
+        fofbClientMonit = halcs_client_new_time (endpoint, verbose, fofbLogFile, timeout);
+        if (fofbClientMonit == NULL) {
+            asynPrint(pasynUser, ASYN_TRACE_ERROR,
+                    "%s:%s fofbClientConnect failure to create fofbClientMonit instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_halcs_client_monit_err;
+        }
+    }
+
+    /* Connect ACQ FOFB parameter clients*/
+    for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        if (fofbClientAcqParam[i] == NULL) {
+            fofbClientAcqParam[i] = acq_client_new_time (endpoint, verbose, fofbLogFile, timeout);
+            if (fofbClientAcqParam[i] == NULL) {
+                asynPrint(pasynUser, ASYN_TRACE_ERROR,
+                        "%s:%s fofbClientConnect failure to create fofbClientAcqParam[%d] instance\n",
+                        driverName, functionName, i);
+                status = asynError;
+                goto create_halcs_client_acq_param_err;
+            }
+        }
+    }
+
+    /* Connect ACQ FOFB clients */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        if (fofbClientAcq[i] == NULL) {
+            fofbClientAcq[i] = acq_client_new_time (endpoint, verbose, fofbLogFile, timeout);
+            if (fofbClientAcq[i] == NULL) {
+                asynPrint(pasynUser, ASYN_TRACE_ERROR,
+                        "%s:%s fofbClientConnect failure to create fofbClientAcq[%d] instance\n",
+                        driverName, functionName, i);
+                status = asynError;
+                goto create_halcs_client_acq_err;
+            }
+        }
+    }
+
+
     asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
         "%s:%s: FOFB Processing client connected\n",
         driverName, functionName);
@@ -560,6 +925,24 @@ asynStatus drvFOFB::fofbClientConnect(asynUser* pasynUser)
 
     return status;
 
+create_halcs_client_acq_err:
+    /* Destroy possible uninitialized fofbClientAcq instances */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        if (fofbClientAcq[i] != NULL) {
+            acq_client_destroy (&fofbClientAcq[i]);
+        }
+    }
+create_halcs_client_acq_param_err:
+    /* Destroy possible uninitialized fofbClientAcqParam instances */
+    for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        if (fofbClientAcqParam[i] != NULL) {
+            acq_client_destroy (&fofbClientAcqParam[i]);
+        }
+    }
+    halcs_client_destroy (&fofbClientMonit);
+create_halcs_client_monit_err:
+    /* Destroy regular fofbClient instance */
+    halcs_client_destroy (&fofbClient);
 create_halcs_client_err:
     return status;
 }
@@ -580,7 +963,1628 @@ asynStatus drvFOFB::fofbClientDisconnect(asynUser* pasynUser)
         halcs_client_destroy (&fofbClient);
     }
 
+     if (fofbClientMonit != NULL) {
+        halcs_client_destroy (&fofbClientMonit);
+    }
+
+    for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        if (fofbClientAcqParam[i] != NULL) {
+            acq_client_destroy (&fofbClientAcqParam[i]);
+        }
+    }
+
+    for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        if (fofbClientAcq[i] != NULL) {
+            acq_client_destroy (&fofbClientAcq[i]);
+        }
+    }
+
     pasynManager->exceptionDisconnect(pasynUser);
+    return status;
+}
+
+void acqTask(void *drvPvt)
+{
+   taskParams_t *pPvt = (taskParams_t *)drvPvt;
+   pPvt->drvFOFBp->acqTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
+}
+
+void acqSPTask(void *drvPvt)
+{
+   taskParams_t *pPvt = (taskParams_t *)drvPvt;
+   pPvt->drvFOFBp->acqSPTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
+}
+
+void acqMonitTask(void *drvPvt)
+{
+   taskParams_t *pPvt = (taskParams_t *)drvPvt;
+   pPvt->drvFOFBp->acqMonitTask();
+}
+
+/********************************************************************/
+/******************* FOFB Acquisition functions **********************/
+/********************************************************************/
+
+asynStatus drvFOFB::initAcqPM(int coreID)
+{
+    static const char *functionName = "initAcqPM";
+    asynStatus status = asynSuccess;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: setting Post-Mortem parameters for coreID = %d\n",
+        driverName, functionName, coreID);
+
+    /* Set paramters for Post-Mortem */
+    setUIntDigitalParam(coreID, P_SamplesPre,  SAMPLES_PRE_DEFAULT_PM(fofbMaxPoints),
+                                                                          0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_SamplesPost, SAMPLES_POST_DEFAULT_PM(fofbMaxPoints),
+                                                                          0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_NumShots,    NUM_SHOTS_DEFAULT_PM,
+                                                                          0xFFFFFFFF);
+    setIntegerParam(    coreID, P_Channel,                             CH_DEFAULT_PM);
+    setDoubleParam(     coreID, P_UpdateTime,                                    1.0);
+    setUIntDigitalParam(coreID, P_Trigger,     ACQ_CLIENT_TRIG_EXTERNAL,  0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerEvent,
+                                               TRIG_ACQ_START,            0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerRep,  1,                         0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataThres,
+                                               100,                       0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataPol,
+                                               0,                         0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataSel,
+                                               0,                         0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerDataFilt,
+                                               1,                         0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_TriggerHwDly,
+                                               0,                         0xFFFFFFFF);
+    setUIntDigitalParam(coreID, P_DataTrigChan,
+                                               0,                         0xFFFFFFFF);
+
+    /* Do callbacks so higher layers see any changes */
+    callParamCallbacks(coreID);
+
+    /* Start triggered acquisition */
+    status = setAcqEvent(0xFFFFFFFF, coreID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling setAcqEvent, status=%d\n",
+            driverName, functionName, status);
+        goto set_acq_trig;
+    }
+    return status;
+
+set_acq_trig:
+    return status;
+}
+
+/* This should only be called by asyn thread, not Acquisition ones */
+asynStatus drvFOFB::setAcqTrig(int coreID, acq_client_trig_e trig)
+{
+    static const char *functionName = "setAcqTrig";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    asynStatus status = asynSuccess;
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = acq_set_trig (fofbClientAcqParam[coreID], service, trig);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling halcs_set_acq_trig for service = %s, trigger = %d\n",
+                driverName, functionName, service, trig);
+        status = asynError;
+        goto halcs_acq_trig_err;
+    }
+
+halcs_acq_trig_err:
+get_service_err:
+    return status;
+}
+
+/* This can only return if the ACQ engine is IDLE or waiting
+ *  *  * for some trigger (External, Data or Software) */
+/* This should only be called by asyn thread, not Acquisition ones */
+fofb_status_types drvFOFB::getFOFBInitAcqStatus(int coreID)
+{
+    fofb_status_types fofbStatus = FOFBStatusErrAcq;
+    asynStatus status = asynSuccess;
+    halcs_client_err_e herr = HALCS_CLIENT_SUCCESS;
+    uint32_t trig = 0;
+    const char* functionName = "getFOFBAcqStatus";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Have ACQ engine completed some work or is it still busy? */
+    herr = acq_check (fofbClientAcqParam[coreID], service);
+    if (herr == HALCS_CLIENT_SUCCESS) {
+        return FOFBStatusIdle;
+    }
+
+    /* If the ACQ is doing something we need to figure it out what is it */
+    herr = acq_get_trig (fofbClientAcqParam[coreID], service, &trig);
+    if (herr != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling halcs_get_acq_trig, status=%d\n",
+            driverName, functionName, herr);
+        goto get_service_err;
+    }
+
+    switch (trig) {
+        case ACQ_CLIENT_TRIG_SKIP:
+            /* If we are doing something and the trigger is set to SKIP,
+ *  *              * then we are acquiring */
+            fofbStatus = FOFBStatusAcquire;
+            break;
+
+        case ACQ_CLIENT_TRIG_EXTERNAL:
+            fofbStatus = FOFBStatusTriggerHwExtWaiting;
+            break;
+
+        case ACQ_CLIENT_TRIG_DATA_DRIVEN:
+            fofbStatus = FOFBStatusTriggerHwDataWaiting;
+            break;
+
+        case ACQ_CLIENT_TRIG_SOFTWARE:
+            fofbStatus = FOFBStatusTriggerSwWaiting;
+            break;
+
+        default:
+            fofbStatus = FOFBStatusErrAcq;
+    }
+
+get_service_err:
+    return fofbStatus;
+}
+
+static bool acqIsFOFBStatusWaitSomeTrigger(int fofbStatus)
+{
+    if (fofbStatus == FOFBStatusTriggerHwExtWaiting ||
+        fofbStatus == FOFBStatusTriggerHwDataWaiting ||
+        fofbStatus == FOFBStatusTriggerSwWaiting) {
+        return true;
+    }
+
+    return false;
+}
+
+static bool acqIsFOFBStatusErr(int fofbStatus)
+{
+    if (fofbStatus == FOFBStatusErrAcq ||
+        fofbStatus == FOFBStatusAborted ||
+        fofbStatus == FOFBStatusErrTooManyPoints ||
+        fofbStatus == FOFBStatusErrTooFewPoints ||
+        fofbStatus == FOFBStatusErrNoMem ||
+        fofbStatus == FOFBStatusErrAcqOFlow) {
+        return true;
+    }
+
+    return false;
+}
+
+/*
+ *  *  * FOFB acquisition functions
+ *   *   */
+
+/** Acquisition task that runs as a separate thread.
+ *  *  *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
+ *   *  */
+void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
+{
+    int status = asynSuccess;
+    asynUser *pasynUser = NULL;
+    epicsUInt32 num_samples_pre;
+    epicsUInt32 num_samples_post;
+    epicsUInt32 num_shots;
+    epicsUInt32 sampleSize = 16; /* bytes */
+    epicsUInt32 numAtoms = 4;
+    epicsUInt32 atomWidth = 32; /* bits */
+    int channel;
+    int fofbMode;
+    epicsUInt32 trigger;
+    double updateTime;
+    double delay;
+    int hwAmpChannel = 0;
+    int acqCompleted = 0;
+    int fofbStatus = 0;
+    int newAcq = 1;
+    bool autoStartFirst = autoStart;
+    epicsTimeStamp now;
+    epicsFloat64 timeStamp;
+    NDArray *pArrayAllChannels = NULL;
+    NDDataType_t NDType = NDInt32;
+    epicsTimeStamp startTime;
+    epicsTimeStamp endTime;
+    double elapsedTime;
+    int arrayCounter;
+    size_t dims[MAX_WVF_DIMS];
+    static const char *functionName = "acqTask";
+
+    /* Create an asynUser. FIXME: we should probably create a callback
+ *  *      * for the processCallback, which would be called on a queuePortLock ()
+ *   *           * so as to not block all addresses, just the ones related to that
+ *    *                * specific BOARD */
+    pasynUser = pasynManager->createAsynUser(0, 0);
+    pasynUser->timeout = FOFB_TIMEOUT;
+    status = pasynManager->connectDevice(pasynUser, fofbPortName, 0);
+    if(status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: connectDevice failed, status=%d\n",
+            driverName, functionName, status);
+        return;
+    }
+
+    /* Loop forever */
+    lock ();
+    while (1) {
+        /* Free buffers if needed*/
+        if (pArrayAllChannels) {
+            pArrayAllChannels->release ();
+            pArrayAllChannels = NULL;
+        }
+
+        getIntegerParam(coreID, P_FOFBStatus, &fofbStatus);
+
+        /* Check if we received a stop event */
+        status = epicsEventWaitWithTimeout(this->stopAcqEventId[FOFBModeMultiBunch][coreID], pollTime);
+        if (status == epicsEventWaitOK || !repetitiveTrigger[FOFBModeMultiBunch][coreID] || acqIsFOFBStatusErr(fofbStatus)) {
+            /* We got a stop event, stop repetitive acquisition */
+            readingActive[FOFBModeMultiBunch][coreID] = 0;
+
+            /* Wait until we are in MultiBunch mode */
+            getIntegerParam(coreID, P_FOFBMode, &fofbMode);
+            if (fofbMode != FOFBModeMultiBunch) {
+                unlock ();
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for FOFBMode = MultiBunch\n", driverName, functionName);
+                epicsEventWait(activeAcqEventId[FOFBModeMultiBunch][coreID]);
+                lock ();
+            }
+
+            /* Default to new acquisition. If we are waiting for a trigger
+ *  *              * we will change this */
+            newAcq = 1;
+
+            /* Now, we can either be finished with the previous acquisition
+ *  *              * (repetitive or not) or we could be waiting for a trigger armed
+ *   *                           * outside this thread (for now, the only option is the case when
+ *    *                                        * you set a trigger and then exit the IOC for some reason) */
+            if (!acqCompleted && acqIsFOFBStatusWaitSomeTrigger(fofbStatus)) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for trigger\n", driverName, functionName);
+                newAcq = 0;
+            }
+            /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
+            else if (!acqIsFOFBStatusErr(fofbStatus)) {
+                setIntegerParam(coreID, P_FOFBStatus, FOFBStatusIdle);
+                callParamCallbacks(coreID);
+            }
+
+            /* We have consumed our data. This is important if we abort the next
+ *  *              * acquisition, as we can detect that the current acquisition is completed,
+ *   *                           * which would be wrong */
+            acqCompleted = 0;
+
+            /* Only wait for the startEvent if we are waiting for a
+ *  *              * new acquisition */
+            if (newAcq && !autoStartFirst) {
+                unlock();
+                /* Release the lock while we wait for an event that says acquire has started, then lock again */
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: waiting for acquire to start\n", driverName, functionName);
+                epicsEventWait(startAcqEventId[FOFBModeMultiBunch][coreID]);
+                lock();
+            }
+            readingActive[FOFBModeMultiBunch][coreID] = 1;
+            autoStartFirst = 0;
+        }
+
+        /* We are acquiring. Get the current time */
+        epicsTimeGetCurrent(&startTime);
+
+        /* Set the parameter in the parameter library. */
+        getUIntDigitalParam(coreID , P_Trigger      , &trigger          , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPre   , &num_samples_pre  , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
+        getIntegerParam(    coreID , P_Channel      , &channel);
+        getDoubleParam(     coreID , P_UpdateTime   , &updateTime);
+        getUIntDigitalParam(coreID,  P_ChannelSampleSize,
+                                                      &sampleSize,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelNumAtoms,
+                                                      &numAtoms,          0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelAtomWidth,
+                                                      &atomWidth,         0xFFFFFFFF);
+
+        /* Convert bit to byte */
+        atomWidth = atomWidth/8;
+
+        if(numAtoms > MAX_WVF_AMP_TYPES) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
+                    driverName, functionName, MAX_WVF_AMP_TYPES);
+            continue;
+        }
+
+        /* Convert user channel into hw channel */
+        hwAmpChannel = channelMap[channel].HwAmpChannel;
+        if(hwAmpChannel < 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                    driverName, functionName, hwAmpChannel);
+            continue;
+        }
+
+        /* Our waveform will have "num_samples_pres + num_samples_post"
+ *  *          * samples in each dimension */
+        dims[0] = numAtoms;
+        dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* We can't acquire something with 0 points */
+        if (dims[1] == 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (= 0)\n",
+                    driverName, functionName);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrTooFewPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        /* dims[1] must not exceed fofbMaxPoints, as we use this to alloc
+ *  *          * points for the Waveform Plugins */
+        if (dims[1] > fofbMaxPoints) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (> %d)\n",
+                    driverName, functionName, fofbMaxPoints);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrTooManyPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        /* Waveform statistics */
+        epicsTimeGetCurrent(&now);
+        getIntegerParam(NDArrayCounter, &arrayCounter);
+        arrayCounter++;
+        setIntegerParam(NDArrayCounter, arrayCounter);
+
+        status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
+        if (status != asynSuccess) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
+                    driverName, functionName, coreID);
+            continue;
+        }
+
+        pArrayAllChannels = pNDArrayPool->alloc(MAX_WVF_DIMS, dims, NDType, 0, NULL);
+        if (pArrayAllChannels == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayAllChannels\n",
+                driverName, functionName);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrNoMem);
+            callParamCallbacks(coreID);
+            continue;
+        }
+        pArrayAllChannels->uniqueId = arrayCounter;
+        timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+        pArrayAllChannels->timeStamp = timeStamp;
+        pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+        pArrayAllChannels->epicsTS.nsec = now.nsec;
+        getAttributes(pArrayAllChannels->pAttributeList);
+
+        /* Just start the acquisition if we are not already acquiring */
+        if (newAcq) {
+            /* Tell we are acquiring just before we actually start it */
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusAcquire);
+            callParamCallbacks(coreID);
+
+            /* Do acquisition */
+            unlock();
+            pasynManager->lockPort(pasynUser);
+            status = startAcq(coreID, hwAmpChannel, num_samples_pre, num_samples_post,
+                    num_shots);
+            pasynManager->unlockPort(pasynUser);
+            lock();
+
+            if (status == asynSuccess) {
+                /* FIXME: Improve FOFBStatus trigger waiting. The information
+ *  *                  * about waiting for trigger is not totally accurate here.
+ *   *                                   * Although, we will for SW or HW trigger in a short time,
+ *    *                                                    * we are not actually there yet ...
+ *     *                                                                     */
+                if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerHwExtWaiting);
+                }
+                else if (trigger == ACQ_CLIENT_TRIG_DATA_DRIVEN) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerHwDataWaiting);
+                }
+                else if (trigger == ACQ_CLIENT_TRIG_SOFTWARE) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerSwWaiting);
+                }
+
+                callParamCallbacks(coreID);
+            }
+            else {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to acquire waveform\n",
+                        driverName, functionName);
+                /* Could not start acquisition. Invalid parameters */
+                setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrAcq);
+                callParamCallbacks(coreID);
+                continue;
+            }
+        }
+
+        /* Wait for acquisition to complete, but allow acquire stop events to be handled */
+        while (1) {
+            unlock();
+            status = epicsEventWaitWithTimeout(this->abortAcqEventId[FOFBModeMultiBunch][coreID], pollTime);
+            lock();
+            if (status == epicsEventWaitOK) {
+                /* We got a stop event, abort acquisition */
+                abortAcq(coreID);
+                setIntegerParam(coreID, P_FOFBStatus, FOFBStatusAborted);
+                callParamCallbacks(coreID);
+                break;
+            }
+            else {
+                acqCompleted = checkAcqCompletion(coreID);
+            }
+
+            /* Acquisition overflow */
+            if (acqCompleted == -1) {
+                setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrAcqOFlow);
+                callParamCallbacks(coreID);
+                break;
+            }
+
+            if (acqCompleted == 1) {
+                /* Get curve */
+                unlock();
+                pasynManager->lockPort(pasynUser);
+                getAcqCurve(coreID, pArrayAllChannels, hwAmpChannel, num_samples_pre,
+                        num_samples_post, num_shots);
+                pasynManager->unlockPort(pasynUser);
+                lock();
+                break;
+            }
+        }
+
+        /* Only do callbacks and calculate position if we could acquire some
+ *  *          * data */
+        if (acqCompleted == 1) {
+            /* Do callbacks on the full waveform (all channels interleaved) */
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                    channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
+
+            /* Copy AMP data to arrays for each type of data, do callbacks on that */
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+                    dims[0], arrayCounter, &now);
+            if (status != asynSuccess) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to deinterleave NDArray\n",
+                        driverName, functionName);
+                continue;
+            }
+
+            /* Calculate positions and call callbacks */
+            status = computePositions(coreID, pArrayAllChannels, channel, &now);
+            if (status != asynSuccess) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to compute positions\n",
+                        driverName, functionName);
+                continue;
+            }
+        }
+
+        /* Release buffers */
+        pArrayAllChannels->release();
+        pArrayAllChannels = NULL;
+        callParamCallbacks(coreID);
+
+        /* If we are in repetitive mode then sleep for the acquire period minus elapsed time. */
+        if (repetitiveTrigger[FOFBModeMultiBunch][coreID]) {
+            epicsTimeGetCurrent(&endTime);
+            elapsedTime = epicsTimeDiffInSeconds(&endTime, &startTime);
+            delay = updateTime - elapsedTime;
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                     "%s:%s: delay=%f\n",
+                      driverName, functionName, delay);
+            if (delay >= 0.0) {
+                /* We set the status to indicate we are in the period delay */
+                setIntegerParam(coreID, P_FOFBStatus, FOFBStatusWaiting);
+                callParamCallbacks(coreID);
+                unlock();
+                epicsEventWaitWithTimeout(this->stopAcqEventId[FOFBModeMultiBunch][coreID], delay);
+                lock();
+            }
+        }
+    }
+}
+
+/** Acquisition task for Single Pass FOFB mode that runs as a separate thread.
+ *  *  *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
+ *   *  */
+void drvFOFB::acqSPTask(int coreID, double pollTime, bool autoStart)
+{
+    int status = asynSuccess;
+    asynUser *pasynUser = NULL;
+    epicsUInt32 num_samples_pre;
+    epicsUInt32 num_samples_post;
+    epicsUInt32 num_shots;
+    epicsUInt32 sampleSize = 16; /* bytes */
+    epicsUInt32 numAtoms = 4;
+    epicsUInt32 atomWidth = 32; /* bits */
+    int channel;
+    int fofbMode;
+    epicsUInt32 trigger;
+    epicsUInt32 TriggerDataThres;
+    epicsUInt32 TriggerDataPol;
+    epicsUInt32 TriggerDataSel;
+    epicsUInt32 TriggerDataFilt;
+    epicsUInt32 TriggerHwDly;
+    epicsUInt32 DataTrigChan;
+    fofb_sample_t fofb_sample = {0};
+    char service[SERVICE_NAME_SIZE];
+    char service_board[SERVICE_NAME_SIZE];
+    int hwAmpChannel = 0;
+    int acqCompleted = 0;
+    int fofbStatus = 0;
+    int interrupted = 0;
+    bool autoStartFirst = autoStart;
+    epicsTimeStamp now;
+    epicsFloat64 timeStamp;
+    NDArray *pArrayAllChannels = NULL;
+    NDDataType_t NDType = NDInt32;
+    epicsTimeStamp startTime;
+    int arrayCounter;
+    size_t dims[MAX_WVF_DIMS];
+    fofb_single_pass_t *fofb_single_pass = NULL;
+    static const char *functionName = "acqSPTask";
+
+    /* Create an asynUser. FIXME: we should probably create a callback
+ *  *      * for the processCallback, which would be called on a queuePortLock ()
+ *   *           * so as to not block all addresses, just the ones related to that
+ *    *                * specific BOARD */
+    pasynUser = pasynManager->createAsynUser(0, 0);
+    pasynUser->timeout = FOFB_TIMEOUT;
+    status = pasynManager->connectDevice(pasynUser, fofbPortName, 0);
+    if(status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: connectDevice failed, status=%d\n",
+            driverName, functionName, status);
+        return;
+    }
+
+    /* Loop forever */
+    lock ();
+    while (1) {
+        /* Free buffers if needed*/
+        if (pArrayAllChannels) {
+            pArrayAllChannels->release ();
+            pArrayAllChannels = NULL;
+        }
+
+        /* Clear out any flags*/
+        interrupted = 0;
+
+        /* We got a stop event, stop acquisition */
+        readingActive[FOFBModeSinglePass][coreID] = 0;
+
+        /* Wait until we are in SinglePass mode */
+        getIntegerParam(coreID, P_FOFBMode, &fofbMode);
+        if (fofbMode != FOFBModeSinglePass) {
+            unlock ();
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for FOFBMode = SinglePass\n", driverName, functionName);
+            epicsEventWait(activeAcqEventId[FOFBModeSinglePass][coreID]);
+            lock ();
+        }
+
+        getIntegerParam(coreID, P_FOFBStatus, &fofbStatus);
+
+        /* Only change state to IDLE if we are not in a error state and we have just acquired some data */
+        if (!acqIsFOFBStatusErr(fofbStatus)) {
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusIdle);
+            callParamCallbacks(coreID);
+        }
+
+        /* We have consumed our data. This is important if we abort the next
+ *  *          * acquisition, as we can detect that the current acquisition is completed,
+ *   *                   * which would be wrong */
+        acqCompleted = 0;
+
+        /* Only wait for the startEvent if we are waiting for a
+ *  *          * new acquisition */
+        if (!autoStartFirst) {
+            unlock();
+            /* Release the lock while we wait for an event that says acquire has started, then lock again */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for acquire to start\n", driverName, functionName);
+            epicsEventWait(startAcqEventId[FOFBModeSinglePass][coreID]);
+            lock();
+        }
+        readingActive[FOFBModeSinglePass][coreID] = 1;
+        autoStartFirst = 0;
+
+        /* We are acquiring. Get the current time */
+        epicsTimeGetCurrent(&startTime);
+
+        /* Set the parameter in the parameter library. */
+        getUIntDigitalParam(coreID , P_Trigger      , &trigger          , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPre   , &num_samples_pre  , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_SamplesPost  , &num_samples_post , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID , P_NumShots     , &num_shots        , 0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelSampleSize,
+                                                      &sampleSize,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelNumAtoms,
+                                                      &numAtoms,          0xFFFFFFFF);
+        getUIntDigitalParam(coreID,  P_ChannelAtomWidth,
+                                                      &atomWidth,         0xFFFFFFFF);
+
+        /* Convert bit to byte */
+        atomWidth = atomWidth/8;
+
+        if(numAtoms > MAX_WVF_AMP_TYPES) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
+                    driverName, functionName, MAX_WVF_AMP_TYPES);
+            continue;
+        }
+
+        /* Select our "fake" channel if we are in single pass mode.
+ *  *          * This is done so we can the same flow as FOFBModeMultiBunch mode,
+ *   *                   * without having to separate the implementations */
+        channel = CH_SP;
+
+        /* Convert user channel into hw channel */
+        hwAmpChannel = channelMap[channel].HwAmpChannel;
+        if(hwAmpChannel < 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                    driverName, functionName, hwAmpChannel);
+            continue;
+        }
+
+        /* Our waveform will have "num_samples_pres + num_samples_post"
+ *  *          * samples in each dimension */
+        dims[0] = numAtoms;
+        dims[1] = (num_samples_pre + num_samples_post)*num_shots;
+
+        /* We can't acquire something with 0 points */
+        if (dims[1] == 0) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (= 0)\n",
+                    driverName, functionName);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrTooFewPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        /* dims[1] must not exceed fofbMaxPoints, as we use this to alloc
+ *  *          * points for the Waveform Plugins */
+        if (dims[1] > fofbMaxPoints) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: invalid number of points for acquisition (> %d)\n",
+                    driverName, functionName, fofbMaxPoints);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrTooManyPoints);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
+        if (status != asynSuccess) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
+                    driverName, functionName, coreID);
+            continue;
+        }
+
+        pArrayAllChannels = pNDArrayPool->alloc(MAX_WVF_DIMS, dims, NDType, 0, NULL);
+        if (pArrayAllChannels == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayAllChannels\n",
+                driverName, functionName);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrNoMem);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        /* Tell we are acquiring just before we actually start it */
+        setIntegerParam(coreID, P_FOFBStatus, FOFBStatusAcquire);
+        callParamCallbacks(coreID);
+
+        getUIntDigitalParam(coreID, P_TriggerDataThres, &TriggerDataThres,    0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataPol,   &TriggerDataPol,      0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataSel,   &TriggerDataSel,      0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerDataFilt,  &TriggerDataFilt,     0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_TriggerHwDly,     &TriggerHwDly,        0xFFFFFFFF);
+        getUIntDigitalParam(coreID, P_DataTrigChan,     &DataTrigChan,        0xFFFFFFFF);
+
+        /* Get correct service name*/
+        status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            continue;
+        }
+
+        status = getFullServiceName (this->fofbNumber, coreID, "INIT", service_board,
+            sizeof(service_board));
+        if (status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName for INIT service, status=%d\n",
+                driverName, functionName, status);
+            continue;
+        }
+
+        /* Reconfigure acquisition */
+        status = epicsEventTryWait(this->reconfSPassAcqEventId[coreID]);
+        if (status == epicsEventWaitOK) {
+            if (fofb_single_pass != NULL) {
+                fofb_single_pass_destroy (&fofb_single_pass);
+            }
+        }
+
+        if (fofb_single_pass == NULL) {
+            fofb_single_pass = fofb_single_pass_new (this->endpoint,
+                    this->verbose, NULL, service, service_board,
+                    &fofb_parameters, num_samples_pre, num_samples_post,
+                    num_shots);
+            if (fofb_single_pass == NULL) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: fofb_single_pass could not be created, status=%d\n",
+                        driverName, functionName, status);
+                continue;
+            }
+        }
+
+        fofb_single_pass_configure_trigger (fofb_single_pass, TriggerDataFilt,
+            TriggerDataPol, TriggerHwDly);
+        if (trigger == ACQ_CLIENT_TRIG_DATA_DRIVEN) {
+            fofb_single_pass_configure_data_trigger (fofb_single_pass,
+                TriggerDataThres, TriggerDataSel);
+        }
+        else if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
+            fofb_single_pass_configure_external_trigger (fofb_single_pass);
+        }
+        else {
+        /* Invalid trigger for SP*/
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: Invalid trigger for Single Pass\n",
+                driverName, functionName);
+            setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrAcq);
+            callParamCallbacks(coreID);
+            continue;
+        }
+
+        /* Do acquisition until a stop event arrives */
+        while (1) {
+            /* If we were interrupted, jut go back to waiting the start event */
+            if (interrupted) {
+                break;
+            }
+
+            /* Waveform statistics */
+            epicsTimeGetCurrent(&now);
+            getIntegerParam(NDArrayCounter, &arrayCounter);
+            arrayCounter++;
+            setIntegerParam(NDArrayCounter, arrayCounter);
+            pArrayAllChannels->uniqueId = arrayCounter;
+            timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+            pArrayAllChannels->timeStamp = timeStamp;
+            pArrayAllChannels->epicsTS.secPastEpoch = now.secPastEpoch;
+            pArrayAllChannels->epicsTS.nsec = now.nsec;
+            getAttributes(pArrayAllChannels->pAttributeList);
+
+            unlock();
+            pasynManager->lockPort(pasynUser);
+            status = startSPAcq(fofb_single_pass);
+            pasynManager->unlockPort(pasynUser);
+            lock();
+
+            if (status == asynSuccess) {
+                /* FIXME: Improve FOFBStatus trigger waiting. The information
+ *  *                  * about waiting for trigger is not totally accurate here.
+ *   *                                   * Although, we will for SW or HW trigger in a short time,
+ *    *                                                    * we are not actually there yet ...
+ *     *                                                                     */
+                if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerHwExtWaiting);
+                }
+                else if (trigger == ACQ_CLIENT_TRIG_DATA_DRIVEN) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerHwDataWaiting);
+                }
+                else if (trigger == ACQ_CLIENT_TRIG_SOFTWARE) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerSwWaiting);
+                }
+
+                callParamCallbacks(coreID);
+            }
+            else {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to acquire waveform\n",
+                        driverName, functionName);
+                /* Could not start acquisition. Invalid parameters */
+                setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrAcq);
+                callParamCallbacks(coreID);
+                break;
+            }
+
+            /* Wait for acquisition to complete, but allow acquire stop events to be handled */
+            while (1) {
+                unlock();
+                status = epicsEventWaitWithTimeout(this->abortAcqEventId[FOFBModeSinglePass][coreID], pollTime);
+                lock();
+                if (status == epicsEventWaitOK) {
+                    /* We got a stop event, abort acquisition */
+                    abortAcq(coreID);
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusAborted);
+                    callParamCallbacks(coreID);
+                    interrupted = 1;
+                    break;
+                }
+                else {
+                    acqCompleted = checkSPAcqCompletion (fofb_single_pass);
+                }
+
+                if (acqCompleted == -1) {
+                    setIntegerParam(coreID, P_FOFBStatus, FOFBStatusErrAcqOFlow);
+                    callParamCallbacks(coreID);
+                    break;
+                }
+
+                if (acqCompleted == 1) {
+                    /* Get curve */
+                    getAcqSPSamples(fofb_single_pass, &fofb_sample);
+                    break;
+                }
+            }
+
+            /* Only do callbacks and calculate position if we could acquire some
+ *  *              * data */
+            if (acqCompleted == 1) {
+                /* Get SinglePass Raw Data for the user */
+                getAcqSPCurve(fofb_single_pass, pArrayAllChannels);
+                /* Do callbacks on the full waveform (all channels interleaved) */
+                doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                        channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
+
+                /* Copy AMP data to arrays for each type of data, do callbacks on that */
+                status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+                        dims[0], arrayCounter, &now);
+                if (status != asynSuccess) {
+                    asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                            "%s:%s: unable to deinterleave NDArray\n",
+                            driverName, functionName);
+                    continue;
+                }
+            }
+
+            callParamCallbacks(coreID);
+        }
+
+        /* Release buffers */
+        pArrayAllChannels->release();
+        pArrayAllChannels = NULL;
+    }
+
+    if (fofb_single_pass != NULL) {
+        fofb_single_pass_destroy (&fofb_single_pass);
+    }
+}
+
+void drvFOFB::acqMonitTask()
+{
+    asynStatus status = asynSuccess;
+    int err = HALCS_CLIENT_SUCCESS;
+    size_t dims[MAX_WVF_DIMS];
+    epicsUInt32 mask = 0xFFFFFFFF;
+    ABCD_ROW abcdRow;
+    XYQS_ROW xyqsRow;
+    XYQS_ROW xyqsFakeRow;
+    NDArray *pArrayMonitData[MAX_MONIT_DATA];
+    double monitData[MAX_MONIT_DATA];
+    NDDataType_t NDType = NDFloat64;
+    int NDArrayAddrInit = WVF_MONIT_AMP_A;
+    epicsTimeStamp now;
+    int monitEnable = 0;
+    static const char *functionName = "acqMonitTask";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, 0, "DSP", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Format channel name */
+    strncat (service, ":DATA_PRODUCER", sizeof(service));
+
+    dims[0] = 1;
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i] = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
+        if (pArrayMonitData == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayMonitData\n",
+                driverName, functionName);
+            status = asynError;
+            goto alloc_ndarray_err;
+        }
+    }
+
+    err = halcs_set_monit_subscription (fofbClientMonit, service, "MONIT_AMP");
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto set_monit_subscription_err;
+    }
+
+    smio_dsp_monit_data_t monit_data;
+    while (1) {
+
+        getIntegerParam(P_MonitEnable, &monitEnable);
+        if (!monitEnable) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
+            /* remove subscription to avoid burst of old data when enabling */
+            halcs_remove_monit_subscription (fofbClientMonit, service);
+            epicsEventWait(activeMonitEnableEventId);
+            halcs_set_monit_subscription (fofbClientMonit, service, "MONIT_AMP");
+        }
+
+        err = halcs_get_monit_stream (fofbClientMonit, "MONIT_AMP", &monit_data);
+        if(err == HALCS_CLIENT_SUCCESS) {
+            /* Prepare for position calculation */
+            abcdRow.A = monit_data.amp_ch0;
+            abcdRow.B = monit_data.amp_ch1;
+            abcdRow.C = monit_data.amp_ch2;
+            abcdRow.D = monit_data.amp_ch3;
+
+            ABCDtoXYQS(&abcdRow, &xyqsRow, 1, true);
+            ABCDtoXYQS(&abcdRow, &xyqsFakeRow, 1, false);
+
+            monitData[0] = monit_data.amp_ch0;
+            monitData[1] = monit_data.amp_ch1;
+            monitData[2] = monit_data.amp_ch2;
+            monitData[3] = monit_data.amp_ch3;
+            monitData[4] = xyqsRow.X;
+            monitData[5] = xyqsRow.Y;
+            monitData[6] = xyqsRow.Q;
+            monitData[7] = xyqsRow.S;
+            monitData[8] = xyqsFakeRow.X;
+            monitData[9] = xyqsFakeRow.Y;
+
+            epicsTimeGetCurrent(&now);
+
+            for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+                /* NDArray atributtes */
+                pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+                pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
+                pArrayMonitData[i]->epicsTS.nsec = now.nsec;
+                getAttributes(pArrayMonitData[i]->pAttributeList);
+                /* NDArray data */
+                *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
+                doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
+            }
+        }
+        else {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: Could not get Monit. AMP/POS data. Status = %d\n",
+                    driverName, functionName, err);
+        }
+    }
+
+set_monit_subscription_err:
+
+alloc_ndarray_err:
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i]->release();
+    }
+get_service_err:
+    return;
+}
+
+asynStatus drvFOFB::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
+        int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp)
+{
+    int status = asynSuccess;
+    size_t dims[MAX_WVF_DIMS];
+    NDArrayInfo_t arrayInfo;
+    NDDataType_t NDType;
+    NDDataType_t NDTypeSingle;
+    size_t arrayYStride = 0;
+    NDArray *pArraySingleChannel;
+    epicsFloat64 *pInFloat64;
+    epicsFloat64 *pOutFloat64;
+    epicsInt32 *pIn32;
+    epicsInt32 *pOut32;
+    epicsInt16 *pIn16;
+    epicsInt8 *pIn8;
+    int channelAddr;
+    static const char *functionName = "deinterleaveNDArray";
+
+    status = pArrayAllChannels->getInfo(&arrayInfo);
+    if (status != asynSuccess) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to get information about pArrayAllChannels\n",
+                driverName, functionName);
+        status = asynError;
+        goto get_info_array_err;
+    }
+
+    arrayYStride = arrayInfo.yStride;
+    dims[0] = arrayInfo.ySize;
+    NDType = pArrayAllChannels->dataType;
+    NDTypeSingle = NDType;
+    /* Convert all integer types to 32-bit */
+    if (NDTypeSingle == NDInt8 || NDTypeSingle == NDInt16) {
+        NDTypeSingle = NDInt32;
+    }
+
+    for (int i = 0; i < pNDArrayAddrSize; ++i) {
+        channelAddr = pNDArrayAddr[i];
+        pArraySingleChannel = pNDArrayPool->alloc(1, dims, NDTypeSingle, 0, 0);
+        if (pArraySingleChannel == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArraySingleChannel\n",
+                driverName, functionName);
+            status = asynError;
+            goto alloc_ndarray_err;
+        }
+
+        pArraySingleChannel->uniqueId = arrayCounter;
+        pArraySingleChannel->timeStamp = timeStamp->secPastEpoch + timeStamp->nsec / 1.e9;
+        pArraySingleChannel->epicsTS.secPastEpoch = timeStamp->secPastEpoch;
+        pArraySingleChannel->epicsTS.nsec = timeStamp->nsec;
+        getAttributes(pArraySingleChannel->pAttributeList);
+
+        pIn8 = (epicsInt8 *)pArrayAllChannels->pData;
+        pIn16 = (epicsInt16 *)pArrayAllChannels->pData;
+        pIn32 = (epicsInt32 *)pArrayAllChannels->pData;
+        pOut32 = (epicsInt32 *)pArraySingleChannel->pData;
+        pInFloat64 = (epicsFloat64 *)pArrayAllChannels->pData;
+        pOutFloat64 = (epicsFloat64 *)pArraySingleChannel->pData;
+
+        /* Get only a single channel samples from a multi-channel
+ *  *          * array */
+        switch (NDType) {
+            case NDInt8:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOut32[j] = pIn8[i];
+                    pIn8 += arrayYStride;
+                }
+                break;
+
+            case NDInt16:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOut32[j] = pIn16[i];
+                    pIn16 += arrayYStride;
+                }
+                break;
+
+            case NDInt32:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOut32[j] = pIn32[i];
+                    pIn32 += arrayYStride;
+                }
+                break;
+
+            case NDFloat64:
+                for (size_t j = 0; j < dims[0]; ++j) {
+                    pOutFloat64[j] = pInFloat64[i];
+                    pInFloat64 += arrayYStride;
+                }
+                break;
+
+            default:
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unsupported NDType of type: %d\n",
+                    driverName, functionName, NDType);
+                status = asynError;
+                goto unsup_ndtype_err;
+        }
+
+        doCallbacksGenericPointer(pArraySingleChannel, NDArrayData,
+                channelAddr);
+        pArraySingleChannel->release();
+    }
+
+    return (asynStatus)status;
+
+unsup_ndtype_err:
+alloc_ndarray_err:
+get_info_array_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvFOFB::setAcqEvent(epicsUInt32 mask, int addr)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "setAcqEvent";
+    epicsUInt32 triggerEvent = 0;
+    epicsUInt32 triggerType = 0;
+    epicsUInt32 triggerRep = 0;
+    epicsUInt32 hwAmpChannel = 0;
+    int channel = 0;
+    int fofbMode = 0;
+    int fofbModeOther = 0;
+    channelProp_t channelProp;
+
+    /* Get the parameter in the parameter library. */
+    getUIntDigitalParam(addr, P_TriggerEvent, &triggerEvent, 0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_Trigger,      &triggerType,  0xFFFFFFFF);
+    getUIntDigitalParam(addr, P_TriggerRep,   &triggerRep,   0xFFFFFFFF);
+    getIntegerParam(    addr, P_FOFBMode,     &fofbMode);
+    getIntegerParam(    addr, P_Channel,      &channel);
+
+    /* Convert user channel into hw channel */
+    hwAmpChannel = channelMap[channel].HwAmpChannel;
+    if(hwAmpChannel < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto halcs_inv_channel;
+    }
+
+    /* Get channel properties */
+    status = getChannelProperties(addr, hwAmpChannel, &channelProp);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getChannelProperties, status=%d\n",
+            driverName, functionName, status);
+        goto get_chan_prop_err;
+    }
+
+    setUIntDigitalParam(addr, P_ChannelSampleSize, channelProp.sampleSize, 0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_ChannelNumAtoms,   channelProp.numAtoms,   0xFFFFFFFF);
+    setUIntDigitalParam(addr, P_ChannelAtomWidth,  channelProp.atomWidth,  0xFFFFFFFF);
+
+    /* Get the other acquisition task mode */
+    if (fofbMode == FOFBModeSinglePass) {
+        fofbModeOther = FOFBModeMultiBunch;
+    }
+    else {
+        fofbModeOther = FOFBModeSinglePass;
+    }
+
+    switch (triggerEvent) {
+        case TRIG_ACQ_START:
+            /* Abort the other acquisition task if needed */
+            stopAcqTask(addr, fofbModeOther);
+            abortAcqTask(addr, fofbModeOther, false);
+
+            /* Don't try to change anything is we are still acquiring.
+ *  *              * We must stop r abort the acquisition first */
+            if (readingActive[fofbMode][addr]) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: Not starting acquistion as acqTask is still active\n",
+                    driverName, functionName);
+                break;
+            }
+
+            if (triggerRep) {
+                repetitiveTrigger[fofbMode][addr] = 1;
+            }
+            else {
+                repetitiveTrigger[fofbMode][addr] = 0;
+            }
+
+            status = setAcqTrig(addr, (acq_client_trig_e) triggerType);
+            if (status) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: error calling setAcqTrig, status=%d\n",
+                    driverName, functionName, status);
+                goto get_set_acq_trig_err;
+            }
+
+            /* Send event telling the current task to proceed */
+            epicsEventSignal(activeAcqEventId[fofbMode][addr]);
+            /* Signal acq thread to start acquisition with the current parameters */
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: trigger TRIG_ACQ_START called\n",
+                    driverName, functionName);
+            epicsEventSignal(startAcqEventId[fofbMode][addr]);
+            break;
+
+        /* Stop acquisition if we are in repetitive mode and if we are currently
+ *  *          * acquiring. Otherwise, we don't need to do anything, as the acquisition
+ *   *                   * task will stop after the current acquisition */
+        case TRIG_ACQ_STOP: /* Trigger == Stop */
+            stopAcqTask(addr, fofbMode);
+            break;
+
+        /* Send the abort event if we are reading (repetitive or regular).
+ *  *          *  If we want to stop a repetitive trigger, we must send a stop
+ *   *                   *  event */
+        case TRIG_ACQ_ABORT: /* Trigger == Abort */
+            /* abort the other acquisition task if needed */
+            abortAcqTask(addr, fofbMode, true);
+            break;
+
+        default:
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: invalid trigger event\n",
+                    driverName, functionName);
+            status = asynError;
+            goto trig_unimplemented_err;
+    }
+
+trig_unimplemented_err:
+get_set_acq_trig_err:
+get_chan_prop_err:
+halcs_inv_channel:
+    return status;
+}
+
+asynStatus drvFOFB::abortAcqTask(int addr, int fofbMode, bool abortAcqHw)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "abortAcqTask";
+
+    /* we are waiting for a trigger */
+    if (readingActive[fofbMode][addr]) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_ABORT called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, fofbMode, addr);
+        epicsEventSignal(this->abortAcqEventId[fofbMode][addr]);
+    }
+    else {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                "%s:%s: trigger ACQ_ABORT but with acquisition in progress, "
+                "called for acqTask = %d, coreID = %d\n",
+                driverName, functionName, fofbMode, addr);
+        /* If we are not actively waiting for an event on acqTask,
+ *  *          * abort the acquisition anyway, as we might have something
+ *   *                   * going on inside the FPGA from a previous acquisition */
+        if (abortAcqHw) {
+            abortAcqFromPortThread(addr);
+        }
+    }
+
+    return status;
+}
+
+asynStatus drvFOFB::startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
+        epicsUInt32 num_samples_post, epicsUInt32 num_shots)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "startAcq";
+    char service[SERVICE_NAME_SIZE];
+    acq_trans_t acq_trans;
+    acq_req_t req;
+    acq_block_t block;
+
+    if (num_samples_pre + num_samples_post > MAX_ARRAY_POINTS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to select %u pre-trigger samples and\n"
+                "%u post-trigger samples for acquisition\n",
+                driverName, functionName, num_samples_pre, num_samples_post);
+        status = asynError;
+        goto halcs_samples_sel_err;
+    }
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    req.num_samples_pre  = num_samples_pre;
+    req.num_samples_post = num_samples_post;
+    req.num_shots = num_shots;
+    req.chan = (uint32_t) hwChannel;
+
+    /* Fill FOFB acquisition transaction structure */
+    acq_trans = {req, block};
+
+#ifdef TEST_SYNTH_DATA
+    double t[TEST_LENGTH];
+    for (int i = 0; i < TEST_LENGTH*4; ++i) {
+        t[i] = (1/FREQ_SAMPLE)*i;
+        ((int16_t *)pArrayAllChannels->pData)[i] = sin(2*PI*FREQ*t[i])*(1<<15);
+    }
+#else
+    err = acq_start (FOFBClientAcq[coreID], service, &req);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to acquire waveform on hwChannel %d, with %u\n"
+                "\tpre-trigger samples and %u post-trigger samples\n",
+                driverName, functionName, hwChannel, num_samples_pre,
+                num_samples_post);
+        status = asynError;
+        goto halcs_acq_err;
+    }
+#endif
+
+halcs_acq_err:
+get_service_err:
+halcs_samples_sel_err:
+    return status;
+}
+
+asynStatus drvFOFB::startSPAcq(fofb_single_pass_t *fofb_single_pass)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "startSPAcq";
+
+    err = fofb_single_pass_start (fofb_single_pass);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+    }
+    else {
+        status = asynSuccess;
+    }
+
+    return status;
+}
+
+asynStatus drvFOFB::abortAcqRaw(int coreID, acq_client_t *acq_client)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "abortAcq";
+    char service[SERVICE_NAME_SIZE];
+    uint32_t fsm_stop = 1;
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = acq_set_fsm_stop (acq_client, service, fsm_stop);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_acq_stop_err;
+    }
+
+halcs_acq_stop_err:
+get_service_err:
+    return status;
+}
+
+/* This must be called only acquisition threads */
+asynStatus drvFOFB::abortAcq(int coreID)
+{
+    return abortAcqRaw(coreID, fofbClientAcq[coreID]);
+}
+
+/* This must be called only from asyn PortThread*/
+asynStatus drvFOFB::abortAcqFromPortThread(int coreID)
+{
+    return abortAcqRaw(coreID, fofbClientAcqParam[coreID]);
+}
+
+int drvFOFB::checkAcqCompletion(int coreID)
+{
+    int complete = 0;
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "checkAcqCompletion";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = acq_check (fofbClientAcq[coreID], service);
+    /* FIFO Full error */
+    if (err == HALCS_CLIENT_ERR_MODULE_ERR8) {
+        complete = -1;
+        goto halcs_acq_not_finished;
+    }
+
+    if (err != HALCS_CLIENT_SUCCESS) {
+        complete = 0;
+        goto halcs_acq_not_finished;
+    }
+
+    complete = 1;
+
+halcs_acq_not_finished:
+get_service_err:
+    return complete;
+}
+
+int drvFOFB::checkSPAcqCompletion(fofb_single_pass_t *fofb_single_pass)
+{
+    int complete = 0;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "checkSPAcqCompletion";
+
+    err = fofb_single_pass_check (fofb_single_pass);
+    /* FIFO Full error */
+    if (err == HALCS_CLIENT_ERR_MODULE_ERR8) {
+        complete = -1;
+        goto halcs_acq_not_finished;
+    }
+
+    if (err != HALCS_CLIENT_SUCCESS) {
+        complete = 0;
+        goto halcs_acq_not_finished;
+    }
+
+    complete = 1;
+
+halcs_acq_not_finished:
+    return complete;
+}
+
+asynStatus drvFOFB::getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwChannel,
+        epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
+        epicsUInt32 num_shots)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "getAcqCurve";
+    char service[SERVICE_NAME_SIZE];
+    acq_trans_t acq_trans;
+    acq_req_t req;
+    acq_block_t block;
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    req.num_samples_pre  = num_samples_pre;
+    req.num_samples_post = num_samples_post;
+    req.num_shots = num_shots;
+    req.chan = (uint32_t) hwChannel;
+    block.idx = 0;
+    block.data = (uint32_t *)pArrayAllChannels->pData;
+    block.data_size = (uint32_t)pArrayAllChannels->dataSize;
+    block.bytes_read = 0;
+
+    /* Fill FOFB acquisition transaction structure */
+    acq_trans = {req, block};
+
+    /* This just reads the data from memory */
+    err = acq_get_curve (fofbClientAcq[coreID], service, &acq_trans);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to read waveform on hwChannel %d, with %u\n"
+                "\tpre-trigger samples and %u post-trigger samples\n",
+                driverName, functionName, hwChannel, num_samples_pre,
+                num_samples_post);
+        status = asynError;
+        goto halcs_acq_err;
+    }
+
+halcs_acq_err:
+get_service_err:
+    return status;
+}
+
+asynStatus drvFOFB::getAcqSPCurve(fofb_single_pass_t *fofb_single_pass, NDArray *pArrayAllChannels)
+{
+    asynStatus status = asynSuccess;
+    const char* functionName = "getAcqSPCurve";
+
+    /* Copy data to NDArray */
+    const acq_trans_t * acq_trans = fofb_single_pass_get_acq_transaction (fofb_single_pass);
+    memcpy (pArrayAllChannels->pData, acq_trans->block.data, acq_trans->block.data_size);
+    pArrayAllChannels->dataSize = acq_trans->block.data_size;
+
+    return status;
+}
+
+asynStatus drvFOFB::getAcqSPSamples(fofb_single_pass_t *fofb_single_pass, fofb_sample_t *fofb_sample)
+{
+    asynStatus status = asynSuccess;
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "getAcqSPSamples";
+
+    err = fofb_single_pass_sample (fofb_single_pass, fofb_sample);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to read Single Pass samples\n",
+                driverName, functionName);
+        status = asynError;
+        goto halcs_acq_err;
+    }
+
+halcs_acq_err:
+    return status;
+}
+
+asynStatus drvFOFB::getAcqNDArrayType(int coreID, int hwChannel, epicsUInt32 atomWidth, NDDataType_t *NDType)
+{
+    asynStatus status = asynSuccess;
+    static const char *functionName = "getAcqNDArrayType";
+
+    /* Determine minimum data size */
+    switch (atomWidth) {
+        case 2: /* bytes */
+            *NDType = NDInt16;
+            break;
+        case 4: /* bytes */
+            *NDType = NDInt32;
+            break;
+        default:
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: unable to determine NDType for acquisition with atomWidth = %u\n",
+                    driverName, functionName, atomWidth);
+            status = asynError;
+            goto get_ndarray_type_err;
+    }
+
+get_ndarray_type_err:
+    return status;
+}
+
+asynStatus drvFOFB::getChannelProperties(int coreID, int channel, channelProp_t *channelProp)
+{
+    asynStatus status = asynSuccess;
+    int err = HALCS_CLIENT_SUCCESS;
+    const char* functionName = "getChannelProperties";
+    char service[SERVICE_NAME_SIZE];
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, coreID, "ACQ", service, sizeof(service));
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s:%s: error calling getFullServiceName, status=%d\n",
+            driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = halcs_get_acq_ch_sample_size (fofbClientAcqParam[coreID], service,
+        channel, &channelProp->sampleSize);
+    err |= halcs_get_acq_ch_num_atoms (fofbClientAcqParam[coreID], service,
+        channel, &channelProp->numAtoms);
+    err |= halcs_get_acq_ch_atom_width (fofbClientAcqParam[coreID], service,
+        channel, &channelProp->atomWidth);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_get_sample_size_err;
+    }
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: channel properties for coreID = %u, channel = %d:\n"
+        "\tsampleSize = %u\n"
+        "\tnumAtoms = %u\n"
+        "\tatomWidth = %u\n",
+        driverName, functionName, coreID, channel,
+        channelProp->sampleSize, channelProp->numAtoms, channelProp->atomWidth);
+
+halcs_get_sample_size_err:
+get_service_err:
     return status;
 }
 
@@ -589,13 +2593,13 @@ asynStatus drvFOFB::fofbClientDisconnect(asynUser* pasynUser)
 /********************************************************************/
 
 /*
- *  *  * Asyn overrided methods that are called by higher layers
- *   *   */
+ *  *  *  * Asyn overrided methods that are called by higher layers
+ *   *   *   */
 
 /** Called when asyn clients call pasynUInt32Digital->write().
- *  *  * For all parameters it sets the value in the parameter library and calls any registered callbacks..
- *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *    *    * \param[in] value Value to write. */
+ *  *  *  * For all parameters it sets the value in the parameter library and calls any registered callbacks..
+ *   *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *    *    *    * \param[in] value Value to write. */
 asynStatus drvFOFB::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         epicsUInt32 mask)
 {
@@ -643,9 +2647,9 @@ asynStatus drvFOFB::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
 }
 
 /** Called when asyn clients call pasynUInt32Digital->read().
- *  *  * For all parameters it gets the value in the parameter library..
- *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *    *    * \param[out] value Value to read. */
+ *  *  *  * For all parameters it gets the value in the parameter library..
+ *   *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *    *    *    * \param[out] value Value to read. */
 asynStatus drvFOFB::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
         epicsUInt32 mask)
 {
@@ -687,9 +2691,245 @@ asynStatus drvFOFB::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
     return status;
 }
 
+/** Called when asyn clients call pasynInt32->write().
+ *  *   * For all parameters it sets the value in the parameter library and calls any
+ *   *     * registered callbacks..
+ *    *       * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *     *         * \param[in] value Value to write. */
+asynStatus drvFOFB::writeInt32(asynUser *pasynUser, epicsInt32 value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    int addr = 0;
+    const char *paramName = NULL;
+    const char* functionName = "writeInt32";
+
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+        return status;
+    }
+
+    if (function >= FIRST_COMMAND) {
+        /* Set the parameter in the parameter library. */
+        status = setIntegerParam(addr, function, value);
+
+        if (function == P_MonitEnable) {
+            /* Send the start event if the value is 1 */
+            if (value) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: Monit enable task event to be send\n",
+                        driverName, functionName);
+                epicsEventSignal(this->activeMonitEnableEventId);
+            }
+        }
+        else if (function == P_FOFBMode) {
+            status = setFOFBMode(addr, function);
+        }
+        else {
+            /* Do operation on HW. Some functions do not set anything on hardware */
+            status = setParamInteger(function, addr);
+            /* Readback all parameters from Hw */
+            readIntegerParams(addr);
+        }
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::writeInt32(pasynUser, value);
+    }
+
+    /* Do callbacks so higher layers see any changes */
+    callParamCallbacks(addr);
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%d",
+                driverName, functionName, status, function, paramName, value);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s, value=%d\n",
+                driverName, functionName, function, paramName, value);
+    return status;
+}
+
+/** Called when asyn clients call pasynInt32->read().
+ *  *  * This does nothing for now and just call the base implementation. If needed,
+ *   *   * add processing before calling the base class implementation
+ *    *     * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *     *       * \param[in] value Value to read */
+asynStatus drvFOFB::readInt32(asynUser *pasynUser, epicsInt32 *value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    int addr = 0;
+    const char *paramName = NULL;
+    const char* functionName = "readInt32";
+
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
+
+    if (function >= FIRST_COMMAND) {
+        /* Get parameter in library, as some parameters are not written in HW */
+        status = getParamInteger(function, value, addr);
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::readInt32(pasynUser, value);
+    }
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s\n",
+                driverName, functionName, function, paramName);
+    return status;
+}
+
+/** Called when asyn clients call pasynFloat64->write().
+ *  *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *   *     * \param[in] value Value to read */
+asynStatus drvFOFB::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    int addr = 0;
+    const char *paramName = NULL;
+    const char* functionName = "writeFloat64";
+
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%f",
+                driverName, functionName, status, function, paramName, value);
+        return status;
+    }
+
+    if (function >= FIRST_COMMAND) {
+        /* Set the parameter in the parameter library. */
+        setDoubleParam(addr, function, value);
+
+        /* Do operation on HW. Some functions do not set anything on hardware */
+        status = setParamDouble(function, addr);
+        /* Readback all parameters from Hw */
+        readFloat64Params(addr);
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::writeFloat64(pasynUser, value);
+    }
+
+    /* Do callbacks so higher layers see any changes */
+    callParamCallbacks(addr);
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s, value=%f",
+                driverName, functionName, status, function, paramName, value);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s, value=%f\n",
+                driverName, functionName, function, paramName, value);
+    return status;
+}
+
+/** Called when asyn clients call pasynFloat64->read().
+ *  *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *   *     * \param[in] value Value to read */
+asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
+{
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    int addr = 0;
+    const char *paramName = NULL;
+    const char* functionName = "readFloat64";
+
+    /* Fetch the parameter string name for possible use in debugging */
+    getParamName(function, &paramName);
+    /* Get channel for possible use */
+    status = getAddress(pasynUser, &addr);
+    if (status) {
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+        return status;
+    }
+
+    /* Get double param, possibly from HW */
+    if (function >= FIRST_COMMAND) {
+        status = getParamDouble(function, value, addr);
+    }
+    else {
+        /* Call base class */
+        status = asynNDArrayDriver::readFloat64(pasynUser, value);
+    }
+
+    if (status)
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize,
+                "%s:%s: status=%d, function=%d, name=%s",
+                driverName, functionName, status, function, paramName);
+    else
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
+                "%s:%s: function=%d, name=%s\n",
+                driverName, functionName, function, paramName);
+    return status;
+}
+
 /********************************************************************/
 /************ Function Mapping Overloaded Write functions ***********/
 /********************************************************************/
+
+asynStatus drvFOFB::doExecuteHwWriteFunction(functionsUInt32Acq_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsUInt32Acq_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    int serviceID = 0;
+
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->fofbNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* Execute registered function */
+    err = func.write(fofbClientAcqParam[serviceID], service, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+get_service_id_err:
+    return (asynStatus) status;
+}
 
 asynStatus drvFOFB::doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
@@ -733,6 +2973,77 @@ asynStatus drvFOFB::doExecuteHwWriteFunction(functionsUInt32_t &func, char *serv
 
 halcs_set_func_param_err:
     return (asynStatus)status;
+}
+
+asynStatus drvFOFB::doExecuteHwWriteFunction(functions2UInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functions2UInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    epicsUInt32 param1 = 0;
+    epicsUInt32 param2 = 0;
+
+    /* Silently exit if no function is registered */
+    if(!func.read) {
+        status = asynSuccess;
+        goto no_registered_read_func_err;
+    }
+
+    /* Read the HW values first as we need to update
+ *  *        only one of the parameters */
+    err = func.read(fofbClient, service, &param1, &param2);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+    /* Determine if we want to change the first or second parameter in HW */
+    if (func.parameterPos == 1) {
+        err = func.write(fofbClient, service, functionParam.argUInt32, param2);
+    }
+    else if (func.parameterPos == 2) {
+        err = func.write(fofbClient, service, param1, functionParam.argUInt32);
+    }
+
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+halcs_get_func_param_err:
+no_registered_read_func_err:
+        return (asynStatus) status;
+}
+
+asynStatus drvFOFB::doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwWriteFunction<functionsFloat64_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.write(fofbClient, service, functionParam.argFloat64);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %f\n",
+                driverName, functionName, service, functionParam.argFloat64);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
+halcs_set_func_param_err:
+    return (asynStatus) status;
 }
 
 asynStatus drvFOFB::executeHwWriteFunction(int functionId, int addr,
@@ -821,6 +3132,39 @@ get_service_err:
 /************ Function Mapping Overloaded Read functions ************/
 /********************************************************************/
 
+asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Acq_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsUInt32Acq_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    int serviceID = 0;
+
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->fofbNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* Execute registered function */
+    err = func.read(fofbClientAcqParam[serviceID], service, &functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+get_service_id_err:
+    return (asynStatus) status;
+}
+
 asynStatus drvFOFB::doExecuteHwReadFunction(functionsInt32_t &func, char *service,
         int addr, functionsArgs_t &functionParam) const
 {
@@ -860,6 +3204,59 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32_t &func, char *servi
 
 halcs_get_func_param_err:
     return (asynStatus)status;
+}
+
+asynStatus drvFOFB::doExecuteHwReadFunction(functions2UInt32_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functions2UInt32_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+    epicsUInt32 param1 = 0;
+    epicsUInt32 param2 = 0;
+
+    /* Read the HW values first as we need to update
+ *  *        only one of the parameters */
+    err = func.read(fofbClient, service, &param1, &param2);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+    /* Determine if we want to read the first or second parameter */
+    if (func.parameterPos == 1) {
+        functionParam.argUInt32 = param1;
+    }
+    else if (func.parameterPos == 2) {
+        functionParam.argUInt32 = param2;
+    }
+
+halcs_get_func_param_err:
+        return (asynStatus) status;
+}
+
+asynStatus drvFOFB::doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
+        int addr, functionsArgs_t &functionParam) const
+{
+    const char *functionName = "doExecuteHwReadFunction<functionsFloat64_t>";
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    int status = asynSuccess;
+
+    /* Execute registered function */
+    err = func.read(fofbClient, service, &functionParam.argFloat64);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing read function for service %s\n",
+                driverName, functionName, service);
+        status = asynError;
+        goto halcs_get_func_param_err;
+    }
+
+halcs_get_func_param_err:
+    return (asynStatus) status;
 }
 
 asynStatus drvFOFB::executeHwReadFunction(int functionId, int addr,
@@ -947,10 +3344,10 @@ get_service_err:
 /********************************************************************/
 
 /*
- *  * * 32-bit/Double generic FOFB Processing operations. These will map to real
- *   * * functions defined in the structures. e.g., functionsInt32_t
- *    * * and functionsFloat64_t
- *     * */
+ *  *  * * 32-bit/Double generic FOFB Processing operations. These will map to real
+ *   *   * * functions defined in the structures. e.g., functionsInt32_t
+ *    *    * * and functionsFloat64_t
+ *     *     * */
 
 asynStatus drvFOFB::setParamGeneric(int functionId, int addr)
 {
@@ -1046,6 +3443,60 @@ asynStatus drvFOFB::getParam32(int functionId, epicsUInt32 *param,
         *param = functionArgs.argUInt32;
     }
     /* We recover from asynDisabled just by retrieving
+ *  *  *      * the parameter from the list */
+    else if (status == asynDisabled){
+        status = asynSuccess;
+    }
+
+get_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvFOFB::setParamInteger(int functionId, int addr)
+{
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "setParamInteger";
+
+    status = getIntegerParam(addr, functionId, &functionArgs.argInt32);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getIntegerParam failure for retrieving Parameter\n",
+                driverName, functionName);
+        goto get_param_err;
+    }
+
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
+
+get_param_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvFOFB::getParamInteger(int functionId, epicsInt32 *param,
+        int addr)
+{
+    int status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "getParamInteger";
+    const char *paramName;
+
+    /* Get parameter in library, as some parameters are not written in HW */
+    status = getIntegerParam(addr, functionId, param);
+    if (status != asynSuccess) {
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getIntegerParam failure for retrieving parameter %s, status = %d\n",
+                    driverName, functionName, paramName, status);
+        }
+        goto get_param_err;
+    }
+
+    status = executeHwReadFunction(functionId, addr, functionArgs);
+    if (status == asynSuccess) {
+        *param = functionArgs.argInt32;
+    }
+    /* We recover from asynDisabled just by retrieving
  *  *      * the parameter from the list */
     else if (status == asynDisabled){
         status = asynSuccess;
@@ -1055,26 +3506,334 @@ get_param_err:
     return (asynStatus)status;
 }
 
+asynStatus drvFOFB::setParamDouble(int functionId, int addr)
+{
+    asynStatus status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "setParamDouble";
+
+    status = getDoubleParam(addr, functionId, &functionArgs.argFloat64);
+    if (status != asynSuccess) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: getUIntDigitalParam failure for retrieving Parameter\n",
+                driverName, functionName);
+        goto get_param_err;
+    }
+
+    status = executeHwWriteFunction(functionId, addr, functionArgs);
+
+get_param_err:
+    return status;
+}
+
+asynStatus drvFOFB::getParamDouble(int functionId, epicsFloat64 *param, int addr)
+{
+    asynStatus status = asynSuccess;
+    functionsArgs_t functionArgs = {0};
+    const char *functionName = "getParamDouble";
+    const char *paramName;
+
+    /* Get parameter in library, as some parameters are not written in HW */
+    status = getDoubleParam(addr, functionId, param);
+    if (status != asynSuccess) {
+        if (status != asynParamUndefined) {
+            getParamName(functionId, &paramName);
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: getDoubleParam failure for retrieving parameter %s\n",
+                    driverName, functionName, paramName);
+        }
+        goto get_param_err;
+    }
+
+    status = executeHwReadFunction(functionId, addr, functionArgs);
+    if (status == asynSuccess) {
+        *param = functionArgs.argFloat64;
+    }
+    /* We recover from asynDisabled just by retrieving
+ *  *      * the parameter from the list */
+    else if (status == asynDisabled){
+        status = asynSuccess;
+    }
+
+get_param_err:
+    return status;
+}
+
 /********************************************************************/
-/*********************** Misc BPM Operations ************************/
+/*********************** Misc FOFB Operations ***********************/
 /********************************************************************/
 
 /*
- *  *  * Miscellaneous functions that don't map easily
- *   *   * to our generic handlers get/setParam[32/Double]
- *    *    */
+ *  *  *  * Miscellaneous functions that don't map easily
+ *   *   *   * to our generic handlers get/setParam[32/Double]
+ *    *    *    */
 
+asynStatus drvFOFB::setFOFBMode(int addr, int function)
+{
+    int status = asynSuccess;
+    int fofbMode = 0;
+    int fofbModeOther = 0;
+
+    /* Get FOFBMode previously set */
+    getIntegerParam(addr, P_FOFBMode, &fofbMode);
+
+    /* Throw an error if we are acquiring in the other mode
+ *  *      * and we tried to change FOFB mode */
+    if (fofbMode == FOFBModeSinglePass) {
+        fofbModeOther = FOFBModeMultiBunch;
+    }
+    else {
+        fofbModeOther = FOFBModeSinglePass;
+    }
+
+    /* Check if an acquisition is running while trying to change mode */
+    if (readingActive[fofbModeOther][addr]) {
+        setIntegerParam(addr, function, fofbModeOther);
+        status = asynError;
+        goto other_acq_acquiring_err;
+    }
+
+other_acq_acquiring_err:
+    return (asynStatus) status;
+}
+
+asynStatus drvFOFB::setDataTrigChan(epicsUInt32 mask, int addr)
+{
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    char service[SERVICE_NAME_SIZE];
+    int status = asynSuccess;
+    const char* functionName = "setDataTrigChan";
+    epicsUInt32 dataTrigChan = 0;
+    int hwAmpChannel = 0;
+    int serviceID = 0;
+
+    /* Set the parameter in the parameter library. */
+    getUIntDigitalParam(addr, P_DataTrigChan, &dataTrigChan, mask);
+
+    /* Convert user channel into hw channel */
+    hwAmpChannel = channelMap[dataTrigChan].HwAmpChannel;
+    if(hwAmpChannel < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto halcs_inv_channel;
+    }
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, addr, "ACQ",
+            service, sizeof(service));
+    status |= getServiceID (this->fofbNumber, addr, "ACQ", &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    err = acq_set_data_trig_chan (fofbClientAcqParam[serviceID], service, hwAmpChannel);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_set_data_trig_chan_err;
+    }
+
+halcs_set_data_trig_chan_err:
+get_service_err:
+halcs_inv_channel:
+    return (asynStatus)status;
+}
+
+asynStatus drvFOFB::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr)
+{
+    halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
+    char service[SERVICE_NAME_SIZE];
+    int status = asynSuccess;
+    const char* functionName = "getDataTrigChan";
+    epicsUInt32 dataTrigChan = 0;
+    epicsUInt32 hwAmpChannel = 0;
+    int serviceID = 0;
+
+    /* Get correct service name*/
+    status = getFullServiceName (this->fofbNumber, addr, "ACQ",
+            service, sizeof(service));
+    status |= getServiceID (this->fofbNumber, addr, "ACQ", &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_err;
+    }
+
+    /* Clear parameter in case of an error occurs */
+    *channel = 0;
+
+    err = acq_get_data_trig_chan (fofbClientAcqParam[serviceID], service, &hwAmpChannel);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto halcs_get_data_trig_chan_err;
+    }
+
+    if (hwAmpChannel > CH_HW_END-1) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid HwAmpChannel channelRevMap for channel %d\n",
+                driverName, functionName, hwAmpChannel);
+        status = asynError;
+        goto halcs_inv_hw_channel;
+    }
+
+    /* Convert user channel into hw channel */
+    dataTrigChan = channelRevMap[hwAmpChannel].epicsChannel;
+    if(dataTrigChan < 0) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: invalid channel channelRevMap for channel %d\n",
+                driverName, functionName, dataTrigChan);
+        status = asynError;
+        goto halcs_inv_channel;
+    }
+
+    /* Mask parameter according to the received mask */
+    dataTrigChan &= mask;
+    *channel = dataTrigChan;
+
+halcs_inv_channel:
+halcs_inv_hw_channel:
+halcs_get_data_trig_chan_err:
+get_service_err:
+    return (asynStatus)status;
+}
+
+asynStatus drvFOFB::updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
+        int lastParam, bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateUInt32Params";
+    epicsUInt32 param = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating UInt32 parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParam32(i, &param, mask, addr);
+        /* Only write values if there is no error */
+        if (status) {
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting UInt32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
+            ++errs;
+        }
+        else {
+            setUIntDigitalParam(addr, i, param, mask);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
+asynStatus drvFOFB::updateIntegerParams(int addr, int firstParam,
+        int lastParam, bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateIntegerParams";
+    epicsInt32 param = 0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating Int32 parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParamInteger(i, &param, addr);
+        /* Only write values if there is no error */
+        if (status) {
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Int32 parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
+            ++errs;
+        }
+        else {
+            setIntegerParam(addr, i, param);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
+asynStatus drvFOFB::updateDoubleParams(int addr, int firstParam, int lastParam,
+        bool acceptErrors)
+{
+    int status = asynSuccess;
+    int errs = 0;
+    const char* functionName = "updateDoubleParams";
+    epicsFloat64 param = 0.0;
+
+    asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+        "%s:%s: updating Double parameters with firstParam = %d, lastParam = %d, "
+        "addr = %d\n",
+        driverName, functionName, firstParam, lastParam, addr);
+
+    for (int i = firstParam; i < lastParam+1; ++i) {
+        status = getParamDouble(i, &param, addr);
+        /* Only write values is there is no error */
+        if (status) {
+            if (status != asynParamUndefined) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: error getting Double parameter for function = %d, "
+                        "addr = %d status = %d\n",
+                        driverName, functionName, i, addr, status);
+            }
+            ++errs;
+        }
+        else {
+            setDoubleParam(addr, i, param);
+        }
+    }
+
+    if (acceptErrors) {
+        return asynSuccess;
+    }
+
+    return (errs == 0)? asynSuccess : asynError;
+}
+
+asynStatus drvFOFB::readIntegerParams(int addr)
+{
+    int status = 0;
+
+    status = readOffsetParams(addr);
+
+    return (asynStatus) status;
+}
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
 extern "C" {
 
     /** EPICS iocsh callable function to call constructor for the drvFOFB class.
- *  *      * \param[in] portName The name of the asyn port driver to be created.
- *   *           * \param[in] endpoint The address device string */
+ *  *  *      * \param[in] portName The name of the asyn port driver to be created.
+ *   *   *           * \param[in] endpoint The address device string */
     int drvFOFBConfigure(const char *portName, const char *endpoint,
-            int fofbNumber, int verbose, int timeout)
+            int fofbNumber, const char *type, int verbose, int timeout,
+            int maxPoints, int maxBuffers, size_t maxMemory)
     {
-        new drvFOFB(portName, endpoint, fofbNumber, verbose, timeout);
+        new drvFOFB(portName, endpoint, fofbNumber, type, verbose,
+                timeout, maxPoints, maxBuffers, maxMemory);
         return(asynSuccess);
     }
 
@@ -1082,18 +3841,27 @@ extern "C" {
     static const iocshArg initArg0 = { "portName", iocshArgString};
     static const iocshArg initArg1 = { "endpoint", iocshArgString};
     static const iocshArg initArg2 = { "fofbNumber", iocshArgInt};
-    static const iocshArg initArg3 = { "verbose", iocshArgInt};
-    static const iocshArg initArg4 = { "timeout", iocshArgInt};
+    static const iocshArg initArg3 = { "type", iocshArgString};
+    static const iocshArg initArg4 = { "verbose", iocshArgInt};
+    static const iocshArg initArg5 = { "timeout", iocshArgInt};
+    static const iocshArg initArg6 = { "maxPoints", iocshArgInt};
+    static const iocshArg initArg7 = { "maxBuffers", iocshArgInt};
+    static const iocshArg initArg8 = { "maxMemory", iocshArgInt};
     static const iocshArg * const initArgs[] = {&initArg0,
         &initArg1,
         &initArg2,
         &initArg3,
-        &initArg4};
-    static const iocshFuncDef initFuncDef = {"drvFOFBConfigure",5,initArgs};
+        &initArg4,
+        &initArg5,
+        &initArg6,
+        &initArg7,
+        &initArg8};
+    static const iocshFuncDef initFuncDef = {"drvFOFBConfigure",9,initArgs};
     static void initCallFunc(const iocshArgBuf *args)
     {
         drvFOFBConfigure(args[0].sval, args[1].sval, args[2].ival,
-                args[3].ival, args[4].ival);
+                args[3].sval, args[4].ival, args[5].ival, args[6].ival,
+                args[7].ival, args[8].ival);
     }
 
     void drvFOFBRegister(void)
@@ -1101,5 +3869,6 @@ extern "C" {
         iocshRegister(&initFuncDef,initCallFunc);
     }
 
-    epicsExportRegistrar(drvFOFBRegister);
+   epicsExportRegistrar(drvFOFBRegister);
 }
+
