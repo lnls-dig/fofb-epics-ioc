@@ -143,81 +143,81 @@ static const functionsAny_t rtmLampSetGetPIOLDacCntMaxFunc            = {functio
                                                                           halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
 static const functionsAny_t rtmLampSetGetPISPLimInfFunc               = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf,
                                                                           halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
-static const functionsAny_t fofbCtrlSetGetActPartFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_act_part,
+static const functionsAny_t fofbCtrlSetGetActPartFunc                 = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_act_part,
                                                                           halcs_get_fofb_ctrl_act_part}};
-static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
+static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
-static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cc_enable,
+static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_cc_enable,
                                                                           halcs_get_fofb_ctrl_cc_enable}};
-static const functionsAny_t fofbCtrlSetGetTfsOverrideFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_tfs_override,
+static const functionsAny_t fofbCtrlSetGetTfsOverrideFunc             = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_tfs_override,
                                                                           halcs_get_fofb_ctrl_tfs_override}};
-static const functionsAny_t fofbCtrlSetGetBpmIdFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_bpm_id,
+static const functionsAny_t fofbCtrlSetGetBpmIdFunc                   = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_bpm_id,
                                                                           halcs_get_fofb_ctrl_bpm_id}};
-static const functionsAny_t fofbCtrlSetGetTimeFrameLenFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_time_frame_len,
+static const functionsAny_t fofbCtrlSetGetTimeFrameLenFunc            = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_time_frame_len,
                                                                           halcs_get_fofb_ctrl_time_frame_len}};
-static const functionsAny_t fofbCtrlSetGetMgtPowerdownFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_mgt_powerdown,
+static const functionsAny_t fofbCtrlSetGetMgtPowerdownFunc            = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_mgt_powerdown,
                                                                           halcs_get_fofb_ctrl_mgt_powerdown}};
-static const functionsAny_t fofbCtrlSetGetMgtLoopbackFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_mgt_loopback,
+static const functionsAny_t fofbCtrlSetGetMgtLoopbackFunc             = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_mgt_loopback,
                                                                           halcs_get_fofb_ctrl_mgt_loopback}};
-static const functionsAny_t fofbCtrlSetGetTimeFrameDlyFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_time_frame_dly,
+static const functionsAny_t fofbCtrlSetGetTimeFrameDlyFunc            = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_time_frame_dly,
                                                                           halcs_get_fofb_ctrl_time_frame_dly}};
-static const functionsAny_t fofbCtrlSetGetGoldenOrbXFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_golden_orb_x,
+static const functionsAny_t fofbCtrlSetGetGoldenOrbXFunc              = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_golden_orb_x,
                                                                           halcs_get_fofb_ctrl_golden_orb_x}};
-static const functionsAny_t fofbCtrlSetGetGoldenOrbYFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_golden_orb_y,
+static const functionsAny_t fofbCtrlSetGetGoldenOrbYFunc              = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_golden_orb_y,
                                                                           halcs_get_fofb_ctrl_golden_orb_y}};
-static const functionsAny_t fofbCtrlSetGetCustFeatureFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cust_feature,
+static const functionsAny_t fofbCtrlSetGetCustFeatureFunc             = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_cust_feature,
                                                                           halcs_get_fofb_ctrl_cust_feature}};
-static const functionsAny_t fofbCtrlSetGetRxPolarityFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rx_polarity,
+static const functionsAny_t fofbCtrlSetGetRxPolarityFunc              = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_rx_polarity,
                                                                           halcs_get_fofb_ctrl_rx_polarity}};
-static const functionsAny_t fofbCtrlSetGetPayloadselFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_payloadsel,
+static const functionsAny_t fofbCtrlSetGetPayloadselFunc              = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_payloadsel,
                                                                           halcs_get_fofb_ctrl_payloadsel}};
-static const functionsAny_t fofbCtrlSetGetFofbdataselFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_fofbdatasel,
+static const functionsAny_t fofbCtrlSetGetFofbdataselFunc             = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_fofbdatasel,
                                                                           halcs_get_fofb_ctrl_fofbdatasel}};
-static const functionsAny_t fofbCtrlSetGetFirmwareVerFunc             = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetFirmwareVerFunc             = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_firmware_ver}};
-static const functionsAny_t fofbCtrlSetGetSysStatusFunc               = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetSysStatusFunc               = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_sys_status}};
-static const functionsAny_t fofbCtrlSetGetLinkPartnerFunc             = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetLinkPartnerFunc             = {functionsUInt32Chan_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_link_partner}};
-static const functionsAny_t fofbCtrlSetGetLinkUpFunc                  = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetLinkUpFunc                  = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_link_up}};
-static const functionsAny_t fofbCtrlSetGetTimeFrameCountFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetTimeFrameCountFunc          = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_time_frame_count}};
-static const functionsAny_t fofbCtrlSetGetHardErrCntFunc              = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetHardErrCntFunc              = {functionsUInt32Chan_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_hard_err_cnt}};
-static const functionsAny_t fofbCtrlSetGetSoftErrCntFunc              = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetSoftErrCntFunc              = {functionsUInt32Chan_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_soft_err_cnt}};
-static const functionsAny_t fofbCtrlSetGetFrameErrCntFunc             = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetFrameErrCntFunc             = {functionsUInt32Chan_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_frame_err_cnt}};
-static const functionsAny_t fofbCtrlSetGetRxPckCntFunc                = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetRxPckCntFunc                = {functionsUInt32Chan_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_rx_pck_cnt}};
-static const functionsAny_t fofbCtrlSetGetTxPckCntFunc                = {functionsUInt32Chan_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetTxPckCntFunc                = {functionsUInt32Chan_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_tx_pck_cnt}};
-static const functionsAny_t fofbCtrlSetGetFodProcessTimeFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetFodProcessTimeFunc          = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_fod_process_time}};
-static const functionsAny_t fofbCtrlSetGetBpmCntFunc                  = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetBpmCntFunc                  = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_bpm_count}};
-static const functionsAny_t fofbCtrlSetGetBpmIdRdbackFunc             = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetBpmIdRdbackFunc             = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_bpm_id_rdback}};
-static const functionsAny_t fofbCtrlSetGetTfLengthRdbackFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetTfLengthRdbackFunc          = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_tf_length_rdback}};
-static const functionsAny_t fofbCtrlSetGetPowerdownRdbackFunc         = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetPowerdownRdbackFunc         = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_powerdown_rdback}};
-static const functionsAny_t fofbCtrlSetGetLoopbackRdbackFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetLoopbackRdbackFunc          = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_loopback_rdback}};
-static const functionsAny_t fofbCtrlSetGetFaivalRdbackFunc            = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetFaivalRdbackFunc            = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_faival_rdback}};
-static const functionsAny_t fofbCtrlSetGetToaRdEnFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_en,
+static const functionsAny_t fofbCtrlSetGetToaRdEnFunc                 = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_toa_rd_en,
                                                                           halcs_get_fofb_ctrl_toa_rd_en}};
-static const functionsAny_t fofbCtrlSetGetToaRdStrFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_str,
+static const functionsAny_t fofbCtrlSetGetToaRdStrFunc                = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_toa_rd_str,
                                                                           halcs_get_fofb_ctrl_toa_rd_str}};
-static const functionsAny_t fofbCtrlSetGetToaDataFunc                 = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetToaDataFunc                 = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_toa_data}};
-static const functionsAny_t fofbCtrlSetGetRcbRdEnFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rcb_rd_en,
+static const functionsAny_t fofbCtrlSetGetRcbRdEnFunc                 = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_rcb_rd_en,
                                                                           halcs_get_fofb_ctrl_rcb_rd_en}};
-static const functionsAny_t fofbCtrlSetGetRcbRdStrFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rcb_rd_str,
+static const functionsAny_t fofbCtrlSetGetRcbRdStrFunc                = {functionsUInt32_t{"FOFB_CC", halcs_set_fofb_ctrl_rcb_rd_str,
                                                                           halcs_get_fofb_ctrl_rcb_rd_str}};
-static const functionsAny_t fofbCtrlSetGetRcbDataFunc                 = {functionsUInt32_t{"FOFB_CTRL", NULL,
+static const functionsAny_t fofbCtrlSetGetRcbDataFunc                 = {functionsUInt32_t{"FOFB_CC", NULL,
                                                                           halcs_get_fofb_ctrl_rcb_data}};
 
 static const char *driverName="drvFOFB";
