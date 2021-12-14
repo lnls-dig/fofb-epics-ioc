@@ -1,21 +1,17 @@
 /*
- *  *  *  * drvFOFB.h
- *   *   *   *
- *    *    *    * Authors: Melissa Aguiar
- *     *     *     *
- *      *      *      * Created Dec. 03, 2021
- *       *       *       */
+ *  *  * drvFOFB.h
+ *   *   *
+ *    *    * Authors: Melissa Aguiar
+ *     *     *
+ *      *      * Created Dec. 03, 2021
+ *       *       */
 
 #include "asynPortDriver.h"
 #include <epicsExit.h>
-#include <NDArray.h>
 #include <epicsMutex.h>
-#include <epicsRingBytes.h>
 /* Third-party libraries */
 #include <unordered_map>
 #include <halcs_client.h>
-#include <acq_client.h>
-#include <bpm_client.h>
 
 /* any implementation for non c++-17 compilers */
 #include "any.hpp"
@@ -25,43 +21,6 @@ using linb::any_cast;
 using linb::bad_any_cast;
 
 #define ARRAY_SIZE(ARRAY)             (sizeof(ARRAY)/sizeof((ARRAY)[0]))
-/* Waveforms: RAW data, ADC SWAP data, TBT Amp, TBT Phase, FOFB Amp, FOFB Phase */
-#define MAX_ARRAY_POINTS              200000
-#define FOFB_TIMEOUT                   1.0
-
-typedef enum {
-    FOFBIDReg = 0,
-    FOFBIDPM = 1,
-    FOFBIDEnd,
-} fofb_coreID_types;
-
-#define NUM_ACQ_CORES_PER_FOFB        FOFBIDEnd /* Regular Acquisition core and Post-Mortem */
-#define NUM_TRIG_CORES_PER_FOFB       NUM_ACQ_CORES_PER_FOFB /* Trigger core for regular Acquisition and Post-Mortem */
-
-/* FOFB modes */
-typedef enum {
-    FOFBModeMultiBunch = 0,
-    FOFBModeSinglePass = 1,
-    FOFBModeEnd,
-} fofb_mode_types;
-
-#define NUM_FOFB_MODES               FOFBModeEnd
-
-/* FOFB acquisition status */
-typedef enum {
-    FOFBStatusIdle = 0,
-    FOFBStatusWaiting,
-    FOFBStatusTriggerHwExtWaiting,
-    FOFBStatusTriggerHwDataWaiting,
-    FOFBStatusTriggerSwWaiting,
-    FOFBStatusAcquire,
-    FOFBStatusErrAcq,
-    FOFBStatusAborted,
-    FOFBStatusErrTooManyPoints,
-    FOFBStatusErrTooFewPoints,
-    FOFBStatusErrNoMem,
-    FOFBStatusErrAcqOFlow,
-} fofb_status_types;
 
 #define MAX_SLOTS                     12
 #define MAX_FOFB_PER_SLOT             2
@@ -76,21 +35,21 @@ typedef enum {
 typedef struct {
     int board;
     int fofb;
-    int core_id; /* Acquisition and Trigger core IDs */
 } boardMap_t;
 
-/* FOFB Reverse channel mapping structure */
-typedef struct {
-    /* EPICS channel. -1 means not available */
-    int epicsChannel;
-} channelRevMap_t;
+/* Write 32-bit function pointer */
+typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
+	uint32_t param);
+/* Read 32-bit function pointer */
+typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
+	uint32_t *param);
 
-/* FOFB Acq Channel properties structure */
+/* FOFB command dispatch table */
 typedef struct {
-    epicsUInt32 sampleSize;
-    epicsUInt32 numAtoms;
-    epicsUInt32 atomWidth;
-} channelProp_t;
+    const char *serviceName;
+    writeInt32Fp write;
+    readInt32Fp read;
+} functionsInt32_t;
 
 /* Write 32-bit function pointer */
 typedef halcs_client_err_e (*writeUInt32Fp)(halcs_client_t *self, char *service,
@@ -105,65 +64,6 @@ typedef struct {
     writeUInt32Fp write;
     readUInt32Fp read;
 } functionsUInt32_t;
-
-/* Write 32-bit function pointer */
-typedef halcs_client_err_e (*writeInt32Fp)(halcs_client_t *self, char *service,
-    int32_t param);
-/* Read 32-bit function pointer */
-typedef halcs_client_err_e (*readInt32Fp)(halcs_client_t *self, char *service,
-    int32_t *param);
-
-/* FOFB command dispatch table */
-typedef struct {
-    const char *serviceName;
-    writeInt32Fp write;
-    readInt32Fp read;
-} functionsInt32_t;
-
-/* Write 32-bit function pointer with acq_client structure */
-typedef halcs_client_err_e (*writeUInt32AcqFp)(acq_client_t *self, char *service,
-    uint32_t param);
-/* Read 32-bit function pointer with acq_client structure */
-typedef halcs_client_err_e (*readUInt32AcqFp)(acq_client_t *self, char *service,
-    uint32_t *param);
-
-/* FOFB command dispatch table */
-typedef struct {
-    const char *serviceName;
-    writeUInt32AcqFp write;
-    readUInt32AcqFp read;
-} functionsUInt32Acq_t;
-
-/* Write 2 32-bit function pointer */
-typedef halcs_client_err_e (*write2UInt32Fp)(halcs_client_t *self, char *service,
-    uint32_t param1, uint32_t param2);
-/* Read 32-bit function pointer */
-typedef halcs_client_err_e (*read2UInt32Fp)(halcs_client_t *self, char *service,
-    uint32_t *param1, uint32_t *param2);
-
-/* FOFB command dispatch table */
-typedef struct {
-    const char *serviceName;
-    write2UInt32Fp write;
-    read2UInt32Fp read;
-    /* Which parameter (first or second) would trigger this function to be
- *  *      * executed on hardware (the other one won't be changed) */
-    int parameterPos;
-} functions2UInt32_t;
-
-/* Write 64-bit float function pointer */
-typedef halcs_client_err_e (*writeFloat64Fp)(halcs_client_t *self, char *service,
-    double param);
-/* Read 32-bit function pointer */
-typedef halcs_client_err_e (*readFloat64Fp)(halcs_client_t *self, char *service,
-    double *param);
-
-/* FOFB command dispatch table */
-typedef struct {
-    const char *serviceName;
-    writeFloat64Fp write;
-    readFloat64Fp read;
-} functionsFloat64_t;
 
 /* Write 32-bit function pointer with channel selection */
 typedef halcs_client_err_e (*writeUInt32ChanFp)(halcs_client_t *self, char *service,
@@ -189,8 +89,6 @@ typedef struct {
 
 /* Forward declaration as struct functionsAny_t needs it */
 class drvFOFB;
-
-/* Idea based on https://stackoverflow.com/questions/15102139/boostany-and-templates*/
 
 /* Generic Function Structure for "any" function pointer */
 struct functionsAny_t {
@@ -259,24 +157,7 @@ private:
 };
 
 /* These are the drvInfo strings that are used to identify the parameters.
- *  *  *  * They are used by asyn clients, including standard asyn device support */
-#define P_SamplesPreString                      "ACQ_SAMPLES_PRE"                           /* asynUInt32Digital,      r/w */
-#define P_SamplesPostString                     "ACQ_SAMPLES_POST"                          /* asynUInt32Digital,      r/w */
-#define P_NumShotsString                        "ACQ_NUM_SHOTS"                             /* asynUInt32Digital,      r/w */
-#define P_ChannelString                         "ACQ_CHANNEL"                               /* asynInt32,              r/w */
-#define P_TriggerString                         "ACQ_TRIGGER"                               /* asynUInt32Digital,      r/w */
-#define P_TriggerEventString                    "ACQ_TRIGGER_EVENT"                         /* asynUInt32Digital,      r/w */
-#define P_TriggerRepString                      "ACQ_TRIGGER_REP"                           /* asynUInt32Digital,      r/w */
-#define P_UpdateTimeString                      "ACQ_UPDATE_TIME"                           /* asynFloat64,            r/w */
-#define P_TriggerDataThresString                "ACQ_TRIGGER_THRES"                         /* asynInt32,              r/w */
-#define P_TriggerDataPolString                  "ACQ_TRIGGER_POL"                           /* asynInt32,              r/w */
-#define P_TriggerDataSelString                  "ACQ_TRIGGER_SEL"                           /* asynInt32,              r/w */
-#define P_TriggerDataFiltString                 "ACQ_TRIGGER_FILT"                          /* asynInt32,              r/w */
-#define P_TriggerHwDlyString                    "ACQ_TRIGGER_HWDLY"                         /* asynInt32,              r/w */
-#define P_DataTrigChanString                    "ACQ_DATA_TRIG_CHAN"                        /* asynuint32digital,      r/w */
-#define P_ChannelSampleSizeString               "ACQ_CH_SAMPLE_SIZE"                        /* asynUInt32Digital,      r/o */
-#define P_ChannelNumAtomsString                 "ACQ_CH_NUM_ATOMS"                          /* asynUInt32Digital,      r/o */
-#define P_ChannelAtomWidthString                "ACQ_CH_ATOM_WIDTH"                         /* asynUInt32Digital,      r/o */
+ *  *  * They are used by asyn clients, including standard asyn device support */
 #define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
 #define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
 #define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
@@ -338,17 +219,10 @@ private:
 #define P_FofbCtrlRcbRdStrString                "FOFB_CC_RCB_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlRcbDataString                 "FOFB_CC_RCB_DATA_VAL"                      /* asynUInt32Digital,      r/o */
 
-typedef enum {
-    TRIG_ACQ_START,
-    TRIG_ACQ_STOP,
-    TRIG_ACQ_ABORT,
-} trigEvent_e;
-
-class drvFOFB : public asynNDArrayDriver {
+class drvFOFB : public asynPortDriver {
     public:
-        drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
-                const char *type, int verbose, int timeout,
-                int maxPoints, int maxBuffers, size_t maxMemory);
+        drvFOFB(const char *portName, const char *endpoint,
+                int FOFBNumber, int verbose, int timeout);
         ~drvFOFB();
 
         /* These are the methods that we override from asynPortDriver */
@@ -356,42 +230,18 @@ class drvFOFB : public asynNDArrayDriver {
                 epicsUInt32 mask);
         virtual asynStatus readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
                 epicsUInt32 mask);
-        virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-        virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
-        virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
-        virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
 
         /* These methods are overwritten from asynPortDriver */
         virtual asynStatus connect(asynUser* pasynUser);
         virtual asynStatus disconnect(asynUser* pasynUser);
 
-        /* These are the methods that are new to this class */
-        void acqTask(int coreID, double pollTime, bool autoStart);
-        void acqSPTask(int coreID, double pollTime, bool autoStart);
-        void acqMonitTask();
-
         /* Overloaded functions for extracting service name*/
-        const char *doGetServiceNameFromFunc (functionsUInt32_t &func) const
-        {
-            return func.serviceName;
-        }
-
         const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
         {
             return func.serviceName;
         }
 
-        const char *doGetServiceNameFromFunc (functionsUInt32Acq_t &func) const
-        {
-            return func.serviceName;
-        }
-
-        const char *doGetServiceNameFromFunc (functions2UInt32_t &func) const
-        {
-            return func.serviceName;
-        }
-
-        const char *doGetServiceNameFromFunc (functionsFloat64_t &func) const
+        const char *doGetServiceNameFromFunc (functionsUInt32_t &func) const
         {
             return func.serviceName;
         }
@@ -402,35 +252,23 @@ class drvFOFB : public asynNDArrayDriver {
         }
 
         /* Overloaded function mappings called by functionsAny_t */
-        asynStatus doExecuteHwWriteFunction(functionsUInt32Acq_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwWriteFunction(functions2UInt32_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwWriteFunction(functionsFloat64_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
+        asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwWriteFunction(functionsUInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwWriteFunction(functionsInt32_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwWriteFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);
+        asynStatus doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
 
-        asynStatus doExecuteHwReadFunction(functionsUInt32Acq_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwReadFunction(functions2UInt32_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwReadFunction(functionsFloat64_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
+        asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
         asynStatus doExecuteHwReadFunction(functionsUInt32_t &func, char *service,
                 int addr, functionsArgs_t &functionParam) const;
-        asynStatus doExecuteHwReadFunction(functionsInt32_t &func, char *service,
-                int addr, functionsArgs_t &functionParam) const;
         asynStatus executeHwReadFunction(int functionId, int addr,
                 functionsArgs_t &functionParam);
+        asynStatus doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *service,
+                int addr, functionsArgs_t &functionParam) const;
 
         /* General service name handling utilities */
         asynStatus getServiceChan (int fofbNumber, int addr, const char *serviceName,
@@ -442,25 +280,8 @@ class drvFOFB : public asynNDArrayDriver {
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
-        int P_SamplesPre;
-#define FIRST_COMMAND P_SamplesPre
-        int P_SamplesPost;
-        int P_NumShots;
-        int P_Channel;
-        int P_UpdateTime;
-        int P_Trigger;
-        int P_TriggerEvent;
-        int P_TriggerRep;
-        int P_TriggerDataThres;
-        int P_TriggerDataPol;
-        int P_TriggerDataSel;
-        int P_TriggerDataFilt;
-        int P_TriggerHwDly;
-        int P_DataTrigChan;
-        int P_ChannelSampleSize;
-        int P_ChannelNumAtoms;
-        int P_ChannelAtomWidth;
         int P_FofbProcessingRamWrite;
+#define FIRST_COMMAND P_FofbProcessingRamWrite
         int P_FofbProcessingRamAddr;
         int P_FofbProcessingRamDataIn;
         int P_FofbProcessingRamDataOut;
@@ -525,25 +346,11 @@ class drvFOFB : public asynNDArrayDriver {
     private:
         /* Our data */
         halcs_client_t *fofbClient;
-        halcs_client_t *fofbClientMonit;
-        acq_client_t *fofbClientAcqParam[NUM_ACQ_CORES_PER_FOFB];
-        acq_client_t *fofbClientAcq[NUM_ACQ_CORES_PER_FOFB];
-        fofb_single_pass_t *fofbSinglePass[NUM_ACQ_CORES_PER_FOFB];
         char *endpoint;
         int fofbNumber;
-        int fofbMaxPoints;
         int verbose;
         int timeout;
         char *fofbPortName;
-        char *fofbType;
-        int readingActive[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        int repetitiveTrigger[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId startAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId stopAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId abortAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId reconfSPassAcqEventId[NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId activeAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> fofbHwFunc;
 
         /* Our private methods */
@@ -552,45 +359,16 @@ class drvFOFB : public asynNDArrayDriver {
         asynStatus fofbClientConnect(asynUser* pasynUser);
         asynStatus fofbClientDisconnect(asynUser* pasynUser);
 
-         /* Acquisition functions */
-        asynStatus setAcqEvent(epicsUInt32 mask, int addr);
-        asynStatus getAcqNDArrayType(int coreID, int channel, epicsUInt32 atomWidth, NDDataType_t *NDType);
-        asynStatus getChannelProperties(int coreID, int channel, channelProp_t *channelProp);
-        fofb_status_types getFOFBInitAcqStatus(int coreID);
-        asynStatus startAcq(int coreID, int hwChannel, epicsUInt32 num_samples_pre,
-                epicsUInt32 num_samples_post, epicsUInt32 num_shots);
-        asynStatus startSPAcq(fofb_single_pass_t *fofb_single_pass);
-        asynStatus setAcqTrig(int coreID, acq_client_trig_e trig);
-        asynStatus initAcqPM(int coreID);
-        asynStatus abortAcqRaw(int coreID, acq_client_t *acq_client);
-        asynStatus abortAcq(int coreID);
-        asynStatus abortAcqFromPortThread(int coreID);
-        asynStatus abortAcqTask(int addr, int fofbMode, bool abortAcqHw = false);
-        asynStatus stopAcqTask(int addr, int fofbMode);
-        int checkAcqCompletion(int coreID);
-        int checkSPAcqCompletion(fofb_single_pass_t *fofb_single_pass);
-        asynStatus getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwChannel,
-                epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
-                epicsUInt32 num_shots);
-        asynStatus getAcqSPCurve(fofb_single_pass_t *fofb_single_pass, NDArray *pArrayAllChannels);
-        asynStatus getAcqSPSamples(fofb_single_pass_t *fofb_single_pass, fofb_sample_t *fofb_sample);
-        asynStatus deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
-                int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp);
-
         /* General set/get hardware functions */
-        asynStatus computePositions(int coreID, NDArray *pArrayAllChannels, int channel,
-                epicsTimeStamp *timeStamp);
         asynStatus setParamGeneric(int funcionId, int addr);
         asynStatus setParam32(int functionId, epicsUInt32 mask, int addr);
         asynStatus getParam32(int functionId, epicsUInt32 *param,
                 epicsUInt32 mask, int addr);
-        asynStatus setParamInteger(int functionId, int addr);
-        asynStatus getParamInteger(int functionId, epicsInt32 *param, int addr);
         asynStatus setParamDouble(int functionId, int addr);
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 
         /* Specific hardware functions that need extra processing and don't
- *  *  *          * fit into the general set/get template */
+ *  *          * fit into the general set/get template */
 
 };
 
@@ -634,4 +412,3 @@ const char *functionsAny_t::getServiceNameFromFunc(const drvFOFB& drvFOFB,
     auto functionFpCast = any_cast<T>(functionFp);
     return drvFOFB.doGetServiceNameFromFunc(functionFpCast);
 }
-
