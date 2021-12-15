@@ -4,7 +4,7 @@
 epicsEnvSet("TOP","../..")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
-epicsEnvSet("FOFB_TYPE", "AFC_FOFB")
+epicsEnvSet("FOFB_TYPE", "FOFB")
 
 # devIOCStats vars
 epicsEnvSet("ENGINEER","$(ENGINEER=Melissa Aguiar)")
@@ -30,12 +30,11 @@ dbLoadRecords("${TOP}/db/FOFBAcq.template", "P=${P}, R=${R}, ACQ_NAME=ACQ_PM, PO
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}Stats")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminScanMon.db","IOC=${P}${R}Stats")
 
-# devIOCStats records
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=${P}${R}Stats")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminScanMon.db","IOC=${P}${R}Stats")
-
 < save_restore.cmd
 < triggerFOFB.cmd
+< waveformPlugins.cmd
+< waveformFilePlugins.cmd
+< statsPlugins.cmd
 
 # Turn on asynTraceFlow and asynTraceError for global trace, i.e. no connected asynUser.
 asynSetTraceIOMask("$(FOFB_NAME)",0,0x2)
