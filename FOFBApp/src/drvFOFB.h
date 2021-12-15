@@ -201,8 +201,6 @@ typedef enum {
 #define FOFB_NUMBER_MIN               1
 #define FOFB_NUMBER_MAX               MAX_FOFBS
 
-#define MAX_ADDR                      8
-
 /* FOFB Mappping structure */
 typedef struct {
     int board;

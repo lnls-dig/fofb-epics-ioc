@@ -47,6 +47,8 @@ FOFB_LIBS += $(EPICS_BASE_IOC_LIBS)
 FOFB_SYS_LIBS += bpmclient
 FOFB_SYS_LIBS += acqclient
 FOFB_SYS_LIBS += halcsclient
+FOFB_SYS_LIBS += bpmclient
+FOFB_SYS_LIBS += acqclient
 FOFB_SYS_LIBS += errhand
 FOFB_SYS_LIBS += hutils
 FOFB_SYS_LIBS += mlm
@@ -71,6 +73,8 @@ FOFBCheckInit_SRCS += FOFBCheckInit.c
 FOFBCheckInit_SYS_LIBS += bpmclient
 FOFBCheckInit_SYS_LIBS += acqclient
 FOFBCheckInit_SYS_LIBS += halcsclient
+FOFBCheckInit_SYS_LIBS += bpmclient
+FOFBCheckInit_SYS_LIBS += acqclient
 FOFBCheckInit_SYS_LIBS += errhand
 FOFBCheckInit_SYS_LIBS += hutils
 FOFBCheckInit_SYS_LIBS += mlm
@@ -88,7 +92,7 @@ FOFBCheckInit_SYS_LIBS += gcc
 USR_CXXFLAGS += -std=gnu++11 -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 USR_CFLAGS += -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
-# include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
+include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
 
 # #===========================
 

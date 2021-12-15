@@ -416,32 +416,6 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
      /* 13 = Unavailable    */  {-1},
      /* [CH_HW_MONIT1] =    */  {CH_MONIT1},
 };
-
-/* This function should not be called, as there is no client function to replace it and
- *  * the EPICS Db should not export PVs that maps here.
- *   * FIXME: not sure why, but some unavailable functions are called even with no
- *    * "apperently" Db record mapped to it. When this happens, segfault occurs. So,
- *     * until we figure out what s happening we keep "NULL" function mapped to this dummy
- *      * functions */
-static halcs_client_err_e halcs_dummy_read_32 (halcs_client_t *self, char *service, uint32_t *param)
-{
-    (void) self;
-    (void) service;
-    (void) param;
-    return HALCS_CLIENT_ERR_INV_FUNCTION;
-}
-
-static halcs_client_err_e halcs_dummy_read_chan_32 (halcs_client_t *self, char *service,
-        uint32_t chan, uint32_t *param)
-{
-    (void) self;
-    (void) service;
-    (void) chan;
-    (void) param;
-    return HALCS_CLIENT_ERR_INV_FUNCTION;
-}
-
-
 /* Int32 functions mapping */
 static const functionsAny_t fofbProcessingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write,
                                                                           halcs_get_fofb_processing_ram_write}};
@@ -1188,12 +1162,53 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         }
     }
 
+#if 0
+     for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
+        for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
+            readTriggerParams(0xFFFFFFFF, i*MAX_TRIGGERS + addr);
+        }
+    }
+#endif
+
     /* Do callbacks so higher layers see any changes. Call callbacks for every addr */
     for (int i = 0; i < MAX_ADDR; ++i) {
         callParamCallbacks(i);
     }
 
+    /* Create the thread that computes the waveforms in the background */
+    for (int i = 0; i < NUM_ACQ_CORES_PER_FOFB; ++i) {
+        /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
+ *          * The other parameters are already set-up*/
+        taskParams[i].drvFOFBp = this;
+        status = (asynStatus)(epicsThreadCreate("drvFOFBTask",
+                    epicsThreadPriorityMedium,
+                    epicsThreadGetStackSize(epicsThreadStackMedium),
+                    (EPICSTHREADFUNC)::acqTask,
+                    &taskParams[i]) == NULL);
+        if (status) {
+            printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+            return;
+        }
+    }
+
+#if 0
+    /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
+ *     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
+ *         * since nothing ever calls pasynManager->queueRequest.  So we do an
+ *             * exceptionConnect to each address so asynManager will show them as connected.
+ *                 * Note that this is NOT necessary for the driver to function correctly, the
+ *                     * NDPlugins will still get called even for addresses that are not "connected".
+ *                         * It is just to avoid confusion.
+ *                             * */
+    for (i=0; i<MAX_ADDR; ++i) {
+        pasynUser = pasynManager->createAsynUser(0,0);
+        pasynManager->connectDevice(pasynUser, portName, i);
+        pasynManager->exceptionConnect(pasynUser);
+    }
+#endif
+
     epicsAtExit(exitHandlerC, this);
+    return;
 
 invalid_fofb_number_err:
     free (this->endpoint);
@@ -1297,10 +1312,6 @@ create_halcs_client_acq_param_err:
             acq_client_destroy (&fofbClientAcqParam[i]);
         }
     }
-
-create_halcs_client_monit_err:
-    /* Destroy regular fofbClient instance */
-    halcs_client_destroy (&fofbClient);
 
 create_halcs_client_err:
     return status;
@@ -2769,7 +2780,6 @@ asynStatus drvFOFB::doExecuteHwWriteFunction(functionsUInt32Chan_t &func, char *
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     int status = asynSuccess;
     char serviceChanStr[SERVICE_NAME_SIZE];
-    int serviceID = 0;
     epicsUInt32 serviceChan = 0;
 
     /* Create full service name*/
@@ -2810,27 +2820,27 @@ asynStatus drvFOFB::doExecuteHwWriteFunction(functionsUInt32Acq_t &func, char *s
     int status = asynSuccess;
     int serviceID = 0;
 
-    /* Get service ID for correct use with acquisition instance
- *     status = getServiceID (this->fofbNumber, addr, func.serviceName,
- *                 &serviceID);
- *                     if (status) {
- *                             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
- *                                             "%s:%s: error calling getServiceID, status=%d\n",
- *                                                             driverName, functionName, status);
- *                                                                     goto get_service_id_err;
- *                                                                         }
- *                                                                         */
-    /* Execute registered function
- *     err = func.write(fofbClientAcqParam[serviceID], service, functionParam.argUInt32);
- *         if (err != HALCS_CLIENT_SUCCESS) {
- *                 asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
- *                                 "%s:%s: failure executing write function for service %s,"
- *                                                 "param = %u\n",
- *                                                                 driverName, functionName, service, functionParam.argUInt32);
- *                                                                         status = asynError;
- *                                                                                 goto halcs_set_func_param_err;
- *                                                                                     }
- *                                                                                      */
+    /* Get service ID for correct use with acquisition instance */
+    status = getServiceID (this->fofbNumber, addr, func.serviceName,
+            &serviceID);
+    if (status) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getServiceID, status=%d\n",
+                driverName, functionName, status);
+        goto get_service_id_err;
+    }
+
+    /* Execute registered function */
+    err = func.write(fofbClientAcqParam[serviceID], service, functionParam.argUInt32);
+    if (err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: failure executing write function for service %s,"
+                "param = %u\n",
+                driverName, functionName, service, functionParam.argUInt32);
+        status = asynError;
+        goto halcs_set_func_param_err;
+    }
+
 halcs_set_func_param_err:
 get_service_id_err:
     return (asynStatus) status;
@@ -3001,7 +3011,6 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *s
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char serviceChanStr[SERVICE_NAME_SIZE];
     int status = asynSuccess;
-    int serviceID = 0;
     epicsUInt32 serviceChan = 0;
 
     /* Create full service name*/

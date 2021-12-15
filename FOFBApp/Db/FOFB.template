@@ -198,14 +198,14 @@ record(longin,"$(P)$(R)RtmLampPIOLSquareEn-RB"){
 
 record(longout,"$(P)$(R)RtmLampPISPSquareEn-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set PI setpoint closed-loop square wave enable")
+    field(DESC,"set PI closed-loop square wave enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE")
 }
 record(longin,"$(P)$(R)RtmLampPISPSquareEn-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get PI setpoint closed-loop square wave enable")
+    field(DESC,"get PI closed-loop square wave enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE")
 }
@@ -240,14 +240,14 @@ record(longin,"$(P)$(R)RtmLampDacData-RB"){
 
 record(longout,"$(P)$(R)RtmLampDacWr-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set register to write DAC data to external IC")
+    field(DESC,"write DAC data to external IC")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_WR")
 }
 record(longin,"$(P)$(R)RtmLampDacWr-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get register to write DAC data to external IC")
+    field(DESC,"write DAC data to external IC")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_WR")
 }
@@ -282,42 +282,42 @@ record(longin,"$(P)$(R)RtmLampPITI-RB"){
 
 record(longout,"$(P)$(R)RtmLampPISP-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set PI setpoint (also used for PI test modes)")
+    field(DESC,"set PI setpoint")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
 }
 record(longin,"$(P)$(R)RtmLampPISP-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get PI setpoint (also used for PI test modes)")
+    field(DESC,"get PI setpoint")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
 }
 
 record(longout,"$(P)$(R)RtmLampPIOLDacCntMax-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set PI open-loop counter max (defines PI test mode waveform period)")
+    field(DESC,"set PI open-loop counter max")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA")
 }
 record(longin,"$(P)$(R)RtmLampPIOLDacCntMax-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get PI open-loop counter max (defines PI test mode waveform period)")
+    field(DESC,"get PI open-loop counter max")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA")
 }
 
 record(longout,"$(P)$(R)RtmLampPISPLimInf-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set PI setpoint inferior limit (for PI test modes)")
+    field(DESC,"set PI setpoint inferior limit")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
 }
 record(longin,"$(P)$(R)RtmLampPISPLimInf-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get PI setpoint inferior limit (for PI test modes)")
+    field(DESC,"get PI setpoint inferior limit")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
 }

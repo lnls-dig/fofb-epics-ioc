@@ -10,6 +10,7 @@ SED = sed
 # Prefixes
 IOC_NAME ?=
 INSTALL_PREFIX ?=
+FOFB_USER ?= $(shell basename $(realpath ${TOP}))
 
 # OS information
 SERVICE_NAME = $(shell basename $(realpath ${TOP}))
@@ -18,12 +19,15 @@ SCRIPTS_FULL_NAME := $(shell cd $(INIT_SYSTEM) && find . -type f \
 	\( -iname "*" ! -iname "*.service.in" \))
 SCRIPTS_SERVICE_IN_FULL_NAME := $(shell cd $(INIT_SYSTEM) && find . -type f \
 	\( -iname "*.service.in" \))
+
 # Strip .in suffix
 SCRIPTS_SERVICE_FULL_NAME := $(SCRIPTS_SERVICE_IN_FULL_NAME:%.in=%)
+
 # Strip off a leading ./
 SCRIPTS=$(SCRIPTS_FULL_NAME:./%=%)
 SCRIPTS_SERVICE_IN=$(SCRIPTS_SERVICE_IN_FULL_NAME:./%=%)
 SCRIPTS_SERVICE=$(SCRIPTS_SERVICE_FULL_NAME:./%=%)
+
 .PHONY: all clean mrproper install uninstall
 
 all:
