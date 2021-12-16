@@ -462,6 +462,14 @@ private:
 #define P_FofbCtrlRcbRdEnString                 "FOFB_CC_RCB_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlRcbRdStrString                "FOFB_CC_RCB_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlRcbDataString                 "FOFB_CC_RCB_DATA_VAL"                      /* asynUInt32Digital,      r/o */
+#define P_AdcRateString                         "INFO_ADCRATE"                              /* asynUInt32Digital,      r/o */
+#define P_TbtRateString                         "INFO_TBTRATE"                              /* asynUInt32Digital,      r/o */
+#define P_FofbRateString                        "INFO_FOFBRATE"                             /* asynUInt32Digital,      r/o */
+#define P_MonitRateString                       "INFO_MONITRATE"                            /* asynUInt32Digital,      r/o */
+#define P_Monit1RateString                      "INFO_MONIT1RATE"                           /* asynUInt32Digital,      r/o */
+#define P_MonitUpdtString                       "MONIT_UPDT"                                /* asynUInt32Digital,      r/w */
+#define P_MonitPollTimeString                   "MONIT_POLL_TIME"                           /* asynUInt32Digital,      r/w */
+#define P_MonitEnableString                     "MONIT_ENABLE"                              /* asynInt32,              r/w */
 #define P_FOFBStatusString                      "ACQ_STATUS"                                /* asynInt32,              r/o */
 #define P_SamplesPreString                      "ACQ_SAMPLES_PRE"                           /* asynUInt32Digital,      r/w */
 #define P_SamplesPostString                     "ACQ_SAMPLES_POST"                          /* asynUInt32Digital,      r/w */
@@ -521,6 +529,7 @@ class drvFOFB : public asynNDArrayDriver {
 
         /* These are the methods that are new to this class */
         void acqTask(int coreID, double pollTime, bool autoStart);
+        void acqMonitTask();
 
         /* Overloaded functions for extracting service name*/
         const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
@@ -656,6 +665,14 @@ class drvFOFB : public asynNDArrayDriver {
         int P_FofbCtrlRcbRdStr;
         int P_FofbCtrlRcbData;
         int P_FOFBStatus;
+        int P_AdcRate;
+        int P_TbtRate;
+        int P_FofbRate;
+        int P_MonitRate;
+        int P_Monit1Rate;
+        int P_MonitUpdt;
+        int P_MonitPollTime;
+        int P_MonitEnable;
         int P_SamplesPre;
         int P_SamplesPost;
         int P_NumShots;
@@ -691,6 +708,7 @@ class drvFOFB : public asynNDArrayDriver {
     private:
         /* Our data */
         halcs_client_t *fofbClient;
+        halcs_client_t *fofbClientMonit;
         acq_client_t *fofbClientAcqParam[NUM_ACQ_CORES_PER_FOFB];
         acq_client_t *fofbClientAcq[NUM_ACQ_CORES_PER_FOFB];
         char *endpoint;
@@ -706,6 +724,7 @@ class drvFOFB : public asynNDArrayDriver {
         epicsEventId abortAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
         epicsEventId reconfSPassAcqEventId[NUM_ACQ_CORES_PER_FOFB];
         epicsEventId activeAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
+        epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> fofbHwFunc;
 
         /* Our private methods */

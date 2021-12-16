@@ -33,6 +33,13 @@
 #define FREQ                            1.00                /* Hz */
 #define TEST_LENGTH                     4092
 
+/* FIXME: This should be read from hardware */
+#define ADC_RATE_FACTOR                 1
+#define TBT_RATE_FACTOR                 35
+#define FOFB_RATE_FACTOR                980
+#define MONIT_RATE_FACTOR               9800000
+#define MONIT1_RATE_FACTOR              98000
+
 #define CH_DFLT_TRIGGER_CHAN            0
 #define CH_DFLT_TRIGGER_SW_CHAN         18
 
@@ -479,7 +486,15 @@ static taskParams_t taskParams[NUM_ACQ_CORES_PER_FOFB] = {
     },
 };
 
+static taskParams_t taskMonitParams = {
+    NULL,                               // drvFOFBp
+    FOFBIDReg,                          // coreID
+    FOFB_POLL_TIME,                     // pollTime
+    false                               // autoStart
+};
+
 void acqTask(void *drvPvt);
+void acqMonitTask(void *drvPvt);
 
 static void exitHandlerC(void *pPvt)
 {
@@ -672,6 +687,13 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         }
     }
 
+    this->activeMonitEnableEventId = epicsEventCreate(epicsEventEmpty);
+    if (!this->activeMonitEnableEventId) {
+        printf("%s:%s: epicsEventCreate failure for activeMonitEnableEventId\n",
+                driverName, functionName);
+        return;
+    }
+
     /* Create parameters for all addresses without specifying the ones that don't
  *  *  *      * make sense to be on a specified list. Without this we woudl have to create
  *   *   *           * different parameterIndex structures to store each index, as they could be
@@ -745,6 +767,14 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_FofbCtrlRcbRdEnString,             asynParamUInt32Digital,        &P_FofbCtrlRcbRdEn);
     createParam(P_FofbCtrlRcbRdStrString,            asynParamUInt32Digital,        &P_FofbCtrlRcbRdStr);
     createParam(P_FofbCtrlRcbDataString,             asynParamUInt32Digital,        &P_FofbCtrlRcbData);
+    /* Create ADC/TBT/FOFB/MONIT parameters */
+    createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
+    createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
+    createParam(P_FofbRateString,                    asynParamUInt32Digital,        &P_FofbRate);
+    createParam(P_MonitRateString,                   asynParamUInt32Digital,        &P_MonitRate);
+    createParam(P_Monit1RateString,                  asynParamUInt32Digital,        &P_Monit1Rate);
+    createParam(P_MonitPollTimeString,               asynParamUInt32Digital,        &P_MonitPollTime);
+    createParam(P_MonitEnableString,                 asynParamInt32,                &P_MonitEnable);
     /* Create acquistion parameters */
     createParam(P_FOFBStatusString,                  asynParamInt32,                &P_FOFBStatus);
     createParam(P_SamplesPreString,                  asynParamUInt32Digital,        &P_SamplesPre);
@@ -937,6 +967,14 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setUIntDigitalParam(P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
 
+    setUIntDigitalParam(P_AdcRate,              ADC_RATE_FACTOR,              0xFFFFFFFF);
+    setUIntDigitalParam(P_TbtRate,              TBT_RATE_FACTOR,              0xFFFFFFFF);
+    setUIntDigitalParam(P_FofbRate,            FOFB_RATE_FACTOR,              0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitRate,          MONIT_RATE_FACTOR,              0xFFFFFFFF);
+    setUIntDigitalParam(P_Monit1Rate,        MONIT1_RATE_FACTOR,              0xFFFFFFFF);
+    setUIntDigitalParam(P_MonitPollTime,                      4,              0xFFFFFFFF); // 4ms = 250 Hz
+    setIntegerParam(P_MonitEnable,                                                     0); // Disable by default
+
     /* Set acquisition parameters */
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
@@ -1077,6 +1115,18 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         }
     }
 
+    /* Create monitoring thread */
+    taskMonitParams.drvFOFBp = this;
+    status = (asynStatus)(epicsThreadCreate("drvFOFBMonitTask",
+                epicsThreadPriorityHigh,
+                epicsThreadGetStackSize(epicsThreadStackMedium),
+                (EPICSTHREADFUNC)::acqMonitTask,
+                &taskMonitParams) == NULL);
+    if (status) {
+        printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+        return;
+    }
+
 #if 0
     /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
  *     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
@@ -1148,6 +1198,18 @@ asynStatus drvFOFB::fofbClientConnect(asynUser* pasynUser)
         }
     }
 
+     /* Connect FOFB Monit */
+    if (fofbClientMonit == NULL) {
+        fofbClientMonit = halcs_client_new_time (endpoint, verbose, fofbLogFile, timeout);
+        if (fofbClientMonit == NULL) {
+            asynPrint(pasynUser, ASYN_TRACE_ERROR,
+                    "%s:%s bpmClientConnect failure to create fofbClientMonit instance\n",
+                    driverName, functionName);
+            status = asynError;
+            goto create_halcs_client_monit_err;
+        }
+    }
+
     /* Connect ACQ FOFB parameter clients*/
     for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
         if (fofbClientAcqParam[i] == NULL) {
@@ -1198,7 +1260,10 @@ create_halcs_client_acq_param_err:
             acq_client_destroy (&fofbClientAcqParam[i]);
         }
     }
-
+    halcs_client_destroy (&fofbClientMonit);
+create_halcs_client_monit_err:
+    /* Destroy regular fofbClient instance */
+    halcs_client_destroy (&fofbClient);
 create_halcs_client_err:
     return status;
 }
@@ -1217,6 +1282,10 @@ asynStatus drvFOFB::fofbClientDisconnect(asynUser* pasynUser)
 
     if (fofbClient != NULL) {
         halcs_client_destroy (&fofbClient);
+    }
+
+    if (fofbClientMonit != NULL) {
+        halcs_client_destroy (&fofbClientMonit);
     }
 
     for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
@@ -1239,6 +1308,12 @@ void acqTask(void *drvPvt)
 {
    taskParams_t *pPvt = (taskParams_t *)drvPvt;
    pPvt->drvFOFBp->acqTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
+}
+
+void acqMonitTask(void *drvPvt)
+{
+   taskParams_t *pPvt = (taskParams_t *)drvPvt;
+   pPvt->drvFOFBp->acqMonitTask();
 }
 
 /********************************************************************/
@@ -1735,6 +1810,22 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
             }
         }
     }
+}
+
+void drvFOFB::acqMonitTask()
+{
+    asynStatus status = asynSuccess;
+    int err = HALCS_CLIENT_SUCCESS;
+    size_t dims[MAX_WVF_DIMS];
+    epicsUInt32 mask = 0xFFFFFFFF;
+    NDArray *pArrayMonitData[MAX_MONIT_DATA];
+    double monitData[MAX_MONIT_DATA];
+    NDDataType_t NDType = NDFloat64;
+    int NDArrayAddrInit = WVF_MONIT_AMP_A;
+    epicsTimeStamp now;
+    int monitEnable = 0;
+    static const char *functionName = "acqMonitTask";
+    char service[SERVICE_NAME_SIZE];
 }
 
 asynStatus drvFOFB::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
@@ -2410,8 +2501,20 @@ asynStatus drvFOFB::writeInt32(asynUser *pasynUser, epicsInt32 value)
         /* Set the parameter in the parameter library. */
         setIntegerParam(addr, function, value);
 
-        /* Do operation on HW. Some functions do not set anything on hardware */
-        status = setParamInteger(function, addr);
+        if (function == P_MonitEnable) {
+            /* Send the start event if the value is 1 */
+            if (value) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s:%s: Monit enable task event to be send\n",
+                        driverName, functionName);
+                epicsEventSignal(this->activeMonitEnableEventId);
+            }
+        }
+
+         else {
+            /* Do operation on HW. Some functions do not set anything on hardware */
+            status = setParamInteger(function, addr);
+        }
     }
     else {
         /* Call base class */
