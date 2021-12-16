@@ -129,44 +129,6 @@ static const channelMap_t channelMap[CH_END] = {
                             -1},
                           },
                           },
-    /* [CH_ADCSWAP] = */ {CH_HW_ADCSWAP,                        // HwAmpChannel
-                          -1,                                   // HwPhaseChannel
-                          -1,                                   // HwPosChannel
-                          0,                                    // CalcPos
-                          {{WVF_GENAMP_A,                       // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                           {WVF_AMP_PM_A,
-                            WVF_AMP_PM_B,
-                            WVF_AMP_PM_C,
-                            WVF_AMP_PM_D,
-                            WVF_AMP_PM_ALL},
-                          },
-                          {{-1,                                 // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{-1,                                 // NDArrayPos
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                          },
-                          },
     /* [CH_TBT] =     */ {CH_HW_TBT,                             // HwAmpChannel
                           -1,                                    // HwPhaseChannel
                           -1,                                    // HwPosChannel
@@ -206,82 +168,6 @@ static const channelMap_t channelMap[CH_END] = {
                           },
                           },
     /* [CH_FOFB] =    */ {CH_HW_FOFB,                            // HwAmpChannel
-                          -1,                                    // HwPhaseChannel
-                          -1,                                    // HwPosChannel
-                          1,                                     // CalcPos
-                          {{WVF_GENAMP_A,                        // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                           {WVF_AMP_PM_A,
-                            WVF_AMP_PM_B,
-                            WVF_AMP_PM_C,
-                            WVF_AMP_PM_D,
-                            WVF_AMP_PM_ALL},
-                          },
-                          {{-1,                                 // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{WVF_GENPOS_A,                        // NDArrayPos
-                            WVF_GENPOS_B,
-                            WVF_GENPOS_C,
-                            WVF_GENPOS_D,
-                            WVF_GENPOS_ALL},
-                           {WVF_POS_PM_A,
-                            WVF_POS_PM_B,
-                            WVF_POS_PM_C,
-                            WVF_POS_PM_D,
-                            WVF_POS_PM_ALL},
-                          },
-                          },
-    /* [CH_TBTPHA] =     */ {CH_HW_TBTPHA,                       // HwAmpChannel
-                          -1,                                    // HwPhaseChannel
-                          -1,                                    // HwPosChannel
-                          1,                                     // CalcPos
-                          {{WVF_GENAMP_A,                        // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                            {WVF_AMP_PM_A,
-                             WVF_AMP_PM_B,
-                             WVF_AMP_PM_C,
-                             WVF_AMP_PM_D,
-                             WVF_AMP_PM_ALL},
-                          },
-                          {{-1,                                  // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{WVF_GENPOS_A,                        // NDArrayPos
-                            WVF_GENPOS_B,
-                            WVF_GENPOS_C,
-                            WVF_GENPOS_D,
-                            WVF_GENPOS_ALL},
-                            {WVF_POS_PM_A,
-                             WVF_POS_PM_B,
-                             WVF_POS_PM_C,
-                             WVF_POS_PM_D,
-                             WVF_POS_PM_ALL},
-                          },
-                          },
-    /* [CH_FOFBPHA] =    */ {CH_HW_FOFBPHA,                      // HwAmpChannel
                           -1,                                    // HwPhaseChannel
                           -1,                                    // HwPosChannel
                           1,                                     // CalcPos
@@ -401,18 +287,18 @@ static const channelMap_t channelMap[CH_END] = {
 static const channelRevMap_t channelRevMap[CH_HW_END] = {
                         /* EPICS channel */
      /* [CH_HW_ADC] =       */  {CH_ADC},
-     /* [CH_HW_ADCSWAP] =   */  {CH_ADCSWAP},
+     /* 1 = Unavailable     */  {-1},
      /* 2 = Unavailable     */  {-1},
      /* 3 = Unavailable     */  {-1},
      /* 4 = Unavailable     */  {-1},
      /* 5 = Unavailable     */  {-1},
      /* [CH_HW_TBT] =       */  {CH_TBT},
-     /* [CH_HW_TBTPHA] =    */  {CH_TBTPHA},
+     /* 7 = Unavailable     */  {-1},
      /* 8 = Unavailable     */  {-1},
      /* 9 = Unavailable     */  {-1},
      /* 10 = Unavailable    */  {-1},
      /* [CH_HW_FOFB] =      */  {CH_FOFB},
-     /* [CH_HW_FOFBPHA] =   */  {CH_FOFBPHA},
+     /* 12 = Unavailable    */  {-1},
      /* 13 = Unavailable    */  {-1},
      /* [CH_HW_MONIT1] =    */  {CH_MONIT1},
 };
@@ -734,7 +620,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
     if (fofbNumber < FOFB_NUMBER_MIN || fofbNumber > FOFB_NUMBER_MAX) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s drvfofb invalid fofbNumber\n",
+                "%s:%s drvFOFB invalid fofbNumber\n",
                 driverName, functionName);
         status = asynError;
         goto invalid_fofb_number_err;

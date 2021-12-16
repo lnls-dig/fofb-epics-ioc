@@ -1,10 +1,10 @@
 /*
- *  *  *  * drvFOFB.h
- *   *   *   *
- *    *    *    * Authors: Melissa Aguiar
- *     *     *     *
- *      *      *      * Created Dec. 03, 2021
- *       *       *       */
+ *  *  *  *  * drvFOFB.h
+ *   *   *   *   *
+ *    *    *    *    * Authors: Melissa Aguiar
+ *     *     *     *     *
+ *      *      *      *      * Created Dec. 03, 2021
+ *       *       *       *       */
 
 #include "asynPortDriver.h"
 #include "asynNDArrayDriver.h"
@@ -105,19 +105,19 @@ typedef enum {
 } wvf_types;
 
 /* FIXME: This number must be at least the number of triggers
- *  * available on the FPGA. Although this is used to alloc the number
- *   * of waveforms, it's not used by getAddress () by the NDArray plugins,
- *    * as this function returns the address that is declared on plugin startup
- *     * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
- *      * of the addresses that are set by the database.
- *       * In summary, we use the different addresses to call different trigger channel
- *        * functions */
+ *  *  * available on the FPGA. Although this is used to alloc the number
+ *   *   * of waveforms, it's not used by getAddress () by the NDArray plugins,
+ *    *    * as this function returns the address that is declared on plugin startup
+ *     *     * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
+ *      *      * of the addresses that are set by the database.
+ *       *       * In summary, we use the different addresses to call different trigger channel
+ *        *        * functions */
 #define MAX_WAVEFORMS               WVF_END
 /* FIXME FIXME: This should be read from HW. Also, this is actually less than 24,
- *  * but we let space for extra room */
+ *  *  * but we let space for extra room */
 #define MAX_TRIGGERS                24
 /* This is needed so we have EPICS Asyn addresses sufficient for all of the
- *  * Triggers, from either ACQ core */
+ *  *  * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_FOFB*MAX_TRIGGERS)
 /* Get the greater between them */
 #define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
@@ -215,7 +215,7 @@ typedef struct {
     int HwPhaseChannel;
     int HwPosChannel;
     /* 1 if we want to have position calculated from its amplitudes,
- *      * 0 otherwise */
+ *  *      * 0 otherwise */
     int CalcPos;
     /* NDArray addresses mapping */
     int NDArrayAmp[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_AMP_TYPES];
@@ -305,7 +305,7 @@ typedef struct {
     write2UInt32Fp write;
     read2UInt32Fp read;
     /* Which parameter (first or second) would trigger this function to be
- *      * executed on hardware (the other one won't be changed) */
+ *  *      * executed on hardware (the other one won't be changed) */
     int parameterPos;
 } functions2UInt32_t;
 
@@ -401,7 +401,7 @@ private:
 };
 
 /* These are the drvInfo strings that are used to identify the parameters.
- *  *  *  * They are used by asyn clients, including standard asyn device support */
+ *  *  *  *  * They are used by asyn clients, including standard asyn device support */
 #define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
 #define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
 #define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
@@ -746,7 +746,7 @@ class drvFOFB : public asynNDArrayDriver {
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 
         /* Specific hardware functions that need extra processing and don't
- *  *  *          * fit into the general set/get template */
+ *  *  *  *          * fit into the general set/get template */
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr);
         asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
@@ -798,4 +798,5 @@ const char *functionsAny_t::getServiceNameFromFunc(const drvFOFB& drvFOFB,
     auto functionFpCast = any_cast<T>(functionFp);
     return drvFOFB.doGetServiceNameFromFunc(functionFpCast);
 }
+
 
