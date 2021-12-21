@@ -1,10 +1,10 @@
 /*
- *  *  *  *  * drvFOFB.h
- *   *   *   *   *
- *    *    *    *    * Authors: Melissa Aguiar
- *     *     *     *     *
- *      *      *      *      * Created Dec. 03, 2021
- *       *       *       *       */
+ *  *  *  *  *  * drvFOFB.h
+ *   *   *   *   *   *
+ *    *    *    *    *    * Authors: Melissa Aguiar
+ *     *     *     *     *     *
+ *      *      *      *      *      * Created Dec. 03, 2021
+ *       *       *       *       *       */
 
 #include "asynPortDriver.h"
 #include "asynNDArrayDriver.h"
@@ -61,63 +61,28 @@ typedef enum {
 
 /* Waveform IDs */
 typedef enum {
-    WVF_GENAMP_A = 0,
-    WVF_GENAMP_B,
-    WVF_GENAMP_C,
-    WVF_GENAMP_D,
-    WVF_GENAMP_ALL,
-    WVF_UNUSED_1,
-    WVF_GENPOS_A,
-    WVF_GENPOS_B,
-    WVF_GENPOS_C,
-    WVF_GENPOS_D,
-    WVF_GENPOS_ALL,
-    WVF_UNUSED_2,
-    WVF_AMP_PM_A,
-    WVF_AMP_PM_B,
-    WVF_AMP_PM_C,
-    WVF_AMP_PM_D,
-    WVF_AMP_PM_ALL,
-    WVF_UNUSED_3,
-    WVF_POS_PM_A,
-    WVF_POS_PM_B,
-    WVF_POS_PM_C,
-    WVF_POS_PM_D,
-    WVF_POS_PM_ALL,
-    WVF_UNUSED_4,
-    WVF_AMP_SP_A,
-    WVF_AMP_SP_B,
-    WVF_AMP_SP_C,
-    WVF_AMP_SP_D,
-    WVF_AMP_SP_ALL,
-    WVF_UNUSED_5,
-    WVF_MONIT_AMP_A,
-    WVF_MONIT_AMP_B,
-    WVF_MONIT_AMP_C,
-    WVF_MONIT_AMP_D,
-    WVF_MONIT_POS_X,
-    WVF_MONIT_POS_Y,
-    WVF_MONIT_POS_Q,
-    WVF_MONIT_POS_SUM,
-    WVF_MONIT_POSFAKE_X,
-    WVF_MONIT_POSFAKE_Y,
+    WVF_DATA_CH0 = 0,
+    WVF_DATA_ALL,
+    WVF_PM_CH0,
+    WVF_PM_ALL,
+    WVF_MONIT_CH0,
     WVF_END
 } wvf_types;
 
 /* FIXME: This number must be at least the number of triggers
- *  *  * available on the FPGA. Although this is used to alloc the number
- *   *   * of waveforms, it's not used by getAddress () by the NDArray plugins,
- *    *    * as this function returns the address that is declared on plugin startup
- *     *     * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
- *      *      * of the addresses that are set by the database.
- *       *       * In summary, we use the different addresses to call different trigger channel
- *        *        * functions */
+ *  *  *  * available on the FPGA. Although this is used to alloc the number
+ *   *   *   * of waveforms, it's not used by getAddress () by the NDArray plugins,
+ *    *    *    * as this function returns the address that is declared on plugin startup
+ *     *     *     * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
+ *      *      *      * of the addresses that are set by the database.
+ *       *       *       * In summary, we use the different addresses to call different trigger channel
+ *        *        *        * functions */
 #define MAX_WAVEFORMS               WVF_END
 /* FIXME FIXME: This should be read from HW. Also, this is actually less than 24,
- *  *  * but we let space for extra room */
+ *  *  *  * but we let space for extra room */
 #define MAX_TRIGGERS                24
 /* This is needed so we have EPICS Asyn addresses sufficient for all of the
- *  *  * Triggers, from either ACQ core */
+ *  *  *  * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_FOFB*MAX_TRIGGERS)
 /* Get the greater between them */
 #define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
@@ -145,44 +110,15 @@ typedef enum {
 
 #define MAX_HW_CHANNELS               CH_HW_END
 
-/* Waveform AMP types IDs */
+/* Waveform DATA types IDs */
 typedef enum {
-    WVF_AMP_A = 0,
-    WVF_AMP_B,
-    WVF_AMP_C,
-    WVF_AMP_D,
-    WVF_AMP_ALL,
-    WVF_AMP_END
-} wvf_amp_types;
+    WVF_CH0 = 0,
+    WVF_ALL,
+    WVF_DATA_END
+} wvf_data_types;
 
-#define MAX_WVF_AMP_SINGLE          (WVF_AMP_D+1)
-#define MAX_WVF_AMP_TYPES           WVF_AMP_END
-
-/* Waveform Phase types IDs */
-typedef enum {
-    WVF_PHASE_A = 0,
-    WVF_PHASE_B,
-    WVF_PHASE_C,
-    WVF_PHASE_D,
-    WVF_PHASE_ALL,
-    WVF_PHASE_END
-} wvf_pha_types;
-
-#define MAX_WVF_PHA_SINGLE          (WVF_PHASE_D+1)
-#define MAX_WVF_PHA_TYPES           WVF_PHASE_END
-
-/* Waveform Position types IDs */
-typedef enum {
-    WVF_POS_X = 0,
-    WVF_POS_Y,
-    WVF_POS_Q,
-    WVF_POS_SUM,
-    WVF_POS_ALL,
-    WVF_POS_END
-} wvf_pos_types;
-
-#define MAX_WVF_POS_SINGLE          (WVF_POS_SUM+1)
-#define MAX_WVF_POS_TYPES           WVF_POS_END
+#define MAX_WVF_DATA_SINGLE          (WVF_D+1)
+#define MAX_WVF_DATA_TYPES           WVF_DATA_END
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                  2
@@ -204,16 +140,9 @@ typedef struct {
 /* FOFB Channel structure */
 typedef struct {
     /* HW channel mapping. -1 means not available */
-    int HwAmpChannel;
-    int HwPhaseChannel;
-    int HwPosChannel;
-    /* 1 if we want to have position calculated from its amplitudes,
- *  *      * 0 otherwise */
-    int CalcPos;
+    int HwDataChannel;
     /* NDArray addresses mapping */
-    int NDArrayAmp[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_AMP_TYPES];
-    int NDArrayPhase[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_PHA_TYPES];
-    int NDArrayPos[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_POS_TYPES];
+    int NDArrayData[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_TYPES];
 } channelMap_t;
 
 /* FOFB Reverse channel mapping structure */
@@ -298,7 +227,7 @@ typedef struct {
     write2UInt32Fp write;
     read2UInt32Fp read;
     /* Which parameter (first or second) would trigger this function to be
- *  *      * executed on hardware (the other one won't be changed) */
+ *  *  *      * executed on hardware (the other one won't be changed) */
     int parameterPos;
 } functions2UInt32_t;
 
@@ -394,7 +323,7 @@ private:
 };
 
 /* These are the drvInfo strings that are used to identify the parameters.
- *  *  *  *  * They are used by asyn clients, including standard asyn device support */
+ *  *  *  *  *  * They are used by asyn clients, including standard asyn device support */
 #define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
 #define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
 #define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
@@ -758,7 +687,7 @@ class drvFOFB : public asynNDArrayDriver {
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 
         /* Specific hardware functions that need extra processing and don't
- *  *  *  *          * fit into the general set/get template */
+ *  *  *  *  *          * fit into the general set/get template */
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr);
         asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
@@ -810,5 +739,6 @@ const char *functionsAny_t::getServiceNameFromFunc(const drvFOFB& drvFOFB,
     auto functionFpCast = any_cast<T>(functionFp);
     return drvFOFB.doGetServiceNameFromFunc(functionFpCast);
 }
+
 
 

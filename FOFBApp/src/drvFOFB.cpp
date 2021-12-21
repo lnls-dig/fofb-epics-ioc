@@ -1,10 +1,10 @@
 /*
- *  *  *  * drvFOFB.cpp
- *   *   *   *
- *    *    *    * Authors: Melissa Aguiar
- *     *     *     *
- *      *      *      * Created Dec. 03, 2021
- *       *       *       */
+ *  *  *  *  * drvFOFB.cpp
+ *   *   *   *   *
+ *    *    *    *    * Authors: Melissa Aguiar
+ *     *     *     *     *
+ *      *      *      *      * Created Dec. 03, 2021
+ *       *       *       *       */
 
 #include <stdlib.h>
 #include <string.h>
@@ -97,162 +97,37 @@ static const boardMap_t boardMap[MAX_FOFBS+1] = {
 };
 
 static const channelMap_t channelMap[CH_END] = {
-                        /* Amp, Phase, Pos, AmpA, AmpB, AmpC, AmpD, AmpALL */
-    /* [CH_ADC] =     */ {CH_HW_ADC,                           // HwAmpChannel
-                          -1,                                  // HwPhaseChannel
-                          -1,                                  // HwPosChannel
-                          0,                                   // CalcPos
-                          {{WVF_GENAMP_A,                      // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                           {WVF_AMP_PM_A,
-                            WVF_AMP_PM_B,
-                            WVF_AMP_PM_C,
-                            WVF_AMP_PM_D,
-                            WVF_AMP_PM_ALL},
-                          },
-                          {{-1,                                 // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{-1,                                 // NDArrayPos
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+    /* [CH_ADC] =     */ {CH_HW_ADC,                           // HwDataChannel
+                          {{WVF_DATA_CH0,                      // NDArrayData
+                            WVF_DATA_ALL},
+                           {WVF_PM_CH0,
+                            WVF_PM_ALL},
                           },
                           },
-    /* [CH_TBT] =     */ {CH_HW_TBT,                             // HwAmpChannel
-                          -1,                                    // HwPhaseChannel
-                          -1,                                    // HwPosChannel
-                          1,                                     // CalcPos
-                          {{WVF_GENAMP_A,                        // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                            {WVF_AMP_PM_A,
-                             WVF_AMP_PM_B,
-                             WVF_AMP_PM_C,
-                             WVF_AMP_PM_D,
-                             WVF_AMP_PM_ALL},
-                          },
-                          {{-1,                                  // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{WVF_GENPOS_A,                        // NDArrayPos
-                            WVF_GENPOS_B,
-                            WVF_GENPOS_C,
-                            WVF_GENPOS_D,
-                            WVF_GENPOS_ALL},
-                            {WVF_POS_PM_A,
-                             WVF_POS_PM_B,
-                             WVF_POS_PM_C,
-                             WVF_POS_PM_D,
-                             WVF_POS_PM_ALL},
+    /* [CH_TBT] =     */ {CH_HW_ADC,                           // HwDataChannel
+                          {{WVF_DATA_CH0,                      // NDArrayData
+                            WVF_DATA_ALL},
+                           {WVF_PM_CH0,
+                            WVF_PM_ALL},
                           },
                           },
-    /* [CH_FOFB] =    */ {CH_HW_FOFB,                            // HwAmpChannel
-                          -1,                                    // HwPhaseChannel
-                          -1,                                    // HwPosChannel
-                          1,                                     // CalcPos
-                          {{WVF_GENAMP_A,                        // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                           {WVF_AMP_PM_A,
-                            WVF_AMP_PM_B,
-                            WVF_AMP_PM_C,
-                            WVF_AMP_PM_D,
-                            WVF_AMP_PM_ALL},
-                          },
-                          {{-1,                                 // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{WVF_GENPOS_A,                        // NDArrayPos
-                            WVF_GENPOS_B,
-                            WVF_GENPOS_C,
-                            WVF_GENPOS_D,
-                            WVF_GENPOS_ALL},
-                           {WVF_POS_PM_A,
-                            WVF_POS_PM_B,
-                            WVF_POS_PM_C,
-                            WVF_POS_PM_D,
-                            WVF_POS_PM_ALL},
+    /* [CH_FOFB] =    */ {CH_HW_ADC,                           // HwDataChannel
+                          {{WVF_DATA_CH0,                      // NDArrayData
+                            WVF_DATA_ALL},
+                           {WVF_PM_CH0,
+                            WVF_PM_ALL},
                           },
                           },
-    /* [CH_MONIT1] =  */ {CH_HW_MONIT1,                          // HwAmpChannel
-                          -1,                                    // HwPhaseChannel
-                          -1,                                    // HwPosChannel
-                          1,                                     // CalcPos
-                          {{WVF_GENAMP_A,                        // NDArrayAmp
-                            WVF_GENAMP_B,
-                            WVF_GENAMP_C,
-                            WVF_GENAMP_D,
-                            WVF_GENAMP_ALL},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                          },
-                          {{-1,                                 // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{WVF_GENPOS_A,                        // NDArrayPos
-                            WVF_GENPOS_B,
-                            WVF_GENPOS_C,
-                            WVF_GENPOS_D,
-                            WVF_GENPOS_ALL},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+    /* [CH_MONIT1] =  */ {CH_HW_ADC,                           // HwDataChannel
+                          {{WVF_DATA_CH0,                      // NDArrayData
+                            WVF_DATA_ALL},
+                           {WVF_PM_CH0,
+                            WVF_PM_ALL},
                           },
                           },
 };
 
-/* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
+/* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
 static const channelRevMap_t channelRevMap[CH_HW_END] = {
                         /* EPICS channel */
      /* [CH_HW_ADC] =       */  {CH_ADC},
@@ -493,7 +368,7 @@ asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceN
 
     /* Static mapping. FIXME? */
     /* For these services there's only a single core per FPGA, so serviceID is always 0.
- *      * INIT service is always 0 per HALCS instance */
+ *  *      * INIT service is always 0 per HALCS instance */
     if (streq(serviceName, "TRIGGER_IFACE") || streq(serviceName, "INIT")) {
         *serviceIDArg = 0;
         return status;
@@ -562,10 +437,10 @@ get_service_id_err:
 }
 
 /** Constructor for the drvFOFB class.
- *  *  *  * Calls constructor for the asynPortDriver base class.
- *   *   *   * \param[in] portName The name of the asyn port driver to be created.
- *    *    *    * \param[in] endpoint The device address string ]
- *     *     *     * */
+ *  *  *  *  * Calls constructor for the asynPortDriver base class.
+ *   *   *   *   * \param[in] portName The name of the asyn port driver to be created.
+ *    *    *    *    * \param[in] endpoint The device address string ]
+ *     *     *     *     * */
 drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         const char *type, int verbose, int timeout, int maxPoints,
         int maxBuffers, size_t maxMemory)
@@ -657,12 +532,12 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     /* Create parameters for all addresses without specifying the ones that don't
- *  *  *      * make sense to be on a specified list. Without this we woudl have to create
- *   *   *           * different parameterIndex structures to store each index, as they could be
- *    *    *                * differently if created in just a few lists */
+ *  *  *  *      * make sense to be on a specified list. Without this we woudl have to create
+ *   *   *   *           * different parameterIndex structures to store each index, as they could be
+ *    *    *    *                * differently if created in just a few lists */
 
     /* CAUTION. The order of craetion must be the same as defined in .h file.
- *  *  *      * Otherwise, checking for FIRST_PARAM/LAST_PARAM won't work */
+ *  *  *  *      * Otherwise, checking for FIRST_PARAM/LAST_PARAM won't work */
 
     /* Create general parameters */
 
@@ -772,7 +647,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
 
     /* FOFB HW Int32 Functions mapping. Functions not mapped here are just written
- *  *  *      * to the parameter library */
+ *  *  *  *      * to the parameter library */
     fofbHwFunc.emplace(P_FofbProcessingRamWrite,      fofbProcessingSetGetRamWriteFunc);
     fofbHwFunc.emplace(P_FofbProcessingRamAddr,       fofbProcessingSetGetRamAddrFunc);
     fofbHwFunc.emplace(P_FofbProcessingRamDataIn,     fofbProcessingSetGetRamDataInFunc);
@@ -857,8 +732,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     unlock();
 
     /* If we correct connect for this first time, liclient
- *  *  *      * will ensure the reconnection to server if necessary, but we
- *   *   *           * must succeed here or we must abort completely */
+ *  *  *  *      * will ensure the reconnection to server if necessary, but we
+ *   *   *   *           * must succeed here or we must abort completely */
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling fofbClientConnect, status=%d\n",
@@ -985,8 +860,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     /* Set parameters for all triggers, all Acquisition cores. FIXME (Caution):
- *      * We must deal with it at the Database level and be sure we are
- *           * accessing the right parameter! */
+ *  *      * We must deal with it at the Database level and be sure we are
+ *   *           * accessing the right parameter! */
     for (int i = 0; i < NUM_TRIG_CORES_PER_FOFB; ++i) {
         for (int addr = 0; addr < MAX_TRIGGERS; ++addr) {
             setIntegerParam(    i*MAX_TRIGGERS + addr, P_TriggerChan,                           CH_DFLT_TRIGGER_CHAN);
@@ -1064,7 +939,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     /* Create the thread that computes the waveforms in the background */
     for (int i = 0; i < NUM_ACQ_CORES_PER_FOFB; ++i) {
         /* Assign task parameters passing the ACQ/Trigger instance ID as parameter.
- *          * The other parameters are already set-up*/
+ *  *          * The other parameters are already set-up*/
         taskParams[i].drvFOFBp = this;
         status = (asynStatus)(epicsThreadCreate("drvFOFBTask",
                     epicsThreadPriorityMedium,
@@ -1091,13 +966,13 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
 #if 0
     /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
- *     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
- *         * since nothing ever calls pasynManager->queueRequest.  So we do an
- *             * exceptionConnect to each address so asynManager will show them as connected.
- *                 * Note that this is NOT necessary for the driver to function correctly, the
- *                     * NDPlugins will still get called even for addresses that are not "connected".
- *                         * It is just to avoid confusion.
- *                             * */
+ *  *     * connected to addresses 0-3, so addresses 4-11 never show as "connected"
+ *   *         * since nothing ever calls pasynManager->queueRequest.  So we do an
+ *    *             * exceptionConnect to each address so asynManager will show them as connected.
+ *     *                 * Note that this is NOT necessary for the driver to function correctly, the
+ *      *                     * NDPlugins will still get called even for addresses that are not "connected".
+ *       *                         * It is just to avoid confusion.
+ *        *                             * */
     for (i=0; i<MAX_ADDR; ++i) {
         pasynUser = pasynManager->createAsynUser(0,0);
         pasynManager->connectDevice(pasynUser, portName, i);
@@ -1115,7 +990,7 @@ endpoint_dup_err:
 }
 
 /** Destructor for the drvFOFB class.
- *  *  *  */
+ *  *  *  *  */
 drvFOFB::~drvFOFB()
 {
     asynStatus status = asynSuccess;
@@ -1367,7 +1242,7 @@ get_service_err:
 }
 
 /* This can only return if the ACQ engine is IDLE or waiting
- *  * for some trigger (External, Data or Software) */
+ *  *  * for some trigger (External, Data or Software) */
 /* This should only be called by asyn thread, not Acquisition ones */
 fofb_status_types drvFOFB::getFOFBInitAcqStatus(int coreID)
 {
@@ -1405,7 +1280,7 @@ fofb_status_types drvFOFB::getFOFBInitAcqStatus(int coreID)
     switch (trig) {
         case ACQ_CLIENT_TRIG_SKIP:
             /* If we are doing something and the trigger is set to SKIP,
- *              * then we are acquiring */
+ *  *              * then we are acquiring */
             fofbStatus = FOFBStatusAcquire;
             break;
 
@@ -1455,12 +1330,12 @@ static bool acqIsFOFBStatusErr(int fofbStatus)
 }
 
 /*
- *  * FOFB acquisition functions
- *   */
+ *  *  * FOFB acquisition functions
+ *   *   */
 
 /** Acquisition task that runs as a separate thread.
- *  *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
- *  */
+ *  *  *  CAUTION. FIXME? Only one acquisition task is working at any given time: MultiMode or SinglePass
+ *   *  */
 void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
 {
     int status = asynSuccess;
@@ -1475,7 +1350,7 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
     epicsUInt32 trigger;
     double updateTime;
     double delay;
-    int hwAmpChannel = 0;
+    int hwDataChannel = 0;
     int acqCompleted = 0;
     int FOFBMode = 0;
     int fofbStatus = 0;
@@ -1493,9 +1368,9 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
     static const char *functionName = "acqTask";
 
     /* Create an asynUser. FIXME: we should probably create a callback
- *      * for the processCallback, which would be called on a queuePortLock ()
- *           * so as to not block all addresses, just the ones related to that
- *                * specific BOARD */
+ *  *      * for the processCallback, which would be called on a queuePortLock ()
+ *   *           * so as to not block all addresses, just the ones related to that
+ *    *                * specific BOARD */
     pasynUser = pasynManager->createAsynUser(0, 0);
     pasynUser->timeout = FOFB_TIMEOUT;
     status = pasynManager->connectDevice(pasynUser, fofbPortName, 0);
@@ -1524,13 +1399,13 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
             readingActive[FOFBMode][coreID] = 0;
 
             /* Default to new acquisition. If we are waiting for a trigger
- *              * we will change this */
+ *  *              * we will change this */
             newAcq = 1;
 
             /* Now, we can either be finished with the previous acquisition
- *              * (repetitive or not) or we could be waiting for a trigger armed
- *                           * outside this thread (for now, the only option is the case when
- *                                        * you set a trigger and then exit the IOC for some reason) */
+ *  *              * (repetitive or not) or we could be waiting for a trigger armed
+ *   *                           * outside this thread (for now, the only option is the case when
+ *    *                                        * you set a trigger and then exit the IOC for some reason) */
             if (!acqCompleted && acqIsFOFBStatusWaitSomeTrigger(fofbStatus)) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                         "%s:%s: waiting for trigger\n", driverName, functionName);
@@ -1543,12 +1418,12 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
             }
 
             /* We have consumed our data. This is important if we abort the next
- *              * acquisition, as we can detect that the current acquisition is completed,
- *                           * which would be wrong */
+ *  *              * acquisition, as we can detect that the current acquisition is completed,
+ *   *                           * which would be wrong */
             acqCompleted = 0;
 
             /* Only wait for the startEvent if we are waiting for a
- *              * new acquisition */
+ *  *              * new acquisition */
             if (newAcq && !autoStartFirst) {
                 unlock();
                 /* Release the lock while we wait for an event that says acquire has started, then lock again */
@@ -1581,24 +1456,24 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
-        if(numAtoms > MAX_WVF_AMP_TYPES) {
+        if(numAtoms > MAX_WVF_DATA_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
-                    driverName, functionName, MAX_WVF_AMP_TYPES);
+                    driverName, functionName, MAX_WVF_DATA_TYPES);
             continue;
         }
 
         /* Convert user channel into hw channel */
-        hwAmpChannel = channelMap[channel].HwAmpChannel;
-        if(hwAmpChannel < 0) {
+        hwDataChannel = channelMap[channel].HwDataChannel;
+        if(hwDataChannel < 0) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
-                    driverName, functionName, hwAmpChannel);
+                    "%s:%s: invalid hwDataChannel channelMap for channel %d\n",
+                    driverName, functionName, hwDataChannel);
             continue;
         }
 
         /* Our waveform will have "num_samples_pres + num_samples_post"
- *          * samples in each dimension */
+ *  *          * samples in each dimension */
         dims[0] = numAtoms;
         dims[1] = (num_samples_pre + num_samples_post)*num_shots;
 
@@ -1613,7 +1488,7 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         }
 
         /* dims[1] must not exceed fofbMaxPoints, as we use this to alloc
- *          * points for the Waveform Plugins */
+ *  *          * points for the Waveform Plugins */
         if (dims[1] > fofbMaxPoints) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: invalid number of points for acquisition (> %d)\n",
@@ -1629,7 +1504,7 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         arrayCounter++;
         setIntegerParam(NDArrayCounter, arrayCounter);
 
-        status = getAcqNDArrayType(coreID, hwAmpChannel, atomWidth, &NDType);
+        status = getAcqNDArrayType(coreID, hwDataChannel, atomWidth, &NDType);
         if (status != asynSuccess) {
             asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unable to determine NDArray type for acquisition, coreID = %d\n",
@@ -1662,17 +1537,17 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
             /* Do acquisition */
             unlock();
             pasynManager->lockPort(pasynUser);
-            status = startAcq(coreID, hwAmpChannel, num_samples_pre, num_samples_post,
+            status = startAcq(coreID, hwDataChannel, num_samples_pre, num_samples_post,
                     num_shots);
             pasynManager->unlockPort(pasynUser);
             lock();
 
             if (status == asynSuccess) {
                 /* FIXME: Improve FOFBStatus trigger waiting. The information
- *                  * about waiting for trigger is not totally accurate here.
- *                                   * Although, we will for SW or HW trigger in a short time,
- *                                                    * we are not actually there yet ...
- *                                                                     */
+ *  *                  * about waiting for trigger is not totally accurate here.
+ *   *                                   * Although, we will for SW or HW trigger in a short time,
+ *    *                                                    * we are not actually there yet ...
+ *     *                                                                     */
                 if (trigger == ACQ_CLIENT_TRIG_EXTERNAL) {
                     setIntegerParam(coreID, P_FOFBStatus, FOFBStatusTriggerHwExtWaiting);
                 }
@@ -1723,7 +1598,7 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
                 /* Get curve */
                 unlock();
                 pasynManager->lockPort(pasynUser);
-                getAcqCurve(coreID, pArrayAllChannels, hwAmpChannel, num_samples_pre,
+                getAcqCurve(coreID, pArrayAllChannels, hwDataChannel, num_samples_pre,
                         num_samples_post, num_shots);
                 pasynManager->unlockPort(pasynUser);
                 lock();
@@ -1732,14 +1607,14 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         }
 
         /* Only do callbacks and calculate position if we could acquire some
- *          * data */
+ *  *          * data */
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayAmp[coreID][WVF_AMP_ALL]);
+                    channelMap[channel].NDArrayData[coreID][WVF_ALL]);
 
-            /* Copy AMP data to arrays for each type of data, do callbacks on that */
-            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayAmp[coreID],
+            /* Copy data to arrays for each type of data, do callbacks on that */
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayData[coreID],
                     dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1783,7 +1658,7 @@ void drvFOFB::acqMonitTask()
     NDArray *pArrayMonitData[MAX_MONIT_DATA];
     double monitData[MAX_MONIT_DATA];
     NDDataType_t NDType = NDFloat64;
-    int NDArrayAddrInit = WVF_MONIT_AMP_A;
+    int NDArrayAddrInit = WVF_MONIT_CH0;
     epicsTimeStamp now;
     int monitEnable = 0;
     static const char *functionName = "acqMonitTask";
@@ -1852,7 +1727,7 @@ asynStatus drvFOFB::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *
         pOutFloat64 = (epicsFloat64 *)pArraySingleChannel->pData;
 
         /* Get only a single channel samples from a multi-channel
- *          * array */
+ *  *          * array */
         switch (NDType) {
             case NDInt8:
                 for (size_t j = 0; j < dims[0]; ++j) {
@@ -1910,7 +1785,7 @@ asynStatus drvFOFB::setAcqEvent(epicsUInt32 mask, int addr)
     epicsUInt32 triggerEvent = 0;
     epicsUInt32 triggerType = 0;
     epicsUInt32 triggerRep = 0;
-    epicsUInt32 hwAmpChannel = 0;
+    epicsUInt32 hwDataChannel = 0;
     int channel = 0;
     channelProp_t channelProp;
 
@@ -1921,17 +1796,17 @@ asynStatus drvFOFB::setAcqEvent(epicsUInt32 mask, int addr)
     getIntegerParam(addr, P_Channel, &channel);
 
     /* Convert user channel into hw channel */
-    hwAmpChannel = channelMap[channel].HwAmpChannel;
-    if(hwAmpChannel < 0) {
+    hwDataChannel = channelMap[channel].HwDataChannel;
+    if(hwDataChannel < 0) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
-                driverName, functionName, hwAmpChannel);
+                "%s:%s: invalid hwDataChannel channelMap for channel %d\n",
+                driverName, functionName, hwDataChannel);
         status = asynError;
         goto halcs_inv_channel;
     }
 
     /* Get channel properties */
-    status = getChannelProperties(addr, hwAmpChannel, &channelProp);
+    status = getChannelProperties(addr, hwDataChannel, &channelProp);
     if (status) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling getChannelProperties, status=%d\n",
@@ -1947,7 +1822,7 @@ asynStatus drvFOFB::setAcqEvent(epicsUInt32 mask, int addr)
         case TRIG_ACQ_START:
 
             /* Don't try to change anything is we are still acquiring.
- *              * We must stop r abort the acquisition first */
+ *  *              * We must stop r abort the acquisition first */
             if (readingActive[FOFBMode][addr]) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
                     "%s:%s: Not starting acquistion as acqTask is still active\n",
@@ -1980,15 +1855,15 @@ asynStatus drvFOFB::setAcqEvent(epicsUInt32 mask, int addr)
             break;
 
         /* Stop acquisition if we are in repetitive mode and if we are currently
- *          * acquiring. Otherwise, we don't need to do anything, as the acquisition
- *                   * task will stop after the current acquisition */
+ *  *          * acquiring. Otherwise, we don't need to do anything, as the acquisition
+ *   *                   * task will stop after the current acquisition */
         case TRIG_ACQ_STOP: /* Trigger == Stop */
             stopAcqTask(addr, FOFBMode);
             break;
 
         /* Send the abort event if we are reading (repetitive or regular).
- *          *  If we want to stop a repetitive trigger, we must send a stop
- *                   *  event */
+ *  *          *  If we want to stop a repetitive trigger, we must send a stop
+ *   *                   *  event */
         case TRIG_ACQ_ABORT: /* Trigger == Abort */
             /* abort the other acquisition task if needed */
             abortAcqTask(addr, FOFBMode, true);
@@ -2027,8 +1902,8 @@ asynStatus drvFOFB::abortAcqTask(int addr, int fofbMode, bool abortAcqHw)
                 "called for acqTask = %d, coreID = %d\n",
                 driverName, functionName, fofbMode, addr);
         /* If we are not actively waiting for an event on acqTask,
- *          * abort the acquisition anyway, as we might have something
- *                   * going on inside the FPGA from a previous acquisition */
+ *  *          * abort the acquisition anyway, as we might have something
+ *   *                   * going on inside the FPGA from a previous acquisition */
         if (abortAcqHw) {
             abortAcqFromPortThread(addr);
         }
@@ -2313,13 +2188,13 @@ get_service_err:
 /********************************************************************/
 
 /*
- *  *  *  * Asyn overrided methods that are called by higher layers
- *   *   *   */
+ *  *  *  *  * Asyn overrided methods that are called by higher layers
+ *   *   *   *   */
 
 /** Called when asyn clients call pasynUInt32Digital->write().
- *  *  *  * For all parameters it sets the value in the parameter library and calls any registered callbacks..
- *   *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *    *    *    * \param[in] value Value to write. */
+ *  *  *  *  * For all parameters it sets the value in the parameter library and calls any registered callbacks..
+ *   *   *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *    *    *    *    * \param[in] value Value to write. */
 asynStatus drvFOFB::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
         epicsUInt32 mask)
 {
@@ -2382,9 +2257,9 @@ asynStatus drvFOFB::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value,
 }
 
 /** Called when asyn clients call pasynUInt32Digital->read().
- *  *  *  * For all parameters it gets the value in the parameter library..
- *   *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *    *    *    * \param[out] value Value to read. */
+ *  *  *  *  * For all parameters it gets the value in the parameter library..
+ *   *   *   *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *    *    *    *    * \param[out] value Value to read. */
 asynStatus drvFOFB::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
         epicsUInt32 mask)
 {
@@ -2435,10 +2310,10 @@ asynStatus drvFOFB::readUInt32Digital(asynUser *pasynUser, epicsUInt32 *value,
 }
 
 /** Called when asyn clients call pasynInt32->write().
- *   * For all parameters it sets the value in the parameter library and calls any
- *     * registered callbacks..
- *       * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *         * \param[in] value Value to write. */
+ *  *   * For all parameters it sets the value in the parameter library and calls any
+ *   *     * registered callbacks..
+ *    *       * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *     *         * \param[in] value Value to write. */
 asynStatus drvFOFB::writeInt32(asynUser *pasynUser, epicsInt32 value)
 {
     int function = pasynUser->reason;
@@ -2498,10 +2373,10 @@ asynStatus drvFOFB::writeInt32(asynUser *pasynUser, epicsInt32 value)
 }
 
 /** Called when asyn clients call pasynInt32->read().
- *  * This does nothing for now and just call the base implementation. If needed,
- *   * add processing before calling the base class implementation
- *     * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *       * \param[in] value Value to read */
+ *  *  * This does nothing for now and just call the base implementation. If needed,
+ *   *   * add processing before calling the base class implementation
+ *    *     * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *     *       * \param[in] value Value to read */
 asynStatus drvFOFB::readInt32(asynUser *pasynUser, epicsInt32 *value)
 {
     int function = pasynUser->reason;
@@ -2543,8 +2418,8 @@ asynStatus drvFOFB::readInt32(asynUser *pasynUser, epicsInt32 *value)
 }
 
 /** Called when asyn clients call pasynFloat64->write().
- *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *     * \param[in] value Value to read */
+ *  *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *   *     * \param[in] value Value to read */
 asynStatus drvFOFB::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 {
     int function = pasynUser->reason;
@@ -2592,8 +2467,8 @@ asynStatus drvFOFB::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 }
 
 /** Called when asyn clients call pasynFloat64->read().
- *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
- *     * \param[in] value Value to read */
+ *  *   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
+ *   *     * \param[in] value Value to read */
 asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 {
     int function = pasynUser->reason;
@@ -2813,7 +2688,7 @@ asynStatus drvFOFB::doExecuteHwWriteFunction(functions2UInt32_t &func, char *ser
     }
 
     /* Read the HW values first as we need to update
- *        only one of the parameters */
+ *  *        only one of the parameters */
     err = func.read(fofbClient, service, &param1, &param2);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
@@ -3035,7 +2910,7 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functions2UInt32_t &func, char *serv
     epicsUInt32 param2 = 0;
 
     /* Read the HW values first as we need to update
- *        only one of the parameters */
+ *  *        only one of the parameters */
     err = func.read(fofbClient, service, &param1, &param2);
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
@@ -3083,10 +2958,10 @@ halcs_get_func_param_err:
 /********************************************************************/
 
 /*
- *  *  * * 32-bit/Double generic FOFB Processing operations. These will map to real
- *   *   * * functions defined in the structures. e.g., functionsInt32_t
- *    *    * * and functionsFloat64_t
- *     *     * */
+ *  *  *  * * 32-bit/Double generic FOFB Processing operations. These will map to real
+ *   *   *   * * functions defined in the structures. e.g., functionsInt32_t
+ *    *    *    * * and functionsFloat64_t
+ *     *     *     * */
 
 asynStatus drvFOFB::setParamGeneric(int functionId, int addr)
 {
@@ -3190,7 +3065,7 @@ asynStatus drvFOFB::getParam32(int functionId, epicsUInt32 *param,
         *param = functionArgs.argUInt32;
     }
     /* We recover from asynDisabled just by retrieving
- *  *  *      * the parameter from the list */
+ *  *  *  *      * the parameter from the list */
     else if (status == asynDisabled){
         status = asynSuccess;
     }
@@ -3244,7 +3119,7 @@ asynStatus drvFOFB::getParamInteger(int functionId, epicsInt32 *param,
         *param = functionArgs.argInt32;
     }
     /* We recover from asynDisabled just by retrieving
- *      * the parameter from the list */
+ *  *      * the parameter from the list */
     else if (status == asynDisabled){
         status = asynSuccess;
     }
@@ -3297,7 +3172,7 @@ asynStatus drvFOFB::getParamDouble(int functionId, epicsFloat64 *param, int addr
         *param = functionArgs.argFloat64;
     }
     /* We recover from asynDisabled just by retrieving
- *      * the parameter from the list */
+ *  *      * the parameter from the list */
     else if (status == asynDisabled){
         status = asynSuccess;
     }
@@ -3311,9 +3186,9 @@ get_param_err:
 /********************************************************************/
 
 /*
- *  *  *  * Miscellaneous functions that don't map easily
- *   *   *   * to our generic handlers get/setParam[32/Double]
- *    *    *    */
+ *  *  *  *  * Miscellaneous functions that don't map easily
+ *   *   *   *   * to our generic handlers get/setParam[32/Double]
+ *    *    *    *    */
 
 asynStatus drvFOFB::setDataTrigChan(epicsUInt32 mask, int addr)
 {
@@ -3322,18 +3197,18 @@ asynStatus drvFOFB::setDataTrigChan(epicsUInt32 mask, int addr)
     int status = asynSuccess;
     const char* functionName = "setDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
-    int hwAmpChannel = 0;
+    int hwDataChannel = 0;
     int serviceID = 0;
 
     /* Set the parameter in the parameter library. */
     getUIntDigitalParam(addr, P_DataTrigChan, &dataTrigChan, mask);
 
     /* Convert user channel into hw channel */
-    hwAmpChannel = channelMap[dataTrigChan].HwAmpChannel;
-    if(hwAmpChannel < 0) {
+    hwDataChannel = channelMap[dataTrigChan].HwDataChannel;
+    if(hwDataChannel < 0) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: invalid HwAmpChannel channelMap for channel %d\n",
-                driverName, functionName, hwAmpChannel);
+                "%s:%s: invalid hwDataChannel channelMap for channel %d\n",
+                driverName, functionName, hwDataChannel);
         status = asynError;
         goto halcs_inv_channel;
     }
@@ -3349,7 +3224,7 @@ asynStatus drvFOFB::setDataTrigChan(epicsUInt32 mask, int addr)
         goto get_service_err;
     }
 
-    err = acq_set_data_trig_chan (fofbClientAcqParam[serviceID], service, hwAmpChannel);
+    err = acq_set_data_trig_chan (fofbClientAcqParam[serviceID], service, hwDataChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_set_data_trig_chan_err;
@@ -3368,7 +3243,7 @@ asynStatus drvFOFB::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int 
     int status = asynSuccess;
     const char* functionName = "getDataTrigChan";
     epicsUInt32 dataTrigChan = 0;
-    epicsUInt32 hwAmpChannel = 0;
+    epicsUInt32 hwDataChannel = 0;
     int serviceID = 0;
 
     /* Get correct service name*/
@@ -3385,22 +3260,22 @@ asynStatus drvFOFB::getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int 
     /* Clear parameter in case of an error occurs */
     *channel = 0;
 
-    err = acq_get_data_trig_chan (fofbClientAcqParam[serviceID], service, &hwAmpChannel);
+    err = acq_get_data_trig_chan (fofbClientAcqParam[serviceID], service, &hwDataChannel);
     if (err != HALCS_CLIENT_SUCCESS) {
         status = asynError;
         goto halcs_get_data_trig_chan_err;
     }
 
-    if (hwAmpChannel > CH_HW_END-1) {
+    if (hwDataChannel > CH_HW_END-1) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: invalid HwAmpChannel channelRevMap for channel %d\n",
-                driverName, functionName, hwAmpChannel);
+                "%s:%s: invalid hwDataChannel channelRevMap for channel %d\n",
+                driverName, functionName, hwDataChannel);
         status = asynError;
         goto halcs_inv_hw_channel;
     }
 
     /* Convert user channel into hw channel */
-    dataTrigChan = channelRevMap[hwAmpChannel].epicsChannel;
+    dataTrigChan = channelRevMap[hwDataChannel].epicsChannel;
     if(dataTrigChan < 0) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: invalid channel channelRevMap for channel %d\n",
@@ -3540,8 +3415,8 @@ asynStatus drvFOFB::readTriggerParams(epicsUInt32 mask, int addr)
 extern "C" {
 
     /** EPICS iocsh callable function to call constructor for the drvFOFB class.
- *  *  *      * \param[in] portName The name of the asyn port driver to be created.
- *   *   *           * \param[in] endpoint The address device string */
+ *  *  *  *      * \param[in] portName The name of the asyn port driver to be created.
+ *   *   *   *           * \param[in] endpoint The address device string */
     int drvFOFBConfigure(const char *portName, const char *endpoint,
             int fofbNumber, const char *type, int verbose, int timeout,
             int maxPoints, int maxBuffers, size_t maxMemory)
@@ -3585,4 +3460,5 @@ extern "C" {
 
     epicsExportRegistrar(drvFOFBRegister);
 }
+
 
