@@ -3,6 +3,9 @@ file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ_NAME=ACQ
 # to always return Post-Mortem to a safe state.
 # file "FOFBAcq_settings.req",       P=$(P), R=$(R), ACQ_NAME=ACQ_PM
 
+file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=CH0
+file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ=PM,  ARRAY_NAME=CH0
+
 # Regular triggers
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=1,  TRIGGER_NAME=TRIGGER

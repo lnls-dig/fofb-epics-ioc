@@ -1,7 +1,6 @@
-#########################
+##################################
 # Waveform Acquisition parameters
-#########################
-
+##################################
 record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPre-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set number of pre samples for waveforms")
@@ -399,3 +398,31 @@ record(ai, "$(P)$(R)$(ACQ_NAME)UpdateTime-RB"){
     field(EGU, "s")
 }
 
+record(waveform,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf") 
+{ 
+    field(DESC, "Data waveform $(ACQ)$(ARRAY_NAME)") 
+    field(NELM,"$(NELEMENTS)") 
+    field(FTVL, "$(FTVL)") 
+    field(TSEL, "$(P)$(R)$(ACQ)ArrayData.TIME") 
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData") 
+} 
+ 
+record(subArray,"$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData") 
+{ 
+    field(DESC, "Data $(ACQ)$(ARRAY_NAME)") 
+    field(INP,  "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataWvf NPP NMS") 
+    field(TSEL, "$(P)$(R)$(ACQ)ArrayData.TIME") 
+    field(MALM, "$(NELEMENTS)") 
+    field(FTVL, "$(FTVL)") 
+    field(FLNK, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataSeq") 
+} 
+ 
+# Adjust NELM of subarray so clients get correct monitors when 
+# number os elements change 
+record(seq, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayDataSeq"){ 
+field(DESC,"Get NORD from $(ACQ)$ waveform") 
+field(PINI,"YES") 
+field(DOL1, "$(P)$(R)$(ACQ)ArrayData.NORD NPP NMS") 
+field(LNK1, "$(P)$(R)$(ACQ)$(ARRAY_NAME)ArrayData.NELM PP NMS") 
+field(SELM, "All") 
+} 

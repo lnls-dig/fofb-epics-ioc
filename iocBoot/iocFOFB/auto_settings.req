@@ -1,5 +1,10 @@
 file "FOFB_settings.req",                P=$(P),  R=$(R)
 
+file "NDPluginBase_settings_mod.req",   P=$(P),  R=$(R)GEN_CH0
+file "NDStdArrays_settings.req",        P=$(P),  R=$(R)GEN_CH0
+file "NDPluginBase_settings_mod.req",   P=$(P),  R=$(R)PM_CH0
+file "NDStdArrays_settings.req",        P=$(P),  R=$(R)PM_CH0
+
 file "NDFile_settings.req",             P=$(P),  R=$(R)GEN_ABCD_NETCDF
 file "NDFile_settings.req",             P=$(P),  R=$(R)GEN_ABCD_HDF5
 file "NDFile_settings.req",             P=$(P),  R=$(R)GEN_XYQS_NETCDF

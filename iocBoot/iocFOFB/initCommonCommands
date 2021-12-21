@@ -1,0 +1,30 @@
+# Waveform Plugin
+
+dbpf "${P}${R}GEN_CH0EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH0ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH0EnableCallbacks" 1
+dbpf "${P}${R}PM_CH0ArrayData.TSE" -2
+
+dbpf "${P}${R}MONIT_CH0EnableCallbacks" 1
+dbpf "${P}${R}MONIT_CH0ArrayData.TSE" -2
+
+# File Saving Plugin
+
+dbpf "${P}${R}GEN_ABCD_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}GEN_ABCD_HDF5EnableCallbacks" 1
+
+dbpf "${P}${R}GEN_XYQS_NETCDFEnableCallbacks" 1
+dbpf "${P}${R}GEN_XYQS_HDF5EnableCallbacks" 1
+
+# STATS Plugin
+
+dbpf "${P}${R}GEN_CH0_STATSEnableCallbacks" 1
+
+dbpf "${P}${R}GEN_CH0_STATSComputeHistogram" No
+dbpf "${P}${R}GEN_CH0_STATSComputeStatistics" Yes
+
+dbpf "${P}${R}PM_CH0_STATSEnableCallbacks" 1
+
+dbpf "${P}${R}PM_CH0_STATSComputeHistogram" No
+dbpf "${P}${R}PM_CH0_STATSComputeStatistics" Yes
