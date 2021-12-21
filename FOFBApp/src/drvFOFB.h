@@ -127,13 +127,9 @@ typedef enum {
 /* Channel IDs */
 typedef enum {
     CH_ADC = 0,
-    CH_ADCSWAP = 1,
-    CH_TBT = 2,
-    CH_FOFB = 3,
-    CH_TBTPHA = 4,
-    CH_FOFBPHA = 5,
-    CH_MONIT1 = 6,
-    CH_SP = 7,
+    CH_TBT = 1,
+    CH_FOFB = 2,
+    CH_MONIT1 = 3,
     CH_END
 } ch_types;
 
@@ -141,11 +137,8 @@ typedef enum {
 
 typedef enum {
     CH_HW_ADC = 0,
-    CH_HW_ADCSWAP = 1,
     CH_HW_TBT = 6,
-    CH_HW_TBTPHA = 7,
     CH_HW_FOFB = 11,
-    CH_HW_FOFBPHA = 12,
     CH_HW_MONIT1 = 14,
     CH_HW_END
 } ch_hw_types;

@@ -250,44 +250,6 @@ static const channelMap_t channelMap[CH_END] = {
                             -1},
                           },
                           },
-    /* [CH_SP] =      */ {CH_HW_ADC,                           // HwAmpChannel
-                          -1,                                  // HwPhaseChannel
-                          -1,                                  // HwPosChannel
-                          0,                                   // CalcPos
-                          {{WVF_AMP_SP_A,                      // NDArrayAmp
-                            WVF_AMP_SP_B,
-                            WVF_AMP_SP_C,
-                            WVF_AMP_SP_D,
-                            WVF_AMP_SP_ALL},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{-1,                                 // NDArrayPhase
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                            {-1,
-                             -1,
-                             -1,
-                             -1,
-                             -1},
-                          },
-                          {{-1,                                 // NDArrayPos
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                           {-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                          },
-                          },
 };
 
 /* FIXME: This reverse mapping must match the maximum HwAmpChannel for ChannelMap */
