@@ -1,0 +1,29 @@
+record(waveform,"$(P)$(R)$(ACQ_NAME)ArrayDataWvf")
+{
+    field(DESC, "Data waveform $(ACQ_NAME)")
+    field(NELM,"100000")
+    field(FTVL, "LONG")
+    field(TSEL, "$(P)$(R)$(ACQ_NAME)ArrayData.TIME")
+    field(FLNK, "$(P)$(R)$(ACQ_NAME)ArrayData")
+}
+
+record(subArray,"$(P)$(R)$(ACQ_NAME)ArrayData")
+{
+    field(DESC, "Data $(ACQ_NAME)")
+    field(INP,  "$(P)$(R)$(ACQ_NAME)ArrayDataWvf NPP NMS")
+    field(TSEL, "$(P)$(R)$(ACQ_NAME)ArrayData.TIME")
+    field(MALM, "100000")
+    field(FTVL, "LONG")
+    field(FLNK, "$(P)$(R)$(ACQ_NAME)ArrayDataSeq")
+}
+
+# Adjust NELM of subarray so clients get correct monitors when 
+# number os elements change 
+record(seq, "$(P)$(R)$(ACQ_NAME)ArrayDataSeq"){
+field(DESC,"Get NORD from $(ACQ_NAME)$ waveform")
+field(PINI,"YES")
+field(DOL1, "$(P)$(R)$(ACQ_NAME)ArrayData.NORD NPP NMS")
+field(LNK1, "$(P)$(R)$(ACQ_NAME)ArrayData.NELM PP NMS")
+field(SELM, "All")
+}
+

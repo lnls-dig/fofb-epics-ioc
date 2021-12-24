@@ -1,0 +1,87 @@
+#
+# FOFB database file
+#
+# Authors: Melissa Aguiar
+#
+# Created Dec. 24, 2021
+#
+
+######################################
+# General Board information parameters
+######################################
+
+
+record(longout,"$(P)$(R)INFOADCRate-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set ADC rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCRATE")
+}
+
+record(longin,"$(P)$(R)INFOADCRate-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get ADC rate factor")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_ADCRATE")
+}
+
+record(longout,"$(P)$(R)INFOTBTRate-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set TBT rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
+}
+
+record(longin,"$(P)$(R)INFOTBTRate-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get TBT rate factor")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_TBTRATE")
+}
+
+record(longout,"$(P)$(R)INFOFOFBRate-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set FOFB rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_FOFBRATE")
+}
+
+record(longin,"$(P)$(R)INFOFOFBRate-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get FOFB rate factor")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_FOFBRATE")
+}
+
+record(longout,"$(P)$(R)INFOMONITRate-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set MONIT rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONITRATE")
+}
+
+record(longin,"$(P)$(R)INFOMONITRate-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get MONIT rate factor")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONITRATE")
+}
+
+record(longout,"$(P)$(R)INFOMONIT1Rate-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set MONIT1 rate factor")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONIT1RATE")
+}
+
+record(longin,"$(P)$(R)INFOMONIT1Rate-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get MONIT1 rate factor")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))INFO_MONIT1RATE")
+}

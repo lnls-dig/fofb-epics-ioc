@@ -1,3 +1,5 @@
 # Load common commands
 < initCommonCommands
 
+# Enable Monit Task
+# dbpf "${P}${R}MonitEnable-Sel" Yes

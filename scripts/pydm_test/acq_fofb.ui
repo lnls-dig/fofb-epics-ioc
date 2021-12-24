@@ -298,7 +298,7 @@
    </property>
    <property name="curves">
     <stringlist>
-     <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFB:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+     <string>{&quot;y_channel&quot;: &quot;XX-22SL23:DI-FOFB:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
     </stringlist>
    </property>
   </widget>
