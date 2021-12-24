@@ -1,15 +1,16 @@
 /*
- *  *  *  *  *  * drvFOFB.h
- *   *   *   *   *   *
- *    *    *    *    *    * Authors: Melissa Aguiar
- *     *     *     *     *     *
- *      *      *      *      *      * Created Dec. 03, 2021
- *       *       *       *       *       */
+ * drvFOFB.h
+ *
+ * Authors: Melissa Aguiar
+ *
+ * Created Dec. 03, 2021
+ */
 
-#include "asynPortDriver.h"
 #include "asynNDArrayDriver.h"
 #include <epicsExit.h>
+#include <NDArray.h>
 #include <epicsMutex.h>
+#include <epicsRingBytes.h>
 /* Third-party libraries */
 #include <unordered_map>
 #include <halcs_client.h>
@@ -34,14 +35,6 @@ typedef enum {
 
 #define NUM_ACQ_CORES_PER_FOFB        FOFBIDEnd /* Regular Acquisition core and Post-Mortem */
 #define NUM_TRIG_CORES_PER_FOFB       NUM_ACQ_CORES_PER_FOFB /* Trigger core for regular Acquisition and Post-Mortem */
-
-/* FOFB modes */
-typedef enum {
-    FOFBMode = 0,
-    FOFBModeEnd,
-} fofb_mode_types;
-
-#define NUM_FOFB_MODES                FOFBModeEnd
 
 /* FOFB acquisition status */
 typedef enum {
@@ -70,19 +63,19 @@ typedef enum {
 } wvf_types;
 
 /* FIXME: This number must be at least the number of triggers
- *  *  *  * available on the FPGA. Although this is used to alloc the number
- *   *   *   * of waveforms, it's not used by getAddress () by the NDArray plugins,
- *    *    *    * as this function returns the address that is declared on plugin startup
- *     *     *     * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
- *      *      *      * of the addresses that are set by the database.
- *       *       *       * In summary, we use the different addresses to call different trigger channel
- *        *        *        * functions */
+ * available on the FPGA. Although this is used to alloc the number
+ * of waveforms, it's not used by getAddress () by the NDArray plugins,
+ * as this function returns the address that is declared on plugin startup
+ * (NDStdArraysConfigure function, NDArrayAddr). So, we are free to use all
+ * of the addresses that are set by the database.
+ * In summary, we use the different addresses to call different trigger channel
+ * functions */
 #define MAX_WAVEFORMS               WVF_END
 /* FIXME FIXME: This should be read from HW. Also, this is actually less than 24,
- *  *  *  * but we let space for extra room */
+ * but we let space for extra room */
 #define MAX_TRIGGERS                24
 /* This is needed so we have EPICS Asyn addresses sufficient for all of the
- *  *  *  * Triggers, from either ACQ core */
+ * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_FOFB*MAX_TRIGGERS)
 /* Get the greater between them */
 #define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
@@ -117,25 +110,18 @@ typedef enum {
     WVF_DATA_END
 } wvf_data_types;
 
-#define MAX_WVF_DATA_SINGLE          (WVF_D+1)
+#define MAX_WVF_DATA_SINGLE          (WVF_CH0+1)
 #define MAX_WVF_DATA_TYPES           WVF_DATA_END
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                  2
 
 #define MAX_SLOTS                     12
-#define MAX_FOFB_PER_SLOT             2
+#define MAX_FOFB_PER_SLOT             2 
 #define MAX_FOFBS                     (MAX_SLOTS*MAX_FOFB_PER_SLOT)
 
 #define FOFB_NUMBER_MIN               1
 #define FOFB_NUMBER_MAX               MAX_FOFBS
-
-/* FOFB Mappping structure */
-typedef struct {
-    int board;
-    int fofb;
-    int core_id; /* Acquisition and Trigger core IDs */
-} boardMap_t;
 
 /* FOFB Channel structure */
 typedef struct {
@@ -639,13 +625,13 @@ class drvFOFB : public asynNDArrayDriver {
         int verbose;
         int timeout;
         char *fofbPortName;
-        int readingActive[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        int repetitiveTrigger[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId startAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId stopAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId abortAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
+        int readingActive[NUM_ACQ_CORES_PER_FOFB];
+        int repetitiveTrigger[NUM_ACQ_CORES_PER_FOFB];
+        epicsEventId startAcqEventId[NUM_ACQ_CORES_PER_FOFB];
+        epicsEventId stopAcqEventId[NUM_ACQ_CORES_PER_FOFB];
+        epicsEventId abortAcqEventId[NUM_ACQ_CORES_PER_FOFB];
         epicsEventId reconfSPassAcqEventId[NUM_ACQ_CORES_PER_FOFB];
-        epicsEventId activeAcqEventId[NUM_FOFB_MODES][NUM_ACQ_CORES_PER_FOFB];
+        epicsEventId activeAcqEventId[NUM_ACQ_CORES_PER_FOFB];
         epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> fofbHwFunc;
 
@@ -667,8 +653,8 @@ class drvFOFB : public asynNDArrayDriver {
         asynStatus abortAcqRaw(int coreID, acq_client_t *acq_client);
         asynStatus abortAcq(int coreID);
         asynStatus abortAcqFromPortThread(int coreID);
-        asynStatus abortAcqTask(int addr, int fofbMode, bool abortAcqHw = false);
-        asynStatus stopAcqTask(int addr, int fofbMode);
+        asynStatus abortAcqTask(int addr, bool abortAcqHw = false);
+        asynStatus stopAcqTask(int addr);
         int checkAcqCompletion(int coreID);
         asynStatus getAcqCurve(int coreID, NDArray *pArrayAllChannels, int hwChannel,
                 epicsUInt32 num_samples_pre, epicsUInt32 num_samples_post,
@@ -687,7 +673,7 @@ class drvFOFB : public asynNDArrayDriver {
         asynStatus getParamDouble(int functionId, epicsFloat64 *param, int addr);
 
         /* Specific hardware functions that need extra processing and don't
- *  *  *  *  *          * fit into the general set/get template */
+         * fit into the general set/get template */
         asynStatus setDataTrigChan(epicsUInt32 mask, int addr);
         asynStatus getDataTrigChan(epicsUInt32 *channel, epicsUInt32 mask, int addr);
         asynStatus updateUInt32Params(epicsUInt32 mask, int addr, int firstParam,
@@ -739,6 +725,4 @@ const char *functionsAny_t::getServiceNameFromFunc(const drvFOFB& drvFOFB,
     auto functionFpCast = any_cast<T>(functionFp);
     return drvFOFB.doGetServiceNameFromFunc(functionFpCast);
 }
-
-
 
