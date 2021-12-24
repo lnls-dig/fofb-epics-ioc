@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>525</width>
+    <height>525</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>0</y>
+     <width>141</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>ACQTriggerEvent:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>ACQTriggerRep:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>ACQTrigger:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>ACQSamplesPre:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>ACQSamplesPost:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>ACQShots:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>ACQChannel:</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>0</y>
+     <width>121</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQTriggerEvent-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_8">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQTriggerRep-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_2">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQTrigger-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_4">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQSamplesPre-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_5">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQSamplesPost-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_6">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQShots-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLabel" name="PyDMLabel_7">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQChannel-Sel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>0</y>
+     <width>151</width>
+     <height>223</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_4">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQTriggerEvent-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_2">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQTriggerRep-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_3">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQTrigger-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_3">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQSamplesPre-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLineEdit" name="PyDMLineEdit">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQSamplesPost-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_4">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQShots-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox">
+      <property name="minimumSize">
+       <size>
+        <width>86</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>86</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL23:DI-FOFB:ACQChannel-Sel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>490</y>
+     <width>81</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ACQStatus:</string>
+   </property>
+  </widget>
+  <widget class="PyDMLabel" name="PyDMLabel_3">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>490</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string/>
+   </property>
+   <property name="channel" stdset="0">
+    <string>XX-22SL23:DI-FOFB:ACQStatus-Sts</string>
+   </property>
+  </widget>
+  <widget class="PyDMWaveformPlot" name="PyDMWaveformPlot">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>240</y>
+     <width>441</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string/>
+   </property>
+   <property name="yAxes">
+    <stringlist>
+     <string>{&quot;name&quot;: &quot;Axis 1&quot;, &quot;orientation&quot;: &quot;left&quot;, &quot;minRange&quot;: -1.0, &quot;maxRange&quot;: 1.0, &quot;autoRange&quot;: true}</string>
+    </stringlist>
+   </property>
+   <property name="curves">
+    <stringlist>
+     <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFB:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+    </stringlist>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PyDMLabel</class>
+   <extends>QLabel</extends>
+   <header>pydm.widgets.label</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMWaveformPlot</class>
+   <extends>QGraphicsView</extends>
+   <header>pydm.widgets.waveformplot</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMEnumComboBox</class>
+   <extends>QComboBox</extends>
+   <header>pydm.widgets.enum_combo_box</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>pydm.widgets.line_edit</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
