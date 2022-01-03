@@ -55,8 +55,22 @@ typedef enum {
 /* Waveform IDs */
 typedef enum {
     WVF_DATA_CH0 = 0,
+    WVF_DATA_CH1,
+    WVF_DATA_CH2,
+    WVF_DATA_CH3,
+    WVF_DATA_CH4,
+    WVF_DATA_CH5,
+    WVF_DATA_CH6,
+    WVF_DATA_CH7,
     WVF_DATA_ALL,
     WVF_PM_CH0,
+    WVF_PM_CH1,
+    WVF_PM_CH2,
+    WVF_PM_CH3,
+    WVF_PM_CH4,
+    WVF_PM_CH5,
+    WVF_PM_CH6,
+    WVF_PM_CH7,
     WVF_PM_ALL,
     WVF_MONIT_CH0,
     WVF_END
@@ -106,6 +120,13 @@ typedef enum {
 /* Waveform DATA types IDs */
 typedef enum {
     WVF_CH0 = 0,
+    WVF_CH1,
+    WVF_CH2,
+    WVF_CH3,
+    WVF_CH4,
+    WVF_CH5,
+    WVF_CH6,
+    WVF_CH7,
     WVF_ALL,
     WVF_DATA_END
 } wvf_data_types;
