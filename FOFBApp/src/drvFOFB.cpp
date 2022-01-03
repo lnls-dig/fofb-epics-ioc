@@ -89,49 +89,69 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_PM_ALL},
                           },
                           },
-    /* [CH_TBT] =     */ {CH_HW_ADC,                           // HwDataChannel
-                          {{WVF_DATA_CH0,                      // NDArrayData
-                            WVF_DATA_CH1,
-                            WVF_DATA_CH2,
-                            WVF_DATA_CH3,
-                            WVF_DATA_CH4,
-                            WVF_DATA_CH5,
-                            WVF_DATA_CH6,
-                            WVF_DATA_CH7,
-                            WVF_DATA_ALL},
-                           {WVF_PM_CH0,
-                            WVF_PM_CH1,
-                            WVF_PM_CH2,
-                            WVF_PM_CH3,
-                            WVF_PM_CH4,
-                            WVF_PM_CH5,
-                            WVF_PM_CH6,
-                            WVF_PM_CH7,
-                            WVF_PM_ALL},
+    /* [CH_TBT] =     */ {CH_HW_TBT,
+                          {{-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                           },
                           },
-    /* [CH_FOFB] =    */ {CH_HW_ADC,                           // HwDataChannel
-                          {{WVF_DATA_CH0,                      // NDArrayData
-                            WVF_DATA_CH1,
-                            WVF_DATA_CH2,
-                            WVF_DATA_CH3,
-                            WVF_DATA_CH4,
-                            WVF_DATA_CH5,
-                            WVF_DATA_CH6,
-                            WVF_DATA_CH7,
-                            WVF_DATA_ALL},
-                           {WVF_PM_CH0,
-                            WVF_PM_CH1,
-                            WVF_PM_CH2,
-                            WVF_PM_CH3,
-                            WVF_PM_CH4,
-                            WVF_PM_CH5,
-                            WVF_PM_CH6,
-                            WVF_PM_CH7,
-                            WVF_PM_ALL},
+    /* [CH_FOFB] =    */ {CH_HW_FOFB,                           // HwDataChannel
+                          {{-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                           },
                           },
-    /* [CH_MONIT1] =  */
+    /* [CH_MONIT1] =  */ {CH_HW_MONIT1,                           // HwDataChannel
+                          {{-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
+                          },
+                          },
 };
 
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
@@ -419,7 +439,7 @@ asynStatus drvFOFB::getFullServiceName (int fofbNumber, int addr, const char *se
     int coreID = 0;
     int errs = 0;
     /* boardMap structure was removed. FIXME? */
-    /* if we want to use board 10, for example, the PV prefix (fofbNumber) will be 10*2+1=19 */
+    /* if we want to use board 10, for example, the PV prefix (fofbNumber) will be 10*2-1=19 */
     int board = (fofbNumber+1)/2;
 
     asynStatus status = asynSuccess;
@@ -653,7 +673,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
 
     /* FOFB HW Int32 Functions mapping. Functions not mapped here are just written
- *  *  *  *      * to the parameter library */
+     * to the parameter library */
     fofbHwFunc.emplace(P_FofbProcessingRamWrite,      fofbProcessingSetGetRamWriteFunc);
     fofbHwFunc.emplace(P_FofbProcessingRamAddr,       fofbProcessingSetGetRamAddrFunc);
     fofbHwFunc.emplace(P_FofbProcessingRamDataIn,     fofbProcessingSetGetRamDataInFunc);
@@ -737,9 +757,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     status = fofbClientConnect(this->pasynUserSelf);
     unlock();
 
-    /* If we correct connect for this first time, liclient
-     * will ensure the reconnection to server if necessary, but we
-     * must succeed here or we must abort completely */
+    /* We must correct connect or we must abort completely */
     if (status != asynSuccess) {
         asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
             "%s:%s: error calling fofbClientConnect, status=%d\n",
@@ -1247,7 +1265,7 @@ get_service_err:
 }
 
 /* This can only return if the ACQ engine is IDLE or waiting
- *  *  * for some trigger (External, Data or Software) */
+ * for some trigger (External, Data or Software) */
 /* This should only be called by asyn thread, not Acquisition ones */
 fofb_status_types drvFOFB::getFOFBInitAcqStatus(int coreID)
 {
@@ -1666,8 +1684,81 @@ void drvFOFB::acqMonitTask()
     int monitEnable = 0;
     static const char *functionName = "acqMonitTask";
     char service[SERVICE_NAME_SIZE];
-}
 
+    dims[0] = 1;
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i] = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
+        if (pArrayMonitData == NULL) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: unable to alloc pArrayMonitData\n",
+                driverName, functionName);
+            status = asynError;
+            goto alloc_ndarray_err;
+        }
+    }
+
+    err = halcs_set_monit_subscription (fofbClientMonit, service, "MONIT_AMP");
+    if (err != HALCS_CLIENT_SUCCESS) {
+        status = asynError;
+        goto set_monit_subscription_err;
+    }
+
+    smio_dsp_monit_data_t monit_data;
+    while (1) {
+        getIntegerParam(P_MonitEnable, &monitEnable);
+        if (!monitEnable) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
+            /* remove subscription to avoid burst of old data when enabling */
+            halcs_remove_monit_subscription (fofbClientMonit, service);
+            epicsEventWait(activeMonitEnableEventId);
+            halcs_set_monit_subscription (fofbClientMonit, service, "MONIT_AMP");
+        }
+
+        err = halcs_get_monit_stream (fofbClientMonit, "MONIT_AMP", &monit_data);
+
+        if(err == HALCS_CLIENT_SUCCESS) {
+
+            monitData[0] = 0;
+            monitData[1] = 0;
+            monitData[2] = 0;
+            monitData[3] = 0;
+            monitData[4] = 0;
+            monitData[5] = 0;
+            monitData[6] = 0;
+            monitData[7] = 0;
+            monitData[8] = 0;
+            monitData[9] = 0;
+
+            epicsTimeGetCurrent(&now);
+
+            for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+                /* NDArray atributtes */
+                pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
+                pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
+                pArrayMonitData[i]->epicsTS.nsec = now.nsec;
+                getAttributes(pArrayMonitData[i]->pAttributeList);
+                /* NDArray data */
+                *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
+                doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
+            }
+        }
+        else {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s:%s: Could not get Monit data. Status = %d\n",
+                    driverName, functionName, err);
+        }
+    }
+
+set_monit_subscription_err:
+
+alloc_ndarray_err:
+    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
+        pArrayMonitData[i]->release();
+    }
+get_service_err:
+    return;
+}
 asynStatus drvFOFB::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
         int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp)
 {
@@ -3019,7 +3110,6 @@ get_type_err:
     return (asynStatus)status;
 }
 
-
 asynStatus drvFOFB::setParam32(int functionId, epicsUInt32 mask, int addr)
 {
     int status = asynSuccess;
@@ -3463,5 +3553,3 @@ extern "C" {
 
     epicsExportRegistrar(drvFOFBRegister);
 }
-
-

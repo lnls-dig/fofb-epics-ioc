@@ -3,8 +3,50 @@
 dbpf "${P}${R}GEN_CH0EnableCallbacks" 1
 dbpf "${P}${R}GEN_CH0ArrayData.TSE" -2
 
-#dbpf "${P}${R}PM_CH0EnableCallbacks" 1
-#dbpf "${P}${R}PM_CH0ArrayData.TSE" -2
+dbpf "${P}${R}GEN_CH1EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH1ArrayData.TSE" -2
+
+dbpf "${P}${R}GEN_CH2EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH2ArrayData.TSE" -2
+
+dbpf "${P}${R}GEN_CH3EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH3ArrayData.TSE" -2
+
+dbpf "${P}${R}GEN_CH4EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH4ArrayData.TSE" -2
+
+dbpf "${P}${R}GEN_CH5EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH5ArrayData.TSE" -2
+
+dbpf "${P}${R}GEN_CH6EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH6ArrayData.TSE" -2
+
+dbpf "${P}${R}GEN_CH7EnableCallbacks" 1
+dbpf "${P}${R}GEN_CH7ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH0EnableCallbacks" 1
+dbpf "${P}${R}PM_CH0ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH1EnableCallbacks" 1
+dbpf "${P}${R}PM_CH1ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH2EnableCallbacks" 1
+dbpf "${P}${R}PM_CH2ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH3EnableCallbacks" 1
+dbpf "${P}${R}PM_CH3ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH4EnableCallbacks" 1
+dbpf "${P}${R}PM_CH4ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH5EnableCallbacks" 1
+dbpf "${P}${R}PM_CH5ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH6EnableCallbacks" 1
+dbpf "${P}${R}PM_CH6ArrayData.TSE" -2
+
+dbpf "${P}${R}PM_CH7EnableCallbacks" 1
+dbpf "${P}${R}PM_CH7ArrayData.TSE" -2
 
 #dbpf "${P}${R}MONIT_CH0EnableCallbacks" 1
 #dbpf "${P}${R}MONIT_CH0ArrayData.TSE" -2

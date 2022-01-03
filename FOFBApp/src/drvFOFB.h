@@ -138,7 +138,7 @@ typedef enum {
 #define MAX_WVF_DIMS                  2
 
 #define MAX_SLOTS                     12
-#define MAX_FOFB_PER_SLOT             2 
+#define MAX_FOFB_PER_SLOT             2
 #define MAX_FOFBS                     (MAX_SLOTS*MAX_FOFB_PER_SLOT)
 
 #define FOFB_NUMBER_MIN               1
@@ -746,4 +746,3 @@ const char *functionsAny_t::getServiceNameFromFunc(const drvFOFB& drvFOFB,
     auto functionFpCast = any_cast<T>(functionFp);
     return drvFOFB.doGetServiceNameFromFunc(functionFpCast);
 }
-
