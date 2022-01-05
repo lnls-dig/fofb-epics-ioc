@@ -19,173 +19,11 @@
      <x>10</x>
      <y>10</y>
      <width>391</width>
-     <height>761</height>
+     <height>751</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="24" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_23">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPISPLimInf-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>ACQTriggerEvent:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_20">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampDacData-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="0">
-     <widget class="QLabel" name="label_24">
-      <property name="text">
-       <string>RtmLampPISPSquareEn:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_6">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQShots-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_16">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampDacDataFromWb-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_2">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQTrigger-Sel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_9">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampStatus-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>RtmLampStatus:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="20" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_21">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIKP-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>RtmLampDacDataFromWb:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_7">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQChannel-Sel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="0">
-     <widget class="QLabel" name="label_26">
-      <property name="text">
-       <string>RtmLampDacData:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_11">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpEn-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="0">
-     <widget class="QLabel" name="label_20">
-      <property name="text">
-       <string>RtmLampPISPLimInf:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="15" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_9">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIOLSquareEn-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_6">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampDacData-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="20" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_18">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIKP-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="23" column="2">
+    <item row="26" column="2">
      <widget class="PyDMLineEdit" name="PyDMLineEdit_18">
       <property name="toolTip">
        <string/>
@@ -195,23 +33,105 @@
       </property>
      </widget>
     </item>
-    <item row="21" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_17">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPITI-SP</string>
+    <item row="21" column="0">
+     <widget class="QLabel" name="label_26">
+      <property name="text">
+       <string>RtmLampDacData:</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_14">
+    <item row="15" column="0">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>RtmLampAmpTFlagR:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_3">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpTFlagL-SP</string>
+       <string>XX-22SL03:DI-FOFB:ACQSamplesPre-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="0">
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>RtmLampPIOLTriangEn:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_7">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQChannel-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>ACQChannel:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_15">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagL-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_9">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampStatus-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>ACQTrigger:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="22" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_19">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampDacWr-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="25" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_19">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPISP-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="24" column="0">
+     <widget class="QLabel" name="label_22">
+      <property name="text">
+       <string>RtmLampPITI:</string>
       </property>
      </widget>
     </item>
@@ -225,59 +145,97 @@
       </property>
      </widget>
     </item>
-    <item row="15" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_23">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIOLSquareEn-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQSamplesPost-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="15" column="0">
-     <widget class="QLabel" name="label_17">
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_9">
       <property name="text">
-       <string>RtmLampPIOLSquareEn:</string>
+       <string>RtmLampStatus:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_10">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampDacDataFromWb-SP</string>
       </property>
      </widget>
     </item>
     <item row="9" column="0">
-     <widget class="QLabel" name="label_11">
+     <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>RtmLampAmpIFlagL:</string>
+       <string>ACQShots:</string>
       </property>
      </widget>
     </item>
-    <item row="17" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_21">
+    <item row="19" column="0">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>RtmLampPISPSquareEn:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_4">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIEn-SP</string>
+       <string>XX-22SL03:DI-FOFB:ACQSamplesPre-SP</string>
       </property>
      </widget>
     </item>
-    <item row="22" column="0">
+    <item row="25" column="0">
      <widget class="QLabel" name="label_18">
       <property name="text">
        <string>RtmLampPISP:</string>
       </property>
      </widget>
     </item>
-    <item row="12" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_12">
+    <item row="16" column="0">
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>RtmLampAmpEn:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_11">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpEn-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>ACQSamplesPre:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_12">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpTFlagL-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>RtmLampDacDataFromWb:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_14">
       <property name="toolTip">
        <string/>
       </property>
@@ -286,31 +244,27 @@
       </property>
      </widget>
     </item>
-    <item row="19" column="0">
-     <widget class="QLabel" name="label_27">
-      <property name="text">
-       <string>RtmLampDacWr:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="0">
-     <widget class="QLabel" name="label_16">
-      <property name="text">
-       <string>RtmLampPIOLTriangEn:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="22" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_19">
+    <item row="23" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_21">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPISP-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPIKP-SP</string>
       </property>
      </widget>
     </item>
-    <item row="14" column="2">
+    <item row="21" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_20">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampDacData-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="2">
      <widget class="PyDMLineEdit" name="PyDMLineEdit_10">
       <property name="toolTip">
        <string/>
@@ -320,81 +274,13 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_11">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagL-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="0">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>RtmLampAmpTFlagR:</string>
-      </property>
-     </widget>
-    </item>
     <item row="21" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_20">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_6">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPITI-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_15">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagL-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_5">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQSamplesPost-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>ACQSamplesPre:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="0">
-     <widget class="QLabel" name="label_15">
-      <property name="text">
-       <string>RtmLampAmpEn:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string>RtmLampAmpIFlagR:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_13">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagR-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampDacData-SP</string>
       </property>
      </widget>
     </item>
@@ -408,167 +294,94 @@
       </property>
      </widget>
     </item>
-    <item row="12" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_14">
+    <item row="18" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_9">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpTFlagR-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPIOLSquareEn-SP</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_4">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQSamplesPre-SP</string>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>ACQTriggerRep:</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_3">
+    <item row="25" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_16">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQSamplesPre-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPISP-SP</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQTriggerEvent-Sel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="19" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_19">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampDacWr-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_15">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpEn-SP</string>
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_17">
+      <property name="text">
+       <string>RtmLampPIOLSquareEn:</string>
       </property>
      </widget>
     </item>
     <item row="24" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_26">
+     <widget class="PyDMLabel" name="PyDMLabel_17">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPISPLimInf-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPITI-SP</string>
       </property>
      </widget>
     </item>
-    <item row="17" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_7">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIEn-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_22">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPISPSquareEn-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_6">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>ACQChannel:</string>
+       <string>ACQTriggerEvent:</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_4">
+    <item row="18" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_23">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQShots-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPIOLSquareEn-SP</string>
       </property>
      </widget>
     </item>
-    <item row="23" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_27">
+    <item row="2" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_2">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIOLDacCntMax-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>ACQSamplesPost:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_8">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPISPSquareEn-SP</string>
+       <string>XX-22SL03:DI-FOFB:ACQTrigger-Sel</string>
       </property>
      </widget>
     </item>
     <item row="14" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_28">
+     <widget class="PyDMLabel" name="PyDMLabel_13">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPIOLTriangEn-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagR-SP</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_8">
+    <item row="10" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_5">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQTriggerRep-Sel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_5">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:ACQChannel-Sel</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampStatus-SP</string>
       </property>
      </widget>
     </item>
@@ -582,79 +395,34 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>ACQTriggerRep:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>ACQShots:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_13">
+    <item row="20" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_21">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagR-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPIEn-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_12">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpTFlagR-SP</string>
       </property>
      </widget>
     </item>
     <item row="20" column="0">
-     <widget class="QLabel" name="label_23">
+     <widget class="QLabel" name="label_25">
       <property name="text">
-       <string>RtmLampPIKP:</string>
+       <string>RtmLampPIEn:</string>
       </property>
      </widget>
     </item>
-    <item row="21" column="0">
-     <widget class="QLabel" name="label_22">
-      <property name="text">
-       <string>RtmLampPITI:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_5">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampStatus-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="23" column="0">
-     <widget class="QLabel" name="label_19">
-      <property name="text">
-       <string>RtmLampPIOLDacCntMax:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>RtmLampAmpTFlagL:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="22" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_16">
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampPISP-SP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="19" column="2">
+    <item row="22" column="2">
      <widget class="PyDMLineEdit" name="PyDMLineEdit_22">
       <property name="toolTip">
        <string/>
@@ -664,18 +432,72 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_12">
+    <item row="23" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_18">
       <property name="toolTip">
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>XX-22SL03:DI-FOFB:RtmLampAmpTFlagL-SP</string>
+       <string>XX-22SL03:DI-FOFB:RtmLampPIKP-SP</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
-     <widget class="PyDMLabel" name="PyDMLabel_10">
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>RtmLampAmpTFlagL:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQTriggerEvent-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_15">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpEn-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="27" column="0">
+     <widget class="QLabel" name="label_20">
+      <property name="text">
+       <string>RtmLampPISPLimInf:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="27" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_23">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPISPLimInf-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_7">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPIEn-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_16">
       <property name="toolTip">
        <string/>
       </property>
@@ -684,17 +506,195 @@
       </property>
      </widget>
     </item>
-    <item row="17" column="0">
-     <widget class="QLabel" name="label_25">
-      <property name="text">
-       <string>RtmLampPIEn:</string>
+    <item row="19" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_8">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPISPSquareEn-SP</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_8">
+    <item row="19" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_22">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPISPSquareEn-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_8">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQTriggerRep-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_4">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQShots-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="27" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_26">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPISPLimInf-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="0">
+     <widget class="QLabel" name="label_19">
       <property name="text">
-       <string>ACQTrigger:</string>
+       <string>RtmLampPIOLDacCntMax:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQSamplesPost-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_27">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPIOLDacCntMax-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>RtmLampAmpIFlagR:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="22" column="0">
+     <widget class="QLabel" name="label_27">
+      <property name="text">
+       <string>RtmLampDacWr:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>RtmLampAmpIFlagL:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_28">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPIOLTriangEn-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_14">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpTFlagL-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_11">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagL-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_13">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampAmpIFlagR-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>ACQSamplesPost:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="23" column="0">
+     <widget class="QLabel" name="label_23">
+      <property name="text">
+       <string>RtmLampPIKP:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="24" column="2">
+     <widget class="PyDMLineEdit" name="PyDMLineEdit_20">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:RtmLampPITI-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_5">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQChannel-Sel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_6">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQShots-SP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="PyDMLabel" name="PyDMLabel_5">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>XX-22SL03:DI-FOFB:ACQSamplesPost-SP</string>
       </property>
      </widget>
     </item>
