@@ -29,7 +29,6 @@ using linb::bad_any_cast;
 
 typedef enum {
     FOFBIDReg = 0,
-    FOFBIDPM = 1,
     FOFBIDEnd,
 } fofb_coreID_types;
 
@@ -71,23 +70,6 @@ typedef enum {
     WVF_DATA_CH14,
     WVF_DATA_CH15,
     WVF_DATA_ALL,
-    WVF_PM_CH0,
-    WVF_PM_CH1,
-    WVF_PM_CH2,
-    WVF_PM_CH3,
-    WVF_PM_CH4,
-    WVF_PM_CH5,
-    WVF_PM_CH6,
-    WVF_PM_CH7,
-    WVF_PM_CH8,
-    WVF_PM_CH9,
-    WVF_PM_CH10,
-    WVF_PM_CH11,
-    WVF_PM_CH12,
-    WVF_PM_CH13,
-    WVF_PM_CH14,
-    WVF_PM_CH15,
-    WVF_PM_ALL,
     WVF_MONIT_CH0,
     WVF_END
 } wvf_types;
@@ -354,11 +336,7 @@ private:
 };
 
 /* These are the drvInfo strings that are used to identify the parameters.
- *  *  *  *  *  * They are used by asyn clients, including standard asyn device support */
-#define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamDataOutString        "FOFB_PROCESSING_RAM_DATA_OUT"              /* asynUInt32Digital,      r/o */
+ * They are used by asyn clients, including standard asyn device support */
 #define P_RtmLampStatusString                   "RTMLAMP_OHWR_STA"                          /* asynUInt32Digital,      r/o */
 #define P_RtmLampDacDataFromWbString            "RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB"         /* asynUInt32Digital,      r/w */
 #define P_RtmLampAmpIFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L"         /* asynUInt32Digital,      r/w */
@@ -377,44 +355,6 @@ private:
 #define P_RtmLampPISPString                     "RTMLAMP_OHWR_CH_0_PI_SP_DATA"              /* asynUInt32Digital,      r/w */
 #define P_RtmLampPIOLDacCntMaxString            "RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA"       /* asynUInt32Digital,      r/w */
 #define P_RtmLampPISPLimInfString               "RTMLAMP_OHWR_PI_SP_LIM_INF_DATA"           /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlActPartString                 "FOFB_CC_CFG_VAL_ACT_PART"                  /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlErrClrString                  "FOFB_CC_CFG_VAL_ERR_CLR"                   /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlCcEnableString                "FOFB_CC_CFG_VAL_CC_ENABLE"                 /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlTfsOverrideString             "FOFB_CC_CFG_VAL_TFS_OVERRIDE"              /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlBpmIdString                   "FOFB_CC_BPM_ID"                            /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlTimeFrameLenString            "FOFB_CC_TIME_FRAME_LEN"                    /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlMgtPowerdownString            "FOFB_CC_MGT_POWERDOWN"                     /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlMgtLoopbackString             "FOFB_CC_MGT_LOOPBACK"                      /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlTimeFrameDlyString            "FOFB_CC_TIME_FRAME_DLY"                    /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlGoldenOrbXString              "FOFB_CC_GOLDEN_ORB_X"                      /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlGoldenOrbYString              "FOFB_CC_GOLDEN_ORB_Y"                      /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlCustFeatureString             "FOFB_CC_CUST_FEATURE"                      /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlRxPolarityString              "FOFB_CC_RXPOLARITY"                        /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlPayloadselString              "FOFB_CC_PAYLOADSEL"                        /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlFofbdataselString             "FOFB_CC_FOFBDATASEL"                       /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlFirmwareVerString             "FOFB_CC_FIRMWARE_VER"                      /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlSysStatusString               "FOFB_CC_SYS_STATUS"                        /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlLinkPartnerString             "FOFB_CC_LINK_PARTNER_1"                    /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlLinkUpString                  "FOFB_CC_LINK_UP"                           /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlTimeFrameCountString          "FOFB_CC_TIME_FRAME_COUNT"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlHardErrCntString              "FOFB_CC_HARD_ERR_CNT_1"                    /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlSoftErrCntString              "FOFB_CC_SOFT_ERR_CNT_1"                    /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlFrameErrCntString             "FOFB_CC_FRAME_ERR_CNT_1"                   /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlRxPckCntString                "FOFB_CC_RX_PCK_CNT_1"                      /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlTxPckCntString                "FOFB_CC_TX_PCK_CNT_1"                      /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlFodProcessTimeString          "FOFB_CC_FOD_PROCESS_TIME"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlBpmCntString                  "FOFB_CC_BPM_COUNT"                         /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlBpmIdRdbackString             "FOFB_CC_BPM_ID_RDBACK"                     /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlTfLengthRdbackString          "FOFB_CC_TF_LENGTH_RDBACK"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlPowerdownRdbackString         "FOFB_CC_POWERDOWN_RDBACK"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlLoopbackRdbackString          "FOFB_CC_LOOPBACK_RDBACK"                   /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlFaivalRdbackString            "FOFB_CC_FAIVAL_RDBACK"                     /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlToaRdEnString                 "FOFB_CC_TOA_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlToaRdStrString                "FOFB_CC_TOA_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlToaDataString                 "FOFB_CC_TOA_DATA_VAL"                      /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlRcbRdEnString                 "FOFB_CC_RCB_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlRcbRdStrString                "FOFB_CC_RCB_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlRcbDataString                 "FOFB_CC_RCB_DATA_VAL"                      /* asynUInt32Digital,      r/o */
 #define P_AdcRateString                         "INFO_ADCRATE"                              /* asynUInt32Digital,      r/o */
 #define P_TbtRateString                         "INFO_TBTRATE"                              /* asynUInt32Digital,      r/o */
 #define P_FofbRateString                        "INFO_FOFBRATE"                             /* asynUInt32Digital,      r/o */
@@ -556,12 +496,8 @@ class drvFOFB : public asynNDArrayDriver {
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
-        int P_FofbProcessingRamWrite;
-#define FIRST_COMMAND P_FofbProcessingRamWrite
-        int P_FofbProcessingRamAddr;
-        int P_FofbProcessingRamDataIn;
-        int P_FofbProcessingRamDataOut;
         int P_RtmLampStatus;
+        #define FIRST_COMMAND P_RtmLampStatus
         int P_RtmLampDacDataFromWb;
         int P_RtmLampAmpIFlagL;
         int P_RtmLampAmpTFlagL;
@@ -579,44 +515,6 @@ class drvFOFB : public asynNDArrayDriver {
         int P_RtmLampPISP;
         int P_RtmLampPIOLDacCntMax;
         int P_RtmLampPISPLimInf;
-        int P_FofbCtrlActPart;
-        int P_FofbCtrlErrClr;
-        int P_FofbCtrlCcEnable;
-        int P_FofbCtrlTfsOverride;
-        int P_FofbCtrlBpmId;
-        int P_FofbCtrlTimeFrameLen;
-        int P_FofbCtrlMgtPowerdown;
-        int P_FofbCtrlMgtLoopback;
-        int P_FofbCtrlTimeFrameDly;
-        int P_FofbCtrlGoldenOrbX;
-        int P_FofbCtrlGoldenOrbY;
-        int P_FofbCtrlCustFeature;
-        int P_FofbCtrlRxPolarity;
-        int P_FofbCtrlPayloadsel;
-        int P_FofbCtrlFofbdatasel;
-        int P_FofbCtrlFirmwareVer;
-        int P_FofbCtrlSysStatus;
-        int P_FofbCtrlLinkPartner;
-        int P_FofbCtrlLinkUp;
-        int P_FofbCtrlTimeFrameCount;
-        int P_FofbCtrlHardErrCnt;
-        int P_FofbCtrlSoftErrCnt;
-        int P_FofbCtrlFrameErrCnt;
-        int P_FofbCtrlRxPckCnt;
-        int P_FofbCtrlTxPckCnt;
-        int P_FofbCtrlFodProcessTime;
-        int P_FofbCtrlBpmCnt;
-        int P_FofbCtrlBpmIdRdback;
-        int P_FofbCtrlTfLengthRdback;
-        int P_FofbCtrlPowerdownRdback;
-        int P_FofbCtrlLoopbackRdback;
-        int P_FofbCtrlFaivalRdback;
-        int P_FofbCtrlToaRdEn;
-        int P_FofbCtrlToaRdStr;
-        int P_FofbCtrlToaData;
-        int P_FofbCtrlRcbRdEn;
-        int P_FofbCtrlRcbRdStr;
-        int P_FofbCtrlRcbData;
         int P_FOFBStatus;
         int P_AdcRate;
         int P_TbtRate;

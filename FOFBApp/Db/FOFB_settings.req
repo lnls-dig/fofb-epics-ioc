@@ -4,7 +4,6 @@ file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ_NAME=ACQ
 # file "FOFBAcq_settings.req",       P=$(P), R=$(R), ACQ_NAME=ACQ_PM
 
 file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=CH0
-file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ=PM,  ARRAY_NAME=CH0
 
 # Regular triggers
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER
@@ -59,15 +58,6 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
 
 #########################
-# FOFB PROCESSING parameters
-#########################
-
-$(P)$(R)FofbProcessingRamWriteEnable-SP
-$(P)$(R)FofbProcessingRamAddr-SP
-$(P)$(R)FofbProcessingRamDataIn-SP
-$(P)$(R)FofbProcessingRamDataOut-SP
-
-#########################
 # RTM LAMP parameters
 #########################
 
@@ -90,45 +80,3 @@ $(P)$(R)RtmLampPISP-SP
 $(P)$(R)RtmLampPIOLDacCntMax-SP
 $(P)$(R)RtmLampPISPLimInf-SP
 
-############################
-# FOFB CTRL parameters
-############################
-
-$(P)$(R)FofbCtrlActPart-SP
-$(P)$(R)FofbCtrlErrClr-SP
-$(P)$(R)FofbCtrlCcEnable-SP
-$(P)$(R)FofbCtrlTfsOverride-SP
-$(P)$(R)FofbCtrlBpmId-SP
-$(P)$(R)FofbCtrlTimeFrameLen-SP
-$(P)$(R)FofbCtrlMgtPowerdwn-SP
-$(P)$(R)FofbCtrlMgtLoopback-SP
-$(P)$(R)FofbCtrlTimeFrameDly-SP
-$(P)$(R)FofbCtrlGoldenOrbX-SP
-$(P)$(R)FofbCtrlGoldenOrbY-SP
-$(P)$(R)FofbCtrlCustFeature-SP
-$(P)$(R)FofbCtrlRxPolarity-SP
-$(P)$(R)FofbCtrlPayloadsel-SP
-$(P)$(R)FofbCtrlFofbdatasel-SP
-$(P)$(R)FofbCtrlFirmwareVer-SP
-$(P)$(R)FofbCtrlSysStatus-SP
-$(P)$(R)FofbCtrlLinkPartner-SP
-$(P)$(R)FofbCtrlLinkUp-SP
-$(P)$(R)FofbCtrlTimeFrameCount-SP
-$(P)$(R)FofbCtrlHardErrCnt-SP
-$(P)$(R)FofbCtrlSoftErrCnt-SP
-$(P)$(R)FofbCtrlFrameErrCnt-SP
-$(P)$(R)FofbCtrlRxPckCnt-SP
-$(P)$(R)FofbCtrlTxPckCnt-SP
-$(P)$(R)FofbCtrlFodProcessTime-SP
-$(P)$(R)FofbCtrlBpmCnt-SP
-$(P)$(R)FofbCtrlBpmIdRdback-SP
-$(P)$(R)FofbCtrlTfLengthRdback-SP
-$(P)$(R)FofbCtrlPowerdownRdback-SP
-$(P)$(R)FofbCtrlLoopbackRdback-SP
-$(P)$(R)FofbCtrlFaivalRdback-SP
-$(P)$(R)FofbCtrlToaRdEn-SP
-$(P)$(R)FofbCtrlToaRdStr-SP
-$(P)$(R)FofbCtrlToaData-SP
-$(P)$(R)FofbCtrlRcbRdEn-SP
-$(P)$(R)FofbCtrlRcbRdStr-SP
-$(P)$(R)FofbCtrlRcbData-SP
