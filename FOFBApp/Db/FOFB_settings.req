@@ -63,20 +63,20 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NA
 
 $(P)$(R)RtmLampStatus-SP
 $(P)$(R)RtmLampDacDataFromWb-SP
-$(P)$(R)RtmLampAmpIFlagL-SP
-$(P)$(R)RtmLampAmpTFlagL-SP
-$(P)$(R)RtmLampAmpIFlagR-SP
-$(P)$(R)RtmLampAmpTFlagR-SP
-$(P)$(R)RtmLampAmpEn-SP
-$(P)$(R)RtmLampPIOLTriangEn-SP
-$(P)$(R)RtmLampPIOLSquareEn-SP
-$(P)$(R)RtmLampPISPSquareEn-SP
-$(P)$(R)RtmLampPIEn-SP
-$(P)$(R)RtmLampDacData-SP
-$(P)$(R)RtmLampDacWr-SP
-$(P)$(R)RtmLampPIKP-SP
-$(P)$(R)RtmLampPITI-SP
-$(P)$(R)RtmLampPISP-SP
+$(P)$(R)RtmLampAmpIFlagL$(RTM_CHAN)-SP
+$(P)$(R)RtmLampAmpTFlagL$(RTM_CHAN)-SP
+$(P)$(R)RtmLampAmpIFlagR$(RTM_CHAN)-SP
+$(P)$(R)RtmLampAmpTFlagR$(RTM_CHAN)-SP
+$(P)$(R)RtmLampAmpEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIOLTriangEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIOLSquareEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPISPSquareEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampDacData$(RTM_CHAN)-SP
+$(P)$(R)RtmLampDacWr$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIKP$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPITI$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPISP$(RTM_CHAN)-SP
 $(P)$(R)RtmLampPIOLDacCntMax-SP
 $(P)$(R)RtmLampPISPLimInf-SP
 

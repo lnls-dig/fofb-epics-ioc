@@ -174,13 +174,13 @@ static const functionsAny_t rtmLampSetGetStatusFunc                   = {functio
                                                                           halcs_get_rtmlamp_ohwr_sta}};
 static const functionsAny_t rtmLampSetGetDacDataFromWbFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
                                                                           halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
-static const functionsAny_t rtmLampSetGetAmpIFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_l,
+static const functionsAny_t rtmLampSetGetAmpIFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_amp_iflag_l}};
-static const functionsAny_t rtmLampSetGetAmpTFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_l,
+static const functionsAny_t rtmLampSetGetAmpTFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_amp_tflag_l}};
-static const functionsAny_t rtmLampSetGetAmpIFlagRFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_iflag_r,
+static const functionsAny_t rtmLampSetGetAmpIFlagRFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_amp_iflag_r}};
-static const functionsAny_t rtmLampSetGetAmpTFlagRFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_tflag_r,
+static const functionsAny_t rtmLampSetGetAmpTFlagRFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_amp_tflag_r}};
 static const functionsAny_t rtmLampSetGetAmpEnFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en,
                                                                           halcs_get_rtmlamp_ohwr_amp_en}};
