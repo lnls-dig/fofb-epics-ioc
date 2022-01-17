@@ -150,6 +150,8 @@ typedef enum {
 #define FOFB_NUMBER_MIN               1
 #define FOFB_NUMBER_MAX               MAX_FOFBS
 
+#define MAX_RTM_LAMP_CHANNELS         12
+
 /* FOFB Channel structure */
 typedef struct {
     /* HW channel mapping. -1 means not available */

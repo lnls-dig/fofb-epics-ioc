@@ -57,26 +57,18 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER_PM
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
 
-#########################
-# RTM LAMP parameters
-#########################
-
-$(P)$(R)RtmLampStatus-SP
-$(P)$(R)RtmLampDacDataFromWb-SP
-$(P)$(R)RtmLampAmpIFlagL$(RTM_CHAN)-SP
-$(P)$(R)RtmLampAmpTFlagL$(RTM_CHAN)-SP
-$(P)$(R)RtmLampAmpIFlagR$(RTM_CHAN)-SP
-$(P)$(R)RtmLampAmpTFlagR$(RTM_CHAN)-SP
-$(P)$(R)RtmLampAmpEn$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPIOLTriangEn$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPIOLSquareEn$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPISPSquareEn$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPIEn$(RTM_CHAN)-SP
-$(P)$(R)RtmLampDacData$(RTM_CHAN)-SP
-$(P)$(R)RtmLampDacWr$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPIKP$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPITI$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPISP$(RTM_CHAN)-SP
-$(P)$(R)RtmLampPIOLDacCntMax-SP
-$(P)$(R)RtmLampPISPLimInf-SP
+# RTM LAMP
+file "FOFBRtm_settings.req", P=$(P), R=$(R)
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH3
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH4
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH5
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH6
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH7
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH8
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH9
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH10
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH11
 

@@ -581,24 +581,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     /* Set the initial values of some parameters */
-    setUIntDigitalParam(P_RtmLampStatus,                      0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampDacDataFromWb,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampAmpIFlagL,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampAmpTFlagL,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampAmpIFlagR,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampAmpTFlagR,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampAmpEn,                       0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIOLTriangEn,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIOLSquareEn,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPISPSquareEn,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIEn,                        0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampDacData,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampDacWr,                       0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIKP,                        0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPITI,                        0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPISP,                        0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIOLDacCntMax,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPISPLimInf,                  0,              0xFFFFFFFF);
     setUIntDigitalParam(P_AdcRate,              ADC_RATE_FACTOR,              0xFFFFFFFF);
     setUIntDigitalParam(P_TbtRate,              TBT_RATE_FACTOR,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbRate,            FOFB_RATE_FACTOR,              0xFFFFFFFF);
@@ -609,8 +591,29 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
     /* Set acquisition parameters */
 
+    setIntegerParam(    P_FOFBStatus,                                         FOFBStatusIdle);
+    setUIntDigitalParam(P_RtmLampStatus,                          0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampDacDataFromWb,                   0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPIOLDacCntMax,                   0,              0xFFFFFFFF);
+    setUIntDigitalParam(P_RtmLampPISPLimInf,                      0,              0xFFFFFFFF);
+
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
-        setIntegerParam(addr, P_FOFBStatus,                                FOFBStatusIdle);
+        for (int addr = 0; addr < MAX_RTM_LAMP_CHANNELS; ++addr) {
+            setUIntDigitalParam(addr, P_RtmLampAmpIFlagL,         0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampAmpTFlagL,         0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampAmpIFlagR,         0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampAmpTFlagR,         0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampAmpEn,             0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPIOLTriangEn,      0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPIOLSquareEn,      0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPISPSquareEn,      0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPIEn,              0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampDacData,           0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampDacWr,             0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPIKP,              0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPITI,              0,              0xFFFFFFFF);
+            setUIntDigitalParam(addr, P_RtmLampPISP,              0,              0xFFFFFFFF);
+        }
     }
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {

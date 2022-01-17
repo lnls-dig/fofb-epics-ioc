@@ -6,10 +6,6 @@
 # Created Dez. 03, 2021
 #
 
-############################
-# RTM LAMP parameters
-############################
-
 record(longout,"$(P)$(R)RtmLampStatus-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set RTM LAMP status register")
