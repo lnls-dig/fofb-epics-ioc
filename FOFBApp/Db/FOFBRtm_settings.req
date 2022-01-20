@@ -11,5 +11,5 @@ $(P)$(R)RtmLampPITI$(RTM_CHAN)-SP
 $(P)$(R)RtmLampPISP$(RTM_CHAN)-SP
 $(P)$(R)RtmLampPIOLDacCntMax-SP
 $(P)$(R)RtmLampPISPLimInf-SP
-
-
+$(P)$(R)RtmLampCurrentGain$(RTM_CHAN)-SP
+$(P)$(R)RtmLampCurrentOffset$(RTM_CHAN)-SP

@@ -58,7 +58,7 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
 
 # RTM LAMP
-file "FOFBRtm_settings.req", P=$(P), R=$(R)
+
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
