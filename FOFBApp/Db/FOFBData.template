@@ -29,45 +29,41 @@ field(SELM, "All")
 
 # Offset and Gain records 
 
-record(ao,"$(P)$(R)RtmLampCurrentOffset$(RTM_CHAN)-SP"){
-  field(DTYP,"asynInt32")
-  field(DESC,"set current offset")
+record(ao,"$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP"){
+  field(DESC,"set waveform offset")
   field(PINI,"YES")
   field(SCAN,"Passive")
-  field(PREC,"3")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
 }
 
-record(ao,"$(P)$(R)RtmLampCurrentGain$(RTM_CHAN)-SP"){
-  field(DTYP,"asynInt32")
-  field(DESC,"set current gain")
+record(ao,"$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP"){
+  field(DESC,"set waveform gain")
   field(PINI,"YES")
   field(SCAN,"Passive")
-  field(PREC,"3")
+  field(PREC,"8")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS)")
 }
 
 # Gain and Offset corrected waveform.
 record(acalcout,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN)")
 {
-  field(DESC, "gain/offset current $(ACQ_NAME)Conv")
-  field(DTYP, "Soft Channel")
+  field(DESC, "gain/offset waveform $(ACQ_NAME)Conv")
   field(NELM, "1000")
   field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
   field(PINI, "YES")
   field(SCAN, "Passive")
-  field(INPA, "$(P)$(R)RtmLampCurrentGain$(RTM_CHAN)-SP")
-  field(INPB, "$(P)$(R)RtmLampCurrentOffset$(RTM_CHAN)-SP")
+  field(INPA, "$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP")
+  field(INPB, "$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP")
   field(INAA, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.VAL CPP NMS")
   field(WAIT, "Wait")
   field(OOPT, "Every Time")
-  field(CALC, "A*AA-B")
+  field(CALC, "A*(AA-B)")
   field(OUT,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN) CA NMS")
 }
 
 record(waveform,"$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN)")
 {
-  field(DESC, "Current calibrated waveform $(ACQ_NAME)$(RTM_CHAN)")
+  field(DESC, "Data calibrated waveform $(ACQ_NAME)$(RTM_CHAN)")
   field(NELM, "1000")
   field(FTVL, "$(FTVL)")
   field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
@@ -76,9 +72,7 @@ record(waveform,"$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN)")
 
 record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN)")
 {
-  field(DESC, "Current calibrated $(ACQ_NAME)")
-#  field(SDIS, "$(P)$(R)PosCal-Sts CPP NMS")
-#  field(DISV, "1")
+  field(DESC, "Data calibrated $(ACQ_NAME)")
   field(INP,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN) NPP NMS")
   field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
   field(MALM, "1000")
