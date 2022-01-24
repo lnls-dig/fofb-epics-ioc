@@ -33,6 +33,10 @@ dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH9,  PORT=$(PORT), ADDR=9,  TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH10, PORT=$(PORT), ADDR=10, TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH11, PORT=$(PORT), ADDR=11, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH12, PORT=$(PORT), ADDR=11, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH13, PORT=$(PORT), ADDR=11, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH14, PORT=$(PORT), ADDR=11, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, RTM_CHAN=CH15, PORT=$(PORT), ADDR=11, TIMEOUT=1")
 
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P},R=${R},ACQ_NAME=GEN,RTM_CHAN=CH0, FTVL=FLOAT,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P},R=${R},ACQ_NAME=GEN,RTM_CHAN=CH1, FTVL=FLOAT,NELEMENTS=$(WAVEFORM_MAX_POINTS)")

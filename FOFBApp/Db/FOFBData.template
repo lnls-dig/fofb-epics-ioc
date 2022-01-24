@@ -3,7 +3,7 @@ record(waveform,"$(P)$(R)$(ACQ_NAME)ArrayDataWvf")
     field(DESC, "Data waveform $(ACQ_NAME)")
     field(NELM,"$(NELEMENTS)")
     field(FTVL, "LONG")
-    field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
+    field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
     field(FLNK, "$(P)$(R)$(ACQ_NAME)ArrayData")
 }
 
@@ -11,7 +11,7 @@ record(subArray,"$(P)$(R)$(ACQ_NAME)ArrayData")
 {
     field(DESC, "Data $(ACQ_NAME)")
     field(INP,  "$(P)$(R)$(ACQ_NAME)ArrayDataWvf NPP NMS")
-    field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
+    field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
     field(MALM, "$(NELEMENTS)")
     field(FTVL, "LONG")
     field(FLNK, "$(P)$(R)$(ACQ_NAME)ArrayDataSeq")
@@ -22,7 +22,7 @@ record(subArray,"$(P)$(R)$(ACQ_NAME)ArrayData")
 record(seq, "$(P)$(R)$(ACQ_NAME)ArrayDataSeq"){
 field(DESC,"Get NORD from $(ACQ_NAME)$ waveform")
 field(PINI,"YES")
-field(DOL1, "$(P)$(R)$(ACQ_NAME)RawArrayData.NORD NPP NMS")
+field(DOL1, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.NORD NPP NMS")
 field(LNK1, "$(P)$(R)$(ACQ_NAME)ArrayData.NELM PP NMS")
 field(SELM, "All")
 }
@@ -41,15 +41,15 @@ record(ao,"$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP"){
   field(PINI,"YES")
   field(SCAN,"Passive")
   field(PREC,"8")
-  field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS)")
+  field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
 }
 
 # Gain and Offset corrected waveform.
 record(acalcout,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN)")
 {
   field(DESC, "gain/offset waveform $(ACQ_NAME)Conv")
-  field(NELM, "1000")
-  field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
+  field(NELM, "$(NELEMENTS)")
+  field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
   field(PINI, "YES")
   field(SCAN, "Passive")
   field(INPA, "$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP")
@@ -64,9 +64,9 @@ record(acalcout,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN)")
 record(waveform,"$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN)")
 {
   field(DESC, "Data calibrated waveform $(ACQ_NAME)$(RTM_CHAN)")
-  field(NELM, "1000")
+  field(NELM, "$(NELEMENTS)")
   field(FTVL, "$(FTVL)")
-  field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
+  field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
   field(FLNK, "$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN) PP")
   }
 
@@ -74,8 +74,8 @@ record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN)")
 {
   field(DESC, "Data calibrated $(ACQ_NAME)")
   field(INP,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN) NPP NMS")
-  field(TSEL, "$(P)$(R)$(ACQ_NAME)RawArrayData.TIME")
-  field(MALM, "1000")
+  field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
+  field(MALM, "$(NELEMENTS)")
   field(FTVL, "$(FTVL)")
   field(FLNK, "$(P)$(R)$(ACQ_NAME)ConvArrayDataSeq$(RTM_CHAN)")
 }
@@ -85,7 +85,7 @@ record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN)")
 record(seq, "$(P)$(R)$(ACQ_NAME)ConvArrayDataSeq$(RTM_CHAN)"){
   field(DESC,"Get NORD from $(ACQ_NAME)Raw waveform")
   field(PINI,"YES")
-  field(DOL1, "$(P)$(R)$(ACQ_NAME)RawArrayData.NORD NPP NMS")
+  field(DOL1, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.NORD NPP NMS")
   field(LNK1, "$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN).NELM PP NMS")
   field(SELM, "All")
 }
