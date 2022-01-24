@@ -712,7 +712,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -738,7 +738,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -764,7 +764,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -790,7 +790,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -816,7 +816,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -842,7 +842,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -868,7 +868,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -894,7 +894,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1588,7 +1588,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH4&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH4&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1614,7 +1614,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH5&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH5&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1640,7 +1640,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH6&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH6&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1666,7 +1666,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH7&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH7&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1692,7 +1692,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH12&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH12&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1718,7 +1718,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH13&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH13&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1744,7 +1744,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH14&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH14&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
@@ -1770,7 +1770,7 @@
        </property>
        <property name="curves">
         <stringlist>
-         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataWvfCH15&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+         <string>{&quot;y_channel&quot;: &quot;XX-99SL01:DI-FOFBCtrl:GENConvArrayDataCH15&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
         </stringlist>
        </property>
       </widget>
