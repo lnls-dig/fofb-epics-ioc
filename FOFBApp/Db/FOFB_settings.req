@@ -31,34 +31,7 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
 
-# PM triggers
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=1,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=2,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=3,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=4,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=5,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=6,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=7,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=8,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=9,  TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=10, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=11, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=12, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=13, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=14, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=15, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=16, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=17, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=18, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=19, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=20, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER_PM
-file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
-
 # RTM LAMP
-
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
@@ -71,4 +44,18 @@ file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH8
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH9
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH10
 file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH11
+
+# FOFB CTRL
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH0
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH1
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH2
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH3
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH4
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH5
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH6
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH7
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH8
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH9
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH10
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH11
 
