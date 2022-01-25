@@ -10,6 +10,7 @@ PYTHON=python
 LIBRARY_IOC += FOFBSupport
 FOFBSupport_SRCS += drvFOFB.cpp
 FOFBSupport_LIBS += asyn
+FOFBSupport_LIBS += ADBase
 FOFBSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #=============================
@@ -24,6 +25,7 @@ DBD += FOFBSupport.dbd
 # Include dbd files from all support applications:
 FOFB_DBD += base.dbd
 FOFB_DBD += asyn.dbd
+FOFB_DBD += devIocStats.dbd
 
 # FOFB_registerRecordDeviceDriver.cpp derives from FOFB.dbd
 FOFB_SRCS += FOFB_registerRecordDeviceDriver.cpp
@@ -36,12 +38,17 @@ FOFB_SRCS_vxWorks += -nil-
 FOFB_LIBS += FOFBSupport
 FOFB_LIBS += asyn
 FOFB_LIBS += autosave
+FOFB_LIBS += devIocStats
 
 # Link to the EPICS Base libraries
 FOFB_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # Link to system libraries
+FOFB_SYS_LIBS += bpmclient
+FOFB_SYS_LIBS += acqclient
 FOFB_SYS_LIBS += halcsclient
+FOFB_SYS_LIBS += bpmclient
+FOFB_SYS_LIBS += acqclient
 FOFB_SYS_LIBS += errhand
 FOFB_SYS_LIBS += hutils
 FOFB_SYS_LIBS += mlm
@@ -63,7 +70,11 @@ PROD += FOFBCheckInit
 FOFBCheckInit_SRCS += FOFBCheckInit.c
 
 # Link to system libraries
+FOFBCheckInit_SYS_LIBS += bpmclient
+FOFBCheckInit_SYS_LIBS += acqclient
 FOFBCheckInit_SYS_LIBS += halcsclient
+FOFBCheckInit_SYS_LIBS += bpmclient
+FOFBCheckInit_SYS_LIBS += acqclient
 FOFBCheckInit_SYS_LIBS += errhand
 FOFBCheckInit_SYS_LIBS += hutils
 FOFBCheckInit_SYS_LIBS += mlm
@@ -81,7 +92,7 @@ FOFBCheckInit_SYS_LIBS += gcc
 USR_CXXFLAGS += -std=gnu++11 -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 USR_CFLAGS += -DMLM_BUILD_DRAFT_API -D__BOARD_AFCV3_1__
 
-# include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
+include $(AREA_DETECTOR_COMPAT)/ADApp/commonDriverMakefile
 
 # #===========================
 

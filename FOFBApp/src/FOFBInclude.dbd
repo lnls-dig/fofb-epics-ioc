@@ -1,5 +1,11 @@
 include "base.dbd"
 include "asyn.dbd"
+include "calc.dbd"
 include "asSupport.dbd"
 include "FOFBSupport.dbd"
+include "devIocStats.dbd"
+include "NDPluginSupport.dbd"
+include "NDFileHDF5.dbd"
+include "NDFileNetCDF.dbd"
+include "busySupport.dbd"
 

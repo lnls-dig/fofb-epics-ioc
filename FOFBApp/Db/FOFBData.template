@@ -1,0 +1,93 @@
+record(waveform,"$(P)$(R)$(ACQ_NAME)ArrayDataWvf")
+{
+    field(DESC, "Data waveform $(ACQ_NAME)")
+    field(NELM,"$(NELEMENTS)")
+    field(FTVL, "LONG")
+    field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
+    field(FLNK, "$(P)$(R)$(ACQ_NAME)ArrayData")
+}
+
+record(subArray,"$(P)$(R)$(ACQ_NAME)ArrayData")
+{
+    field(DESC, "Data $(ACQ_NAME)")
+    field(INP,  "$(P)$(R)$(ACQ_NAME)ArrayDataWvf NPP NMS")
+    field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
+    field(MALM, "$(NELEMENTS)")
+    field(FTVL, "LONG")
+    field(FLNK, "$(P)$(R)$(ACQ_NAME)ArrayDataSeq")
+}
+
+# Adjust NELM of subarray so clients get correct monitors when 
+# number os elements change 
+record(seq, "$(P)$(R)$(ACQ_NAME)ArrayDataSeq"){
+field(DESC,"Get NORD from $(ACQ_NAME)$ waveform")
+field(PINI,"YES")
+field(DOL1, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.NORD NPP NMS")
+field(LNK1, "$(P)$(R)$(ACQ_NAME)ArrayData.NELM PP NMS")
+field(SELM, "All")
+}
+
+# Offset and Gain records 
+
+record(ao,"$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP"){
+  field(DESC,"set waveform offset")
+  field(PINI,"YES")
+  field(SCAN,"Passive")
+  field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
+}
+
+record(ao,"$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP"){
+  field(DESC,"set waveform gain")
+  field(PINI,"YES")
+  field(SCAN,"Passive")
+  field(PREC,"8")
+  field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
+}
+
+# Gain and Offset corrected waveform.
+record(acalcout,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN)")
+{
+  field(DESC, "gain/offset waveform $(ACQ_NAME)Conv")
+  field(NELM, "$(NELEMENTS)")
+  field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
+  field(PINI, "YES")
+  field(SCAN, "Passive")
+  field(INPA, "$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP")
+  field(INPB, "$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP")
+  field(INAA, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.VAL CPP NMS")
+  field(WAIT, "Wait")
+  field(OOPT, "Every Time")
+  field(CALC, "A*(AA-B)")
+  field(OUT,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN) CA NMS")
+}
+
+record(waveform,"$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN)")
+{
+  field(DESC, "Data calibrated waveform $(ACQ_NAME)$(RTM_CHAN)")
+  field(NELM, "$(NELEMENTS)")
+  field(FTVL, "$(FTVL)")
+  field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
+  field(FLNK, "$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN) PP")
+  }
+
+record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN)")
+{
+  field(DESC, "Data calibrated $(ACQ_NAME)")
+  field(NELM, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.NORD")
+  field(INP,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN) NPP NMS")
+  field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
+  field(MALM, "1000")
+  field(FTVL, "$(FTVL)")
+  field(FLNK, "$(P)$(R)$(ACQ_NAME)ConvArrayDataSeq$(RTM_CHAN)")
+}
+
+# Adjust NELM of subarray so clients get correct monitors when
+# number os elements change
+record(seq, "$(P)$(R)$(ACQ_NAME)ConvArrayDataSeq$(RTM_CHAN)"){
+  field(DESC,"Get NORD from $(ACQ_NAME)Raw waveform")
+  field(PINI,"YES")
+  field(DOL1, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.NORD NPP NMS")
+  field(LNK1, "$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN).NELM PP NMS")
+  field(SELM, "All")
+}
+

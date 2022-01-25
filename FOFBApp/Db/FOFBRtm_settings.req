@@ -1,0 +1,15 @@
+$(P)$(R)RtmLampDacDataFromWb-SP
+$(P)$(R)RtmLampAmpEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIOLTriangEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIOLSquareEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPISPSquareEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIEn$(RTM_CHAN)-SP
+$(P)$(R)RtmLampDacData$(RTM_CHAN)-SP
+$(P)$(R)RtmLampDacWr$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIKP$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPITI$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPISP$(RTM_CHAN)-SP
+$(P)$(R)RtmLampPIOLDacCntMax-SP
+$(P)$(R)RtmLampPISPLimInf-SP
+$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP
+$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP

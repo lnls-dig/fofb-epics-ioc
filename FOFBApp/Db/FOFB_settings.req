@@ -1,74 +1,74 @@
-#########################
-# FOFB PROCESSING parameters
-#########################
+file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ_NAME=ACQ
+# Don't save ACQ_PM PVs, as we rely on the default values
+# to always return Post-Mortem to a safe state.
+# file "FOFBAcq_settings.req",       P=$(P), R=$(R), ACQ_NAME=ACQ_PM
 
-$(P)$(R)FofbProcessingRamWriteEnable-SP
-$(P)$(R)FofbProcessingRamAddr-SP
-$(P)$(R)FofbProcessingRamDataIn-SP
-$(P)$(R)FofbProcessingRamDataOut-SP
+file "FOFBAcq_settings.req",         P=$(P), R=$(R), ACQ=GEN, ARRAY_NAME=CH0
 
-#########################
-# RTM LAMP parameters
-#########################
+# Regular triggers
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=1,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=2,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=3,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=4,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=5,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=6,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=7,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=8,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=9,  TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=10, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=11, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=12, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=13, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=14, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=15, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=16, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=17, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=18, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=19, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=20, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
 
-$(P)$(R)RtmLampStatus-SP
-$(P)$(R)RtmLampDacDataFromWb-SP
-$(P)$(R)RtmLampAmpIFlagL-SP
-$(P)$(R)RtmLampAmpTFlagL-SP
-$(P)$(R)RtmLampAmpIFlagR-SP
-$(P)$(R)RtmLampAmpTFlagR-SP
-$(P)$(R)RtmLampAmpEn-SP
-$(P)$(R)RtmLampPIOLTriangEn-SP
-$(P)$(R)RtmLampPIOLSquareEn-SP
-$(P)$(R)RtmLampPISPSquareEn-SP
-$(P)$(R)RtmLampPIEn-SP
-$(P)$(R)RtmLampDacData-SP
-$(P)$(R)RtmLampDacWr-SP
-$(P)$(R)RtmLampPIKP-SP
-$(P)$(R)RtmLampPITI-SP
-$(P)$(R)RtmLampPISP-SP
-$(P)$(R)RtmLampPIOLDacCntMax-SP
-$(P)$(R)RtmLampPISPLimInf-SP
+# PM triggers
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=0,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=1,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=2,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=3,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=4,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=5,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=6,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=7,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=8,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=9,  TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=10, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=11, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=12, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=13, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=14, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=15, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=16, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=17, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=18, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=19, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=20, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=21, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NAME=TRIGGER_PM
+file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER_PM
 
-############################
-# FOFB CTRL parameters
-############################
+# RTM LAMP
 
-$(P)$(R)FofbCtrlActPart-SP
-$(P)$(R)FofbCtrlErrClr-SP
-$(P)$(R)FofbCtrlCcEnable-SP
-$(P)$(R)FofbCtrlTfsOverride-SP
-$(P)$(R)FofbCtrlBpmId-SP
-$(P)$(R)FofbCtrlTimeFrameLen-SP
-$(P)$(R)FofbCtrlMgtPowerdwn-SP
-$(P)$(R)FofbCtrlMgtLoopback-SP
-$(P)$(R)FofbCtrlTimeFrameDly-SP
-$(P)$(R)FofbCtrlGoldenOrbX-SP
-$(P)$(R)FofbCtrlGoldenOrbY-SP
-$(P)$(R)FofbCtrlCustFeature-SP
-$(P)$(R)FofbCtrlRxPolarity-SP
-$(P)$(R)FofbCtrlPayloadsel-SP
-$(P)$(R)FofbCtrlFofbdatasel-SP
-$(P)$(R)FofbCtrlFirmwareVer-SP
-$(P)$(R)FofbCtrlSysStatus-SP
-$(P)$(R)FofbCtrlLinkPartner-SP
-$(P)$(R)FofbCtrlLinkUp-SP
-$(P)$(R)FofbCtrlTimeFrameCount-SP
-$(P)$(R)FofbCtrlHardErrCnt-SP
-$(P)$(R)FofbCtrlSoftErrCnt-SP
-$(P)$(R)FofbCtrlFrameErrCnt-SP
-$(P)$(R)FofbCtrlRxPckCnt-SP
-$(P)$(R)FofbCtrlTxPckCnt-SP
-$(P)$(R)FofbCtrlFodProcessTime-SP
-$(P)$(R)FofbCtrlBpmCnt-SP
-$(P)$(R)FofbCtrlBpmIdRdback-SP
-$(P)$(R)FofbCtrlTfLengthRdback-SP
-$(P)$(R)FofbCtrlPowerdownRdback-SP
-$(P)$(R)FofbCtrlLoopbackRdback-SP
-$(P)$(R)FofbCtrlFaivalRdback-SP
-$(P)$(R)FofbCtrlToaRdEn-SP
-$(P)$(R)FofbCtrlToaRdStr-SP
-$(P)$(R)FofbCtrlToaData-SP
-$(P)$(R)FofbCtrlRcbRdEn-SP
-$(P)$(R)FofbCtrlRcbRdStr-SP
-$(P)$(R)FofbCtrlRcbData-SP
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH3
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH4
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH5
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH6
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH7
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH8
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH9
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH10
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH11
+
