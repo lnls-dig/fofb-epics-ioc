@@ -47,7 +47,7 @@
 /* Number fo triggers that are relative to waveform acquisition */
 #define MAX_WAVEFORM_TRIGGERS           17
 
-#define CH_DEFAULT_PM                   CH_TBT
+#define CH_DEFAULT_PM                   CH_RTM
 #define SAMPLES_PRE_DEFAULT_PM(maxPoints) \
                                         (maxPoints/2)
 #define SAMPLES_POST_DEFAULT_PM(maxPoints) \
@@ -68,27 +68,7 @@ typedef struct {
 } taskParams_t;
 
 static const channelMap_t channelMap[CH_END] = {
-    /* [CH_ADC] =     */ {CH_HW_ADC,                           // HwDataChannel
-                          {{WVF_DATA_CH0,                      // NDArrayData
-                            WVF_DATA_CH1,
-                            WVF_DATA_CH2,
-                            WVF_DATA_CH3,
-                            WVF_DATA_CH4,
-                            WVF_DATA_CH5,
-                            WVF_DATA_CH6,
-                            WVF_DATA_CH7,
-                            WVF_DATA_CH8,
-                            WVF_DATA_CH9,
-                            WVF_DATA_CH10,
-                            WVF_DATA_CH11,
-                            WVF_DATA_CH12,
-                            WVF_DATA_CH13,
-                            WVF_DATA_CH14,
-                            WVF_DATA_CH15,
-                            WVF_DATA_ALL},
-                          },
-                          },
-    /* [CH_TBT] =     */ {CH_HW_TBT,
+    /* [CH_RTM] =     */ {CH_HW_RTM,                           // HwDataChannel
                           {{WVF_DATA_CH0,                      // NDArrayData
                             WVF_DATA_CH1,
                             WVF_DATA_CH2,
@@ -128,46 +108,13 @@ static const channelMap_t channelMap[CH_END] = {
                             -1},
                           },
                           },
-    /* [CH_MONIT1] =  */ {CH_HW_MONIT1,                           // HwDataChannel
-                          {{-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
-                          },
-                          },
 };
 
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
 static const channelRevMap_t channelRevMap[CH_HW_END] = {
                         /* EPICS channel */
-     /* [CH_HW_ADC] =       */  {CH_ADC},
-     /* 1 = Unavailable     */  {-1},
-     /* 2 = Unavailable     */  {-1},
-     /* 3 = Unavailable     */  {-1},
-     /* 4 = Unavailable     */  {-1},
-     /* 5 = Unavailable     */  {-1},
-     /* [CH_HW_TBT] =       */  {CH_TBT},
-     /* 7 = Unavailable     */  {-1},
-     /* 8 = Unavailable     */  {-1},
-     /* 9 = Unavailable     */  {-1},
-     /* 10 = Unavailable    */  {-1},
+     /* [CH_HW_RTM] =       */  {CH_RTM},
      /* [CH_HW_FOFB] =      */  {CH_FOFB},
-     /* 12 = Unavailable    */  {-1},
-     /* 13 = Unavailable    */  {-1},
-     /* [CH_HW_MONIT1] =    */  {CH_MONIT1},
 };
 /* Int32 functions mapping */
 static const functionsAny_t rtmLampSetGetStatusFunc                   = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
@@ -622,7 +569,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(addr, P_SamplesPre,           1000,               0xFFFFFFFF);
         setUIntDigitalParam(addr, P_SamplesPost,             0,               0xFFFFFFFF);
         setUIntDigitalParam(addr, P_NumShots,                1,               0xFFFFFFFF);
-        setIntegerParam(    addr, P_Channel,                                      CH_ADC);
+        setIntegerParam(    addr, P_Channel,                                      CH_RTM);
         setDoubleParam(     addr, P_UpdateTime,                                      1.0);
         setUIntDigitalParam(addr, P_Trigger,       ACQ_CLIENT_TRIG_SKIP,      0xFFFFFFFF);
         setUIntDigitalParam(addr, P_TriggerEvent,  TRIG_ACQ_STOP,             0xFFFFFFFF);

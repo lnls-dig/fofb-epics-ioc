@@ -96,20 +96,16 @@ typedef enum {
 
 /* Channel IDs */
 typedef enum {
-    CH_ADC = 0,
-    CH_TBT = 1,
-    CH_FOFB = 2,
-    CH_MONIT1 = 3,
+    CH_RTM = 0,
+    CH_FOFB = 1,
     CH_END
 } ch_types;
 
 #define MAX_CHANNELS                  CH_END
 
 typedef enum {
-    CH_HW_ADC = 0,
-    CH_HW_TBT = 6,
-    CH_HW_FOFB = 11,
-    CH_HW_MONIT1 = 14,
+    CH_HW_RTM = 0,
+    CH_HW_FOFB = 1,
     CH_HW_END
 } ch_hw_types;
 
