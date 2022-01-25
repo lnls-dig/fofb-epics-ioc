@@ -34,60 +34,100 @@ record(longin,"$(P)$(R)RtmLampDacDataFromWb-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB")
 }
 
-record(longout,"$(P)$(R)RtmLampAmpIFlagL$(RTM_CHAN)-SP"){
+record(mbbo,"$(P)$(R)RtmLampAmpIFlagL$(RTM_CHAN)-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier left overcurrent flag")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
-record(longin,"$(P)$(R)RtmLampAmpIFlagL$(RTM_CHAN)-RB"){
+record(mbbi,"$(P)$(R)RtmLampAmpIFlagL$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier left overcurrent flag")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
 
-record(longout,"$(P)$(R)RtmLampAmpTFlagL$(RTM_CHAN)-SP"){
+record(mbbo,"$(P)$(R)RtmLampAmpTFlagL$(RTM_CHAN)-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier left overtemperature flag")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_L")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
-record(longin,"$(P)$(R)RtmLampAmpTFlagL$(RTM_CHAN)-RB"){
+record(mbbi,"$(P)$(R)RtmLampAmpTFlagL$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier left overtemperature flag")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_L")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
 
-record(longout,"$(P)$(R)RtmLampAmpIFlagR$(RTM_CHAN)-SP"){
+record(mbbo,"$(P)$(R)RtmLampAmpIFlagR$(RTM_CHAN)-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier right overcurrent flag")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_R")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
-record(longin,"$(P)$(R)RtmLampAmpIFlagR$(RTM_CHAN)-RB"){
+record(mbbi,"$(P)$(R)RtmLampAmpIFlagR$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier right overcurrent flag")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_R")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
 
-record(longout,"$(P)$(R)RtmLampAmpTFlagR$(RTM_CHAN)-SP"){
+record(mbbo,"$(P)$(R)RtmLampAmpTFlagR$(RTM_CHAN)-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier right overtemperature flag")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
-record(longin,"$(P)$(R)RtmLampAmpTFlagR$(RTM_CHAN)-RB"){
+record(mbbi,"$(P)$(R)RtmLampAmpTFlagR$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier right overtemperature flag")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
 
 record(longout,"$(P)$(R)RtmLampAmpEn$(RTM_CHAN)-SP"){

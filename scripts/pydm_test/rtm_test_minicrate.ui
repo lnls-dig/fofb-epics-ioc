@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1440</width>
+    <width>1390</width>
     <height>808</height>
    </rect>
   </property>
@@ -16,14 +16,14 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>450</x>
      <y>10</y>
-     <width>991</width>
+     <width>931</width>
      <height>791</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -34,7 +34,7 @@
       <rect>
        <x>700</x>
        <y>50</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -62,8 +62,75 @@
       </item>
       <item row="1" column="1">
        <widget class="PyDMLabel" name="PyDMLabel_100">
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>78</red>
+              <green>154</green>
+              <blue>6</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>78</red>
+              <green>154</green>
+              <blue>6</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>190</red>
+              <green>190</green>
+              <blue>190</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
         <property name="toolTip">
          <string/>
+        </property>
+        <property name="alarmSensitiveContent" stdset="0">
+         <bool>false</bool>
         </property>
         <property name="channel" stdset="0">
          <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpIFlagLCH0-RB</string>
@@ -90,7 +157,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_99">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -142,7 +209,7 @@
       <rect>
        <x>700</x>
        <y>230</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -198,7 +265,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_104">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -250,7 +317,7 @@
       <rect>
        <x>700</x>
        <y>410</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -306,7 +373,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_111">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -358,7 +425,7 @@
       <rect>
        <x>700</x>
        <y>590</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -414,7 +481,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_118">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -910,7 +977,7 @@
       <rect>
        <x>700</x>
        <y>50</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -966,7 +1033,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_125">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1018,7 +1085,7 @@
       <rect>
        <x>700</x>
        <y>230</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -1074,7 +1141,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_132">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1126,7 +1193,7 @@
       <rect>
        <x>700</x>
        <y>410</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -1182,7 +1249,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_139">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1234,7 +1301,7 @@
       <rect>
        <x>700</x>
        <y>590</y>
-       <width>291</width>
+       <width>249</width>
        <height>161</height>
       </rect>
      </property>
@@ -1290,7 +1357,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_146">
         <property name="text">
-         <string>Amplifier Overtermperature</string>
+         <string>Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1347,7 +1414,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabWidget_2Page1">
       <attribute name="title">
@@ -2070,7 +2137,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -5236,8 +5303,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>1046</x>
-     <y>10</y>
+     <x>970</x>
+     <y>40</y>
      <width>81</width>
      <height>21</height>
     </rect>
@@ -5249,10 +5316,10 @@
   <widget class="PyDMLabel" name="PyDMLabel_3">
    <property name="geometry">
     <rect>
-     <x>1130</x>
-     <y>6</y>
+     <x>1050</x>
+     <y>40</y>
      <width>101</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="toolTip">
@@ -5265,10 +5332,10 @@
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>1270</x>
-     <y>0</y>
+     <x>1230</x>
+     <y>40</y>
      <width>121</width>
-     <height>41</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -5278,9 +5345,9 @@
   <widget class="PyDMLabel" name="PyDMLabel_9">
    <property name="geometry">
     <rect>
-     <x>1385</x>
-     <y>7</y>
-     <width>21</width>
+     <x>1350</x>
+     <y>40</y>
+     <width>20</width>
      <height>21</height>
     </rect>
    </property>
@@ -5294,8 +5361,8 @@
   <zorder>tabWidget</zorder>
   <zorder>tabWidget_2</zorder>
   <zorder>gridLayoutWidget</zorder>
-  <zorder>PyDMLabel_3</zorder>
   <zorder>label_3</zorder>
+  <zorder>PyDMLabel_3</zorder>
   <zorder>label_9</zorder>
   <zorder>PyDMLabel_9</zorder>
  </widget>
