@@ -32,9 +32,9 @@
     <widget class="QWidget" name="formLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>50</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -42,7 +42,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_11">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -56,7 +56,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_12">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -140,7 +140,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_13">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -157,7 +157,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_99">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -171,7 +171,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_97">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -188,7 +188,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_98">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -207,9 +207,9 @@
     <widget class="QWidget" name="formLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>230</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -217,7 +217,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_100">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -231,7 +231,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_101">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -248,7 +248,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_102">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -265,7 +265,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_104">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -279,7 +279,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_105">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -296,7 +296,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_106">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -315,9 +315,9 @@
     <widget class="QWidget" name="formLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>410</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -325,7 +325,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_107">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -339,7 +339,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_108">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -356,7 +356,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_109">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -373,7 +373,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_111">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -387,7 +387,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_112">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -404,7 +404,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_113">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -423,9 +423,9 @@
     <widget class="QWidget" name="formLayoutWidget_4">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>590</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -433,7 +433,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_114">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -447,7 +447,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_115">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -464,7 +464,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_116">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -481,7 +481,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_118">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -495,7 +495,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_119">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -512,7 +512,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_120">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -967,6 +967,67 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>20</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>200</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>380</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>560</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <zorder>groupBox_2</zorder>
+    <zorder>groupBox_3</zorder>
+    <zorder>groupBox_4</zorder>
+    <zorder>groupBox</zorder>
+    <zorder>formLayoutWidget</zorder>
+    <zorder>formLayoutWidget_2</zorder>
+    <zorder>formLayoutWidget_3</zorder>
+    <zorder>formLayoutWidget_4</zorder>
+    <zorder>tabWidget</zorder>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -975,9 +1036,9 @@
     <widget class="QWidget" name="formLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>50</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -985,7 +1046,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_121">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -999,7 +1060,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_122">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1016,7 +1077,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_123">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1033,7 +1094,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_125">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1047,7 +1108,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_126">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1064,7 +1125,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_127">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1083,9 +1144,9 @@
     <widget class="QWidget" name="formLayoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>230</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -1093,7 +1154,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_128">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -1107,7 +1168,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_129">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1124,7 +1185,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_130">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1141,7 +1202,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_132">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1155,7 +1216,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_133">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1172,7 +1233,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_134">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1191,9 +1252,9 @@
     <widget class="QWidget" name="formLayoutWidget_7">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>410</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -1201,7 +1262,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_135">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -1215,7 +1276,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_136">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1232,7 +1293,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_137">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1249,7 +1310,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_139">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1263,7 +1324,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_140">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1280,7 +1341,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_141">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1299,9 +1360,9 @@
     <widget class="QWidget" name="formLayoutWidget_8">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>711</x>
        <y>590</y>
-       <width>249</width>
+       <width>252</width>
        <height>161</height>
       </rect>
      </property>
@@ -1309,7 +1370,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_142">
         <property name="text">
-         <string>Amplifier Overcurrent</string>
+         <string> Amplifier Overcurrent</string>
         </property>
        </widget>
       </item>
@@ -1323,7 +1384,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_143">
         <property name="text">
-         <string>RtmLampAmpIFlagL:</string>
+         <string> RtmLampAmpIFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1340,7 +1401,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_144">
         <property name="text">
-         <string>RtmLampAmpIFlagR:</string>
+         <string> RtmLampAmpIFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1357,7 +1418,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_146">
         <property name="text">
-         <string>Amplifier Overtermp</string>
+         <string> Amplifier Overtermp</string>
         </property>
        </widget>
       </item>
@@ -1371,7 +1432,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_147">
         <property name="text">
-         <string>RtmLampAmpTFlagL:</string>
+         <string> RtmLampAmpTFlagL:</string>
         </property>
        </widget>
       </item>
@@ -1388,7 +1449,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_148">
         <property name="text">
-         <string>RtmLampAmpTFlagR:</string>
+         <string> RtmLampAmpTFlagR:</string>
         </property>
        </widget>
       </item>
@@ -1843,15 +1904,76 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>20</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>200</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>380</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>560</y>
+       <width>221</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <zorder>groupBox_6</zorder>
+    <zorder>groupBox_7</zorder>
+    <zorder>groupBox_8</zorder>
+    <zorder>groupBox_9</zorder>
+    <zorder>formLayoutWidget_5</zorder>
+    <zorder>formLayoutWidget_6</zorder>
+    <zorder>formLayoutWidget_7</zorder>
+    <zorder>formLayoutWidget_8</zorder>
+    <zorder>tabWidget_2</zorder>
    </widget>
   </widget>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>421</width>
-     <height>306</height>
+     <x>20</x>
+     <y>20</y>
+     <width>411</width>
+     <height>291</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -1868,7 +1990,7 @@
     <item row="5" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>ACQSamplesPost:</string>
+       <string> ACQSamplesPost:</string>
       </property>
      </widget>
     </item>
@@ -1955,14 +2077,14 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>ACQTriggerEvent:</string>
+       <string> ACQTriggerEvent:</string>
       </property>
      </widget>
     </item>
     <item row="7" column="0">
      <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>RtmLampDacDataFromWb:</string>
+       <string> RtmLampDacDataFromWb:</string>
       </property>
      </widget>
     </item>
@@ -1979,7 +2101,7 @@
     <item row="2" column="0">
      <widget class="QLabel" name="label_8">
       <property name="text">
-       <string>ACQTrigger:</string>
+       <string> ACQTrigger:</string>
       </property>
      </widget>
     </item>
@@ -2006,7 +2128,7 @@
     <item row="9" column="0">
      <widget class="QLabel" name="label_20">
       <property name="text">
-       <string>RtmLampPISPLimInf:</string>
+       <string> RtmLampPISPLimInf:</string>
       </property>
      </widget>
     </item>
@@ -2023,7 +2145,7 @@
     <item row="1" column="0">
      <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>ACQTriggerRep:</string>
+       <string> ACQTriggerRep:</string>
       </property>
      </widget>
     </item>
@@ -2050,7 +2172,7 @@
     <item row="8" column="0">
      <widget class="QLabel" name="label_35">
       <property name="text">
-       <string>RtmLampPIOLDacCntMax:</string>
+       <string> RtmLampPIOLDacCntMax:</string>
       </property>
      </widget>
     </item>
@@ -2077,21 +2199,21 @@
     <item row="4" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>ACQSamplesPre:</string>
+       <string> ACQSamplesPre:</string>
       </property>
      </widget>
     </item>
     <item row="6" column="0">
      <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>ACQShots:</string>
+       <string> ACQShots:</string>
       </property>
      </widget>
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_6">
       <property name="text">
-       <string>ACQChannel:</string>
+       <string> ACQChannel:</string>
       </property>
      </widget>
     </item>
@@ -2137,7 +2259,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>7</number>
    </property>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -2146,9 +2268,9 @@
     <widget class="QWidget" name="gridLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -2541,9 +2663,9 @@
     <widget class="QWidget" name="gridLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -2936,9 +3058,9 @@
     <widget class="QWidget" name="gridLayoutWidget_4">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -3331,9 +3453,9 @@
     <widget class="QWidget" name="gridLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -3726,9 +3848,9 @@
     <widget class="QWidget" name="gridLayoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -4121,9 +4243,9 @@
     <widget class="QWidget" name="gridLayoutWidget_7">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -4516,9 +4638,9 @@
     <widget class="QWidget" name="gridLayoutWidget_8">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -4911,9 +5033,9 @@
     <widget class="QWidget" name="gridLayoutWidget_9">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>421</width>
+       <x>10</x>
+       <y>9</y>
+       <width>411</width>
        <height>430</height>
       </rect>
      </property>
@@ -5358,6 +5480,20 @@
     <string>XX-99SL01:DI-FOFBCtrl:RtmLampStatus-RB</string>
    </property>
   </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>-10</y>
+     <width>431</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+  </widget>
+  <zorder>groupBox_5</zorder>
   <zorder>tabWidget</zorder>
   <zorder>tabWidget_2</zorder>
   <zorder>gridLayoutWidget</zorder>
