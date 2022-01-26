@@ -32,7 +32,6 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
 
 # RTM LAMP
-
 #file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
 #file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
 #file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
@@ -45,18 +44,22 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NA
 #file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH9
 #file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH10
 #file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH11
+#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH12
+#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH13
+#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH14
+#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH15
 
 # FOFB CTRL
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
-file "FOFBCtrl_settings.req", P=$(P), R=$(R)
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH0
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH1
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH2
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH3
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH4
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH5
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH6
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH7
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH8
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH9
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH10
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH11
 
