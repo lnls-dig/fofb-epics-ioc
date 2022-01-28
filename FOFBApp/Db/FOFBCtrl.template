@@ -61,7 +61,7 @@ record(longout,"$(P)$(R)FofbProcessingRamDataOut-SP"){
 record(longin,"$(P)$(R)FofbProcessingRamDataOut-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ram data output")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
 }
 
@@ -303,7 +303,7 @@ record(longout,"$(P)$(R)FofbCtrlSysStatus-SP"){
 record(longin,"$(P)$(R)FofbCtrlSysStatus-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get system status")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_SYS_STATUS")
 }
 
@@ -317,7 +317,7 @@ record(longout,"$(P)$(R)FofbCtrlLinkPartner$(FOFB_CHAN)-SP"){
 record(longin,"$(P)$(R)FofbCtrlLinkPartner$(FOFB_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get link partner")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_LINK_PARTNER_1")
 }
 
@@ -331,7 +331,7 @@ record(longout,"$(P)$(R)FofbCtrlLinkUp-SP"){
 record(longin,"$(P)$(R)FofbCtrlLinkUp-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get link up")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_LINK_UP")
 }
 
@@ -345,7 +345,7 @@ record(longout,"$(P)$(R)FofbCtrlTimeFrameCount-SP"){
 record(longin,"$(P)$(R)FofbCtrlTimeFrameCount-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get time frame count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_COUNT")
 }
 
@@ -359,7 +359,7 @@ record(longout,"$(P)$(R)FofbCtrlHardErrCnt$(FOFB_CHAN)-SP"){
 record(longin,"$(P)$(R)FofbCtrlHardErrCnt$(FOFB_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get hard errors count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_HARD_ERR_CNT_1")
 }
 
@@ -373,7 +373,7 @@ record(longout,"$(P)$(R)FofbCtrlSoftErrCnt$(FOFB_CHAN)-SP"){
 record(longin,"$(P)$(R)FofbCtrlSoftErrCnt$(FOFB_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get soft errors count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_SOFT_ERR_CNT_1")
 }
 
@@ -387,7 +387,7 @@ record(longout,"$(P)$(R)FofbCtrlFrameErrCnt$(FOFB_CHAN)-SP"){
 record(longin,"$(P)$(R)FofbCtrlFrameErrCnt$(FOFB_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get frame errors count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FRAME_ERR_CNT_1")
 }
 
@@ -401,7 +401,7 @@ record(longout,"$(P)$(R)FofbCtrlRxPckCnt$(FOFB_CHAN)-SP"){
 record(longin,"$(P)$(R)FofbCtrlRxPckCnt$(FOFB_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get rx packet count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_RX_PCK_CNT_1")
 }
 
@@ -415,7 +415,7 @@ record(longout,"$(P)$(R)FofbCtrlTxPckCnt$(FOFB_CHAN)-SP"){
 record(longin,"$(P)$(R)FofbCtrlTxPckCnt$(FOFB_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get tx packet count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TX_PCK_CNT_1")
 }
 
@@ -429,7 +429,7 @@ record(longout,"$(P)$(R)FofbCtrlFodProcessTime-SP"){
 record(longin,"$(P)$(R)FofbCtrlFodProcessTime-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get fod process time")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_FOD_PROCESS_TIME")
 }
 
@@ -443,7 +443,7 @@ record(longout,"$(P)$(R)FofbCtrlBpmCnt-SP"){
 record(longin,"$(P)$(R)FofbCtrlBpmCnt-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get bpm count")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".5 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_BPM_COUNT")
 }
 
