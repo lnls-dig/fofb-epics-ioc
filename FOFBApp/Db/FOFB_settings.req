@@ -32,22 +32,22 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
 
 # RTM LAMP
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH3
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH4
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH5
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH6
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH7
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH8
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH9
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH10
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH11
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH12
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH13
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH14
-#file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH15
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH0
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH1
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH2
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH3
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH4
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH5
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH6
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH7
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH8
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH9
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH10
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH11
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH12
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH13
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH14
+file "FOFBRtm_settings.req", P=$(P), R=$(R), RTM_CHAN=CH15
 
 # FOFB CTRL
 file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH0

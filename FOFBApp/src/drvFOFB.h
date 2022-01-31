@@ -335,26 +335,25 @@ private:
 
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
-/*
-#define P_RtmLampStatusString                   "RTMLAMP_OHWR_STA"
-#define P_RtmLampDacDataFromWbString            "RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB"
-#define P_RtmLampAmpIFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L"
-#define P_RtmLampAmpTFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_L"
-#define P_RtmLampAmpIFlagRString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_R"
-#define P_RtmLampAmpTFlagRString                "RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R"
-#define P_RtmLampAmpEnString                    "RTMLAMP_OHWR_CH_0_CTL_AMP_EN"
-#define P_RtmLampPIOLTriangEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_OL_TRIANG_ENABLE"
-#define P_RtmLampPIOLSquareEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_OL_SQUARE_ENABLE"
-#define P_RtmLampPISPSquareEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE"
-#define P_RtmLampPIEnString                     "RTMLAMP_OHWR_CH_0_CTL_PI_ENABLE"
-#define P_RtmLampDacDataString                  "RTMLAMP_OHWR_CH_0_DAC_DATA"
-#define P_RtmLampDacWrString                    "RTMLAMP_OHWR_CH_0_DAC_WR"
-#define P_RtmLampPIKPString                     "RTMLAMP_OHWR_CH_0_PI_KP_DATA"
-#define P_RtmLampPITIString                     "RTMLAMP_OHWR_CH_0_PI_TI_DATA"
-#define P_RtmLampPISPString                     "RTMLAMP_OHWR_CH_0_PI_SP_DATA"
-#define P_RtmLampPIOLDacCntMaxString            "RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA"
-#define P_RtmLampPISPLimInfString               "RTMLAMP_OHWR_PI_SP_LIM_INF_DATA"
-*/
+
+#define P_RtmLampStatusString                   "RTMLAMP_OHWR_STA"                          /* asynUInt32Digital,      r/o */
+#define P_RtmLampDacDataFromWbString            "RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB"         /* asynUInt32Digital,      r/w */
+#define P_RtmLampAmpIFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L"         /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpTFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_L"         /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpIFlagRString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_R"         /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpTFlagRString                "RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R"         /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpEnString                    "RTMLAMP_OHWR_CH_0_CTL_AMP_EN"              /* asynUInt32Digital,      r/w */
+#define P_RtmLampPIOLTriangEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_OL_TRIANG_ENABLE" /* asynUInt32Digital,      r/w */
+#define P_RtmLampPIOLSquareEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_OL_SQUARE_ENABLE" /* asynUInt32Digital,      r/w */
+#define P_RtmLampPISPSquareEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE" /* asynUInt32Digital,      r/w */
+#define P_RtmLampPIEnString                     "RTMLAMP_OHWR_CH_0_CTL_PI_ENABLE"           /* asynUInt32Digital,      r/w */
+#define P_RtmLampDacDataString                  "RTMLAMP_OHWR_CH_0_DAC_DATA"                /* asynUInt32Digital,      r/w */
+#define P_RtmLampDacWrString                    "RTMLAMP_OHWR_CH_0_DAC_WR"                  /* asynUInt32Digital,      r/w */
+#define P_RtmLampPIKPString                     "RTMLAMP_OHWR_CH_0_PI_KP_DATA"              /* asynUInt32Digital,      r/w */
+#define P_RtmLampPITIString                     "RTMLAMP_OHWR_CH_0_PI_TI_DATA"              /* asynUInt32Digital,      r/w */
+#define P_RtmLampPISPString                     "RTMLAMP_OHWR_CH_0_PI_SP_DATA"              /* asynUInt32Digital,      r/w */
+#define P_RtmLampPIOLDacCntMaxString            "RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA"       /* asynUInt32Digital,      r/w */
+#define P_RtmLampPISPLimInfString               "RTMLAMP_OHWR_PI_SP_LIM_INF_DATA"           /* asynUInt32Digital,      r/w */
 #define P_AdcRateString                         "INFO_ADCRATE"                              /* asynUInt32Digital,      r/o */
 #define P_TbtRateString                         "INFO_TBTRATE"                              /* asynUInt32Digital,      r/o */
 #define P_FofbRateString                        "INFO_FOFBRATE"                             /* asynUInt32Digital,      r/o */
@@ -538,7 +537,7 @@ class drvFOFB : public asynNDArrayDriver {
 
     protected:
         /** Values used for pasynUser->reason, and indexes into the parameter library. */
-        /*
+
         int P_RtmLampStatus;
         #define FIRST_COMMAND P_RtmLampStatus
         int P_RtmLampDacDataFromWb;
@@ -558,9 +557,7 @@ class drvFOFB : public asynNDArrayDriver {
         int P_RtmLampPISP;
         int P_RtmLampPIOLDacCntMax;
         int P_RtmLampPISPLimInf;
-        */
         int P_FOFBStatus;
-        #define FIRST_COMMAND P_FOFBStatus
         int P_AdcRate;
         int P_TbtRate;
         int P_FofbRate;

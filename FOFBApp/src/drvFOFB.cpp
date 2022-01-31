@@ -117,7 +117,7 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
      /* [CH_HW_FOFB] =      */  {CH_FOFB},
 };
 /* Int32 functions mapping */
-/*
+
 static const functionsAny_t rtmLampSetGetStatusFunc                   = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
                                                                           halcs_get_rtmlamp_ohwr_sta}};
 static const functionsAny_t rtmLampSetGetDacDataFromWbFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
@@ -154,7 +154,6 @@ static const functionsAny_t rtmLampSetGetPIOLDacCntMaxFunc            = {functio
                                                                           halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
 static const functionsAny_t rtmLampSetGetPISPLimInfFunc               = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf,
                                                                           halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
-                                                                          */
 static const functionsAny_t fofbSetGetAcqDataTrigThresFunc            = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres,
                                                                           acq_get_data_trig_thres}};
 static const functionsAny_t fofbSetGetAcqDataTrigPolFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol,
@@ -502,7 +501,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     /* Create general parameters */
 
     /* Create rtm_lamp parameters */
-    /*
     createParam(P_RtmLampStatusString,               asynParamUInt32Digital,        &P_RtmLampStatus);
     createParam(P_RtmLampDacDataFromWbString,        asynParamUInt32Digital,        &P_RtmLampDacDataFromWb);
     createParam(P_RtmLampAmpIFlagLString,            asynParamUInt32Digital,        &P_RtmLampAmpIFlagL);
@@ -521,7 +519,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_RtmLampPISPString,                 asynParamUInt32Digital,        &P_RtmLampPISP);
     createParam(P_RtmLampPIOLDacCntMaxString,        asynParamUInt32Digital,        &P_RtmLampPIOLDacCntMax);
     createParam(P_RtmLampPISPLimInfString,           asynParamUInt32Digital,        &P_RtmLampPISPLimInf);
-    */
     /* Create ADC/TBT/FOFB/MONIT parameters */
     createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
     createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
@@ -610,7 +607,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
     /* FOFB HW Int32 Functions mapping. Functions not mapped here are just written
      * to the parameter library */
-    /*
+
     fofbHwFunc.emplace(P_RtmLampStatus,               rtmLampSetGetStatusFunc);
     fofbHwFunc.emplace(P_RtmLampDacDataFromWb,        rtmLampSetGetDacDataFromWbFunc);
     fofbHwFunc.emplace(P_RtmLampAmpIFlagL,            rtmLampSetGetAmpIFlagLFunc);
@@ -629,7 +626,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_RtmLampPISP,                 rtmLampSetGetPISPFunc);
     fofbHwFunc.emplace(P_RtmLampPIOLDacCntMax,        rtmLampSetGetPIOLDacCntMaxFunc);
     fofbHwFunc.emplace(P_RtmLampPISPLimInf,           rtmLampSetGetPISPLimInfFunc);
-    */
     fofbHwFunc.emplace(P_DataTrigChan,                fofbSetGetAcqDataTrigChanFunc);
     fofbHwFunc.emplace(P_TriggerDataThres,            fofbSetGetAcqDataTrigThresFunc);
     fofbHwFunc.emplace(P_TriggerDataPol,              fofbSetGetAcqDataTrigPolFunc);
@@ -713,7 +709,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setIntegerParam(P_MonitEnable,                                                     0); // Disable by default
 
     setIntegerParam(    P_FOFBStatus,                                     FOFBStatusIdle);
-/*
+
     setUIntDigitalParam(P_RtmLampStatus,                      0,              0xFFFFFFFF);
     setUIntDigitalParam(P_RtmLampDacDataFromWb,               0,              0xFFFFFFFF);
     setUIntDigitalParam(P_RtmLampPIOLDacCntMax,               0,              0xFFFFFFFF);
@@ -738,7 +734,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(addr, P_RtmLampAmpIFlagR,         0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampAmpTFlagR,         0,              0xFFFFFFFF);
     }
-*/
+
     /* Set acquisition parameters */
 
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
