@@ -2,7 +2,7 @@ from epics import PV
 import numpy as np
 from time import sleep
 
-pv_prefix = "XX-22SL19"
+pv_prefix = "XX-99SL01"
 
 ram_addr    = np.loadtxt('ram_addr.txt')
 ram_data_in = np.loadtxt('ram_data_in.txt')
