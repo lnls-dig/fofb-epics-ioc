@@ -139,7 +139,7 @@ static const channelMap_t channelMap[CH_END] = {
                           },
                           },
     /* [CH_RTM_A] =    */ {CH_HW_RTM_A,
-                          {{{-1,
+                          {{-1,
                             -1,
                             -1,
                             -1,
@@ -174,7 +174,7 @@ static const channelMap_t channelMap[CH_END] = {
                           },
                           },
     /* [CH_RTM_B] =    */ {CH_HW_RTM_B,
-                          {{{-1,
+                          {{-1,
                             -1,
                             -1,
                             -1,
@@ -208,7 +208,7 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_RTM_B_7,},
                           },
                           },
-    }
+
 };
 
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
@@ -1476,7 +1476,7 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
-        if(numAtoms > MAX_WVF_DATA_TYPES) {
+        if(numAtoms > MAX_WVF_DCC_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
                     driverName, functionName, MAX_WVF_DATA_TYPES);
