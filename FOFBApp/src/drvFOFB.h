@@ -180,10 +180,10 @@ typedef enum {
     WVF_RTM_B_6,
     WVF_RTM_B_7,
     WVF_RTM_B_END
-} wvf_rtm_a_types;
+} wvf_rtm_b_types;
 
-#define MAX_WVF_RTM_SINGLE          (WVF_RTM_B_0+1)
-#define MAX_WVF_DATA_TYPES           WVF_RTM_B_END
+#define MAX_WVF_RTM_B_SINGLE          (WVF_RTM_B_0+1)
+#define MAX_WVF_RTM_B_TYPES           WVF_RTM_B_END
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                  2
@@ -200,10 +200,10 @@ typedef enum {
 /* FOFB Channel structure */
 typedef struct {
     /* HW channel mapping. -1 means not available */
-    int HwDATAChannel;
+    int HwDataChannel;
 
     /* NDArray addresses mapping */
-    int NDArrayDCCFMC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DCC_TYPES];
+    int NDArrayDCC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DCC_TYPES];
     int NDArrayRTMA[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_RTM_A_TYPES];
     int NDArrayRTMB[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_RTM_B_TYPES];
 } channelMap_t;

@@ -208,6 +208,7 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_RTM_B_7,},
                           },
                           },
+    }
 };
 
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
@@ -1174,12 +1175,6 @@ void acqTask(void *drvPvt)
    pPvt->drvFOFBp->acqTask(pPvt->coreID, pPvt->pollTime, pPvt->autoStart);
 }
 
-void acqMonitTask(void *drvPvt)
-{
-   taskParams_t *pPvt = (taskParams_t *)drvPvt;
-   pPvt->drvFOFBp->acqMonitTask();
-}
-
 /********************************************************************/
 /******************* FOFB Acquisition functions *********************/
 /********************************************************************/
@@ -1635,11 +1630,19 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
          * data */
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
-            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayData[coreID][WVF_ALL]);
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayDCC,
+                    channelMap[channel].NDArrayDCC[coreID][WVF_ALL]);
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayRTMA,
+                    channelMap[channel].NDArrayRTMA[coreID][WVF_ALL]);
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayRTMB,
+                    channelMap[channel].NDArrayRTMB[coreID][WVF_ALL]);
 
             /* Copy data to arrays for each type of data, do callbacks on that */
-            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayData[coreID],
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCC[coreID],
+                    dims[0], arrayCounter, &now);
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayRTMA[coreID],
+                    dims[0], arrayCounter, &now);
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayRTMB[coreID],
                     dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
@@ -1674,95 +1677,6 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
     }
 }
 
-void drvFOFB::acqMonitTask()
-{
-    asynStatus status = asynSuccess;
-    int err = HALCS_CLIENT_SUCCESS;
-    size_t dims[MAX_WVF_DIMS];
-    epicsUInt32 mask = 0xFFFFFFFF;
-    NDArray *pArrayMonitData[MAX_MONIT_DATA];
-    double monitData[MAX_MONIT_DATA];
-    NDDataType_t NDType = NDFloat64;
-    int NDArrayAddrInit = WVF_MONIT_CH0;
-    epicsTimeStamp now;
-    int monitEnable = 0;
-    static const char *functionName = "acqMonitTask";
-    char service[SERVICE_NAME_SIZE];
-
-    dims[0] = 1;
-    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
-        pArrayMonitData[i] = pNDArrayPool->alloc(1, dims, NDType, 0, 0);
-        if (pArrayMonitData == NULL) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s:%s: unable to alloc pArrayMonitData\n",
-                driverName, functionName);
-            status = asynError;
-            goto alloc_ndarray_err;
-        }
-    }
-
-    err = halcs_set_monit_subscription (fofbClientMonit, service, "MONIT_AMP");
-    if (err != HALCS_CLIENT_SUCCESS) {
-        status = asynError;
-        goto set_monit_subscription_err;
-    }
-
-    smio_dsp_monit_data_t monit_data;
-    while (1) {
-        getIntegerParam(P_MonitEnable, &monitEnable);
-        if (!monitEnable) {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s:%s: waiting for monitEnable =true\n", driverName, functionName);
-            /* remove subscription to avoid burst of old data when enabling */
-            halcs_remove_monit_subscription (fofbClientMonit, service);
-            epicsEventWait(activeMonitEnableEventId);
-            halcs_set_monit_subscription (fofbClientMonit, service, "MONIT_AMP");
-        }
-
-        err = halcs_get_monit_stream (fofbClientMonit, "MONIT_AMP", &monit_data);
-
-        if(err == HALCS_CLIENT_SUCCESS) {
-
-            monitData[0] = 0;
-            monitData[1] = 0;
-            monitData[2] = 0;
-            monitData[3] = 0;
-            monitData[4] = 0;
-            monitData[5] = 0;
-            monitData[6] = 0;
-            monitData[7] = 0;
-            monitData[8] = 0;
-            monitData[9] = 0;
-
-            epicsTimeGetCurrent(&now);
-
-            for (int i = 0; i < MAX_MONIT_DATA; ++i) {
-                /* NDArray atributtes */
-                pArrayMonitData[i]->timeStamp = now.secPastEpoch + now.nsec / 1.e9;
-                pArrayMonitData[i]->epicsTS.secPastEpoch = now.secPastEpoch;
-                pArrayMonitData[i]->epicsTS.nsec = now.nsec;
-                getAttributes(pArrayMonitData[i]->pAttributeList);
-                /* NDArray data */
-                *((epicsFloat64 *)pArrayMonitData[i]->pData) = monitData[i];
-                doCallbacksGenericPointer(pArrayMonitData[i], NDArrayData, NDArrayAddrInit+i);
-            }
-        }
-        else {
-            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s:%s: Could not get Monit data. Status = %d\n",
-                    driverName, functionName, err);
-        }
-    }
-
-set_monit_subscription_err:
-
-alloc_ndarray_err:
-    for (int i = 0; i < MAX_MONIT_DATA; ++i) {
-        pArrayMonitData[i]->release();
-    }
-get_service_err:
-    return;
-}
 asynStatus drvFOFB::deinterleaveNDArray (NDArray *pArrayAllChannels, const int *pNDArrayAddr,
         int pNDArrayAddrSize, int arrayCounter, epicsTimeStamp *timeStamp)
 {
