@@ -69,26 +69,26 @@ typedef struct {
 
 static const channelMap_t channelMap[CH_END] = {
     /* [CH_DCC_FMC] =  */ {CH_HW_DCC_FMC,                       // HwDataChannel
-                           {WVF_DATA_DCC_CH0,                  //NDArrayDCC
-                            WVF_DATA_DCC_CH1,
-                            WVF_DATA_DCC_CH2,
-                            WVF_DATA_DCC_CH3,
-                            WVF_DATA_DCC_CH4,
-                            WVF_DATA_DCC_CH5,
-                            WVF_DATA_DCC_CH6,
-                            WVF_DATA_DCC_CH7,
-                            WVF_DATA_DCC_ALL},
+                            {WVF_DATA_DCC_FMC_CH0,              //NDArrayDCCFMC
+                            WVF_DATA_DCC_FMC_CH1,
+                            WVF_DATA_DCC_FMC_CH2,
+                            WVF_DATA_DCC_FMC_CH3,
+                            WVF_DATA_DCC_FMC_CH4,
+                            WVF_DATA_DCC_FMC_CH5,
+                            WVF_DATA_DCC_FMC_CH6,
+                            WVF_DATA_DCC_FMC_CH7,
+                            WVF_DATA_DCC_FMC_ALL},
                           },
     /* [CH_DCC_P2P] =  */ {CH_HW_DCC_P2P,                       // HwDataChannel
-                           {WVF_DATA_DCC_CH0,                  //NDArrayDCC
-                            WVF_DATA_DCC_CH1,
-                            WVF_DATA_DCC_CH2,
-                            WVF_DATA_DCC_CH3,
-                            WVF_DATA_DCC_CH4,
-                            WVF_DATA_DCC_CH5,
-                            WVF_DATA_DCC_CH6,
-                            WVF_DATA_DCC_CH7,
-                            WVF_DATA_DCC_ALL},
+                            {WVF_DATA_DCC_P2P_CH0,              //NDArrayDCCP2P
+                            WVF_DATA_DCC_P2P_CH1,
+                            WVF_DATA_DCC_P2P_CH2,
+                            WVF_DATA_DCC_P2P_CH3,
+                            WVF_DATA_DCC_P2P_CH4,
+                            WVF_DATA_DCC_P2P_CH5,
+                            WVF_DATA_DCC_P2P_CH6,
+                            WVF_DATA_DCC_P2P_CH7,
+                            WVF_DATA_DCC_P2P_ALL},
                           },
 };
 
@@ -1361,10 +1361,10 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
-        if(numAtoms > MAX_WVF_DATA_DCC_FMC_TYPES) {
+        if(numAtoms > MAX_WVF_DATA_DCC_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
-                    driverName, functionName, MAX_WVF_DATA_DCC_FMC_TYPES);
+                    driverName, functionName, MAX_WVF_DATA_DCC_TYPES);
             continue;
         }
 
@@ -1516,20 +1516,10 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayDCCFMC[coreID][WVF_DCC_FMC_ALL]);
-            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayDCCP2P[coreID][WVF_DCC_P2P_ALL]);
+                    channelMap[channel].NDArrayDCC[coreID][WVF_DCC_ALL]);
 
             /* Copy data to arrays for each type of data, do callbacks on that */
-            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCFMC[coreID],
-                    dims[0], arrayCounter, &now);
-            if (status != asynSuccess) {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                        "%s:%s: unable to deinterleave NDArray\n",
-                        driverName, functionName);
-                continue;
-            }
-            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCP2P[coreID],
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCC[coreID],
                     dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
