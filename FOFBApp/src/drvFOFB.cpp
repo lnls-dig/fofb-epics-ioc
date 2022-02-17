@@ -1687,7 +1687,7 @@ void drvFOFB::acqMonitTask()
     NDArray *pArrayMonitData[MAX_MONIT_DATA];
     double monitData[MAX_MONIT_DATA];
     NDDataType_t NDType = NDFloat64;
-    int NDArrayAddrInit = WVF_MONIT_CH0;
+    int NDArrayAddrInit = 0; //WVF_MONIT_CH0;
     epicsTimeStamp now;
     int monitEnable = 0;
     static const char *functionName = "acqMonitTask";
