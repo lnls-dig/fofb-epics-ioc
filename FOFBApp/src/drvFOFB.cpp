@@ -78,6 +78,15 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_DCC_FMC_CH6,
                             WVF_DATA_DCC_FMC_CH7,
                             WVF_DATA_DCC_FMC_ALL},
+                           {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                           },
     /* [CH_DCC_P2P] =  */ {CH_HW_DCC_P2P,                       // HwDataChannel
                             {WVF_DATA_DCC_P2P_CH0,              //NDArrayDCCP2P
@@ -89,6 +98,15 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_DCC_P2P_CH6,
                             WVF_DATA_DCC_P2P_CH7,
                             WVF_DATA_DCC_P2P_ALL},
+                            {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                           },
 };
 
@@ -1361,10 +1379,10 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
-        if(numAtoms > MAX_WVF_DATA_DCC_TYPES) {
+        if(numAtoms > MAX_WVF_DATA_DCC_FMC_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
-                    driverName, functionName, MAX_WVF_DATA_DCC_TYPES);
+                    driverName, functionName, MAX_WVF_DATA_DCC_FMC_TYPES);
             continue;
         }
 
@@ -1516,9 +1534,9 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayDCCFMC[coreID][WVF_DCC_FMC_ALL]);
+                    channelMap[channel].NDArrayDCCFMC[coreID][WVF_DCC_ALL]);
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayDCCP2P[coreID][WVF_DCC_P2P_ALL]);
+                    channelMap[channel].NDArrayDCCP2P[coreID][WVF_DCC_ALL]);
 
             /* Copy data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCFMC[coreID],
