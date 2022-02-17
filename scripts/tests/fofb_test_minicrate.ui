@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_11">
     <attribute name="title">
@@ -48,7 +48,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>XX-99SL01:DI-FOFBCtrl:RtmLampDacDataFromWb-SP</string>
+         <string>XX-99SL01:DI-FOFBCtrl:PSDacDataWb-SP</string>
         </property>
        </widget>
       </item>
@@ -75,7 +75,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>XX-99SL01:DI-FOFBCtrl:RtmLampPISPLimInf-SP</string>
+         <string>XX-99SL01:DI-FOFBCtrl:PSCurrLimInf-SP</string>
         </property>
        </widget>
       </item>
@@ -149,7 +149,7 @@
       <item row="7" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
-         <string> RtmLampDacDataFromWb:</string>
+         <string> PSDacDataWb:</string>
         </property>
        </widget>
       </item>
@@ -159,7 +159,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIOLDacCntMax-RB</string>
+         <string>XX-99SL01:DI-FOFBCtrl:PSPIDacCntMax-RB</string>
         </property>
        </widget>
       </item>
@@ -193,7 +193,7 @@
       <item row="9" column="0">
        <widget class="QLabel" name="label_20">
         <property name="text">
-         <string> RtmLampPISPLimInf:</string>
+         <string> PSCurrLimInf:</string>
         </property>
        </widget>
       </item>
@@ -237,7 +237,7 @@
       <item row="8" column="0">
        <widget class="QLabel" name="label_35">
         <property name="text">
-         <string> RtmLampPIOLDacCntMax:</string>
+         <string> PSPIDacCntMax:</string>
         </property>
        </widget>
       </item>
@@ -247,7 +247,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIOLDacCntMax-SP</string>
+         <string>XX-99SL01:DI-FOFBCtrl:PSPIDacCntMax-SP</string>
         </property>
        </widget>
       </item>
@@ -257,7 +257,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>XX-99SL01:DI-FOFBCtrl:RtmLampDacDataFromWb-RB</string>
+         <string>XX-99SL01:DI-FOFBCtrl:PSDacDataWb-RB</string>
         </property>
        </widget>
       </item>
@@ -308,7 +308,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>XX-99SL01:DI-FOFBCtrl:RtmLampPISPLimInf-RB</string>
+         <string>XX-99SL01:DI-FOFBCtrl:PSCurrLimInf-RB</string>
         </property>
        </widget>
       </item>
@@ -353,7 +353,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -372,21 +372,21 @@
         <item row="20" column="0">
          <widget class="QLabel" name="label_27">
           <property name="text">
-           <string>RtmLampDacWr:</string>
+           <string>PSDacWr:</string>
           </property>
          </widget>
         </item>
         <item row="24" column="0">
          <widget class="QLabel" name="label_221">
           <property name="text">
-           <string>RtmLampCurrentGain:</string>
+           <string>PSCurrentGain:</string>
           </property>
          </widget>
         </item>
         <item row="23" column="0">
          <widget class="QLabel" name="label_18">
           <property name="text">
-           <string>RtmLampPISP:</string>
+           <string>PSCurr:</string>
           </property>
          </widget>
         </item>
@@ -396,7 +396,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpEnCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSAmpEnCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -406,7 +406,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPITICH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSPITiCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -416,14 +416,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIOLTriangEnCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sts</string>
           </property>
          </widget>
         </item>
         <item row="21" column="0">
          <widget class="QLabel" name="label_23">
           <property name="text">
-           <string>RtmLampPIKP:</string>
+           <string>PSPIKp:</string>
           </property>
          </widget>
         </item>
@@ -433,14 +433,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIOLTriangEnCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sel</string>
           </property>
          </widget>
         </item>
         <item row="25" column="0">
          <widget class="QLabel" name="label_222">
           <property name="text">
-           <string>RtmLampCurrentOffset:</string>
+           <string>PSCurrentOffset:</string>
           </property>
          </widget>
         </item>
@@ -450,7 +450,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampDacWrCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSDacWrCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -460,14 +460,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPITICH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSPITiCH0-SP</string>
           </property>
          </widget>
         </item>
         <item row="15" column="0">
          <widget class="QLabel" name="label_16">
           <property name="text">
-           <string>RtmLampPIOLTriangEn:     </string>
+           <string>PSOpenLoopTriangWavEn:</string>
           </property>
          </widget>
         </item>
@@ -477,7 +477,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIKPCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSPIKpCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -487,14 +487,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPISPCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSCurrCH0-Mon</string>
           </property>
          </widget>
         </item>
         <item row="19" column="0">
          <widget class="QLabel" name="label_26">
           <property name="text">
-           <string>RtmLampDacData:</string>
+           <string>PSDacData:</string>
           </property>
          </widget>
         </item>
@@ -504,7 +504,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIOLSquareEnCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOpenLoopSquareWavEnCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -514,35 +514,35 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampDacDataCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSDacDataCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="18" column="0">
          <widget class="QLabel" name="label_25">
           <property name="text">
-           <string>RtmLampPIEn:</string>
+           <string>PSPIEn:</string>
           </property>
          </widget>
         </item>
         <item row="26" column="0">
          <widget class="QLabel" name="label_223">
           <property name="text">
-           <string>RtmLampVoltageGain:</string>
+           <string>PSVoltageGain:</string>
           </property>
          </widget>
         </item>
         <item row="22" column="0">
          <widget class="QLabel" name="label_22">
           <property name="text">
-           <string>RtmLampPITI:</string>
+           <string>PSPITi:</string>
           </property>
          </widget>
         </item>
         <item row="16" column="0">
          <widget class="QLabel" name="label_17">
           <property name="text">
-           <string>RtmLampPIOLSquareEn:</string>
+           <string>PSOpenLoopSquareWavEn:</string>
           </property>
          </widget>
         </item>
@@ -552,7 +552,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIEnCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSPIEnCH0-Sel</string>
           </property>
          </widget>
         </item>
@@ -562,7 +562,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampDacWrCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSDacWrCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -572,7 +572,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIEnCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSPIEnCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -582,7 +582,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPISPSquareEnCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sel</string>
           </property>
          </widget>
         </item>
@@ -592,7 +592,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPISPCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSCurrCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -602,21 +602,21 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIKPCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSPIKpCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="17" column="0">
          <widget class="QLabel" name="label_24">
           <property name="text">
-           <string>RtmLampPISPSquareEn:</string>
+           <string>PSClosedLoopSquareWavSPEn:</string>
           </property>
          </widget>
         </item>
         <item row="14" column="0">
          <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>RtmLampAmpEn:</string>
+           <string>PSAmpEn:</string>
           </property>
          </widget>
         </item>
@@ -626,7 +626,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampDacDataCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSDacDataCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -636,7 +636,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpEnCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSAmpEnCH0-Sel</string>
           </property>
          </widget>
         </item>
@@ -646,7 +646,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPIOLSquareEnCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOpenLoopSquareWavEnCH0-Sel</string>
           </property>
          </widget>
         </item>
@@ -656,14 +656,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampPISPSquareEnCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sts</string>
           </property>
          </widget>
         </item>
         <item row="27" column="0">
          <widget class="QLabel" name="label_224">
           <property name="text">
-           <string>RtmLampVoltageOffset:</string>
+           <string>PSVoltageOffset:</string>
           </property>
          </widget>
         </item>
@@ -673,7 +673,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfGainCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSGainWavCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -683,7 +683,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfOffsetCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -693,7 +693,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfGainCH8-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSGainWavCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -703,7 +703,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfOffsetCH8-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOffsetWavCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -713,7 +713,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfGainCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSGainWavCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -723,7 +723,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfOffsetCH0-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -733,7 +733,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfGainCH8-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSGainWavCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -743,7 +743,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampWvfOffsetCH8-SP</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSOffsetWavCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -3526,7 +3526,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -3537,7 +3537,7 @@
         <rect>
          <x>711</x>
          <y>50</y>
-         <width>252</width>
+         <width>262</width>
          <height>161</height>
         </rect>
        </property>
@@ -3559,7 +3559,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="label_12">
           <property name="text">
-           <string> RtmLampAmpIFlagL:</string>
+           <string> PSAmpOverCurrFlagL:</string>
           </property>
          </widget>
         </item>
@@ -3636,14 +3636,14 @@
            <bool>false</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpIFlagLCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSAmpOverCurrFlagLCH0-Sts</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_13">
           <property name="text">
-           <string> RtmLampAmpIFlagR:</string>
+           <string> PSAmpOverCurrFlagR:</string>
           </property>
          </widget>
         </item>
@@ -3653,7 +3653,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpIFlagRCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSAmpOverCurrFlagRCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -3674,7 +3674,7 @@
         <item row="4" column="0">
          <widget class="QLabel" name="label_97">
           <property name="text">
-           <string> RtmLampAmpTFlagL:</string>
+           <string> PSAmpOverTempFlagL:</string>
           </property>
          </widget>
         </item>
@@ -3684,7 +3684,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpTFlagLCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSAmpOverTempFlagLCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -3701,7 +3701,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>XX-99SL01:DI-FOFBCtrl:RtmLampAmpTFlagRCH0-RB</string>
+           <string>XX-99SL01:DI-FOFBCtrl:PSAmpOverTempFlagRCH0-Sts</string>
           </property>
          </widget>
         </item>

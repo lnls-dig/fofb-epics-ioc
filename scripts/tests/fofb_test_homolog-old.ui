@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_11">
     <attribute name="title">
@@ -48,7 +48,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:PSDacDataWb-SP</string>
+         <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataFromWb-SP</string>
         </property>
        </widget>
       </item>
@@ -65,7 +65,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQSamplesPre-SP</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPre-SP</string>
         </property>
        </widget>
       </item>
@@ -75,7 +75,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:PSCurrLimInf-SP</string>
+         <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPLimInf-SP</string>
         </property>
        </widget>
       </item>
@@ -85,7 +85,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQTrigger-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQTrigger-Sel</string>
         </property>
        </widget>
       </item>
@@ -95,7 +95,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQSamplesPre-RB</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPre-RB</string>
         </property>
        </widget>
       </item>
@@ -105,7 +105,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQSamplesPost-RB</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPost-RB</string>
         </property>
        </widget>
       </item>
@@ -115,7 +115,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQChannel-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQChannel-Sel</string>
         </property>
        </widget>
       </item>
@@ -125,7 +125,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQShots-SP</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQShots-SP</string>
         </property>
        </widget>
       </item>
@@ -135,7 +135,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
         </property>
        </widget>
       </item>
@@ -149,7 +149,7 @@
       <item row="7" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
-         <string> PSDacDataWb:</string>
+         <string> RtmLampDacDataFromWb:</string>
         </property>
        </widget>
       </item>
@@ -159,7 +159,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:PSPIDacCntMax-RB</string>
+         <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLDacCntMax-RB</string>
         </property>
        </widget>
       </item>
@@ -176,7 +176,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
         </property>
        </widget>
       </item>
@@ -186,14 +186,14 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQChannel-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQChannel-Sel</string>
         </property>
        </widget>
       </item>
       <item row="9" column="0">
        <widget class="QLabel" name="label_20">
         <property name="text">
-         <string> PSCurrLimInf:</string>
+         <string> RtmLampPISPLimInf:</string>
         </property>
        </widget>
       </item>
@@ -203,7 +203,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQShots-RB</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQShots-RB</string>
         </property>
        </widget>
       </item>
@@ -220,7 +220,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQTrigger-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQTrigger-Sel</string>
         </property>
        </widget>
       </item>
@@ -230,14 +230,14 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQSamplesPost-SP</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPost-SP</string>
         </property>
        </widget>
       </item>
       <item row="8" column="0">
        <widget class="QLabel" name="label_35">
         <property name="text">
-         <string> PSPIDacCntMax:</string>
+         <string> RtmLampPIOLDacCntMax:</string>
         </property>
        </widget>
       </item>
@@ -247,7 +247,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:PSPIDacCntMax-SP</string>
+         <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLDacCntMax-SP</string>
         </property>
        </widget>
       </item>
@@ -257,7 +257,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:PSDacDataWb-RB</string>
+         <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataFromWb-RB</string>
         </property>
        </widget>
       </item>
@@ -288,7 +288,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
         </property>
        </widget>
       </item>
@@ -298,7 +298,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
+         <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
         </property>
        </widget>
       </item>
@@ -308,7 +308,7 @@
          <string/>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-22:DI-FOFBCtrl:PSCurrLimInf-RB</string>
+         <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPLimInf-RB</string>
         </property>
        </widget>
       </item>
@@ -327,7 +327,7 @@
       <string/>
      </property>
      <property name="channel" stdset="0">
-      <string>SI-22:DI-FOFBCtrl:RtmLampStatus-RB</string>
+      <string>XX-22SL19:DI-FOFBCtrl:RtmLampStatus-RB</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_9">
@@ -353,7 +353,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -372,21 +372,21 @@
         <item row="20" column="0">
          <widget class="QLabel" name="label_27">
           <property name="text">
-           <string>PSDacWr:</string>
+           <string>RtmLampDacWr:</string>
           </property>
          </widget>
         </item>
         <item row="24" column="0">
          <widget class="QLabel" name="label_221">
           <property name="text">
-           <string>PSCurrentGain:</string>
+           <string>RtmLampCurrentGain:</string>
           </property>
          </widget>
         </item>
         <item row="23" column="0">
          <widget class="QLabel" name="label_18">
           <property name="text">
-           <string>PSCurr:</string>
+           <string>RtmLampPISP:</string>
           </property>
          </widget>
         </item>
@@ -396,7 +396,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpEnCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -406,7 +406,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPITiCH0-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH0-RB</string>
           </property>
          </widget>
         </item>
@@ -416,14 +416,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="21" column="0">
          <widget class="QLabel" name="label_23">
           <property name="text">
-           <string>PSPIKp:</string>
+           <string>RtmLampPIKP:</string>
           </property>
          </widget>
         </item>
@@ -433,14 +433,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sel</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH0-SP</string>
           </property>
          </widget>
         </item>
         <item row="25" column="0">
          <widget class="QLabel" name="label_222">
           <property name="text">
-           <string>PSCurrentOffset:</string>
+           <string>RtmLampCurrentOffset:</string>
           </property>
          </widget>
         </item>
@@ -450,7 +450,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSDacWrCH0-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -460,14 +460,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPITiCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH0-SP</string>
           </property>
          </widget>
         </item>
         <item row="15" column="0">
          <widget class="QLabel" name="label_16">
           <property name="text">
-           <string>PSOpenLoopTriangWavEn:</string>
+           <string>RtmLampPIOLTriangEn:     </string>
           </property>
          </widget>
         </item>
@@ -477,7 +477,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIKpCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -487,14 +487,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrCH0-Mon</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="19" column="0">
          <widget class="QLabel" name="label_26">
           <property name="text">
-           <string>PSDacData:</string>
+           <string>RtmLampDacData:</string>
           </property>
          </widget>
         </item>
@@ -504,7 +504,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOpenLoopSquareWavEnCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -514,35 +514,35 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSDacDataCH0-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="18" column="0">
          <widget class="QLabel" name="label_25">
           <property name="text">
-           <string>PSPIEn:</string>
+           <string>RtmLampPIEn:</string>
           </property>
          </widget>
         </item>
         <item row="26" column="0">
          <widget class="QLabel" name="label_223">
           <property name="text">
-           <string>PSVoltageGain:</string>
+           <string>RtmLampVoltageGain:</string>
           </property>
          </widget>
         </item>
         <item row="22" column="0">
          <widget class="QLabel" name="label_22">
           <property name="text">
-           <string>PSPITi:</string>
+           <string>RtmLampPITI:</string>
           </property>
          </widget>
         </item>
         <item row="16" column="0">
          <widget class="QLabel" name="label_17">
           <property name="text">
-           <string>PSOpenLoopSquareWavEn:</string>
+           <string>RtmLampPIOLSquareEn:</string>
           </property>
          </widget>
         </item>
@@ -552,7 +552,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIEnCH0-Sel</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -562,7 +562,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSDacWrCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -572,7 +572,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIEnCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -582,7 +582,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sel</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -592,7 +592,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -602,21 +602,21 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIKpCH0-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="17" column="0">
          <widget class="QLabel" name="label_24">
           <property name="text">
-           <string>PSClosedLoopSquareWavSPEn:</string>
+           <string>RtmLampPISPSquareEn:</string>
           </property>
          </widget>
         </item>
         <item row="14" column="0">
          <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>PSAmpEn:</string>
+           <string>RtmLampAmpEn:</string>
           </property>
          </widget>
         </item>
@@ -626,7 +626,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSDacDataCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -636,7 +636,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpEnCH0-Sel</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -646,7 +646,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOpenLoopSquareWavEnCH0-Sel</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -656,14 +656,14 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="27" column="0">
          <widget class="QLabel" name="label_224">
           <property name="text">
-           <string>PSVoltageOffset:</string>
+           <string>RtmLampVoltageOffset:</string>
           </property>
          </widget>
         </item>
@@ -673,7 +673,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -683,7 +683,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -693,7 +693,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH8-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -703,7 +703,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH8-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -713,7 +713,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -723,7 +723,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH0-SP</string>
           </property>
          </widget>
         </item>
@@ -733,7 +733,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH8-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -743,7 +743,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH8-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH8-SP</string>
           </property>
          </widget>
         </item>
@@ -784,7 +784,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -794,7 +794,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -804,7 +804,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -814,7 +814,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -824,7 +824,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH1-SP</string>
           </property>
          </widget>
         </item>
@@ -834,7 +834,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH1-RB</string>
           </property>
          </widget>
         </item>
@@ -851,7 +851,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -861,7 +861,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -885,7 +885,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -895,7 +895,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -905,7 +905,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -922,7 +922,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -939,7 +939,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -949,7 +949,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -987,7 +987,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -997,7 +997,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1007,7 +1007,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1017,7 +1017,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -1034,7 +1034,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -1044,7 +1044,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1068,7 +1068,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1078,7 +1078,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1088,7 +1088,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH9-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH9-SP</string>
           </property>
          </widget>
         </item>
@@ -1098,7 +1098,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH9-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH9-SP</string>
           </property>
          </widget>
         </item>
@@ -1108,7 +1108,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1118,7 +1118,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH1-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH1-SP</string>
           </property>
          </widget>
         </item>
@@ -1128,7 +1128,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH9-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH9-SP</string>
           </property>
          </widget>
         </item>
@@ -1138,7 +1138,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH9-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH9-SP</string>
           </property>
          </widget>
         </item>
@@ -1165,7 +1165,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1175,7 +1175,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1192,7 +1192,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1202,7 +1202,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1219,7 +1219,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1229,7 +1229,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1253,7 +1253,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1270,7 +1270,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1280,7 +1280,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1290,7 +1290,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1300,7 +1300,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1310,7 +1310,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1327,7 +1327,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1365,7 +1365,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1375,7 +1375,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1385,7 +1385,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1395,7 +1395,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1405,7 +1405,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1422,7 +1422,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -1439,7 +1439,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1463,7 +1463,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1473,7 +1473,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1483,7 +1483,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH10-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH10-SP</string>
           </property>
          </widget>
         </item>
@@ -1493,7 +1493,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH10-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH10-SP</string>
           </property>
          </widget>
         </item>
@@ -1503,7 +1503,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1513,7 +1513,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH2-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH2-SP</string>
           </property>
          </widget>
         </item>
@@ -1523,7 +1523,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH10-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH10-SP</string>
           </property>
          </widget>
         </item>
@@ -1533,7 +1533,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH10-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH10-SP</string>
           </property>
          </widget>
         </item>
@@ -1560,7 +1560,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1577,7 +1577,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1587,7 +1587,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1597,7 +1597,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1607,7 +1607,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1638,7 +1638,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1648,7 +1648,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1658,7 +1658,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1668,7 +1668,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1685,7 +1685,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1695,7 +1695,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1712,7 +1712,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1722,7 +1722,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1732,7 +1732,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1742,7 +1742,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1766,7 +1766,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1797,7 +1797,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1807,7 +1807,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1817,7 +1817,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -1841,7 +1841,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1858,7 +1858,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1868,7 +1868,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1878,7 +1878,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH11-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH11-SP</string>
           </property>
          </widget>
         </item>
@@ -1888,7 +1888,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH11-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH11-SP</string>
           </property>
          </widget>
         </item>
@@ -1898,7 +1898,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1908,7 +1908,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH3-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH3-SP</string>
           </property>
          </widget>
         </item>
@@ -1918,7 +1918,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH11-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH11-SP</string>
           </property>
          </widget>
         </item>
@@ -1928,7 +1928,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH11-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH11-SP</string>
           </property>
          </widget>
         </item>
@@ -1962,7 +1962,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -1972,7 +1972,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -1982,7 +1982,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -1992,7 +1992,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2016,7 +2016,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2033,7 +2033,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2050,7 +2050,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2074,7 +2074,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2084,7 +2084,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2094,7 +2094,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2104,7 +2104,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2114,7 +2114,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2124,7 +2124,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2134,7 +2134,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2144,7 +2144,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2168,7 +2168,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2185,7 +2185,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2216,7 +2216,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2226,7 +2226,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2236,7 +2236,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -2253,7 +2253,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2263,7 +2263,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2273,7 +2273,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH12-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH12-SP</string>
           </property>
          </widget>
         </item>
@@ -2283,7 +2283,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH12-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH12-SP</string>
           </property>
          </widget>
         </item>
@@ -2293,7 +2293,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2303,7 +2303,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH4-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH4-SP</string>
           </property>
          </widget>
         </item>
@@ -2313,7 +2313,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH12-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH12-SP</string>
           </property>
          </widget>
         </item>
@@ -2323,7 +2323,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH12-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH12-SP</string>
           </property>
          </widget>
         </item>
@@ -2364,7 +2364,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2374,7 +2374,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2384,7 +2384,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2394,7 +2394,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2411,7 +2411,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2421,7 +2421,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2431,7 +2431,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2448,7 +2448,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2465,7 +2465,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2482,7 +2482,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2499,7 +2499,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2509,7 +2509,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2533,7 +2533,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2550,7 +2550,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2560,7 +2560,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2584,7 +2584,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2594,7 +2594,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2604,7 +2604,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2614,7 +2614,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2624,7 +2624,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -2648,7 +2648,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2658,7 +2658,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2668,7 +2668,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH13-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH13-SP</string>
           </property>
          </widget>
         </item>
@@ -2678,7 +2678,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH13-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH13-SP</string>
           </property>
          </widget>
         </item>
@@ -2688,7 +2688,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2698,7 +2698,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH5-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH5-SP</string>
           </property>
          </widget>
         </item>
@@ -2708,7 +2708,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH13-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH13-SP</string>
           </property>
          </widget>
         </item>
@@ -2718,7 +2718,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH13-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH13-SP</string>
           </property>
          </widget>
         </item>
@@ -2752,7 +2752,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2776,7 +2776,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2793,7 +2793,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2803,7 +2803,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2820,7 +2820,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2837,7 +2837,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2847,7 +2847,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2864,7 +2864,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2881,7 +2881,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2898,7 +2898,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2915,7 +2915,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2925,7 +2925,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2935,7 +2935,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2959,7 +2959,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2976,7 +2976,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -2986,7 +2986,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -2996,7 +2996,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -3006,7 +3006,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -3016,7 +3016,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -3033,7 +3033,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -3043,7 +3043,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -3053,7 +3053,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -3063,7 +3063,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH14-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH14-SP</string>
           </property>
          </widget>
         </item>
@@ -3073,7 +3073,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -3083,7 +3083,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH6-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH6-SP</string>
           </property>
          </widget>
         </item>
@@ -3093,7 +3093,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH14-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH14-SP</string>
           </property>
          </widget>
         </item>
@@ -3103,7 +3103,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH14-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH14-SP</string>
           </property>
          </widget>
         </item>
@@ -3113,7 +3113,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH14-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH14-SP</string>
           </property>
          </widget>
         </item>
@@ -3140,7 +3140,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3150,7 +3150,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3160,7 +3160,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3170,7 +3170,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3180,7 +3180,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLSquareEnCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLSquareEnCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3204,7 +3204,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPSquareEnCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPSquareEnCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3214,7 +3214,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3224,7 +3224,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIKPCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIKPCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3234,7 +3234,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacDataCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacDataCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3244,7 +3244,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3254,7 +3254,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3292,7 +3292,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIEnCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIEnCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3302,7 +3302,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3326,7 +3326,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampDacWrCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampDacWrCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3343,7 +3343,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3360,7 +3360,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPIOLTriangEnCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPIOLTriangEnCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3377,7 +3377,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPISPCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPISPCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3394,7 +3394,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampPITICH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampPITICH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3411,7 +3411,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3421,7 +3421,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpEnCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpEnCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -3438,7 +3438,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3448,7 +3448,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3458,7 +3458,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH15-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH15-SP</string>
           </property>
          </widget>
         </item>
@@ -3468,7 +3468,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH15-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH15-SP</string>
           </property>
          </widget>
         </item>
@@ -3478,7 +3478,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3488,7 +3488,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH7-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH7-SP</string>
           </property>
          </widget>
         </item>
@@ -3498,7 +3498,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfGainCH15-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfGainCH15-SP</string>
           </property>
          </widget>
         </item>
@@ -3508,7 +3508,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampWvfOffsetCH15-SP</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampWvfOffsetCH15-SP</string>
           </property>
          </widget>
         </item>
@@ -3526,7 +3526,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -3537,7 +3537,7 @@
         <rect>
          <x>711</x>
          <y>50</y>
-         <width>262</width>
+         <width>252</width>
          <height>161</height>
         </rect>
        </property>
@@ -3559,7 +3559,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="label_12">
           <property name="text">
-           <string> PSAmpOverCurrFlagL:</string>
+           <string> RtmLampAmpIFlagL:</string>
           </property>
          </widget>
         </item>
@@ -3636,14 +3636,14 @@
            <bool>false</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpOverCurrFlagLCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH0-RB</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_13">
           <property name="text">
-           <string> PSAmpOverCurrFlagR:</string>
+           <string> RtmLampAmpIFlagR:</string>
           </property>
          </widget>
         </item>
@@ -3653,7 +3653,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpOverCurrFlagRCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -3674,7 +3674,7 @@
         <item row="4" column="0">
          <widget class="QLabel" name="label_97">
           <property name="text">
-           <string> PSAmpOverTempFlagL:</string>
+           <string> RtmLampAmpTFlagL:</string>
           </property>
          </widget>
         </item>
@@ -3684,7 +3684,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpOverTempFlagLCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -3701,7 +3701,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpOverTempFlagRCH0-Sts</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH0-RB</string>
           </property>
          </widget>
         </item>
@@ -3744,7 +3744,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -3761,7 +3761,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -3792,7 +3792,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -3809,7 +3809,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH1-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH1-RB</string>
           </property>
          </widget>
         </item>
@@ -3852,7 +3852,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -3869,7 +3869,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -3900,7 +3900,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -3917,7 +3917,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH2-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH2-RB</string>
           </property>
          </widget>
         </item>
@@ -3960,7 +3960,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -3977,7 +3977,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -4008,7 +4008,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -4025,7 +4025,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH3-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH3-RB</string>
           </property>
          </widget>
         </item>
@@ -4069,7 +4069,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4095,7 +4095,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH8ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH8ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4121,7 +4121,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH9ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH9ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4147,7 +4147,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH1ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH1ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4173,7 +4173,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH2ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH2ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4199,7 +4199,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH3ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH3ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4225,7 +4225,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH11ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH11ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4251,7 +4251,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH10ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH10ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4282,7 +4282,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4308,7 +4308,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4334,7 +4334,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4360,7 +4360,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4386,7 +4386,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4412,7 +4412,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4438,7 +4438,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4464,7 +4464,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -4573,7 +4573,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -4590,7 +4590,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -4621,7 +4621,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -4638,7 +4638,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH4-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH4-RB</string>
           </property>
          </widget>
         </item>
@@ -4681,7 +4681,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -4698,7 +4698,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -4729,7 +4729,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -4746,7 +4746,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH5-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH5-RB</string>
           </property>
          </widget>
         </item>
@@ -4789,7 +4789,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -4806,7 +4806,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -4837,7 +4837,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -4854,7 +4854,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH6-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH6-RB</string>
           </property>
          </widget>
         </item>
@@ -4897,7 +4897,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagLCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagLCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -4914,7 +4914,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpIFlagRCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpIFlagRCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -4945,7 +4945,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagLCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagLCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -4962,7 +4962,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:RtmLampAmpTFlagRCH7-RB</string>
+           <string>XX-22SL19:DI-FOFBCtrl:RtmLampAmpTFlagRCH7-RB</string>
           </property>
          </widget>
         </item>
@@ -5006,7 +5006,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH4ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH4ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5032,7 +5032,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH5ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH5ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5058,7 +5058,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH6ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH6ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5084,7 +5084,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH7ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH7ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5110,7 +5110,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH12ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH12ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5136,7 +5136,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH13ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH13ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5162,7 +5162,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH14ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH14ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5188,7 +5188,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH15ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH15ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5219,7 +5219,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH4&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH4&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5245,7 +5245,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH5&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH5&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5271,7 +5271,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH6&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH6&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5297,7 +5297,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH7&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH7&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5323,7 +5323,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH12&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH12&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5349,7 +5349,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH13&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH13&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5375,7 +5375,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH14&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH14&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5401,7 +5401,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH15&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH15&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5554,7 +5554,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5580,7 +5580,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH8ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH8ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5606,7 +5606,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH9ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH9ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5632,7 +5632,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH1ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH1ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5658,7 +5658,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH2ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH2ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5684,7 +5684,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH3ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH3ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5710,7 +5710,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH11ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH11ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5736,7 +5736,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH10ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH10ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5767,7 +5767,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5793,7 +5793,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5819,7 +5819,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5845,7 +5845,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5871,7 +5871,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5897,7 +5897,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5923,7 +5923,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -5949,7 +5949,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -6057,7 +6057,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH0-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH0-RB</string>
            </property>
           </widget>
          </item>
@@ -6141,7 +6141,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH0-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH0-RB</string>
            </property>
           </widget>
          </item>
@@ -6158,7 +6158,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH0-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH0-RB</string>
            </property>
           </widget>
          </item>
@@ -6242,7 +6242,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH0-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH0-RB</string>
            </property>
           </widget>
          </item>
@@ -6259,7 +6259,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH0-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH0-RB</string>
            </property>
           </widget>
          </item>
@@ -6276,7 +6276,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH0-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH0-RB</string>
            </property>
           </widget>
          </item>
@@ -6424,7 +6424,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH1-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH1-RB</string>
            </property>
           </widget>
          </item>
@@ -6508,7 +6508,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH1-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH1-RB</string>
            </property>
           </widget>
          </item>
@@ -6525,7 +6525,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH1-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH1-RB</string>
            </property>
           </widget>
          </item>
@@ -6609,7 +6609,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH1-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH1-RB</string>
            </property>
           </widget>
          </item>
@@ -6626,7 +6626,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH1-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH1-RB</string>
            </property>
           </widget>
          </item>
@@ -6643,7 +6643,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH1-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH1-RB</string>
            </property>
           </widget>
          </item>
@@ -6752,7 +6752,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH2-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH2-RB</string>
            </property>
           </widget>
          </item>
@@ -6836,7 +6836,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH2-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH2-RB</string>
            </property>
           </widget>
          </item>
@@ -6853,7 +6853,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH2-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH2-RB</string>
            </property>
           </widget>
          </item>
@@ -6937,7 +6937,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH2-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH2-RB</string>
            </property>
           </widget>
          </item>
@@ -6954,7 +6954,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH2-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH2-RB</string>
            </property>
           </widget>
          </item>
@@ -6971,7 +6971,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH2-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH2-RB</string>
            </property>
           </widget>
          </item>
@@ -7080,7 +7080,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH3-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH3-RB</string>
            </property>
           </widget>
          </item>
@@ -7164,7 +7164,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH3-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH3-RB</string>
            </property>
           </widget>
          </item>
@@ -7181,7 +7181,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH3-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH3-RB</string>
            </property>
           </widget>
          </item>
@@ -7265,7 +7265,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH3-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH3-RB</string>
            </property>
           </widget>
          </item>
@@ -7282,7 +7282,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH3-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH3-RB</string>
            </property>
           </widget>
          </item>
@@ -7299,7 +7299,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH3-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH3-RB</string>
            </property>
           </widget>
          </item>
@@ -7357,7 +7357,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH0ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7383,7 +7383,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH8ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH8ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7409,7 +7409,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH9ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH9ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7435,7 +7435,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH1ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH1ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7461,7 +7461,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH2ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH2ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7487,7 +7487,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH3ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH3ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7513,7 +7513,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH11ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH11ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7539,7 +7539,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GEN_CH10ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GEN_CH10ArrayData&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7570,7 +7570,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH0&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7596,7 +7596,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH1&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7622,7 +7622,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH2&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7648,7 +7648,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH3&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7674,7 +7674,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH8&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7700,7 +7700,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH9&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7726,7 +7726,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH10&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7752,7 +7752,7 @@
          </property>
          <property name="curves">
           <stringlist>
-           <string>{&quot;y_channel&quot;: &quot;SI-22:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
+           <string>{&quot;y_channel&quot;: &quot;XX-22SL19:DI-FOFBCtrl:GENConvArrayDataCH11&quot;, &quot;x_channel&quot;: null, &quot;name&quot;: &quot;&quot;, &quot;color&quot;: &quot;white&quot;, &quot;lineStyle&quot;: 1, &quot;lineWidth&quot;: 1, &quot;symbol&quot;: null, &quot;symbolSize&quot;: 10, &quot;yAxisName&quot;: &quot;Axis 1&quot;, &quot;redraw_mode&quot;: 2}</string>
           </stringlist>
          </property>
         </widget>
@@ -7860,7 +7860,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH4-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH4-RB</string>
            </property>
           </widget>
          </item>
@@ -7944,7 +7944,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH4-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH4-RB</string>
            </property>
           </widget>
          </item>
@@ -7961,7 +7961,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH4-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH4-RB</string>
            </property>
           </widget>
          </item>
@@ -8045,7 +8045,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH4-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH4-RB</string>
            </property>
           </widget>
          </item>
@@ -8062,7 +8062,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH4-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH4-RB</string>
            </property>
           </widget>
          </item>
@@ -8079,7 +8079,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH4-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH4-RB</string>
            </property>
           </widget>
          </item>
@@ -8188,7 +8188,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH5-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH5-RB</string>
            </property>
           </widget>
          </item>
@@ -8272,7 +8272,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH5-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH5-RB</string>
            </property>
           </widget>
          </item>
@@ -8289,7 +8289,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH5-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH5-RB</string>
            </property>
           </widget>
          </item>
@@ -8373,7 +8373,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH5-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH5-RB</string>
            </property>
           </widget>
          </item>
@@ -8390,7 +8390,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH5-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH5-RB</string>
            </property>
           </widget>
          </item>
@@ -8407,7 +8407,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH5-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH5-RB</string>
            </property>
           </widget>
          </item>
@@ -8516,7 +8516,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -8600,7 +8600,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -8617,7 +8617,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -8701,7 +8701,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -8718,7 +8718,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -8735,7 +8735,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -8844,7 +8844,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkPartnerCH7-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkPartnerCH7-RB</string>
            </property>
           </widget>
          </item>
@@ -8928,7 +8928,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH7-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPckCntCH7-RB</string>
            </property>
           </widget>
          </item>
@@ -8945,7 +8945,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlTxPckCntCH6-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTxPckCntCH6-RB</string>
            </property>
           </widget>
          </item>
@@ -9029,7 +9029,7 @@
             <bool>false</bool>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlHardErrCntCH7-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlHardErrCntCH7-RB</string>
            </property>
           </widget>
          </item>
@@ -9046,7 +9046,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlSoftErrCntCH7-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSoftErrCntCH7-RB</string>
            </property>
           </widget>
          </item>
@@ -9063,7 +9063,7 @@
             <string/>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-22:DI-FOFBCtrl:FofbCtrlFrameErrCntCH7-RB</string>
+            <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFrameErrCntCH7-RB</string>
            </property>
           </widget>
          </item>
@@ -9100,7 +9100,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQSamplesPre-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPre-SP</string>
          </property>
         </widget>
        </item>
@@ -9124,7 +9124,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQTrigger-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQTrigger-Sel</string>
          </property>
         </widget>
        </item>
@@ -9141,7 +9141,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQChannel-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQChannel-Sel</string>
          </property>
         </widget>
        </item>
@@ -9151,7 +9151,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQSamplesPost-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPost-SP</string>
          </property>
         </widget>
        </item>
@@ -9175,7 +9175,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
          </property>
         </widget>
        </item>
@@ -9185,7 +9185,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
          </property>
         </widget>
        </item>
@@ -9195,7 +9195,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQSamplesPost-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPost-RB</string>
          </property>
         </widget>
        </item>
@@ -9205,7 +9205,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQSamplesPre-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQSamplesPre-RB</string>
          </property>
         </widget>
        </item>
@@ -9215,7 +9215,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQShots-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQShots-SP</string>
          </property>
         </widget>
        </item>
@@ -9225,7 +9225,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQChannel-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQChannel-Sel</string>
          </property>
         </widget>
        </item>
@@ -9235,7 +9235,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerEvent-Sel</string>
          </property>
         </widget>
        </item>
@@ -9245,7 +9245,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQTrigger-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQTrigger-Sel</string>
          </property>
         </widget>
        </item>
@@ -9262,7 +9262,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQTriggerRep-Sel</string>
          </property>
         </widget>
        </item>
@@ -9272,7 +9272,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:ACQShots-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:ACQShots-RB</string>
          </property>
         </widget>
        </item>
@@ -9314,7 +9314,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlActPart-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlActPart-SP</string>
          </property>
         </widget>
        </item>
@@ -9324,7 +9324,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTimeFrameLen-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTimeFrameLen-RB</string>
          </property>
         </widget>
        </item>
@@ -9334,7 +9334,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTfsOverride-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTfsOverride-RB</string>
          </property>
         </widget>
        </item>
@@ -9344,7 +9344,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlGoldenOrbY-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlGoldenOrbY-RB</string>
          </property>
         </widget>
        </item>
@@ -9354,7 +9354,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlGoldenOrbX-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlGoldenOrbX-SP</string>
          </property>
         </widget>
        </item>
@@ -9378,7 +9378,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlMgtPowerdown-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlMgtPowerdown-RB</string>
          </property>
         </widget>
        </item>
@@ -9395,7 +9395,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlGoldenOrbX-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlGoldenOrbX-RB</string>
          </property>
         </widget>
        </item>
@@ -9405,7 +9405,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlPayloadsel-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlPayloadsel-RB</string>
          </property>
         </widget>
        </item>
@@ -9415,7 +9415,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlCustFeature-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlCustFeature-RB</string>
          </property>
         </widget>
        </item>
@@ -9425,7 +9425,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlBpmId-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlBpmId-RB</string>
          </property>
         </widget>
        </item>
@@ -9435,7 +9435,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlCustFeature-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlCustFeature-SP</string>
          </property>
         </widget>
        </item>
@@ -9452,7 +9452,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlGoldenOrbY-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlGoldenOrbY-SP</string>
          </property>
         </widget>
        </item>
@@ -9462,7 +9462,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPolarity-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPolarity-RB</string>
          </property>
         </widget>
        </item>
@@ -9472,7 +9472,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlCcEnable-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlCcEnable-SP</string>
          </property>
         </widget>
        </item>
@@ -9489,7 +9489,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlCcEnable-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlCcEnable-RB</string>
          </property>
         </widget>
        </item>
@@ -9506,7 +9506,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTimeFrameLen-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTimeFrameLen-SP</string>
          </property>
         </widget>
        </item>
@@ -9516,7 +9516,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlMgtLoopback-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlMgtLoopback-SP</string>
          </property>
         </widget>
        </item>
@@ -9526,7 +9526,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlMgtLoopback-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlMgtLoopback-RB</string>
          </property>
         </widget>
        </item>
@@ -9550,7 +9550,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlFofbdatasel-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFofbdatasel-SP</string>
          </property>
         </widget>
        </item>
@@ -9560,7 +9560,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlBpmId-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlBpmId-SP</string>
          </property>
         </widget>
        </item>
@@ -9570,7 +9570,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlPayloadsel-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlPayloadsel-SP</string>
          </property>
         </widget>
        </item>
@@ -9580,7 +9580,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTfsOverride-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTfsOverride-SP</string>
          </property>
         </widget>
        </item>
@@ -9618,7 +9618,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTimeFrameDly-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTimeFrameDly-SP</string>
          </property>
         </widget>
        </item>
@@ -9628,7 +9628,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPolarity-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRxPolarity-SP</string>
          </property>
         </widget>
        </item>
@@ -9638,7 +9638,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlFofbdatasel-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFofbdatasel-RB</string>
          </property>
         </widget>
        </item>
@@ -9648,7 +9648,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlMgtPowerdown-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlMgtPowerdown-SP</string>
          </property>
         </widget>
        </item>
@@ -9658,7 +9658,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlErrClr-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlErrClr-RB</string>
          </property>
         </widget>
        </item>
@@ -9668,7 +9668,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlActPart-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlActPart-RB</string>
          </property>
         </widget>
        </item>
@@ -9692,7 +9692,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlErrClr-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlErrClr-SP</string>
          </property>
         </widget>
        </item>
@@ -9702,7 +9702,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTimeFrameDly-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTimeFrameDly-RB</string>
          </property>
         </widget>
        </item>
@@ -9765,7 +9765,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlFodProcessTime-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFodProcessTime-RB</string>
          </property>
         </widget>
        </item>
@@ -9789,7 +9789,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlLinkUp-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLinkUp-RB</string>
          </property>
         </widget>
        </item>
@@ -9806,7 +9806,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlBpmCnt-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlBpmCnt-RB</string>
          </property>
         </widget>
        </item>
@@ -9816,7 +9816,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTimeFrameCount-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTimeFrameCount-RB</string>
          </property>
         </widget>
        </item>
@@ -9826,7 +9826,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlFirmwareVer-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFirmwareVer-RB</string>
          </property>
         </widget>
        </item>
@@ -9836,7 +9836,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlSysStatus-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlSysStatus-RB</string>
          </property>
         </widget>
        </item>
@@ -9885,7 +9885,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlPowerdownRdback-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlPowerdownRdback-RB</string>
          </property>
         </widget>
        </item>
@@ -9895,7 +9895,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlBpmIdRdback-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlBpmIdRdback-RB</string>
          </property>
         </widget>
        </item>
@@ -9905,7 +9905,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlTfLengthRdback-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlTfLengthRdback-RB</string>
          </property>
         </widget>
        </item>
@@ -9929,7 +9929,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlLoopbackRdback-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlLoopbackRdback-RB</string>
          </property>
         </widget>
        </item>
@@ -9946,7 +9946,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlFaivalRdback-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlFaivalRdback-RB</string>
          </property>
         </widget>
        </item>
@@ -9981,7 +9981,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlRcbRdStr-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRcbRdStr-RB</string>
          </property>
         </widget>
        </item>
@@ -9991,7 +9991,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlToaRdStr-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlToaRdStr-SP</string>
          </property>
         </widget>
        </item>
@@ -10001,7 +10001,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlToaRdStr-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlToaRdStr-RB</string>
          </property>
         </widget>
        </item>
@@ -10025,7 +10025,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlToaRdEn-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlToaRdEn-RB</string>
          </property>
         </widget>
        </item>
@@ -10035,7 +10035,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlRcbRdStr-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRcbRdStr-SP</string>
          </property>
         </widget>
        </item>
@@ -10052,7 +10052,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlRcbRdEn-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRcbRdEn-RB</string>
          </property>
         </widget>
        </item>
@@ -10062,7 +10062,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlToaRdEn-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlToaRdEn-SP</string>
          </property>
         </widget>
        </item>
@@ -10079,7 +10079,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbCtrlRcbRdEn-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbCtrlRcbRdEn-SP</string>
          </property>
         </widget>
        </item>
@@ -10114,7 +10114,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamAddr-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamAddr-RB</string>
          </property>
         </widget>
        </item>
@@ -10131,7 +10131,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamDataIn-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamDataIn-RB</string>
          </property>
         </widget>
        </item>
@@ -10141,7 +10141,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamWriteEnable-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamWriteEnable-SP</string>
          </property>
         </widget>
        </item>
@@ -10158,7 +10158,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamDataIn-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamDataIn-SP</string>
          </property>
         </widget>
        </item>
@@ -10168,7 +10168,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamWriteEnable-RB</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamWriteEnable-RB</string>
          </property>
         </widget>
        </item>
@@ -10178,7 +10178,7 @@
           <string/>
          </property>
          <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamAddr-SP</string>
+          <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamAddr-SP</string>
          </property>
         </widget>
        </item>
@@ -10230,7 +10230,7 @@
        <string/>
       </property>
       <property name="channel" stdset="0">
-       <string>SI-22:DI-FOFBCtrl:FofbProcessingRamDataOut-RB</string>
+       <string>XX-22SL19:DI-FOFBCtrl:FofbProcessingRamDataOut-RB</string>
       </property>
      </widget>
     </widget>
@@ -10262,7 +10262,7 @@
     <string/>
    </property>
    <property name="channel" stdset="0">
-    <string>SI-22:DI-FOFBCtrl:ACQStatus-Sts</string>
+    <string>XX-22SL19:DI-FOFBCtrl:ACQStatus-Sts</string>
    </property>
   </widget>
  </widget>
