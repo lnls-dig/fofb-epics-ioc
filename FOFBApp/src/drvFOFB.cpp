@@ -69,7 +69,7 @@ typedef struct {
 
 static const channelMap_t channelMap[CH_END] = {
     /* [CH_DCC_FMC] =  */ {CH_HW_DCC_FMC,                       // HwDataChannel
-                          {{WVF_DATA_DCC_FMC_CH0,
+                            {WVF_DATA_DCC_FMC_CH0,
                             WVF_DATA_DCC_FMC_CH1,
                             WVF_DATA_DCC_FMC_CH2,
                             WVF_DATA_DCC_FMC_CH3,
@@ -88,9 +88,8 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1},
                           },
-                          },
     /* [CH_DCC_P2P] =  */ {CH_HW_DCC_P2P,                       // HwDataChannel
-                          {{WVF_DATA_DCC_P2P_CH0,
+                            {WVF_DATA_DCC_P2P_CH0,
                             WVF_DATA_DCC_P2P_CH1,
                             WVF_DATA_DCC_P2P_CH2,
                             WVF_DATA_DCC_P2P_CH3,
@@ -108,7 +107,6 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1,
                             -1},
-                          },
                           },
 };
 
