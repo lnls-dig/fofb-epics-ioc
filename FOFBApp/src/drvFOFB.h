@@ -97,54 +97,37 @@ typedef enum {
 
 /* Channel IDs */
 typedef enum {
-    CH_DCC_FMC = 0,
-    CH_DCC_P2P = 1,
+    CH_DCC_FMC               = 0,
+    CH_DCC_P2P               = 0,
     CH_END
 } ch_types;
 
 #define MAX_CHANNELS                  CH_END
 
 typedef enum {
-    CH_HW_DCC_FMC = 0,
-    CH_HW_DCC_P2P = 1,
+    CH_HW_DCC_FMC               = 0,
+    CH_HW_DCC_P2P               = 0,
     CH_HW_END
 } ch_hw_types;
 
 #define MAX_HW_CHANNELS               CH_HW_END
 
-/* Waveform DCC_FMC types IDs */
+/* Waveform DCC types IDs */
 typedef enum {
-    WVF_DCC_FMC_CH0 = 0,
-    WVF_DCC_FMC_CH1,
-    WVF_DCC_FMC_CH2,
-    WVF_DCC_FMC_CH3,
-    WVF_DCC_FMC_CH4,
-    WVF_DCC_FMC_CH5,
-    WVF_DCC_FMC_CH6,
-    WVF_DCC_FMC_CH7,
-    WVF_DCC_FMC_ALL,
-    WVF_DATA_DCC_FMC_END
+    WVF_DCC_CH0 = 0,
+    WVF_DCC_CH1,
+    WVF_DCC_CH2,
+    WVF_DCC_CH3,
+    WVF_DCC_CH4,
+    WVF_DCC_CH5,
+    WVF_DCC_CH6,
+    WVF_DCC_CH7,
+    WVF_DCC_ALL,
+    WVF_DATA_DCC_END
 } wvf_data_dcc_fmc_types;
 
-#define MAX_WVF_DATA_DCC_FMC_SINGLE          (WVF_DCC_FMC_CH0+1)
-#define MAX_WVF_DATA_DCC_FMC_TYPES           WVF_DATA_DCC_FMC_END
-
-/* Waveform _DCC_P2P types IDs */
-typedef enum {
-    WVF_DCC_P2P_CH0 = 0,
-    WVF_DCC_P2P_CH1,
-    WVF_DCC_P2P_CH2,
-    WVF_DCC_P2P_CH3,
-    WVF_DCC_P2P_CH4,
-    WVF_DCC_P2P_CH5,
-    WVF_DCC_P2P_CH6,
-    WVF_DCC_P2P_CH7,
-    WVF_DCC_P2P_ALL,
-    WVF_DATA_DCC_P2P_END
-} wvf_data_dcc_p2p_types;
-
-#define MAX_WVF_DATA_DCC_P2P_SINGLE          (WVF_DCC_P2P_CH0+1)
-#define MAX_WVF_DATA_DCC_P2P_TYPES           WVF_DATA_DCC_P2P_END
+#define MAX_WVF_DATA_DCC_SINGLE          (WVF_DCC_CH7+1)
+#define MAX_WVF_DATA_DCC_TYPES           WVF_DATA_DCC_END
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                  2
@@ -163,8 +146,7 @@ typedef struct {
     /* HW channel mapping. -1 means not available */
     int HwDataChannel;
     /* NDArray addresses mapping */
-    int NDArrayDCCFMC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_FMC_TYPES];
-    int NDArrayDCCP2P[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_P2P_TYPES];
+    int NDArrayDCCFMC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_TYPES];
 } channelMap_t;
 
 /* FOFB Reverse channel mapping structure */
