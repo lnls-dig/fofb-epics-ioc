@@ -53,23 +53,24 @@ typedef enum {
 
 /* Waveform IDs */
 typedef enum {
-    WVF_DATA_CH0 = 0,
-    WVF_DATA_CH1,
-    WVF_DATA_CH2,
-    WVF_DATA_CH3,
-    WVF_DATA_CH4,
-    WVF_DATA_CH5,
-    WVF_DATA_CH6,
-    WVF_DATA_CH7,
-    WVF_DATA_CH8,
-    WVF_DATA_CH9,
-    WVF_DATA_CH10,
-    WVF_DATA_CH11,
-    WVF_DATA_CH12,
-    WVF_DATA_CH13,
-    WVF_DATA_CH14,
-    WVF_DATA_CH15,
-    WVF_DATA_ALL,
+    WVF_DATA_DCC_FMC_CH0 = 0,
+    WVF_DATA_DCC_FMC_CH1,
+    WVF_DATA_DCC_FMC_CH2,
+    WVF_DATA_DCC_FMC_CH3,
+    WVF_DATA_DCC_FMC_CH4,
+    WVF_DATA_DCC_FMC_CH5,
+    WVF_DATA_DCC_FMC_CH6,
+    WVF_DATA_DCC_FMC_CH7,
+    WVF_DATA_DCC_FMC_ALL,
+    WVF_DATA_DCC_P2P_CH0,
+    WVF_DATA_DCC_P2P_CH1,
+    WVF_DATA_DCC_P2P_CH2,
+    WVF_DATA_DCC_P2P_CH3,
+    WVF_DATA_DCC_P2P_CH4,
+    WVF_DATA_DCC_P2P_CH5,
+    WVF_DATA_DCC_P2P_CH6,
+    WVF_DATA_DCC_P2P_CH7,
+    WVF_DATA_DCC_P2P_ALL,
     WVF_MONIT_CH0,
     WVF_END
 } wvf_types;
@@ -111,22 +112,39 @@ typedef enum {
 
 #define MAX_HW_CHANNELS               CH_HW_END
 
-/* Waveform DATA types IDs */
+/* Waveform DCC_FMC types IDs */
 typedef enum {
-    WVF_CH0 = 0,
-    WVF_CH1,
-    WVF_CH2,
-    WVF_CH3,
-    WVF_CH4,
-    WVF_CH5,
-    WVF_CH6,
-    WVF_CH7,
-    WVF_ALL,
-    WVF_DATA_END
-} wvf_data_types;
+    WVF_DCC_FMC_CH0 = 0,
+    WVF_DCC_FMC_CH1,
+    WVF_DCC_FMC_CH2,
+    WVF_DCC_FMC_CH3,
+    WVF_DCC_FMC_CH4,
+    WVF_DCC_FMC_CH5,
+    WVF_DCC_FMC_CH6,
+    WVF_DCC_FMC_CH7,
+    WVF_DCC_FMC_ALL,
+    WVF_DATA_DCC_FMC_END
+} wvf_data_dcc_fmc_types;
 
-#define MAX_WVF_DATA_SINGLE          (WVF_CH0+1)
-#define MAX_WVF_DATA_TYPES           WVF_DATA_END
+#define MAX_WVF_DATA_DCC_FMC_SINGLE          (WVF_DCC_FMC_CH0+1)
+#define MAX_WVF_DATA_DCC_FMC_TYPES           WVF_DATA_DCC_FMC_END
+
+/* Waveform _DCC_P2P types IDs */
+typedef enum {
+    WVF_DCC_P2P_CH0 = 0,
+    WVF_DCC_P2P_CH1,
+    WVF_DCC_P2P_CH2,
+    WVF_DCC_P2P_CH3,
+    WVF_DCC_P2P_CH4,
+    WVF_DCC_P2P_CH5,
+    WVF_DCC_P2P_CH6,
+    WVF_DCC_P2P_CH7,
+    WVF_DCC_P2P_ALL,
+    WVF_DATA_DCC_P2P_END
+} wvf_data_dcc_p2p_types;
+
+#define MAX_WVF_DATA_DCC_P2P_SINGLE          (WVF_DCC_P2P_CH0+1)
+#define MAX_WVF_DATA_DCC_P2P_TYPES           WVF_DATA_DCC_P2P_END
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                  2
@@ -145,7 +163,8 @@ typedef struct {
     /* HW channel mapping. -1 means not available */
     int HwDataChannel;
     /* NDArray addresses mapping */
-    int NDArrayData[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_TYPES];
+    int NDArrayDCCFMC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_FMC_TYPES];
+    int NDArrayDCCP2P[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_P2P_TYPES];
 } channelMap_t;
 
 /* FOFB Reverse channel mapping structure */

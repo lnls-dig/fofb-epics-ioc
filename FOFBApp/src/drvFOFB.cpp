@@ -69,26 +69,26 @@ typedef struct {
 
 static const channelMap_t channelMap[CH_END] = {
     /* [CH_DCC_FMC] =  */ {CH_HW_DCC_FMC,                       // HwDataChannel
-                            {WVF_DATA_CH0,                      // NDArrayData
-                            WVF_DATA_CH1,
-                            WVF_DATA_CH2,
-                            WVF_DATA_CH3,
-                            WVF_DATA_CH4,
-                            WVF_DATA_CH5,
-                            WVF_DATA_CH6,
-                            WVF_DATA_CH7,
-                            WVF_DATA_ALL},
+                            {WVF_DATA_DCC_FMC_CH0,
+                            WVF_DATA_DCC_FMC_CH1,
+                            WVF_DATA_DCC_FMC_CH2,
+                            WVF_DATA_DCC_FMC_CH3,
+                            WVF_DATA_DCC_FMC_CH4,
+                            WVF_DATA_DCC_FMC_CH5,
+                            WVF_DATA_DCC_FMC_CH6,
+                            WVF_DATA_DCC_FMC_CH7,
+                            WVF_DATA_DCC_FMC_ALL},
                           },
     /* [CH_DCC_P2P] =  */ {CH_HW_DCC_P2P,                       // HwDataChannel
-                            {WVF_CH8,
-                            WVF_CH9,
-                            WVF_CH10,
-                            WVF_CH11,
-                            WVF_CH12,
-                            WVF_CH13,
-                            WVF_CH14,
-                            WVF_CH15,
-                            WVF_DATA_ALL},
+                            {WVF_DATA_DCC_P2P_CH0,
+                            WVF_DATA_DCC_P2P_CH1,
+                            WVF_DATA_DCC_P2P_CH2,
+                            WVF_DATA_DCC_P2P_CH3,
+                            WVF_DATA_DCC_P2P_CH4,
+                            WVF_DATA_DCC_P2P_CH5,
+                            WVF_DATA_DCC_P2P_CH6,
+                            WVF_DATA_DCC_P2P_CH7,
+                            WVF_DATA_DCC_P2P_ALL},
                           },
 };
 
@@ -1516,10 +1516,20 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayData[coreID][WVF_ALL]);
+                    channelMap[channel].NDArrayDCCFMC[coreID][WVF_DCC_FMC_ALL]);
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                    channelMap[channel].NDArrayDCCP2P[coreID][WVF_DCC_P2P_ALL]);
 
             /* Copy data to arrays for each type of data, do callbacks on that */
-            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayData[coreID],
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCFMC[coreID],
+                    dims[0], arrayCounter, &now);
+            if (status != asynSuccess) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to deinterleave NDArray\n",
+                        driverName, functionName);
+                continue;
+            }
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCP2P[coreID],
                     dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,

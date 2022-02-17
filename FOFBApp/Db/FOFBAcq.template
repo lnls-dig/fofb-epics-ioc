@@ -67,8 +67,8 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Channel-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"adc")
-    field(ONST,"fofb")
+    field(ZRST,"DCC FMC")
+    field(ONST,"DCC P2P")
 }
 
 record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
@@ -79,8 +79,8 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"adc")
-    field(ONST,"fofb")
+    field(ZRST,"DCC FMC")
+    field(ONST,"DCC P2P")
 }
 
 # For use with rate seq record defined in FFTRecords.template

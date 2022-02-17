@@ -24,25 +24,28 @@ dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}G
 NDStdArraysConfigure("GEN_CH7_Array", $(QSIZE), 0, "$(PORT)", 7)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH7,PORT=GEN_CH7_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=7,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH8_Array", $(QSIZE), 0, "$(PORT)", 8)
+
+
+
+NDStdArraysConfigure("GEN_CH8_Array", $(QSIZE), 0, "$(PORT)", 9)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH8,PORT=GEN_CH8_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=8,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH9_Array", $(QSIZE), 0, "$(PORT)", 9)
+NDStdArraysConfigure("GEN_CH9_Array", $(QSIZE), 0, "$(PORT)", 10)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH9,PORT=GEN_CH9_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=9,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH10_Array", $(QSIZE), 0, "$(PORT)", 10)
+NDStdArraysConfigure("GEN_CH10_Array", $(QSIZE), 0, "$(PORT)", 11)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH10,PORT=GEN_CH10_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=10,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH11_Array", $(QSIZE), 0, "$(PORT)", 11)
+NDStdArraysConfigure("GEN_CH11_Array", $(QSIZE), 0, "$(PORT)", 12)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH11,PORT=GEN_CH11_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=11,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH12_Array", $(QSIZE), 0, "$(PORT)", 12)
+NDStdArraysConfigure("GEN_CH12_Array", $(QSIZE), 0, "$(PORT)", 13)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH12,PORT=GEN_CH12_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=12,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH13_Array", $(QSIZE), 0, "$(PORT)", 13)
+NDStdArraysConfigure("GEN_CH13_Array", $(QSIZE), 0, "$(PORT)", 14)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH13,PORT=GEN_CH13_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=13,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
-NDStdArraysConfigure("GEN_CH14_Array", $(QSIZE), 0, "$(PORT)", 14)
+NDStdArraysConfigure("GEN_CH14_Array", $(QSIZE), 0, "$(PORT)", 15)
 dbLoadRecords("$(AREA_DETECTOR_COMPAT)/db/NDStdArrays.template", "P=${P},R=${R}GEN_CH14,PORT=GEN_CH14_Array,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=14,TYPE=Int32,FTVL=LONG,NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 NDStdArraysConfigure("GEN_CH15_Array", $(QSIZE), 0, "$(PORT)", 15)
