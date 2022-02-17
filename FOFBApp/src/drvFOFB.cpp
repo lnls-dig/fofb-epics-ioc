@@ -1629,13 +1629,13 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Only do callbacks and calculate position if we could acquire some
          * data */
         if (acqCompleted == 1) {
-            /* Do callbacks on the full waveform (all channels interleaved) */
-            doCallbacksGenericPointer(pArrayAllChannels, NDArrayDCC,
-                    channelMap[channel].NDArrayDCC[coreID][WVF_ALL]);
-            doCallbacksGenericPointer(pArrayAllChannels, NDArrayRTMA,
-                    channelMap[channel].NDArrayRTMA[coreID][WVF_ALL]);
-            doCallbacksGenericPointer(pArrayAllChannels, NDArrayRTMB,
-                    channelMap[channel].NDArrayRTMB[coreID][WVF_ALL]);
+//             /* Do callbacks on the full waveform (all channels interleaved) */
+//             doCallbacksGenericPointer(pArrayAllChannels, NDArray,
+//                     channelMap[channel].NDArrayDCC[coreID][WVF_ALL]);
+//             doCallbacksGenericPointer(pArrayAllChannels, NDArray,
+//                     channelMap[channel].NDArrayRTMA[coreID][WVF_ALL]);
+//             doCallbacksGenericPointer(pArrayAllChannels, NDArray,
+//                     channelMap[channel].NDArrayRTMB[coreID][WVF_ALL]);
 
             /* Copy data to arrays for each type of data, do callbacks on that */
             status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCC[coreID],
