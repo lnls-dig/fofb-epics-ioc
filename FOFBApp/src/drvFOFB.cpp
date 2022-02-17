@@ -1516,10 +1516,20 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         if (acqCompleted == 1) {
             /* Do callbacks on the full waveform (all channels interleaved) */
             doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
-                    channelMap[channel].NDArrayDCC[coreID][WVF_DCC_ALL]);
+                    channelMap[channel].NDArrayDCCFMC[coreID][WVF_DCC_FMC_ALL]);
+            doCallbacksGenericPointer(pArrayAllChannels, NDArrayData,
+                    channelMap[channel].NDArrayDCCP2P[coreID][WVF_DCC_P2P_ALL]);
 
             /* Copy data to arrays for each type of data, do callbacks on that */
-            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCC[coreID],
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCFMC[coreID],
+                    dims[0], arrayCounter, &now);
+            if (status != asynSuccess) {
+                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s:%s: unable to deinterleave NDArray\n",
+                        driverName, functionName);
+                continue;
+            }
+            status = deinterleaveNDArray(pArrayAllChannels, channelMap[channel].NDArrayDCCP2P[coreID],
                     dims[0], arrayCounter, &now);
             if (status != asynSuccess) {
                 asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,

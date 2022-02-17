@@ -147,6 +147,7 @@ typedef struct {
     int HwDataChannel;
     /* NDArray addresses mapping */
     int NDArrayDCCFMC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_TYPES];
+    int NDArrayDCCP2P[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_DCC_TYPES];
 } channelMap_t;
 
 /* FOFB Reverse channel mapping structure */
