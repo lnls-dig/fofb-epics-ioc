@@ -47,7 +47,7 @@
 /* Number fo triggers that are relative to waveform acquisition */
 #define MAX_WAVEFORM_TRIGGERS           17
 
-#define CH_DEFAULT_PM                   DCC_FMC
+#define CH_DEFAULT_PM                   CH_DCC_FMC
 #define SAMPLES_PRE_DEFAULT_PM(maxPoints) \
                                         (maxPoints/2)
 #define SAMPLES_POST_DEFAULT_PM(maxPoints) \
@@ -1361,10 +1361,10 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
-        if(numAtoms > MAX_WVF_DATA_TYPES) {
+        if(numAtoms > MAX_WVF_DATA_DCC_FMC_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
-                    driverName, functionName, MAX_WVF_DATA_TYPES);
+                    driverName, functionName, MAX_WVF_DATA_DCC_FMC_TYPES);
             continue;
         }
 
