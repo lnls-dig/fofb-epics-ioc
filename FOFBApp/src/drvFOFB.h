@@ -53,24 +53,38 @@ typedef enum {
 
 /* Waveform IDs */
 typedef enum {
-    WVF_DATA_CH0 = 0,
-    WVF_DATA_CH1,
-    WVF_DATA_CH2,
-    WVF_DATA_CH3,
-    WVF_DATA_CH4,
-    WVF_DATA_CH5,
-    WVF_DATA_CH6,
-    WVF_DATA_CH7,
-    WVF_DATA_CH8,
-    WVF_DATA_CH9,
-    WVF_DATA_CH10,
-    WVF_DATA_CH11,
-    WVF_DATA_CH12,
-    WVF_DATA_CH13,
-    WVF_DATA_CH14,
-    WVF_DATA_CH15,
-    WVF_DATA_ALL,
-    WVF_MONIT_CH0,
+    WVF_DATA_DCC_0 = 0,
+    WVF_DATA_DCC_1,
+    WVF_DATA_DCC_2,
+    WVF_DATA_DCC_3,
+    WVF_DATA_DCC_4,
+    WVF_DATA_DCC_5,
+    WVF_DATA_DCC_6,
+    WVF_DATA_DCC_7,
+    WVF_DATA_RTM_A_0,
+    WVF_DATA_RTM_A_1,
+    WVF_DATA_RTM_A_2,
+    WVF_DATA_RTM_A_3,
+    WVF_DATA_RTM_A_4,
+    WVF_DATA_RTM_A_5,
+    WVF_DATA_RTM_A_6,
+    WVF_DATA_RTM_A_7,
+    WVF_DATA_RTM_A_8,
+    WVF_DATA_RTM_A_9,
+    WVF_DATA_RTM_A_10,
+    WVF_DATA_RTM_A_11,
+    WVF_DATA_RTM_A_12,
+    WVF_DATA_RTM_A_13,
+    WVF_DATA_RTM_A_14,
+    WVF_DATA_RTM_A_15,
+    WVF_DATA_RTM_B_0,
+    WVF_DATA_RTM_B_1,
+    WVF_DATA_RTM_B_2,
+    WVF_DATA_RTM_B_3,
+    WVF_DATA_RTM_B_4,
+    WVF_DATA_RTM_B_5,
+    WVF_DATA_RTM_B_6,
+    WVF_DATA_RTM_B_7,
     WVF_END
 } wvf_types;
 
@@ -96,45 +110,80 @@ typedef enum {
 
 /* Channel IDs */
 typedef enum {
-    CH_RTM = 0,
-    CH_FOFB = 1,
+    CH_DCC_FMC = 0,
+    CH_DCC_P2P = 1,
+    CH_RTM_A   = 2,
+    CH_RTM_B   = 3,
     CH_END
 } ch_types;
 
 #define MAX_CHANNELS                  CH_END
 
 typedef enum {
-    CH_HW_RTM = 0,
-    CH_HW_FOFB = 1,
+    CH_HW_DCC_FMC = 0,
+    CH_HW_DCC_P2P = 1,
+    CH_HW_RTM_A   = 2,
+    CH_HW_RTM_B   = 3,
     CH_HW_END
 } ch_hw_types;
 
 #define MAX_HW_CHANNELS               CH_HW_END
 
-/* Waveform DATA types IDs */
+/* Waveform DCC types IDs */
 typedef enum {
-    WVF_CH0 = 0,
-    WVF_CH1,
-    WVF_CH2,
-    WVF_CH3,
-    WVF_CH4,
-    WVF_CH5,
-    WVF_CH6,
-    WVF_CH7,
-    WVF_CH8,
-    WVF_CH9,
-    WVF_CH10,
-    WVF_CH11,
-    WVF_CH12,
-    WVF_CH13,
-    WVF_CH14,
-    WVF_CH15,
-    WVF_ALL,
-    WVF_DATA_END
-} wvf_data_types;
+    WVF_DCC_0 = 0,
+    WVF_DCC_1,
+    WVF_DCC_2,
+    WVF_DCC_3,
+    WVF_DCC_4,
+    WVF_DCC_5,
+    WVF_DCC_6,
+    WVF_DCC_7,
+    WVF_DCC_END
+} wvf_dcc_types;
 
-#define MAX_WVF_DATA_SINGLE          (WVF_CH0+1)
-#define MAX_WVF_DATA_TYPES           WVF_DATA_END
+#define MAX_WVF_DCC_SINGLE          (WVF_DCC_0+1)
+#define MAX_WVF_DCC_TYPES            WVF_DCC_END
+
+/* Waveform RTM A types IDs */
+typedef enum {
+    WVF_RTM_A_0 = 0,
+    WVF_RTM_A_1,
+    WVF_RTM_A_2,
+    WVF_RTM_A_3,
+    WVF_RTM_A_4,
+    WVF_RTM_A_5,
+    WVF_RTM_A_6,
+    WVF_RTM_A_7,
+    WVF_RTM_A_8,
+    WVF_RTM_A_9,
+    WVF_RTM_A_10,
+    WVF_RTM_A_11,
+    WVF_RTM_A_12,
+    WVF_RTM_A_13,
+    WVF_RTM_A_14,
+    WVF_RTM_A_15,
+    WVF_RTM_A_END
+} wvf_rtm_a_types;
+
+#define MAX_WVF_RTM_A_SINGLE          (WVF_RTM_A_0+1)
+#define MAX_WVF_RTM_A_TYPES            WVF_RTM_A_END
+
+/* Waveform RTM B types IDs */
+typedef enum {
+    WVF_RTM_B_0 = 0,
+    WVF_RTM_B_1,
+    WVF_RTM_B_2,
+    WVF_RTM_B_3,
+    WVF_RTM_B_4,
+    WVF_RTM_B_5,
+    WVF_RTM_B_6,
+    WVF_RTM_B_7,
+    WVF_RTM_B_END
+} wvf_rtm_a_types;
+
+#define MAX_WVF_RTM_SINGLE          (WVF_RTM_B_0+1)
+#define MAX_WVF_DATA_TYPES           WVF_RTM_B_END
 
 /* One dimension for each point */
 #define MAX_WVF_DIMS                  2
@@ -151,9 +200,12 @@ typedef enum {
 /* FOFB Channel structure */
 typedef struct {
     /* HW channel mapping. -1 means not available */
-    int HwDataChannel;
+    int HwDATAChannel;
+
     /* NDArray addresses mapping */
-    int NDArrayData[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DATA_TYPES];
+    int NDArrayDCCFMC[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_DCC_TYPES];
+    int NDArrayRTMA[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_RTM_A_TYPES];
+    int NDArrayRTMB[NUM_ACQ_CORES_PER_FOFB][MAX_WVF_RTM_B_TYPES];
 } channelMap_t;
 
 /* FOFB Reverse channel mapping structure */
