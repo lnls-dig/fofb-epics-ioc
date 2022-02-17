@@ -393,7 +393,7 @@ static taskParams_t taskMonitParams = {
 };
 
 void acqTask(void *drvPvt);
-void acqMonitTask(void *drvPvt);
+// void acqMonitTask(void *drvPvt);
 
 static void exitHandlerC(void *pPvt)
 {
@@ -975,17 +975,17 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         }
     }
 
-    /* Create monitoring thread */
-    taskMonitParams.drvFOFBp = this;
-    status = (asynStatus)(epicsThreadCreate("drvFOFBMonitTask",
-                epicsThreadPriorityHigh,
-                epicsThreadGetStackSize(epicsThreadStackMedium),
-                (EPICSTHREADFUNC)::acqMonitTask,
-                &taskMonitParams) == NULL);
-    if (status) {
-        printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
-        return;
-    }
+//     /* Create monitoring thread */
+//     taskMonitParams.drvFOFBp = this;
+//     status = (asynStatus)(epicsThreadCreate("drvFOFBMonitTask",
+//                 epicsThreadPriorityHigh,
+//                 epicsThreadGetStackSize(epicsThreadStackMedium),
+//                 (EPICSTHREADFUNC)::acqMonitTask,
+//                 &taskMonitParams) == NULL);
+//     if (status) {
+//         printf("%s:%s: epicsThreadCreate failure\n", driverName, functionName);
+//         return;
+//     }
 
 #if 0
     /* This driver supports MAX_ADDR with autoConnect=1.  But there are only records
