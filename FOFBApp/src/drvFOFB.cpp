@@ -69,14 +69,14 @@ typedef struct {
 
 static const channelMap_t channelMap[CH_END] = {
      /* [CH_DCC_FMC] = */ {CH_HW_DCC_FMC,
-                          {{WVF_DATA_DCC_0,
+                           {WVF_DATA_DCC_0,
                             WVF_DATA_DCC_1,
                             WVF_DATA_DCC_2,
                             WVF_DATA_DCC_3,
                             WVF_DATA_DCC_4,
                             WVF_DATA_DCC_5,
                             WVF_DATA_DCC_6,
-                            WVF_DATA_DCC_7,},
+                            WVF_DATA_DCC_7},
                             {-1,
                             -1,
                             -1,
@@ -101,17 +101,16 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1,
                             -1},
-                          },
                           },
       /* [CH_DCC_P2P] = */ {CH_HW_DCC_P2P,
-                          {{WVF_DATA_DCC_0,
+                           {WVF_DATA_DCC_0,
                             WVF_DATA_DCC_1,
                             WVF_DATA_DCC_2,
                             WVF_DATA_DCC_3,
                             WVF_DATA_DCC_4,
                             WVF_DATA_DCC_5,
                             WVF_DATA_DCC_6,
-                            WVF_DATA_DCC_7,},
+                            WVF_DATA_DCC_7},
                             {-1,
                             -1,
                             -1,
@@ -136,10 +135,9 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1,
                             -1},
-                          },
                           },
     /* [CH_RTM_A] =    */ {CH_HW_RTM_A,
-                          {{-1,
+                           {-1,
                             -1,
                             -1,
                             -1,
@@ -162,7 +160,7 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_RTM_A_12,
                             WVF_DATA_RTM_A_13,
                             WVF_DATA_RTM_A_14,
-                            WVF_DATA_RTM_A_15,},
+                            WVF_DATA_RTM_A_15},
                             {-1,
                             -1,
                             -1,
@@ -172,9 +170,8 @@ static const channelMap_t channelMap[CH_END] = {
                             -1,
                             -1},
                           },
-                          },
     /* [CH_RTM_B] =    */ {CH_HW_RTM_B,
-                          {{-1,
+                          {-1,
                             -1,
                             -1,
                             -1,
@@ -205,10 +202,8 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_RTM_B_4,
                             WVF_DATA_RTM_B_5,
                             WVF_DATA_RTM_B_6,
-                            WVF_DATA_RTM_B_7,},
+                            WVF_DATA_RTM_B_7},
                           },
-                          },
-
 };
 
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
@@ -1479,7 +1474,7 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         if(numAtoms > MAX_WVF_DCC_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
-                    driverName, functionName, MAX_WVF_DATA_TYPES);
+                    driverName, functionName, MAX_WVF_DCC_TYPES);
             continue;
         }
 
