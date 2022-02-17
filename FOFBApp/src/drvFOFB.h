@@ -96,16 +96,16 @@ typedef enum {
 
 /* Channel IDs */
 typedef enum {
-    CH_RTM = 0,
-    CH_FOFB = 1,
+    CH_DCC_FMC = 0,
+    CH_DCC_P2P = 1,
     CH_END
 } ch_types;
 
 #define MAX_CHANNELS                  CH_END
 
 typedef enum {
-    CH_HW_RTM = 0,
-    CH_HW_FOFB = 1,
+    CH_HW_DCC_FMC = 0,
+    CH_HW_DCC_P2P = 1,
     CH_HW_END
 } ch_hw_types;
 
@@ -121,14 +121,6 @@ typedef enum {
     WVF_CH5,
     WVF_CH6,
     WVF_CH7,
-    WVF_CH8,
-    WVF_CH9,
-    WVF_CH10,
-    WVF_CH11,
-    WVF_CH12,
-    WVF_CH13,
-    WVF_CH14,
-    WVF_CH15,
     WVF_ALL,
     WVF_DATA_END
 } wvf_data_types;
