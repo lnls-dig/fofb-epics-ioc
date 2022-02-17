@@ -78,6 +78,15 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_DCC_FMC_CH6,
                             WVF_DATA_DCC_FMC_CH7,
                             WVF_DATA_DCC_FMC_ALL},
+                            {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                           },
     /* [CH_DCC_P2P] =  */ {CH_HW_DCC_P2P,                       // HwDataChannel
                             {WVF_DATA_DCC_P2P_CH0,              //NDArrayDCCP2P
@@ -89,6 +98,15 @@ static const channelMap_t channelMap[CH_END] = {
                             WVF_DATA_DCC_P2P_CH6,
                             WVF_DATA_DCC_P2P_CH7,
                             WVF_DATA_DCC_P2P_ALL},
+                            {-1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1,
+                            -1},
                           },
 };
 
