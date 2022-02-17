@@ -515,7 +515,7 @@ class drvFOFB : public asynNDArrayDriver {
 
         /* These are the methods that are new to this class */
         void acqTask(int coreID, double pollTime, bool autoStart);
-//         void acqMonitTask();
+        void acqMonitTask();
 
         /* Overloaded functions for extracting service name*/
         const char *doGetServiceNameFromFunc (functionsInt32_t &func) const
