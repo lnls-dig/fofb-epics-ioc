@@ -1361,10 +1361,10 @@ void drvFOFB::acqTask(int coreID, double pollTime, bool autoStart)
         /* Convert bit to byte */
         atomWidth = atomWidth/8;
 
-        if(numAtoms > MAX_WVF_DATA_DCC_FMC_TYPES) {
+        if(numAtoms > MAX_WVF_DATA_DCC_TYPES) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                     "%s:%s: unsupported numAtoms > %d. Reduce this value in the gateware\n",
-                    driverName, functionName, MAX_WVF_DATA_DCC_FMC_TYPES);
+                    driverName, functionName, MAX_WVF_DATA_DCC_TYPES);
             continue;
         }
 

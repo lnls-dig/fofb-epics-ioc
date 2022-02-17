@@ -98,7 +98,7 @@ typedef enum {
 /* Channel IDs */
 typedef enum {
     CH_DCC_FMC               = 0,
-    CH_DCC_P2P               = 0,
+    CH_DCC_P2P               = 1,
     CH_END
 } ch_types;
 
@@ -106,7 +106,7 @@ typedef enum {
 
 typedef enum {
     CH_HW_DCC_FMC               = 0,
-    CH_HW_DCC_P2P               = 0,
+    CH_HW_DCC_P2P               = 1,
     CH_HW_END
 } ch_hw_types;
 
