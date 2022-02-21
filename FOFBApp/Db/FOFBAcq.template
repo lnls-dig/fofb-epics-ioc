@@ -67,7 +67,7 @@ record(mbbo, "$(P)$(R)$(ACQ_NAME)Channel-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"adc")
+    field(ZRST,"rtm_lamp")
     field(ONST,"fofb")
 }
 
@@ -79,7 +79,7 @@ record(mbbi, "$(P)$(R)$(ACQ_NAME)Channel-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"adc")
+    field(ZRST,"rtm_lamp")
     field(ONST,"fofb")
 }
 
