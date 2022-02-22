@@ -30,6 +30,7 @@ record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPost-SP"){
     field(LOPR,"0")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
+    field(VAL, "0")
 }
 
 record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPost-RB"){
@@ -37,6 +38,7 @@ record(longin,"$(P)$(R)$(ACQ_NAME)SamplesPost-RB"){
     field(DESC,"Get number of post samples for waveforms")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_SAMPLES_POST")
+    field(VAL, "0")
 }
 
 record(longout,"$(P)$(R)$(ACQ_NAME)Shots-SP"){

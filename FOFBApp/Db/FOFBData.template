@@ -34,6 +34,7 @@ record(ao,"$(P)$(R)PSOffsetWav$(RTM_CHAN)-SP"){
   field(PINI,"YES")
   field(SCAN,"Passive")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
+  field(VAL, "1")
 }
 
 record(ao,"$(P)$(R)PSGainWav$(RTM_CHAN)-SP"){
@@ -42,6 +43,7 @@ record(ao,"$(P)$(R)PSGainWav$(RTM_CHAN)-SP"){
   field(SCAN,"Passive")
   field(PREC,"8")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
+  field(VAL, "1")
 }
 
 # Gain and Offset corrected waveform.

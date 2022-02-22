@@ -23,12 +23,14 @@ record(longout,"$(P)$(R)PSDacDataWb-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB")
+    field(VAL, "0")
 }
 record(longin,"$(P)$(R)PSDacDataWb-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get enable data from WB for DACs")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB")
+    field(VAL, "0")
 }
 
 record(mbbi,"$(P)$(R)PSAmpOverCurrFlagL$(RTM_CHAN)-Sts"){
@@ -79,74 +81,134 @@ record(mbbi,"$(P)$(R)PSAmpOverTempFlagR$(RTM_CHAN)-Sts"){
     field(ONST,"ok")
 }
 
-record(longout,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sel"){
+record(mbbo,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_AMP_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sts"){
+record(mbbi,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_AMP_EN")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
 
-record(longout,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sel"){
+record(mbbo,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI open-loop triangular wave enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_OL_TRIANG_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sts"){
+record(mbbi,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI open-loop triangular wave enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_OL_TRIANG_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
 
-record(longout,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sel"){
+record(mbbo,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI open-loop square wave enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_OL_SQUARE_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sts"){
+record(mbbi,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI open-loop square wave enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_OL_SQUARE_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
 
-record(longout,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sel"){
+record(mbbo,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI closed-loop square wave enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sts"){
+record(mbbi,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI closed-loop square wave enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
 
-record(longout,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sel"){
+record(mbbo,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI enable")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sts"){
+record(mbbi,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI enable")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_CTL_PI_ENABLE")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
 
 record(longout,"$(P)$(R)PSDacData$(RTM_CHAN)-SP"){
@@ -155,26 +217,40 @@ record(longout,"$(P)$(R)PSDacData$(RTM_CHAN)-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_DATA")
+    field(VAL, "0")
 }
 record(longin,"$(P)$(R)PSDacData$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data to be sent to DAC")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_DATA")
+    field(VAL, "0")
 }
 
-record(longout,"$(P)$(R)PSDacWr$(RTM_CHAN)-SP"){
+record(mbbo,"$(P)$(R)PSDacWr$(RTM_CHAN)-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"write DAC data to external IC")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_WR")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSDacWr$(RTM_CHAN)-RB"){
+record(mbbi,"$(P)$(R)PSDacWr$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"write DAC data to external IC")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_WR")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+    field(VAL, "0")
 }
 
 record(longout,"$(P)$(R)PSPIKp$(RTM_CHAN)-SP"){
@@ -183,6 +259,7 @@ record(longout,"$(P)$(R)PSPIKp$(RTM_CHAN)-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_KP_DATA")
+    field(VAL, "5000000")
 }
 record(longin,"$(P)$(R)PSPIKp$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
@@ -197,6 +274,7 @@ record(longout,"$(P)$(R)PSPITi$(RTM_CHAN)-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_TI_DATA")
+    field(VAL, "300")
 }
 record(longin,"$(P)$(R)PSPITi$(RTM_CHAN)-RB"){
     field(DTYP,"asynUInt32Digital")
@@ -205,26 +283,13 @@ record(longin,"$(P)$(R)PSPITi$(RTM_CHAN)-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_TI_DATA")
 }
 
-record(longout,"$(P)$(R)PSCurr$(RTM_CHAN)-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set PI setpoint parameter")
-    field(PINI,"YES")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
-}
-record(longin,"$(P)$(R)PSCurr$(RTM_CHAN)-Mon"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get PI setpoint parameter")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
-}
-
 record(longout,"$(P)$(R)PSPIDacCntMax-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI period of open-loop waveforms")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA")
+    field(VAL, "20000")
 }
 record(longin,"$(P)$(R)PSPIDacCntMax-RB"){
     field(DTYP,"asynUInt32Digital")
@@ -239,11 +304,63 @@ record(longout,"$(P)$(R)PSCurrLimInf-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
+    field(VAL, "0")
 }
 record(longin,"$(P)$(R)PSCurrLimInf-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI setpoint inferior limit")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
+    field(VAL, "0")
 }
 
+record(ao,"$(P)$(R)PSCurr$(RTM_CHAN)-SP"){
+  field(DESC,"set PI setpoint parameter")
+  field(PINI,"YES")
+  field(SCAN,"Passive")
+  field(PREC,"8")
+  field(FLNK,"$(P)$(R)PSCurrConv$(RTM_CHAN)-SP CPP NMS")
+}
+record(calcout,"$(P)$(R)PSCurrConv$(RTM_CHAN)-SP"){
+    field(DESC,"set PI setpoint parameter in ADC counts")
+    field(SCAN,"Passive")
+    field(INPA, "$(P)$(R)PSCurr$(RTM_CHAN)-SP")
+    field(INPB, "$(P)$(R)PSGainWav$(RTM_CHAN)-SP")
+    field(INPC, "$(P)$(R)PSOffsetWav$(RTM_CHAN)-SP")
+    field(CALC, "A/B+C")
+    field(OOPT, "Every Time")
+    field(OUT, "$(P)$(R)PSCurrRaw$(RTM_CHAN)-SP CA NMS")
+}
+record(longout,"$(P)$(R)PSCurrRaw$(RTM_CHAN)-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set PI setpoint parameter")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
+    field(VAL, "2")
+}
+record(longin,"$(P)$(R)PSCurrRaw$(RTM_CHAN)-Mon"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get PI setpoint parameter in ADC counts")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
+    field(FLNK,"$(P)$(R)PSCurrConv2$(RTM_CHAN)-SP CPP NMS")
+}
+
+record(calcout,"$(P)$(R)PSCurrConv2$(RTM_CHAN)-SP"){
+    field(DESC,"set PI setpoint parameter")
+    field(SCAN,"Passive")
+    field(PREC,"8")
+    field(INPA, "$(P)$(R)PSCurrRaw$(RTM_CHAN)-SP")
+    field(INPB, "$(P)$(R)PSGainWav$(RTM_CHAN)-SP")
+    field(INPC, "$(P)$(R)PSOffsetWav$(RTM_CHAN)-SP")
+    field(CALC, "B*(A-C)")
+    field(OOPT, "On Change")
+    field(OUT, "$(P)$(R)PSCurr$(RTM_CHAN)-Mon CA NMS")
+}
+
+record(ai,"$(P)$(R)PSCurr$(RTM_CHAN)-Mon"){
+    field(DESC,"get PI setpoint parameter")
+    field(SCAN,"Passive")
+    field(PREC,"8")
+}
