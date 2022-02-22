@@ -8,8 +8,9 @@ $(P)$(R)PSDacData$(RTM_CHAN)-SP
 $(P)$(R)PSDacWr$(RTM_CHAN)-SP
 $(P)$(R)PSPIKp$(RTM_CHAN)-SP
 $(P)$(R)PSPITi$(RTM_CHAN)-SP
-$(P)$(R)PSCurr$(RTM_CHAN)-SP
 $(P)$(R)PSPIDacCntMax-SP
 $(P)$(R)PSCurrLimInf-SP
 $(P)$(R)PSGainWav$(RTM_CHAN)-SP
 $(P)$(R)PSOffsetWav$(RTM_CHAN)-SP
+$(P)$(R)PSCurrRaw$(RTM_CHAN)-SP
+$(P)$(R)PSCurr$(RTM_CHAN)-SP
