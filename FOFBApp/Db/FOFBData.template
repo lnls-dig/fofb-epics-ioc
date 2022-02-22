@@ -29,19 +29,21 @@ field(SELM, "All")
 
 # Offset and Gain records 
 
-record(ao,"$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP"){
+record(ao,"$(P)$(R)PSOffsetWav$(RTM_CHAN)-SP"){
   field(DESC,"set waveform offset")
   field(PINI,"YES")
   field(SCAN,"Passive")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
+  field(VAL, "1")
 }
 
-record(ao,"$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP"){
+record(ao,"$(P)$(R)PSGainWav$(RTM_CHAN)-SP"){
   field(DESC,"set waveform gain")
   field(PINI,"YES")
   field(SCAN,"Passive")
   field(PREC,"8")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
+  field(VAL, "1")
 }
 
 # Gain and Offset corrected waveform.
@@ -52,8 +54,8 @@ record(acalcout,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN)")
   field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
   field(PINI, "YES")
   field(SCAN, "Passive")
-  field(INPA, "$(P)$(R)RtmLampWvfGain$(RTM_CHAN)-SP")
-  field(INPB, "$(P)$(R)RtmLampWvfOffset$(RTM_CHAN)-SP")
+  field(INPA, "$(P)$(R)PSGainWav$(RTM_CHAN)-SP")
+  field(INPB, "$(P)$(R)PSOffsetWav$(RTM_CHAN)-SP")
   field(INAA, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.VAL CPP NMS")
   field(WAIT, "Wait")
   field(OOPT, "Every Time")
