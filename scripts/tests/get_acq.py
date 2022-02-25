@@ -8,6 +8,7 @@
 # Created Feb. 25, 2022
 #
 
+
 # Importing libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,6 +18,7 @@ from epics import PV
 import os
 import warnings
 import time
+import json
 
 warnings.filterwarnings('ignore')
 plt.style.use("ggplot")
@@ -33,6 +35,7 @@ setpoints_for_PSD        = [-1, -0.5, 0, 0.5, 1]
 setpoints_for_cross_talk = [1, 50e-3, 200e-3]
 dac_data_values          = [3] #decide the values and update here later
 dac_cnt_max              = 625000 # 10ms
+data                     = {}
 
 # global PVs
 pv_acq_trigger_rep      = str(pv_prefix) + str("ACQTriggerRep-Sel")
@@ -64,6 +67,24 @@ for i in range(0, channels):
 	pv_dac_data.append(str(pv_prefix)  + str("PSDacDataCH") + str(i) + str("-SP.VAL"))
 	pv_amp_enable.append(str(pv_prefix)  + str("PSAmpEnCH") + str(i) + str("-Sel.VAL"))
 	pv_dac_write.append(str(pv_prefix)  + str("PSDacWrCH") + str(i) + str("-SP.VAL"))
+
+print('\n--------------------------------------------------------------------------')
+print('------------------------------ STARTING TEST -----------------------------')
+print('--------------------------------------------------------------------------\n')
+
+print('------------ Get serial number and data/time ------------\n')
+
+print('Insert the serial number:')
+serial_number = input()
+
+today = datetime.now()
+now = today.strftime("%B %d, %Y. %H:%M:%S")
+
+print('Serial number: ', str(serial_number))
+print('Now: ', now)
+
+data['Serial number'] = serial_number
+data['Date and time of test'] = now
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ ACQUIRE DATA ------------------------------')
@@ -101,19 +122,6 @@ PV(pv_acq_trigger_event).put(0, wait=True)
 time.sleep(0.1)
 PV(pv_acq_trigger_event).put(1, wait=True)
 
-print('>>> New acquisition... Done!\n')
-
-print('------------ Get serial number and data/time ------------\n')
-
-print('Insert the serial number:')
-serial_number = input()
-
-today = datetime.now()
-now = today.strftime("%B %d, %Y. %H:%M:%S")
-
-print('Serial number: ', str(serial_number))
-print('Now: ', now)
-
 print('\n--------------------------------------------------------------------------')
 print('----------------------------- OPEN LOOP TEST -----------------------------')
 print('--------------------------------------------------------------------------\n')
@@ -125,6 +133,17 @@ for i in range(0, channels):
 	new_offset[i] = np.mean(PV(pv_current_ArrayData[i]).get()*current_gain)
 print('New offset values: ', new_offset)
 
+data['New offsets'] = new_offset.tolist()
+
+print('>>> New acquisition... Done!\n')
+
+data_open_loop = [[], [], [], [], [], [], [], [], [], [], [], []]
+
+for i in range(0, channels):
+  data_open_loop[i] = (PV(pv_current_ArrayData[i]).get()*current_gain).tolist()
+
+data['ACQ for Open Loop Test'] = data_open_loop
+
 print('\n------------ Calculate the PSD ------------\n')
 
 os.system("mkdir Plots_%s"%(serial_number))
@@ -135,7 +154,7 @@ print('\n>>> Plot PSD for all channels and save figures...')
 for i in range(0, channels):
   plt.figure(figsize=[14, 8])
 
-  f, psd = signal.periodogram(PV(pv_current_ArrayData[i]).get()*current_gain, fs)
+  f, psd = signal.periodogram(data_open_loop[i], fs)
 
   plt.loglog(f, np.sqrt(psd), 'b',
              linewidth=1, marker='h', markerfacecolor='lightgreen',
@@ -190,6 +209,8 @@ print('\n>>> Disable DAC data from Wb')
 PV(pv_dac_data_wb).put(0, wait=True)
 PV(pv_dac_write[i]).put(0, wait=True)
 
+data['DAC voltage readed'] = dac_voltage.tolist()
+
 print('\n--------------------------------------------------------------------------')
 print('---------------------------- CLOSED LOOP TEST ----------------------------')
 print('--------------------------------------------------------------------------\n')
@@ -200,6 +221,9 @@ for i in range(0, channels):
 	PV(pv_current_offset[i]).put(new_offset[i])
 
 print('>>> Set the new offset for all channels... Done!')
+
+data_closed_loop      = [[], [], [], [], [], [], [], [], [], [], [], []]
+data_closed_loop_full = [[], [], [], [], []]
 
 a = 0
 for sp in setpoints_for_PSD:
@@ -223,10 +247,10 @@ for sp in setpoints_for_PSD:
 
 	print('>>> Plot PSD for all channels and save figures...')
 
-	for i in range(0, channels):
+	for j in range(0, channels):
 		plt.figure(figsize=[14, 8])
 
-		f, psd = signal.periodogram(PV(pv_current_ArrayData[i]).get()*current_gain, fs)
+		f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get()*current_gain, fs)
 
 		plt.loglog(f, np.sqrt(psd), 'b',
 				       linewidth=1, marker='h', markerfacecolor='lightgreen',
@@ -236,13 +260,19 @@ for sp in setpoints_for_PSD:
 		plt.xlim([0, 1e5])
 		plt.xlabel('Frequency [Hz]')
 		plt.ylabel('PSD [A/$\sqrt{Hz}$]')
-		plt.title('Closed Loop Power Spectral Density CH' + str(i) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_number) + ']')
+		plt.title('Closed Loop Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_number) + ']')
 		plt.grid(True, which="both")
 
-		plt.savefig('Plots_%s/ACQ_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, i))
+		plt.savefig('Plots_%s/ACQ_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, j))
+
+		data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
+
+	data_closed_loop_full[a] = data_closed_loop
 
 	print('>>> Plot PSD for all channels and save figures... Done!')
 	a = a + 1
+
+data['ACQ for Closed Loop Test'] = data_closed_loop_full
 
 print('\n--------------------------------------------------------------------------')
 print('--------------------- CLOSED LOOP TEST - SQUARE WAVE ---------------------')
@@ -250,6 +280,7 @@ print('-------------------------------------------------------------------------
 
 a = 0
 data_cross_talk = [[], [], [], [], [], [], [], [], [], [], [], []]
+data_cross_talk_full = [[], [], [], [], [], [], [], [], [], [], [], []]
 
 print('>>> Set the current setpoint limits in zero for all channels...')
 
@@ -281,7 +312,14 @@ for sp in setpoints_for_cross_talk:
 		print('>>> New acquisition... Done!\n')
 
 		for j in range(0, channels):
-			data_cross_talk[j] = PV(pv_current_ArrayData[j]).get()*current_gain
+			data_cross_talk[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
-		print('\n------------ Aquisition data for Cross Talk for channel %d ------------\n'%(i))
-		print(data_cross_talk)
+		data_cross_talk_full[i] = data_cross_talk
+
+data['ACQ for Cross Talk'] = data_cross_talk_full
+
+json_data = json.dumps(data, indent = 4)
+
+# Writing to json file
+with open("%s_data.json"%(serial_number), "w") as outfile:
+		outfile.write(json_data)
