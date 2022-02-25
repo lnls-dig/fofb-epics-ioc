@@ -66,8 +66,8 @@ for i in range(0, channels):
 print('>>> Set current gain to %f and offset to %f... Done!'%(current_gain, current_offset))
 
 print('>>> Set the period for 10ms...')
-	PV(pv_dac_cnt_max).put(dac_cnt_max, wait=True)
-	print('>>> Set the period for 10ms... Done!')
+PV(pv_dac_cnt_max).put(dac_cnt_max, wait=True)
+print('>>> Set the period for 10ms... Done!')
 
 print('\n>>> New acquisition...')
 # do an acquisition and stop the event,
@@ -133,7 +133,7 @@ dac_voltage = np.zeros(channels)
 
 pv_dac_data_wb
 print('\n>>> Enable DAC data from Wb')
-		PV(pv_dac_data_wb[i]).put(1, wait=True)
+PV(pv_dac_data_wb[i]).put(1, wait=True)
 		
 for val in dac_data_values:
 	for i in range(0, channels):
@@ -156,7 +156,7 @@ for val in dac_data_values:
 		PV(pv_dac_data[i]).put(0, wait=True)
 
 print('\n>>> Disable DAC data from Wb')
-		PV(pv_dac_data_wb[i]).put(0, wait=True)
+PV(pv_dac_data_wb[i]).put(0, wait=True)
 
 print('\n--------------------------------------------------------------------------')
 print('---------------------------- CLOSED LOOP TEST ----------------------------')
@@ -222,7 +222,6 @@ for i in range(0, channels):
 print('>>> Set the current setpoint limits in zero for all channels... Done!')
 
 for sp in setpoints_for_cross_talk:
-	
 	for i in range(0, channels):
 		print('\n>>> Set the limits for the square wave...')
 		PV(pv_current_setpoint[i]).put(sp, wait=True)
