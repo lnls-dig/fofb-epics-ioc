@@ -13,29 +13,41 @@
 record(longin,"$(P)$(R)PSStatus-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get RTM LAMP status register")
+    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_STA")
 }
 
-record(longout,"$(P)$(R)PSDacDataWb-SP"){
+record(mbbo,"$(P)$(R)PSDacDataWb-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set enable data from WB for DACs")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
-record(longin,"$(P)$(R)PSDacDataWb-RB"){
+record(mbbi,"$(P)$(R)PSDacDataWb-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get enable data from WB for DACs")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
 record(mbbi,"$(P)$(R)PSAmpOverCurrFlagL$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier left overcurrent flag")
+    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L")
     field(NOBT,"1")
@@ -48,6 +60,7 @@ record(mbbi,"$(P)$(R)PSAmpOverCurrFlagL$(RTM_CHAN)-Sts"){
 record(mbbi,"$(P)$(R)PSAmpOverTempFlagL$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier left overtemperature flag")
+    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_L")
     field(NOBT,"1")
@@ -60,6 +73,7 @@ record(mbbi,"$(P)$(R)PSAmpOverTempFlagL$(RTM_CHAN)-Sts"){
 record(mbbi,"$(P)$(R)PSAmpOverCurrFlagR$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier right overcurrent flag")
+    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_R")
     field(NOBT,"1")
@@ -72,6 +86,7 @@ record(mbbi,"$(P)$(R)PSAmpOverCurrFlagR$(RTM_CHAN)-Sts"){
 record(mbbi,"$(P)$(R)PSAmpOverTempFlagR$(RTM_CHAN)-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier right overtemperature flag")
+    field(PINI,"YES")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R")
     field(NOBT,"1")
@@ -90,8 +105,8 @@ record(mbbo,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sts"){
@@ -102,8 +117,8 @@ record(mbbi,"$(P)$(R)PSAmpEn$(RTM_CHAN)-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
@@ -116,8 +131,8 @@ record(mbbo,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sts"){
@@ -128,8 +143,8 @@ record(mbbi,"$(P)$(R)PSOpenLoopTriangWavEn$(RTM_CHAN)-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
@@ -142,8 +157,8 @@ record(mbbo,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sts"){
@@ -154,8 +169,8 @@ record(mbbi,"$(P)$(R)PSOpenLoopSquareWavEn$(RTM_CHAN)-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
@@ -168,8 +183,8 @@ record(mbbo,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sts"){
@@ -180,8 +195,8 @@ record(mbbi,"$(P)$(R)PSClosedLoopSquareWavSPEn$(RTM_CHAN)-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
@@ -194,8 +209,8 @@ record(mbbo,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sts"){
@@ -206,8 +221,8 @@ record(mbbi,"$(P)$(R)PSPIEn$(RTM_CHAN)-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
@@ -236,8 +251,8 @@ record(mbbo,"$(P)$(R)PSDacWr$(RTM_CHAN)-SP"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)PSDacWr$(RTM_CHAN)-RB"){
@@ -248,8 +263,8 @@ record(mbbi,"$(P)$(R)PSDacWr$(RTM_CHAN)-RB"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"disable")
-    field(ONST,"enable")
+    field(ZRST,"off")
+    field(ONST,"on")
     field(VAL, "0")
 }
 
