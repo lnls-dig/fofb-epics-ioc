@@ -155,8 +155,9 @@ data['ACQ for Open Loop Test'] = data_open_loop
 
 print('\n------------ Calculate the PSD ------------\n')
 
-os.system("mkdir Results_%s"%(serial_number))
-os.system("mkdir Results_%s/ACQ_Data_OpenLoop"%(serial_number))
+os.system("mkdir Results")
+os.system("mkdir Results/Serial_Number_%s"%(serial_number))
+os.system("mkdir Results/Serial_Number_%s/ACQ_Data_OpenLoop"%(serial_number))
 
 print('\n>>> Plot PSD for all channels and save figures...')
 
@@ -176,7 +177,7 @@ for i in range(0, channels):
   plt.title('Open Loop | Power Spectral Density CH' + str(i) + ' [Serial Number: ' + str(serial_number) + ']')
   plt.grid(True, which="both")
 
-  plt.savefig('Results_%s/ACQ_Data_OpenLoop/%s_PSD_OpenLoop_CH%d.png' %(serial_number, serial_number, i))
+  plt.savefig('Results/Serial_Number_%s/ACQ_Data_OpenLoop/%s_PSD_OpenLoop_CH%d.png' %(serial_number, serial_number, i))
 
 print('>>> Plot PSD for all channels and save figures... Done!')
 
@@ -244,7 +245,7 @@ data_closed_loop_full = [[], [], [], [], []]
 
 a = 0
 for sp in setpoints_for_PSD:
-	os.system("mkdir Results_%s/ACQ_Data_ClosedLoop_sp%a"%(serial_number, a))
+	os.system("mkdir Results/Serial_Number_%s/ACQ_Data_ClosedLoop_sp%a"%(serial_number, a))
 	for i in range(0, channels):
 		PV(pv_current_setpoint[i]).put(sp, wait=True)
 
@@ -280,7 +281,7 @@ for sp in setpoints_for_PSD:
 		plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_number) + ']')
 		plt.grid(True, which="both")
 
-		plt.savefig('Results_%s/ACQ_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, j))
+		plt.savefig('Results/Serial_Number_%s/ACQ_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, j))
 
 		data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
@@ -296,8 +297,8 @@ print('--------------------- CLOSED LOOP TEST - SQUARE WAVE --------------------
 print('--------------------------------------------------------------------------\n')
 
 a = 0
-data_cross_talk = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
-data_cross_talk_full = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+data_cross_talk        = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+data_cross_talk_full   = [[], [], [], [], [], [], [], [], [], [], [], []]
 data_cross_talk_per_sp = [[], [], []]
 
 print('>>> Set the current setpoint limits in zero for all channels...')
@@ -311,8 +312,9 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 n = 0
 
 for sp in setpoints_for_cross_talk:
+
 	for i in range(0, channels):
-		print('\n------------ CHANNEL %d ------------\n'%(i))
+		print('\n---- CHANNEL %d with SP = %fA and others with SP = 0 ----\n'%(i, sp))
 
 		print('\n>>> Set the limits for the square wave...')
 
@@ -342,7 +344,7 @@ for sp in setpoints_for_cross_talk:
 	data_cross_talk_per_sp[n] = data_cross_talk_full
 	n = n+1
 
-print('\n-------------------------------------\n')
+print('\n-------------------------------------------------------------\n')
 
 data['ACQ for Cross Talk'] = data_cross_talk_per_sp
 
@@ -351,10 +353,10 @@ json_data = json.dumps(data, indent = 4)
 print('>>> Save data in json file... Done!\n')
 
 # Writing to json file
-with open("Results_%s/data_%s.json"%(serial_number, serial_number), "w") as outfile:
+with open("Results/Serial_Number_%s/data_%s.json"%(serial_number, serial_number), "w") as outfile:
 		outfile.write(json_data)
 
 print('>>> Save data in json file... Done!\n')
 
-#with open("Results_%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
+#with open("Results/Serial_Number_%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
 #    data = json.load(read_file)
