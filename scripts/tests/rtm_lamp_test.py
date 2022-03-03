@@ -59,20 +59,22 @@ pv_current_setpoint_raw   = []
 pv_dac_data               = []
 pv_amp_enable             = []
 pv_dac_write              = []
+pv_square_wave_enable     = []
 
 # getting arrays of PV names
 for i in range(0, channels):
-	pv_current_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")             + str(i)          + str("ArrayData"))
-	pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")             + str(i+channels) + str("ArrayData"))
-	pv_current_gain.append(          str(pv_prefix)  + str("PSGainWavCH")        + str(i)          + str("-SP.VAL"))
-	pv_voltage_gain.append(          str(pv_prefix)  + str("PSGainWavCH")        + str(i+channels) + str("-SP.VAL"))
-	pv_current_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")      + str(i)          + str("-SP.VAL"))
-	pv_voltage_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")      + str(i+channels) + str("-SP.VAL"))
-	pv_current_setpoint.append(      str(pv_prefix)  + str("PSCurrCH")           + str(i)          + str("-SP.VAL"))
-	pv_current_setpoint_raw.append(  str(pv_prefix)  + str("PSCurrRawCH")        + str(i)          + str("-SP.VAL"))
-	pv_dac_data.append(              str(pv_prefix)  + str("PSDacDataCH")        + str(i)          + str("-SP.VAL"))
-	pv_amp_enable.append(            str(pv_prefix)  + str("PSAmpEnCH")          + str(i)          + str("-Sel.VAL"))
-	pv_dac_write.append(             str(pv_prefix)  + str("PSDacWrCH")          + str(i)          + str("-SP.VAL"))
+	pv_current_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")                    + str(i)          + str("ArrayData"))
+	pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")                    + str(i+channels) + str("ArrayData"))
+	pv_current_gain.append(          str(pv_prefix)  + str("PSGainWavCH")               + str(i)          + str("-SP.VAL"))
+	pv_voltage_gain.append(          str(pv_prefix)  + str("PSGainWavCH")               + str(i+channels) + str("-SP.VAL"))
+	pv_current_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")             + str(i)          + str("-SP.VAL"))
+	pv_voltage_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")             + str(i+channels) + str("-SP.VAL"))
+	pv_current_setpoint.append(      str(pv_prefix)  + str("PSCurrCH")                  + str(i)          + str("-SP.VAL"))
+	pv_current_setpoint_raw.append(  str(pv_prefix)  + str("PSCurrRawCH")               + str(i)          + str("-SP.VAL"))
+	pv_dac_data.append(              str(pv_prefix)  + str("PSDacDataCH")               + str(i)          + str("-SP.VAL"))
+	pv_amp_enable.append(            str(pv_prefix)  + str("PSAmpEnCH")                 + str(i)          + str("-Sel.VAL"))
+	pv_dac_write.append(             str(pv_prefix)  + str("PSDacWrCH")                 + str(i)          + str("-SP.VAL"))
+	pv_square_wave_enable.append(    str(pv_prefix)  + str("PSCLosedLoopSquareWavSPEn") + str(i)          + str("-Sel.VAL"))
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ STARTING TEST -----------------------------')
@@ -314,7 +316,7 @@ n = 0
 for sp in setpoints_for_cross_talk:
 
 	for i in range(0, channels):
-		print('\n---- CHANNEL %d with SP = %fA and others with SP = 0 ----\n'%(i, sp))
+		print('\n------------------ CHANNEL %d with SP = %fA ------------------\n'%(i, sp))
 
 		print('\n>>> Set the limits for the square wave...')
 
@@ -322,6 +324,12 @@ for sp in setpoints_for_cross_talk:
 		PV(pv_current_setpoint_inf).put(-1*PV(pv_current_setpoint_raw[i]).get(), wait=True)
 
 		print('\n>>> Set the limits for the square wave... Done!')
+
+		print('\n>>> Enable the square wave for channel %d...'%(i))
+
+		PV(pv_square_wave_enable[i]).put(1, wait=True)
+
+		print('\n>>> Enable the square wave for channel %d... Done!'%(i))
 
 		print('\n>>> New acquisition...')
 
@@ -334,6 +342,12 @@ for sp in setpoints_for_cross_talk:
 		PV(pv_acq_trigger_event).put(1, wait=True)
 
 		print('>>> New acquisition... Done!\n')
+
+		print('\n>>> Disable the square wave for channel %d...'%(i))
+
+		PV(pv_square_wave_enable[i]).put(0, wait=True)
+
+		print('\n>>> Disable the square wave for channel %d... Done!'%(i))
 
 		for j in range(0, channels):
 			data_cross_talk[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
@@ -350,7 +364,7 @@ data['ACQ for Cross Talk'] = data_cross_talk_per_sp
 
 json_data = json.dumps(data, indent = 4)
 
-print('>>> Save data in json file... Done!\n')
+print('>>> Save data in json file...\n')
 
 # Writing to json file
 with open("Results/Serial_Number_%s/data_%s.json"%(serial_number, serial_number), "w") as outfile:
