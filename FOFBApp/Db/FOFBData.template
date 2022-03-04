@@ -33,16 +33,16 @@ record(ao,"$(P)$(R)PSOffsetWav$(RTM_CHAN)-SP"){
   field(DESC,"set waveform offset")
   field(PINI,"YES")
   field(SCAN,"Passive")
-  field(PREC,"8")
+  field(PREC,"15")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
-  field(VAL, "1")
+  field(VAL, "0")
 }
 
 record(ao,"$(P)$(R)PSGainWav$(RTM_CHAN)-SP"){
   field(DESC,"set waveform gain")
   field(PINI,"YES")
   field(SCAN,"Passive")
-  field(PREC,"8")
+  field(PREC,"15")
   field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(RTM_CHAN) CPP NMS")
   field(VAL, "1")
 }

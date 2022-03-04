@@ -352,7 +352,7 @@ record(longout,"$(P)$(R)PSCurrRaw$(RTM_CHAN)-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
-    field(VAL, "2")
+    field(VAL, "0")
 }
 record(longin,"$(P)$(R)PSCurrRaw$(RTM_CHAN)-Mon"){
     field(DTYP,"asynUInt32Digital")
