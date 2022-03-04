@@ -22,7 +22,8 @@ plt.style.use('ggplot')                           # plot style
 
 # constants
 fs                        = 1/940e-9              # frequency for PSD calc
-samples                   = 1000                  # number of samples for acquisition
+samples                   = 10000                 # number of samples for acquisition
+samples_cross_talk        = 1000                  # number of samples to plot cross talk data
 channels                  = 12                    # number of channels (max 12, 8 actually in use)
 pi_kp                     = 5000000               # PI Kp parameter
 pi_ti                     = 300                   # PI Ti parameter
@@ -386,6 +387,48 @@ print('>>> Set zero for the current setpoint inferior limit... Done!')
 print('\n---------------------------------------------------------------------------\n')
 
 data['ACQ for Cross Talk'] = data_cross_talk_per_sp
+
+n = 0
+
+for sp in setpoints_for_cross_talk:
+
+  os.system("mkdir Results/Serial_Number_%s/ACQ_Data_Cross_Talk_sp%d"%(serial_number, n))
+
+  for i in range(0, channels):
+
+    print('\n---------------------- CHANNEL %d with SP = %fA ---------------------\n'%(i, sp))
+
+    print('>>> Plot cross talk data for all channels and save figures...')
+
+    plt.figure(figsize=[40, 30])
+    for j in range(0, channels):
+      plt.subplot(4,3,j+1)
+      y = data['ACQ for Cross Talk'][n][i][j]
+      #plt.plot(random.choices(y, k=samples_cross_talk))
+      plt.plot(y[0:samples_cross_talk])
+      plt.xlabel('Sample')
+      plt.ylabel('Current [A]')
+      plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
+      time.sleep(0.2)
+    plt.savefig('Results/Serial_Number_%s/ACQ_Data_Cross_Talk_sp%d/%s_Cross_Talk_%d.png' %(serial_number, n, serial_number, i))
+
+    plt.figure(figsize=[40, 30])
+    for j in range(0, channels):
+      plt.subplot(4,3,j+1)
+      y = data['ACQ for Cross Talk'][n][i][j+channels]
+      #plt.plot(random.choices(y, k=samples_cross_talk))
+      plt.plot(y[0:samples_cross_talk],'b')
+      plt.xlabel('Sample')
+      plt.ylabel('Voltage [V]')
+      plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j+channels))
+      time.sleep(0.2)
+    plt.savefig('Results/Serial_Number_%s/ACQ_Data_Cross_Talk_sp%d/%s_Cross_Talk_%d.png' %(serial_number, n, serial_number, i+channels))
+
+    print('>>> Plot cross talk data for all channels and save figures... Done!\n')
+
+  n = n + 1
+
+print('\n---------------------------------------------------------------------------\n')
 
 json_data = json.dumps(data, indent = 4)
 
