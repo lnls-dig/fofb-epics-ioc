@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 #
 # Script to test RTM-LAMP
 #
@@ -8,36 +6,36 @@
 # Created Feb. 25, 2022
 #
 
-
-# Importing libraries
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import signal
-from datetime import datetime
-from epics import PV
+# importing libraries
 import os
-import warnings
 import time
 import json
+import warnings
+import matplotlib.pyplot as plt
+import numpy             as np
+from   datetime      import datetime
+from   scipy         import signal
+from   epics         import PV
 
-warnings.filterwarnings('ignore')
-plt.style.use("ggplot")
+warnings.filterwarnings('ignore')                 # do not show plot/calc warnings
+plt.style.use('ggplot')                           # plot style
 
-# Defining constants and PVs
-fs                        = 1/940e-9
-samples                   = 10000
-channels                  = 12
-current_gain              = 0.00006250   # 6.25e-5
-voltage_gain              = 0.00011292   # 1.12916762036e-4
-current_offset            = 0
-voltage_offset            = 0
-dac_data                  = 2
-pv_prefix                 = "SI-22:DI-FOFBCtrl:"
-setpoints_for_PSD         = [-1, -0.5, 0, 0.5, 1]
-setpoints_for_cross_talk  = [1, 50e-3, 200e-3]
-dac_data_values           = [3]          # decide the values and update here later
-dac_cnt_max               = 625000       # 10ms
-data                      = {}           # json data
+# constants
+fs                        = 1/940e-9              # frequency for PSD calc
+samples                   = 1000                  # number of samples for acquisition
+channels                  = 12                    # number of channels (max 12, 8 actually in use)
+pi_kp                     = 5000000               # PI Kp parameter
+pi_ti                     = 300                   # PI Ti parameter
+pv_prefix                 = "SI-22:DI-FOFBCtrl:"  # homologcrate
+current_gain              = 6.25e-5               # initial value for current gain
+voltage_gain              = 1.12916762036e-4      # initial value for voltage gain
+current_offset            = 0                     # initial value for current offset
+voltage_offset            = 0                     # initial value for voltage offset
+setpoints_for_PSD         = [-1, -0.5, 0, 0.5, 1] # current setpoints (A)
+setpoints_for_cross_talk  = [1, 50e-3, 200e-3]    # current setpoints (A)
+dac_data_values           = [0, 17712]            # 0V and 2V
+dac_cnt_max               = 625000                # 10ms
+data                      = {}                    # json data
 
 # global PVs
 pv_acq_trigger_rep        = str(pv_prefix) + str("ACQTriggerRep-Sel")
@@ -60,8 +58,10 @@ pv_dac_data               = []
 pv_amp_enable             = []
 pv_dac_write              = []
 pv_square_wave_enable     = []
+pv_pi_kp                  = []
+pv_pi_ti                  = []
 
-# getting arrays of PV names
+# getting lists of PV names, so we can reutilize them in all tests
 for i in range(0, channels):
 	pv_current_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")                    + str(i)          + str("ArrayData"))
 	pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")                    + str(i+channels) + str("ArrayData"))
@@ -75,63 +75,69 @@ for i in range(0, channels):
 	pv_amp_enable.append(            str(pv_prefix)  + str("PSAmpEnCH")                 + str(i)          + str("-Sel.VAL"))
 	pv_dac_write.append(             str(pv_prefix)  + str("PSDacWrCH")                 + str(i)          + str("-SP.VAL"))
 	pv_square_wave_enable.append(    str(pv_prefix)  + str("PSCLosedLoopSquareWavSPEn") + str(i)          + str("-Sel.VAL"))
+	pv_pi_kp.append(                 str(pv_prefix)  + str("PSPIKpCH")                  + str(i)          + str("-SP.VAL"))
+	pv_pi_ti.append(                 str(pv_prefix)  + str("PSPITiCH")                  + str(i)          + str("-SP.VAL"))
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ STARTING TEST -----------------------------')
 print('--------------------------------------------------------------------------\n')
 
-print('------------ Get serial number and data/time ------------\n')
+print('------------------- Get serial number and data/time ----------------------\n')
 
 print('Insert the serial number:')
 serial_number = input()
 
 today = datetime.now()
-now = today.strftime("%B %d, %Y. %H:%M:%S")
+now   = today.strftime("%B %d, %Y. %H:%M:%S")
 
 print('Serial number: ', str(serial_number))
 print('Now: ', now)
 
-data['Serial number'] = serial_number
+data['Serial number']         = serial_number
 data['Date and time of test'] = now
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ ACQUIRE DATA ------------------------------')
 print('--------------------------------------------------------------------------\n')
 
-print('>>> Set current: gain = %f offset = %f \n Set voltage: gain = %f offset = %f ...'
-      %(current_gain, current_offset, voltage_gain, voltage_offset))
+print('>>> Set initial values for gain, offset, PI Kp and PI Ti ...')
 
-# initializing some PVs
+# initializing some PVs with default values
 for i in range(0, channels):
-	PV(pv_current_gain[i]).put(current_gain, wait=True)
+	PV(pv_current_gain[i]).put(current_gain,     wait=True)
 	PV(pv_current_offset[i]).put(current_offset, wait=True)
-	PV(pv_voltage_gain[i]).put(voltage_gain, wait=True)
+	PV(pv_voltage_gain[i]).put(voltage_gain,     wait=True)
 	PV(pv_voltage_offset[i]).put(voltage_offset, wait=True)
-#PV(pv_dac_data_wb[i]).put(0, wait=True)
+	PV(pv_pi_kp[i]).put(pi_kp,                   wait=True)
+	PV(pv_pi_ti[i]).put(pi_ti,                   wait=True)
 
-print('>>> Set current/voltage gain and offset... Done!')
+PV(pv_dac_data_wb).put(0,                      wait=True)
+
+print('>>> Set initial values for gain, offset, PI Kp and PI Ti... Done!\n')
 
 print('>>> Set the period for 10ms...')
 
 PV(pv_dac_cnt_max).put(dac_cnt_max, wait=True)
 
-print('>>> Set the period for 10ms... Done!')
+print('>>> Set the period for 10ms... Done!\n')
 
 print('>>> Set zero for the current setpoints...')
+
 for i in range(0, channels):
 		PV(pv_current_setpoint[i]).put(0, wait=True)
 PV(pv_current_setpoint_inf).put(0, wait=True)
+
 print('>>> Set zero for the current setpoints... Done!')
 
 print('\n>>> New acquisition...')
 
 # do an acquisition and stop the event,
-#so the array data will be the same until we do another acquisition
+# so the array data will be the same until we do another acquisition
 PV(pv_acq_samples_pre).put(samples, wait=True)
-PV(pv_acq_trigger_rep).put(0, wait=True)
-PV(pv_acq_trigger_event).put(0, wait=True)
-time.sleep(0.1)
-PV(pv_acq_trigger_event).put(1, wait=True)
+PV(pv_acq_trigger_rep).put(0,       wait=True)
+PV(pv_acq_trigger_event).put(0,     wait=True)
+time.sleep(0.1) # just to see the waveform change in graphical interface
+PV(pv_acq_trigger_event).put(1,     wait=True)
 
 print('>>> New acquisition... Done!\n')
 
@@ -139,12 +145,13 @@ print('\n-----------------------------------------------------------------------
 print('----------------------------- OPEN LOOP TEST -----------------------------')
 print('--------------------------------------------------------------------------\n')
 
-print('\n------------ Calculate the current offset ------------\n')
+print('--------------------- Calculate the current offset -----------------------\n')
 
 new_offset = np.zeros(channels)
 for i in range(0, channels):
 	new_offset[i] = np.mean(PV(pv_current_ArrayData[i]).get()*current_gain)
-print('New current offset values: ', new_offset)
+
+print('New current offset values: \n', new_offset)
 
 data['New current offsets'] = new_offset.tolist()
 
@@ -155,7 +162,7 @@ for i in range(0, channels):
 
 data['ACQ for Open Loop Test'] = data_open_loop
 
-print('\n------------ Calculate the PSD ------------\n')
+print('\n------------------------- Calculate the PSD ------------------------------\n')
 
 os.system("mkdir Results")
 os.system("mkdir Results/Serial_Number_%s"%(serial_number))
@@ -170,7 +177,7 @@ for i in range(0, channels):
 
   plt.loglog(f, np.sqrt(psd), 'b',
              linewidth=1, marker='h', markerfacecolor='lightgreen',
-             markeredgewidth=1,markersize=4)
+             markeredgewidth=1, markersize=4)
 
   plt.ylim([1e-10, 1e-3])
   plt.xlim([0, 1e5])
@@ -183,18 +190,21 @@ for i in range(0, channels):
 
 print('>>> Plot PSD for all channels and save figures... Done!')
 
-print('\n------------ Read DAC values for each channel ------------\n')
+print('\n------------------ Read DAC values for each channel ----------------------\n')
 
 dac_voltage = np.zeros(channels)
+data_dac_voltage = [[], []]
 
-print('\n>>> Enable DAC data from Wb')
+print('>>> Enable DAC data from Wb')
+
 PV(pv_dac_data_wb).put(1, wait=True)
 
+a = 0
 for val in dac_data_values:
 	for i in range(0, channels):
-		print('\n------------ CHANNEL %d ------------\n'%(i))
+		print('\n------------------------------- CHANNEL %d --------------------------------\n'%(i))
 
-		print('\n>>> Set %f in DAC data for channel %d'%(val, i))
+		print('>>> Set %d in DAC data for channel %d'%(val, i))
 
 		PV(pv_dac_data[i]).put(val, wait=True)
 
@@ -206,11 +216,11 @@ for val in dac_data_values:
 
 		PV(pv_dac_write[i]).put(1, wait=True)
 
-		print('\n>>> Insert DAC voltage readed from multimeter for CH%d: '%(i))
+		print('\n>>> Insert DAC voltage read from multimeter for CH%d: '%(i))
 
 		dac_voltage[i] = float(input())
 
-		print('dac_voltage[%d] = %f'%(i, dac_voltage[i]))
+		print('\n dac_voltage = %fV'%(dac_voltage[i]))
 
 		print('\n>>> Disable DAC write for channel %d'%(i))
 
@@ -224,12 +234,15 @@ for val in dac_data_values:
 
 		PV(pv_dac_data[i]).put(0, wait=True)
 
+	data_dac_voltage[a] = dac_voltage.tolist()
+	a = a + 1
+
 print('\n>>> Disable DAC data from Wb')
 
-PV(pv_dac_data_wb).put(0, wait=True)
+PV(pv_dac_data_wb).put(0,  wait=True)
 PV(pv_dac_write[i]).put(0, wait=True)
 
-data['DAC voltage readed'] = dac_voltage.tolist()
+data['DAC voltage read'] = data_dac_voltage
 
 print('\n--------------------------------------------------------------------------')
 print('---------------------------- CLOSED LOOP TEST ----------------------------')
@@ -246,22 +259,24 @@ data_closed_loop      = [[], [], [], [], [], [], [], [], [], [], [], []]
 data_closed_loop_full = [[], [], [], [], []]
 
 a = 0
+
 for sp in setpoints_for_PSD:
 	os.system("mkdir Results/Serial_Number_%s/ACQ_Data_ClosedLoop_sp%a"%(serial_number, a))
+
 	for i in range(0, channels):
 		PV(pv_current_setpoint[i]).put(sp, wait=True)
 
-	print('\n------------ Calculate the PSD for SP = %fA ------------\n'%(sp))
+	print('\n----------------- Calculate the PSD for SP = %fA ------------------\n'%(sp))
 
 	print('>>> New acquisition...')
 
 	# do an acquisition and stop the event,
 	#so the array data will be the same until we do another acquisition
 	PV(pv_acq_samples_pre).put(samples, wait=True)
-	PV(pv_acq_trigger_rep).put(0, wait=True)
-	PV(pv_acq_trigger_event).put(0, wait=True)
-	time.sleep(0.1)
-	PV(pv_acq_trigger_event).put(1, wait=True)
+	PV(pv_acq_trigger_rep).put(0,       wait=True)
+	PV(pv_acq_trigger_event).put(0,     wait=True)
+	time.sleep(0.1)  # just to see the waveform change in graphical interface
+	PV(pv_acq_trigger_event).put(1,     wait=True)
 
 	print('>>> New acquisition... Done!\n')
 
@@ -274,7 +289,7 @@ for sp in setpoints_for_PSD:
 
 		plt.loglog(f, np.sqrt(psd), 'b',
 				       linewidth=1, marker='h', markerfacecolor='lightgreen',
-				       markeredgewidth=1,markersize=4)
+				       markeredgewidth=1, markersize=4)
 
 		plt.ylim([1e-10, 1e-3])
 		plt.xlim([0, 1e5])
@@ -298,7 +313,6 @@ print('\n-----------------------------------------------------------------------
 print('--------------------- CLOSED LOOP TEST - SQUARE WAVE ---------------------')
 print('--------------------------------------------------------------------------\n')
 
-a = 0
 data_cross_talk        = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 data_cross_talk_full   = [[], [], [], [], [], [], [], [], [], [], [], []]
 data_cross_talk_per_sp = [[], [], []]
@@ -306,7 +320,7 @@ data_cross_talk_per_sp = [[], [], []]
 print('>>> Set the current setpoint limits in zero for all channels...')
 
 for i in range(0, channels):
-	PV(pv_current_setpoint[i]).put(0, wait=True)
+	PV(pv_current_setpoint[i]).put(0,  wait=True)
 	PV(pv_current_setpoint_inf).put(0, wait=True)
 
 print('>>> Set the current setpoint limits in zero for all channels... Done!')
@@ -316,61 +330,73 @@ n = 0
 for sp in setpoints_for_cross_talk:
 
 	for i in range(0, channels):
-		print('\n------------------ CHANNEL %d with SP = %fA ------------------\n'%(i, sp))
+		print('\n---------------------- CHANNEL %d with SP = %fA ---------------------\n'%(i, sp))
 
 		print('\n>>> Set the limits for the square wave...')
 
 		PV(pv_current_setpoint[i]).put(sp, wait=True)
 		PV(pv_current_setpoint_inf).put(-1*PV(pv_current_setpoint_raw[i]).get(), wait=True)
 
-		print('\n>>> Set the limits for the square wave... Done!')
+		print('>>> Set the limits for the square wave... Done!')
 
 		print('\n>>> Enable the square wave for channel %d...'%(i))
 
 		PV(pv_square_wave_enable[i]).put(1, wait=True)
 
-		print('\n>>> Enable the square wave for channel %d... Done!'%(i))
+		print('>>> Enable the square wave for channel %d... Done!'%(i))
 
 		print('\n>>> New acquisition...')
 
 		# do an acquisition and stop the event,
 		#so the array data will be the same until we do another acquisition
 		PV(pv_acq_samples_pre).put(samples, wait=True)
-		PV(pv_acq_trigger_rep).put(0, wait=True)
-		PV(pv_acq_trigger_event).put(0, wait=True)
-		time.sleep(0.1)
-		PV(pv_acq_trigger_event).put(1, wait=True)
+		PV(pv_acq_trigger_rep).put(0,       wait=True)
+		PV(pv_acq_trigger_event).put(0,     wait=True)
+		time.sleep(0.1)  # just to see the waveform change in graphical interface
+		PV(pv_acq_trigger_event).put(1,     wait=True)
 
 		print('>>> New acquisition... Done!\n')
 
-		print('\n>>> Disable the square wave for channel %d...'%(i))
-
-		PV(pv_square_wave_enable[i]).put(0, wait=True)
-
-		print('\n>>> Disable the square wave for channel %d... Done!'%(i))
+		print('>>> Save the acq data from all channels...')
 
 		for j in range(0, channels):
-			data_cross_talk[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
+			data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 			data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()*voltage_gain).tolist()
 
 		data_cross_talk_full[i] = data_cross_talk
 
+		print('>>> Save the acq data from all channels... Done!\n')
+
+		print('>>> Disable the square wave and set SP = 0 for channel %d...'%(i))
+
+		PV(pv_square_wave_enable[i]).put(0, wait=True)
+		PV(pv_current_setpoint[i]).put(0,   wait=True)
+
+		print('>>> Disable the square wave and set SP = 0 for channel %d... Done!\n'%(i))
+
 	data_cross_talk_per_sp[n] = data_cross_talk_full
 	n = n+1
 
-print('\n-------------------------------------------------------------\n')
+print('>>> Set zero for the current setpoint inferior limit...')
+
+PV(pv_current_setpoint_inf).put(0, wait=True)
+
+print('>>> Set zero for the current setpoint inferior limit... Done!')
+
+print('\n---------------------------------------------------------------------------\n')
 
 data['ACQ for Cross Talk'] = data_cross_talk_per_sp
 
 json_data = json.dumps(data, indent = 4)
 
-print('>>> Save data in json file...\n')
+print('>>> Save data in json file...')
 
-# Writing to json file
+# writing data to json file
 with open("Results/Serial_Number_%s/data_%s.json"%(serial_number, serial_number), "w") as outfile:
 		outfile.write(json_data)
 
 print('>>> Save data in json file... Done!\n')
 
-#with open("Results/Serial_Number_%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
-#    data = json.load(read_file)
+# reading data from json file
+# with open("Results/Serial_Number_%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
+#     data = json.load(read_file)

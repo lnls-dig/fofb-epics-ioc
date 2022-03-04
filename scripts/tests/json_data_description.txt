@@ -18,8 +18,8 @@ s = number of samples
 	the first data acquisition for current (current data)
 	dimension: c arrays, each one containing s values
 
-'DAC voltage readed':
-	the values of voltage readed with a multimeter that the user will input for the dac data setpoints: [...]
+'DAC voltage read':
+	the values of voltage read with a multimeter that the user will input for the dac data setpoints: [0 17712]
 	dimension: n arrays with c values
 
 'ACQ for Closed Loop Test':
