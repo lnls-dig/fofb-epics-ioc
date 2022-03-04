@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1507</width>
-    <height>860</height>
+    <height>862</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,125 +87,6 @@
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="18" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_22">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sts</string>
-          </property>
-         </widget>
-        </item>
-        <item row="27" column="0">
-         <widget class="QLabel" name="label_222">
-          <property name="text">
-           <string>PSCurrentOffset:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="28" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_13">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH12-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="27" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_117">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="28" column="0">
-         <widget class="QLabel" name="label_223">
-          <property name="text">
-           <string>PSVoltageGain:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_15">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpEnCH0-Sts</string>
-          </property>
-         </widget>
-        </item>
-        <item row="19" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_21">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIEnCH0-Sts</string>
-          </property>
-         </widget>
-        </item>
-        <item row="19" column="0">
-         <widget class="QLabel" name="label_25">
-          <property name="text">
-           <string>PSPIEn:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="17" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>PSOpenLoopSquareWavEn:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="text">
-           <string>PSAmpEn:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_18">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIKpCH0-RB</string>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_21">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIKpCH0-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="14" column="0">
-         <widget class="QLabel" name="label_416">
-          <property name="text">
-           <string>PSCurrSrc:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="23" column="0">
-         <widget class="QLabel" name="label_22">
-          <property name="text">
-           <string>PSPITi:</string>
-          </property>
-         </widget>
-        </item>
         <item row="18" column="0">
          <widget class="QLabel" name="label_24">
           <property name="text">
@@ -213,143 +94,13 @@
           </property>
          </widget>
         </item>
-        <item row="24" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_16">
+        <item row="18" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_22">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrRawCH0-Mon</string>
-          </property>
-         </widget>
-        </item>
-        <item row="24" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_19">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrRawCH0-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="14" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_339">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="precision" stdset="0">
-           <number>0</number>
-          </property>
-          <property name="precisionFromPV" stdset="0">
-           <bool>true</bool>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrSrcCH0-Sts</string>
-          </property>
-         </widget>
-        </item>
-        <item row="25" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_58">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="precision" stdset="0">
-           <number>0</number>
-          </property>
-          <property name="precisionFromPV" stdset="0">
-           <bool>true</bool>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrCH0-Mon</string>
-          </property>
-         </widget>
-        </item>
-        <item row="25" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_218">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSCurrCH0-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="25" column="0">
-         <widget class="QLabel" name="label_380">
-          <property name="text">
-           <string>PSCurr:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="23" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_17">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPITiCH0-RB</string>
-          </property>
-         </widget>
-        </item>
-        <item row="27" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_12">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="26" column="0">
-         <widget class="QLabel" name="label_221">
-          <property name="text">
-           <string>PSCurrentGain:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="16" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_28">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sts</string>
-          </property>
-         </widget>
-        </item>
-        <item row="28" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_118">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH12-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="23" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_20">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPITiCH0-SP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="29" column="0">
-         <widget class="QLabel" name="label_224">
-          <property name="text">
-           <string>PSVoltageOffset:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="24" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>PSCurrRaw:</string>
+           <string>SI-22:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -363,23 +114,17 @@
           </property>
          </widget>
         </item>
-        <item row="29" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_14">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH12-SP</string>
+        <item row="21" column="0">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>PSDacData:</string>
           </property>
          </widget>
         </item>
-        <item row="26" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_116">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSGainWavCH0-SP</string>
+        <item row="24" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>PSCurrRaw:</string>
           </property>
          </widget>
         </item>
@@ -403,10 +148,253 @@
           </property>
          </widget>
         </item>
+        <item row="23" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_17">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSPITiCH0-RB</string>
+          </property>
+         </widget>
+        </item>
+        <item row="25" column="0">
+         <widget class="QLabel" name="label_380">
+          <property name="text">
+           <string>PSCurr:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="2">
+         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_65">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSPIEnCH0-Sel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_15">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSAmpEnCH0-Sts</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_28">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sts</string>
+          </property>
+         </widget>
+        </item>
+        <item row="29" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_14">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH12-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="20" column="0">
+         <widget class="QLabel" name="label_27">
+          <property name="text">
+           <string>PSDacWr:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="2">
+         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_53">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="28" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_118">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSGainWavCH12-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="28" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_13">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSGainWavCH12-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="23" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_20">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSPITiCH0-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="28" column="0">
+         <widget class="QLabel" name="label_223">
+          <property name="text">
+           <string>PSVoltageGain:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="24" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_16">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSCurrRawCH0-Mon</string>
+          </property>
+         </widget>
+        </item>
+        <item row="23" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>PSPITi:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="29" column="0">
+         <widget class="QLabel" name="label_224">
+          <property name="text">
+           <string>PSVoltageOffset:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="26" column="0">
+         <widget class="QLabel" name="label_221">
+          <property name="text">
+           <string>PSCurrentGain:</string>
+          </property>
+         </widget>
+        </item>
         <item row="22" column="0">
          <widget class="QLabel" name="label_23">
           <property name="text">
            <string>PSPIKp:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="27" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_12">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="26" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_116">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSGainWavCH0-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="20" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_19">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSDacWrCH0-RB</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>PSOpenLoopTriangWavEn:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_21">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSPIKpCH0-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="25" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_58">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="precision" stdset="0">
+           <number>0</number>
+          </property>
+          <property name="precisionFromPV" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSCurrCH0-Mon</string>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_18">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSPIKpCH0-RB</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>PSAmpEn:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>PSOpenLoopSquareWavEn:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="27" column="0">
+         <widget class="QLabel" name="label_222">
+          <property name="text">
+           <string>PSCurrentOffset:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0">
+         <widget class="QLabel" name="label_416">
+          <property name="text">
+           <string>PSCurrSrc:</string>
           </property>
          </widget>
         </item>
@@ -420,30 +408,23 @@
           </property>
          </widget>
         </item>
-        <item row="15" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_28">
+        <item row="24" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_19">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSAmpEnCH0-Sel</string>
+           <string>SI-22:DI-FOFBCtrl:PSCurrRawCH0-SP</string>
           </property>
          </widget>
         </item>
-        <item row="16" column="0">
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string>PSOpenLoopTriangWavEn:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="20" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_19">
+        <item row="19" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_21">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSDacWrCH0-RB</string>
+           <string>SI-22:DI-FOFBCtrl:PSPIEnCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -467,27 +448,19 @@
           </property>
          </widget>
         </item>
-        <item row="21" column="0">
-         <widget class="QLabel" name="label_26">
-          <property name="text">
-           <string>PSDacData:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="20" column="0">
-         <widget class="QLabel" name="label_27">
-          <property name="text">
-           <string>PSDacWr:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="16" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_40">
+        <item row="14" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_339">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="precision" stdset="0">
+           <number>0</number>
+          </property>
+          <property name="precisionFromPV" stdset="0">
+           <bool>true</bool>
+          </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sel</string>
+           <string>SI-22:DI-FOFBCtrl:PSCurrSrcCH0-Sts</string>
           </property>
          </widget>
         </item>
@@ -501,33 +474,72 @@
           </property>
          </widget>
         </item>
-        <item row="18" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_53">
+        <item row="25" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_218">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSClosedLoopSquareWavSPEnCH0-Sel</string>
+           <string>SI-22:DI-FOFBCtrl:PSCurrCH0-SP</string>
           </property>
          </widget>
         </item>
-        <item row="19" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_65">
+        <item row="27" column="2">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_117">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-22:DI-FOFBCtrl:PSPIEnCH0-Sel</string>
+           <string>SI-22:DI-FOFBCtrl:PSOffsetWavCH0-SP</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="2">
+         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_40">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSOpenLoopTriangWavEnCH0-Sel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="2">
+         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_28">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="channel" stdset="0">
+           <string>SI-22:DI-FOFBCtrl:PSAmpEnCH0-Sel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="0">
+         <widget class="QLabel" name="label_25">
+          <property name="text">
+           <string>PSPIEn:</string>
           </property>
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_77">
+         <widget class="PyDMPushButton" name="PyDMPushButton">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH0-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -983,12 +995,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_82">
+         <widget class="PyDMPushButton" name="PyDMPushButton_7">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH1-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1444,12 +1468,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_83">
+         <widget class="PyDMPushButton" name="PyDMPushButton_6">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH2-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1905,12 +1941,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_88">
+         <widget class="PyDMPushButton" name="PyDMPushButton_5">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH3-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -2366,12 +2414,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_87">
+         <widget class="PyDMPushButton" name="PyDMPushButton_4">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH4-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -2827,12 +2887,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_81">
+         <widget class="PyDMPushButton" name="PyDMPushButton_3">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH5-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -3288,12 +3360,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_80">
+         <widget class="PyDMPushButton" name="PyDMPushButton_2">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH6-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -3749,12 +3833,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_86">
+         <widget class="PyDMPushButton" name="PyDMPushButton_12">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH7-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -3770,7 +3866,7 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>511</width>
+         <width>501</width>
          <height>431</height>
         </rect>
        </property>
@@ -4210,12 +4306,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_79">
+         <widget class="PyDMPushButton" name="PyDMPushButton_11">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH8-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -4671,12 +4779,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_78">
+         <widget class="PyDMPushButton" name="PyDMPushButton_10">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH9-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -5132,12 +5252,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_85">
+         <widget class="PyDMPushButton" name="PyDMPushButton_9">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH10-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -5593,12 +5725,24 @@
          </widget>
         </item>
         <item row="20" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_84">
+         <widget class="PyDMPushButton" name="PyDMPushButton_8">
           <property name="toolTip">
            <string/>
           </property>
+          <property name="text">
+           <string>press to pulse</string>
+          </property>
           <property name="channel" stdset="0">
            <string>SI-22:DI-FOFBCtrl:PSDacWrCH11-SP</string>
+          </property>
+          <property name="pressValue" stdset="0">
+           <string>1</string>
+          </property>
+          <property name="releaseValue" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="writeWhenRelease" stdset="0">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -7140,15 +7284,43 @@
         <string>SI-22:DI-FOFBCtrl:PSAmpOverTempFlagRCH3-Sts</string>
        </property>
       </widget>
+      <zorder>label_11</zorder>
+      <zorder>label_149</zorder>
+      <zorder>label_12</zorder>
+      <zorder>label_13</zorder>
+      <zorder>label_99</zorder>
+      <zorder>label_151</zorder>
+      <zorder>label_97</zorder>
+      <zorder>label_98</zorder>
+      <zorder>label_356</zorder>
+      <zorder>label_357</zorder>
+      <zorder>label_358</zorder>
+      <zorder>label_359</zorder>
+      <zorder>label_360</zorder>
+      <zorder>label_361</zorder>
+      <zorder>label_362</zorder>
+      <zorder>label_363</zorder>
+      <zorder>label_364</zorder>
+      <zorder>label_365</zorder>
+      <zorder>label_366</zorder>
+      <zorder>label_367</zorder>
+      <zorder>label_368</zorder>
+      <zorder>label_369</zorder>
+      <zorder>label_370</zorder>
+      <zorder>label_371</zorder>
+      <zorder>label_372</zorder>
+      <zorder>label_373</zorder>
+      <zorder>label_374</zorder>
+      <zorder>label_375</zorder>
+      <zorder>label_376</zorder>
+      <zorder>label_377</zorder>
+      <zorder>label_378</zorder>
+      <zorder>label_379</zorder>
       <zorder>groupBox_2</zorder>
       <zorder>groupBox_3</zorder>
       <zorder>groupBox_4</zorder>
       <zorder>groupBox</zorder>
-      <zorder>formLayoutWidget</zorder>
       <zorder>tabWidget</zorder>
-      <zorder>formLayoutWidget_18</zorder>
-      <zorder>formLayoutWidget_19</zorder>
-      <zorder>formLayoutWidget_20</zorder>
       <zorder>PyDMLabel100</zorder>
       <zorder>PyDMLabel_98</zorder>
       <zorder>PyDMLabel_99</zorder>
@@ -8685,15 +8857,43 @@
         <string>SI-22:DI-FOFBCtrl:PSAmpOverCurrFlagLCH4-Sts</string>
        </property>
       </widget>
+      <zorder>label_100</zorder>
+      <zorder>label_150</zorder>
+      <zorder>label_101</zorder>
+      <zorder>label_102</zorder>
+      <zorder>label_104</zorder>
+      <zorder>label_152</zorder>
+      <zorder>label_105</zorder>
+      <zorder>label_106</zorder>
+      <zorder>label_107</zorder>
+      <zorder>label_153</zorder>
+      <zorder>label_108</zorder>
+      <zorder>label_109</zorder>
+      <zorder>label_111</zorder>
+      <zorder>label_154</zorder>
+      <zorder>label_112</zorder>
+      <zorder>label_113</zorder>
+      <zorder>label_114</zorder>
+      <zorder>label_155</zorder>
+      <zorder>label_115</zorder>
+      <zorder>label_116</zorder>
+      <zorder>label_118</zorder>
+      <zorder>label_156</zorder>
+      <zorder>label_119</zorder>
+      <zorder>label_120</zorder>
+      <zorder>label_121</zorder>
+      <zorder>label_157</zorder>
+      <zorder>label_122</zorder>
+      <zorder>label_123</zorder>
+      <zorder>label_125</zorder>
+      <zorder>label_158</zorder>
+      <zorder>label_126</zorder>
+      <zorder>label_127</zorder>
       <zorder>groupBox_6</zorder>
       <zorder>groupBox_7</zorder>
       <zorder>groupBox_8</zorder>
       <zorder>groupBox_9</zorder>
       <zorder>tabWidget_2</zorder>
-      <zorder>formLayoutWidget_2</zorder>
-      <zorder>formLayoutWidget_3</zorder>
-      <zorder>formLayoutWidget_4</zorder>
-      <zorder>formLayoutWidget_5</zorder>
       <zorder>PyDMLabel_116</zorder>
       <zorder>PyDMLabel_115</zorder>
       <zorder>PyDMLabel_114</zorder>
@@ -10230,15 +10430,43 @@
         <string>SI-22:DI-FOFBCtrl:PSAmpOverTempFlagRCH11-Sts</string>
        </property>
       </widget>
+      <zorder>label_128</zorder>
+      <zorder>label_159</zorder>
+      <zorder>label_129</zorder>
+      <zorder>label_130</zorder>
+      <zorder>label_132</zorder>
+      <zorder>label_160</zorder>
+      <zorder>label_133</zorder>
+      <zorder>label_134</zorder>
+      <zorder>label_135</zorder>
+      <zorder>label_161</zorder>
+      <zorder>label_136</zorder>
+      <zorder>label_137</zorder>
+      <zorder>label_139</zorder>
+      <zorder>label_162</zorder>
+      <zorder>label_140</zorder>
+      <zorder>label_141</zorder>
+      <zorder>label_146</zorder>
+      <zorder>label_164</zorder>
+      <zorder>label_147</zorder>
+      <zorder>label_148</zorder>
+      <zorder>label_142</zorder>
+      <zorder>label_163</zorder>
+      <zorder>label_143</zorder>
+      <zorder>label_144</zorder>
+      <zorder>label_348</zorder>
+      <zorder>label_349</zorder>
+      <zorder>label_350</zorder>
+      <zorder>label_351</zorder>
+      <zorder>label_352</zorder>
+      <zorder>label_353</zorder>
+      <zorder>label_354</zorder>
+      <zorder>label_355</zorder>
       <zorder>tabWidget_7</zorder>
       <zorder>groupBox_28</zorder>
       <zorder>groupBox_29</zorder>
       <zorder>groupBox_30</zorder>
       <zorder>groupBox_31</zorder>
-      <zorder>formLayoutWidget_6</zorder>
-      <zorder>formLayoutWidget_7</zorder>
-      <zorder>formLayoutWidget_8</zorder>
-      <zorder>formLayoutWidget_17</zorder>
       <zorder>PyDMLabel_117</zorder>
       <zorder>PyDMLabel_118</zorder>
       <zorder>PyDMLabel_119</zorder>
@@ -10263,28 +10491,12 @@
        <x>9</x>
        <y>219</y>
        <width>511</width>
-       <height>101</height>
+       <height>105</height>
       </rect>
      </property>
      <property name="title">
       <string/>
      </property>
-     <widget class="PyDMLineEdit" name="PyDMLineEdit_16">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>31</y>
-        <width>185</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="channel" stdset="0">
-       <string>SI-22:DI-FOFBCtrl:PSDacDataWb-SP</string>
-      </property>
-     </widget>
      <widget class="PyDMLineEdit" name="PyDMLineEdit_23">
       <property name="geometry">
        <rect>
@@ -10404,6 +10616,22 @@
        <string>SI-22:DI-FOFBCtrl:PSCurrLimInf-RB</string>
       </property>
      </widget>
+     <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_89">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>30</y>
+        <width>185</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="channel" stdset="0">
+       <string>SI-22:DI-FOFBCtrl:PSDacDataWb-SP</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -10418,40 +10646,40 @@
       <string>PSStatus:</string>
      </property>
     </widget>
-    <widget class="PyDMLabel" name="PyDMLabel">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>20</y>
-       <width>16</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="alarmSensitiveContent" stdset="0">
-      <bool>true</bool>
-     </property>
-     <property name="alarmSensitiveBorder" stdset="0">
-      <bool>false</bool>
-     </property>
-     <property name="channel" stdset="0">
-      <string>SI-22:DI-FOFBCtrl:PSStatus-RB</string>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="groupBox_32">
      <property name="geometry">
       <rect>
        <x>440</x>
        <y>-10</y>
-       <width>91</width>
+       <width>93</width>
        <height>51</height>
       </rect>
      </property>
      <property name="title">
       <string/>
      </property>
+     <widget class="PyDMLabel" name="PyDMLabel">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>30</y>
+        <width>14</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="alarmSensitiveContent" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="alarmSensitiveBorder" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="channel" stdset="0">
+       <string>SI-22:DI-FOFBCtrl:PSStatus-RB</string>
+      </property>
+     </widget>
     </widget>
     <zorder>PyDMLabel_9</zorder>
     <zorder>label_9</zorder>
@@ -10460,7 +10688,6 @@
     <zorder>groupBox_5</zorder>
     <zorder>groupBox_32</zorder>
     <zorder>label</zorder>
-    <zorder>PyDMLabel</zorder>
    </widget>
    <widget class="QWidget" name="tab_12">
     <attribute name="title">
@@ -15347,9 +15574,6 @@
          <string>SI-22:DI-FOFBCtrl:FofbCtrlRxPckCntCH8-RB</string>
         </property>
        </widget>
-       <zorder>formLayoutWidget_18</zorder>
-       <zorder>PyDMLabel_342</zorder>
-       <zorder>PyDMLabel_343</zorder>
       </widget>
       <widget class="QGroupBox" name="groupBox_34">
        <property name="geometry">
@@ -17369,16 +17593,6 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="PyDMLineEdit" name="PyDMLineEdit_150">
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="channel" stdset="0">
-          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamWriteEnable-SP</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_276">
          <property name="text">
@@ -17420,6 +17634,28 @@
         <widget class="QLabel" name="label_279">
          <property name="text">
           <string>RAM Adress:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="PyDMPushButton" name="PyDMPushButton_13">
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>pulse</string>
+         </property>
+         <property name="channel" stdset="0">
+          <string>SI-22:DI-FOFBCtrl:FofbProcessingRamWriteEnable-SP</string>
+         </property>
+         <property name="pressValue" stdset="0">
+          <string>1</string>
+         </property>
+         <property name="releaseValue" stdset="0">
+          <string>0</string>
+         </property>
+         <property name="writeWhenRelease" stdset="0">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -17848,6 +18084,11 @@
    <class>PyDMLineEdit</class>
    <extends>QLineEdit</extends>
    <header>pydm.widgets.line_edit</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMPushButton</class>
+   <extends>QPushButton</extends>
+   <header>pydm.widgets.pushbutton</header>
   </customwidget>
  </customwidgets>
  <resources/>
