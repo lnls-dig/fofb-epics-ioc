@@ -392,7 +392,7 @@ n = 0
 
 for sp in setpoints_for_cross_talk:
 
-  os.system("mkdir Results/Serial_Number_%s/ACQ_Data_Cross_Talk_sp%d"%(serial_number, n))
+  os.system("mkdir Results/Serial_Number_%s/ACQ_Data_CrossTalk_sp%d"%(serial_number, n))
 
   for i in range(0, channels):
 
@@ -404,25 +404,23 @@ for sp in setpoints_for_cross_talk:
     for j in range(0, channels):
       plt.subplot(4,3,j+1)
       y = data['ACQ for Cross Talk'][n][i][j]
-      #plt.plot(random.choices(y, k=samples_cross_talk))
       plt.plot(y[0:samples_cross_talk])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
       plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.2)
-    plt.savefig('Results/Serial_Number_%s/ACQ_Data_Cross_Talk_sp%d/%s_Cross_Talk_%d.png' %(serial_number, n, serial_number, i))
+    plt.savefig('Results/Serial_Number_%s/ACQ_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
 
     plt.figure(figsize=[40, 30])
     for j in range(0, channels):
       plt.subplot(4,3,j+1)
       y = data['ACQ for Cross Talk'][n][i][j+channels]
-      #plt.plot(random.choices(y, k=samples_cross_talk))
       plt.plot(y[0:samples_cross_talk],'b')
       plt.xlabel('Sample')
       plt.ylabel('Voltage [V]')
       plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j+channels))
       time.sleep(0.2)
-    plt.savefig('Results/Serial_Number_%s/ACQ_Data_Cross_Talk_sp%d/%s_Cross_Talk_%d.png' %(serial_number, n, serial_number, i+channels))
+    plt.savefig('Results/Serial_Number_%s/ACQ_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i+channels))
 
     print('>>> Plot cross talk data for all channels and save figures... Done!\n')
 
