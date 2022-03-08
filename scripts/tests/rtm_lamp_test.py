@@ -22,7 +22,7 @@ warnings.filterwarnings('ignore')                    # do not show plot/calc war
 plt.style.use('ggplot')                              # plot style
 
 try:
-  json_file_in = sys.argv[1]                         # if argv = 1: read the input data from the old json file
+  json_file_in = int(sys.argv[1])                    # if argv = 1: read the input data from the old json file
 except:                                              # else: the user need to input the new values
   json_file_in = None
 
@@ -200,16 +200,24 @@ for i in range(0, channels):
 
 print('>>> Plot PSD for all channels and save figures... Done!')
 
+#print('\n>>> Read old json file?')
+#print('Type 1 if YES')
+#print('Type 0 if NO')
+
+#json_file_in = int(input())
+
 if json_file_in == 1:
   # reading data from json file
-  with open("Results/%s/data_123.json"%(serial_number), "r") as read_file:
+  with open("Results/%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
     data_json_file_in = json.load(read_file)
     data['DAC voltage read'] = data_json_file_in['DAC voltage read']
+
+#print(data['DAC voltage read'])
 
 if json_file_in == None:
   print('\n------------------ Read DAC values for each channel ----------------------\n')
 
-  dac_voltage = np.zeros(channels)
+  dac_voltage = np.zeros(np.size(dac_data_values))
   data_dac_voltage = [[], [], [], [], [], [], [], [], [], [], [], []]
 
   print('>>> Enable DAC data from Wb')
@@ -218,6 +226,7 @@ if json_file_in == None:
 
   a = 0
   for i in range(0, channels):
+    n = 0
     for val in dac_data_values:
       print('\n------------------------------- CHANNEL %d --------------------------------\n'%(i))
 
@@ -235,9 +244,9 @@ if json_file_in == None:
 
       print('\n>>> Insert DAC voltage read from multimeter for CH%d: '%(i))
 
-      dac_voltage[i] = float(input())
+      dac_voltage[n] = float(input())
 
-      print('\n dac_voltage = %fV'%(dac_voltage[i]))
+      print('\n dac_voltage = %fV'%(dac_voltage[n]))
 
       print('\n>>> Disable DAC write for channel %d'%(i))
 
@@ -250,6 +259,8 @@ if json_file_in == None:
       print('\n>>> Set 0 in DAC data for channel %d'%(i))
 
       PV(pv_dac_data[i]).put(0, wait=True)
+
+      n = n + 1
 
     data_dac_voltage[a] = dac_voltage.tolist()
     a = a + 1
