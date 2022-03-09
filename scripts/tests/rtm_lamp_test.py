@@ -212,8 +212,6 @@ if json_file_in == 1:
     data_json_file_in = json.load(read_file)
     data['DAC voltage read'] = data_json_file_in['DAC voltage read']
 
-#print(data['DAC voltage read'])
-
 if json_file_in == None:
   print('\n------------------ Read DAC values for each channel ----------------------\n')
 
@@ -294,6 +292,12 @@ data_cross_talk        = [[], [], [], [], [], [], [], [], [], [], [], [], [], []
 data_cross_talk_full   = [[], [], [], [], [], [], [], [], [], [], [], []]
 data_cross_talk_per_sp = [[], [], []]
 
+val_full0_3            = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
+
+val_full4_7            = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
+
+val_full8_11           = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
+
 print('\n--------------------------------------------------------------------------')
 print('-------------------- CLOSED LOOP TEST - CHANNELS 0-3 ---------------------')
 print('--------------------------------------------------------------------------\n')
@@ -346,9 +350,12 @@ for sp in setpoints_for_PSD:
 
     data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
+    val_full0_3[a][j] = np.mean(data_closed_loop[j])
+
   data_closed_loop_full[a] = data_closed_loop
 
   print('>>> Plot PSD and save figures... Done!')
+
   a = a + 1
 
 print('\n>>> Set the current setpoint limits in zero for all channels...')
@@ -365,7 +372,7 @@ n = 0
 for sp in setpoints_for_cross_talk:
   os.system("mkdir Results/%s/Plot_Data_CrossTalk_sp%d"%(serial_number, n))
   for i in channels0_3:
-    print('\n-------------Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
+    print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
 
     print('\n>>> Set the limits for the square wave...')
 
@@ -504,6 +511,8 @@ for sp in setpoints_for_PSD:
 
     data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
+    val_full4_7[a][j-4] = np.mean(data_closed_loop[j])
+
   data_closed_loop_full[a] = data_closed_loop
 
   print('>>> Plot PSD and save figures... Done!')
@@ -522,7 +531,7 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 n = 0
 for sp in setpoints_for_cross_talk:
   for i in channels4_7:
-    print('\n-------------Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
+    print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
 
     print('\n>>> Set the limits for the square wave...')
 
@@ -661,6 +670,8 @@ for sp in setpoints_for_PSD:
 
     data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
+    val_full8_11[a][j-8] = np.mean(data_closed_loop[j])
+
   data_closed_loop_full[a] = data_closed_loop
 
   print('>>> Plot PSD and save figures... Done!')
@@ -679,7 +690,7 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 n = 0
 for sp in setpoints_for_cross_talk:
   for i in channels8_11:
-    print('\n-------------Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
+    print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
 
     print('\n>>> Set the limits for the square wave...')
 
@@ -783,7 +794,30 @@ with open("Results/%s/data_%s.json"%(serial_number, serial_number), "w") as outf
 
 print('>>> Save data in json file... Done!\n')
 
-# reading data from json file
-# with open("Results/%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
-#     data = json.load(read_file)
+a = 0
+for sp in setpoints_for_PSD:
+  print('\n>>> Setpoint =  %f'%(sp))
+  if sp == 0:
+    lim = 5e-3
+  else:
+    lim = 0.02*abs(sp)
+  for i in channels0_3:
+    if abs(val_full0_3[a][i]) - abs(sp) > lim:
+      print('>>> FAIL!\n')
+      print('>>> Mean value of channel %d is equal to %f for setpoint %f'%(i, val_full0_3[a][i], sp))
+  print(val_full0_3[a])
+
+  for i in channels4_7:
+    if abs(val_full4_7[a][i-4]) - abs(sp) > lim:
+      print('>>> FAIL!\n')
+      print('>>> Mean value of channel %d is equal to %f for setpoint %f'%(i, val_full4_7[a][i-4], sp))
+  print(val_full4_7[a])
+
+  for i in channels8_11:
+    if abs(val_full8_11[a][i-8]) - abs(sp) > lim:
+      print('>>> FAIL!\n')
+      print('>>> Mean value of channel %d is equal to %f for setpoint %f'%(i, val_full8_11[a][i-8], sp))
+  print(val_full8_11[a])
+
+  a = a + 1
 
