@@ -79,7 +79,7 @@ record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(RTM_CHAN)")
   field(NELM, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.NORD")
   field(INP,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(RTM_CHAN) NPP NMS")
   field(TSEL, "$(P)$(R)GEN_$(RTM_CHAN)ArrayData.TIME")
-  field(MALM, "1000")
+  field(MALM, "$(NELEMENTS)")
   field(FTVL, "$(FTVL)")
   field(FLNK, "$(P)$(R)$(ACQ_NAME)ConvArrayDataSeq$(RTM_CHAN)")
 }
