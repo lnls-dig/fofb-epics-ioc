@@ -2,7 +2,7 @@
  #                                                   #
 #   Description: Script to test RTM-LAMP boards       #
 #                                                     #
-#   Authors: Melissa Aguiar                           #
+#   Author: Melissa Aguiar                            #
 #                                                     #
 #   Created: Feb. 25, 2022                            #
  #                                                   #
@@ -25,7 +25,7 @@ plt.style.use('ggplot')                              # plot style
 
 try:
   json_file_in = int(sys.argv[1])                    # if argv = 1: read the input data from the old json file
-except:                                              # else: the user need to input the new values
+except:                                              # if argv = None: the user need to input the new values
   json_file_in = None
 
 # constants
@@ -57,6 +57,7 @@ pv_dac_data_wb            = str(pv_prefix) + str("PSDacDataWb-SP")
 # PVs per channel
 pv_current_ArrayData      = []
 pv_voltage_ArrayData      = []
+pv_current_ArrayDataRAW   = []
 pv_current_gain           = []
 pv_voltage_gain           = []
 pv_current_offset         = []
@@ -75,6 +76,7 @@ pv_pi_ti                  = []
 for i in range(0, channels):
   pv_current_ArrayData.append(     str(pv_prefix)  + str("GENConvArrayDataCH")          + str(i))
   pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GENConvArrayDataCH")          + str(i+channels))
+  pv_current_ArrayDataRAW.append(  str(pv_prefix)  + str("GEN_CH")                      + str(i)          + str("ArrayData"))
   pv_current_gain.append(          str(pv_prefix)  + str("PSGainWavCH")                 + str(i)          + str("-SP.VAL"))
   pv_voltage_gain.append(          str(pv_prefix)  + str("PSGainWavCH")                 + str(i+channels) + str("-SP.VAL"))
   pv_current_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")               + str(i)          + str("-SP.VAL"))
@@ -88,6 +90,15 @@ for i in range(0, channels):
   pv_square_wave_enable.append(    str(pv_prefix)  + str("PSClosedLoopSquareWavSPEnCH") + str(i)          + str("-Sel"))
   pv_pi_kp.append(                 str(pv_prefix)  + str("PSPIKpCH")                    + str(i)          + str("-SP.VAL"))
   pv_pi_ti.append(                 str(pv_prefix)  + str("PSPITiCH")                    + str(i)          + str("-SP.VAL"))
+
+print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
+print('        #                                                   #')
+print('       #   Description: Script to test RTM-LAMP boards       #')
+print('       #                                                     #')
+print('       #                                                     #')
+print('       #   Created: Feb. 25, 2022                            #')
+print('        #                                                   #')
+print('         # # # # # # # # # # # # # # # # # # # # # # # # # #\n')
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ STARTING TEST -----------------------------')
@@ -166,7 +177,7 @@ print('--------------------- Calculate the current offset ----------------------
 
 new_offset = np.zeros(channels)
 for i in range(0, channels):
-  new_offset[i] = np.mean(PV(pv_current_ArrayData[i]).get())
+  new_offset[i] = np.mean(PV(pv_current_ArrayDataRAW[i]).get())
 
 print('New current offset values: \n', new_offset)
 
@@ -362,8 +373,8 @@ print('\n>>> Set the current setpoint limits in zero for all channels...')
 for i in range(0, channels):
   PV(pv_current_setpoint[i]).put(0,  wait=True)
   PV(pv_current_setpoint_inf).put(0, wait=True)
-  PV(pv_pi_enable[i]).put(0, wait=True)
-  PV(pv_amp_enable[i]).put(0, wait=True)
+  PV(pv_pi_enable[i]).put(0,         wait=True)
+  PV(pv_amp_enable[i]).put(0,        wait=True)
 
 print('>>> Set the current setpoint limits in zero for all channels... Done!')
 
@@ -386,9 +397,9 @@ for sp in setpoints_for_cross_talk:
     time.sleep(0.2)
     PV(pv_square_wave_enable[i]).put(1, wait=True)
     time.sleep(0.2)
-    PV(pv_pi_enable[i]).put(1, wait=True)
+    PV(pv_pi_enable[i]).put(1,          wait=True)
     time.sleep(0.2)
-    PV(pv_amp_enable[i]).put(1, wait=True)
+    PV(pv_amp_enable[i]).put(1,         wait=True)
     time.sleep(0.5)
 
     print('>>> Enable the square wave for channel %02d... Done!'%(i))
@@ -420,8 +431,8 @@ for sp in setpoints_for_cross_talk:
 
     PV(pv_square_wave_enable[i]).put(0, wait=True)
     PV(pv_current_setpoint[i]).put(0,   wait=True)
-    PV(pv_pi_enable[i]).put(0, wait=True)
-    PV(pv_amp_enable[i]).put(0, wait=True)
+    PV(pv_pi_enable[i]).put(0,          wait=True)
+    PV(pv_amp_enable[i]).put(0,         wait=True)
     time.sleep(0.5)
 
     print('>>> Disable the square wave and set SP = 0 for channel %02d... Done!\n'%(i))
@@ -476,8 +487,8 @@ for sp in setpoints_for_PSD:
 
   for i in range(0, channels):
     PV(pv_current_setpoint[i]).put(sp, wait=True)
-    PV(pv_pi_enable[i]).put(1, wait=True)
-    PV(pv_amp_enable[i]).put(1, wait=True)
+    PV(pv_pi_enable[i]).put(1,         wait=True)
+    PV(pv_amp_enable[i]).put(1,        wait=True)
 
   print('\n----------------- Calculate the PSD for SP = %fA ------------------\n'%(sp))
 
@@ -528,8 +539,8 @@ print('\n>>> Set the current setpoint limits in zero for all channels...')
 for i in range(0, channels):
   PV(pv_current_setpoint[i]).put(0,  wait=True)
   PV(pv_current_setpoint_inf).put(0, wait=True)
-  PV(pv_pi_enable[i]).put(0, wait=True)
-  PV(pv_amp_enable[i]).put(0, wait=True)
+  PV(pv_pi_enable[i]).put(0,         wait=True)
+  PV(pv_amp_enable[i]).put(0,        wait=True)
 
 print('>>> Set the current setpoint limits in zero for all channels... Done!')
 
@@ -550,9 +561,9 @@ for sp in setpoints_for_cross_talk:
     time.sleep(0.2)
     PV(pv_square_wave_enable[i]).put(1, wait=True)
     time.sleep(0.2)
-    PV(pv_pi_enable[i]).put(1, wait=True)
+    PV(pv_pi_enable[i]).put(1,          wait=True)
     time.sleep(0.2)
-    PV(pv_amp_enable[i]).put(1, wait=True)
+    PV(pv_amp_enable[i]).put(1,         wait=True)
     time.sleep(0.5)
 
     print('>>> Enable the square wave for channel %02d... Done!'%(i))
@@ -583,8 +594,8 @@ for sp in setpoints_for_cross_talk:
 
     PV(pv_square_wave_enable[i]).put(0, wait=True)
     PV(pv_current_setpoint[i]).put(0,   wait=True)
-    PV(pv_pi_enable[i]).put(0, wait=True)
-    PV(pv_amp_enable[i]).put(0, wait=True)
+    PV(pv_pi_enable[i]).put(0,          wait=True)
+    PV(pv_amp_enable[i]).put(0,         wait=True)
     time.sleep(0.5)
 
     print('>>> Disable the square wave and set SP = 0 for channel %02d... Done!\n'%(i))
@@ -639,8 +650,8 @@ for sp in setpoints_for_PSD:
 
   for i in range(0, channels):
     PV(pv_current_setpoint[i]).put(sp, wait=True)
-    PV(pv_pi_enable[i]).put(1, wait=True)
-    PV(pv_amp_enable[i]).put(1, wait=True)
+    PV(pv_pi_enable[i]).put(1,         wait=True)
+    PV(pv_amp_enable[i]).put(1,        wait=True)
 
   print('\n----------------- Calculate the PSD for SP = %fA ------------------\n'%(sp))
 
@@ -691,8 +702,8 @@ print('\n>>> Set the current setpoint limits in zero for all channels...')
 for i in range(0, channels):
   PV(pv_current_setpoint[i]).put(0,  wait=True)
   PV(pv_current_setpoint_inf).put(0, wait=True)
-  PV(pv_pi_enable[i]).put(0, wait=True)
-  PV(pv_amp_enable[i]).put(0, wait=True)
+  PV(pv_pi_enable[i]).put(0,         wait=True)
+  PV(pv_amp_enable[i]).put(0,        wait=True)
 
 print('>>> Set the current setpoint limits in zero for all channels... Done!')
 
@@ -713,9 +724,9 @@ for sp in setpoints_for_cross_talk:
     time.sleep(0.2)
     PV(pv_square_wave_enable[i]).put(1, wait=True)
     time.sleep(0.2)
-    PV(pv_pi_enable[i]).put(1, wait=True)
+    PV(pv_pi_enable[i]).put(1,          wait=True)
     time.sleep(0.2)
-    PV(pv_amp_enable[i]).put(1, wait=True)
+    PV(pv_amp_enable[i]).put(1,         wait=True)
     time.sleep(0.5)
 
     print('>>> Enable the square wave for channel %02d... Done!'%(i))
@@ -746,8 +757,8 @@ for sp in setpoints_for_cross_talk:
 
     PV(pv_square_wave_enable[i]).put(0, wait=True)
     PV(pv_current_setpoint[i]).put(0,   wait=True)
-    PV(pv_pi_enable[i]).put(0, wait=True)
-    PV(pv_amp_enable[i]).put(0, wait=True)
+    PV(pv_pi_enable[i]).put(0,          wait=True)
+    PV(pv_amp_enable[i]).put(0,         wait=True)
     time.sleep(0.5)
 
     print('>>> Disable the square wave and set SP = 0 for channel %02d... Done!\n'%(i))
