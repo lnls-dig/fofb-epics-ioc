@@ -19,16 +19,16 @@ s = number of samples
 	dimension: c arrays, each one containing s values
 
 'DAC voltage read':
-	the values of voltage read with a multimeter that the user will input for the dac data setpoints: [0 17712]
-	dimension: n arrays with c values
+	the values of voltage read with a multimeter that the user will input for the dac data setpoints: [0 17712 -17712] (n = 3)
+	dimension: c arrays, each one containing n values
 
 'ACQ for Closed Loop Test':
-	the data acquisition for all channels for each one of the n setpoints: [-1, -0.5, 0, 0.5, 1] (n = 5 in this case)
+	the data acquisition for all channels for each one of the n setpoints: [-1, -0.5, 0, 0.5, 1] (n = 5)
 	we use the same setpoint in all channels at the same time and do an acquisition for all channels (current data)
 	dimension: n arrays, each one containing c arrays of s values
 
 'ACQ for Cross Talk':
-	the data acquisition for all channels for each one of the n setpoints: [+-1, +-50e-3, +-200e-3] (n = 3 in this case)
+	the data acquisition for all channels for each one of the n setpoints: [+-1, +-50e-3, +-200e-3] (n = 3)
 	the setpoints are symmetric for the superior and inferior limits
 	we use the setpoint in one current channel per time and do an acquisition for all channels (current and voltage data)
 	dimension: n arrays, each one containing c arrays and each one containing 2*c arrays of s values
