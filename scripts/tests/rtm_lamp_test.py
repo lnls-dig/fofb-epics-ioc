@@ -91,6 +91,7 @@ for i in range(0, channels):
   pv_pi_kp.append(                 str(pv_prefix)  + str("PSPIKpCH")                    + str(i)          + str("-SP.VAL"))
   pv_pi_ti.append(                 str(pv_prefix)  + str("PSPITiCH")                    + str(i)          + str("-SP.VAL"))
 
+print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
 print('        #                                                   #')
 print('       #   Description: Script to test RTM-LAMP boards       #')
@@ -846,3 +847,7 @@ for sp in setpoints_for_PSD:
   print(val_full8_11[a])
 
   a = a + 1
+
+print('\n--------------------------------------------------------------------------')
+print('----------------------------- END OF THE TEST ----------------------------')
+print('--------------------------------------------------------------------------\n')
