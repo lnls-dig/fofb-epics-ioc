@@ -1,10 +1,12 @@
-#
-# Description: Script to test RTM-LAMP boards
-#
-# Authors: Melissa Aguiar
-#
-# Created: Feb. 25, 2022
-#
+  # # # # # # # # # # # # # # # # # # # # # # # # # #
+ #                                                   #
+#   Description: Script to test RTM-LAMP boards       #
+#                                                     #
+#   Authors: Melissa Aguiar                           #
+#                                                     #
+#   Created: Feb. 25, 2022                            #
+ #                                                   #
+  # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # importing libraries
 import os
@@ -29,7 +31,7 @@ except:                                              # else: the user need to in
 # constants
 fs                        = 1/940e-9                 # frequency for PSD calc
 samples                   = 10000                    # number of samples for acquisition
-samples_cross_talk        = 4000                     # number of samples to plot cross talk data
+samples_cross_talk        = 4000                     # number of samples to plot crosstalk data
 channels                  = 12                       # number of channels (max 12, 8 actually in use)
 pi_kp                     = 5000000                  # PI Kp parameter
 pi_ti                     = 300                      # PI Ti parameter
@@ -105,6 +107,11 @@ print('Now: ', now)
 data['Serial number']         = serial_number
 data['Date and time of test'] = now
 
+serial_str_title = serial_number
+serial_str = list(serial_number)
+serial_str[7] = "_"
+serial_number = "".join(serial_str)
+
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ ACQUIRE DATA ------------------------------')
 print('--------------------------------------------------------------------------\n')
@@ -176,7 +183,7 @@ print('\n------------------------- Calculate the PSD ---------------------------
 
 os.system("mkdir Results")
 os.system("mkdir Results/%s"%(serial_number))
-os.system("mkdir Results/%s/Plot_Data_OpenLoop"%(serial_number))
+os.system("mkdir Results/%s/psd_open_loop"%(serial_number))
 
 print('\n>>> Plot PSD for all channels and save figures...')
 
@@ -193,16 +200,16 @@ for i in range(0, channels):
   plt.xlim([0, 1e5])
   plt.xlabel('Frequency [Hz]')
   plt.ylabel('PSD [A/$\sqrt{Hz}$]')
-  plt.title('Open Loop | Power Spectral Density CH' + str(i) + ' [Serial Number: ' + str(serial_number) + ']')
+  plt.title('Open Loop | Power Spectral Density CH' + str(i) + ' [Serial Number: ' + str(serial_str_title) + ']')
   plt.grid(True, which="both")
 
-  plt.savefig('Results/%s/Plot_Data_OpenLoop/%s_PSD_OpenLoop_CH%d.png' %(serial_number, serial_number, i))
+  plt.savefig('Results/%s/psd_open_loop/psd_ch%02d.png' %(serial_number, i))
 
 print('>>> Plot PSD for all channels and save figures... Done!')
 
 if json_file_in == 1:
   # reading data from json file
-  with open("Results/%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
+  with open("Results/old/%s/data_%s.json"%(serial_str_title, serial_str_title), "r") as read_file:
     data_json_file_in = json.load(read_file)
     data['DAC voltage read'] = data_json_file_in['DAC voltage read']
 
@@ -220,35 +227,35 @@ if json_file_in == None:
   for i in range(0, channels):
     n = 0
     for val in dac_data_values:
-      print('\n------------------------------- CHANNEL %d --------------------------------\n'%(i))
+      print('\n------------------------------- CHANNEL %02d --------------------------------\n'%(i))
 
-      print('>>> Set %d in DAC data for channel %d'%(val, i))
+      print('>>> Set %d in DAC data for channel %02d'%(val, i))
 
       PV(pv_dac_data[i]).put(val, wait=True)
 
-      print('\n>>> Enable AmpEn for channel %d'%(i))
+      print('\n>>> Enable AmpEn for channel %02d'%(i))
 
       PV(pv_amp_enable[i]).put(1, wait=True)
 
-      print('\n>>> Enable DAC write for channel %d'%(i))
+      print('\n>>> Enable DAC write for channel %02d'%(i))
 
       PV(pv_dac_write[i]).put(1, wait=True)
 
-      print('\n>>> Insert DAC voltage read from multimeter for CH%d: '%(i))
+      print('\n>>> Insert DAC voltage read from multimeter for CH%02d: '%(i))
 
       dac_voltage[n] = float(input())
 
       print('\n dac_voltage = %fV'%(dac_voltage[n]))
 
-      print('\n>>> Disable DAC write for channel %d'%(i))
+      print('\n>>> Disable DAC write for channel %02d'%(i))
 
       PV(pv_dac_write[i]).put(0, wait=True)
 
-      print('\n>>> Disable AmpEn for channel %d'%(i))
+      print('\n>>> Disable AmpEn for channel %02d'%(i))
 
       PV(pv_amp_enable[i]).put(0, wait=True)
 
-      print('\n>>> Set 0 in DAC data for channel %d'%(i))
+      print('\n>>> Set 0 in DAC data for channel %02d'%(i))
 
       PV(pv_dac_data[i]).put(0, wait=True)
 
@@ -299,7 +306,7 @@ input()
 
 a = 0
 for sp in setpoints_for_PSD:
-  os.system("mkdir Results/%s/Plot_Data_ClosedLoop_sp%a"%(serial_number, a))
+  os.system("mkdir Results/%s/psd_closed_loop_sp%sA"%(serial_number, str(sp)))
 
   for i in range(0, channels):
     PV(pv_current_setpoint[i]).put(sp, wait=True)
@@ -335,10 +342,10 @@ for sp in setpoints_for_PSD:
     plt.xlim([0, 1e5])
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('PSD [A/$\sqrt{Hz}$]')
-    plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_number) + ']')
+    plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_str_title) + ']')
     plt.grid(True, which="both")
 
-    plt.savefig('Results/%s/Plot_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, j))
+    plt.savefig('Results/%s/psd_closed_loop_sp%sA/psd_ch%02d.png' %(serial_number, str(sp), j))
 
     data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
@@ -362,10 +369,10 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 
 n = 0
 for sp in setpoints_for_cross_talk:
-  os.system("mkdir Results/%s/Plot_Data_CrossTalk_sp%d"%(serial_number, n))
+  os.system("mkdir Results/%s/crosstalk_sp%sA"%(serial_number, str(sp)))
 
   for i in channels0_3:
-    print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
+    print('\n------------- Crosstalk CHANNEL %02d with SP = %fA --------------------\n'%(i, sp))
 
     print('\n>>> Set the limits for the square wave...')
 
@@ -374,7 +381,7 @@ for sp in setpoints_for_cross_talk:
 
     print('>>> Set the limits for the square wave... Done!')
 
-    print('\n>>> Enable the square wave for channel %d...'%(i))
+    print('\n>>> Enable the square wave for channel %02d...'%(i))
 
     time.sleep(0.2)
     PV(pv_square_wave_enable[i]).put(1, wait=True)
@@ -384,7 +391,7 @@ for sp in setpoints_for_cross_talk:
     PV(pv_amp_enable[i]).put(1, wait=True)
     time.sleep(0.5)
 
-    print('>>> Enable the square wave for channel %d... Done!'%(i))
+    print('>>> Enable the square wave for channel %02d... Done!'%(i))
 
     print('\n>>> New acquisition...')
 
@@ -408,7 +415,7 @@ for sp in setpoints_for_cross_talk:
 
     print('>>> Save the acq data from all channels... Done!\n')
 
-    print('>>> Disable the square wave and set SP = 0 for channel %d...'%(i))
+    print('>>> Disable the square wave and set SP = 0 for channel %02d...'%(i))
 
     PV(pv_square_wave_enable[i]).put(0, wait=True)
     PV(pv_current_setpoint[i]).put(0,   wait=True)
@@ -416,9 +423,9 @@ for sp in setpoints_for_cross_talk:
     PV(pv_amp_enable[i]).put(0, wait=True)
     time.sleep(0.5)
 
-    print('>>> Disable the square wave and set SP = 0 for channel %d... Done!\n'%(i))
+    print('>>> Disable the square wave and set SP = 0 for channel %02d... Done!\n'%(i))
 
-    print('>>> Plot cross talk data for all channels and save figures...')
+    print('>>> Plot crosstalk data for all channels and save figures...')
 
     plt.figure(figsize=[40, 30])
     for j in range(0, channels):
@@ -430,21 +437,21 @@ for sp in setpoints_for_cross_talk:
         plt.ylim([-3e-3, 3e-3])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
-      plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
+      plt.title('Crosstalk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.5)
 
-    plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
+    plt.savefig('Results/%s/crosstalk_sp%sA/current_ch%02d.png' %(serial_number, str(sp), i))
 
     plt.figure(figsize=[14, 8])
     y = data_cross_talk[i+channels]
     plt.plot(y[0:samples_cross_talk],'b')
     plt.xlabel('Sample')
     plt.ylabel('Voltage [V]')
-    plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(i+channels))
+    plt.title('Crosstalk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(i))
     time.sleep(0.5)
-    plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i+channels))
+    plt.savefig('Results/%s/crosstalk_sp%sA/voltage_ch%02d.png' %(serial_number, str(sp), i))
 
-    print('>>> Plot cross talk data for all channels and save figures... Done!\n')
+    print('>>> Plot crosstalk data for all channels and save figures... Done!\n')
 
   data_cross_talk_per_sp[n] = data_cross_talk_full
 
@@ -500,10 +507,10 @@ for sp in setpoints_for_PSD:
     plt.xlim([0, 1e5])
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('PSD [A/$\sqrt{Hz}$]')
-    plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_number) + ']')
+    plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_str_title) + ']')
     plt.grid(True, which="both")
 
-    plt.savefig('Results/%s/Plot_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, j))
+    plt.savefig('Results/%s/psd_closed_loop_sp%sA/psd_ch%02d.png' %(serial_number, str(sp), j))
 
     data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
@@ -528,7 +535,7 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 n = 0
 for sp in setpoints_for_cross_talk:
   for i in channels4_7:
-    print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
+    print('\n------------- Crosstalk CHANNEL %02d with SP = %fA --------------------\n'%(i, sp))
 
     print('\n>>> Set the limits for the square wave...')
 
@@ -537,7 +544,7 @@ for sp in setpoints_for_cross_talk:
 
     print('>>> Set the limits for the square wave... Done!')
 
-    print('\n>>> Enable the square wave for channel %d...'%(i))
+    print('\n>>> Enable the square wave for channel %02d...'%(i))
 
     time.sleep(0.2)
     PV(pv_square_wave_enable[i]).put(1, wait=True)
@@ -547,7 +554,7 @@ for sp in setpoints_for_cross_talk:
     PV(pv_amp_enable[i]).put(1, wait=True)
     time.sleep(0.5)
 
-    print('>>> Enable the square wave for channel %d... Done!'%(i))
+    print('>>> Enable the square wave for channel %02d... Done!'%(i))
 
     print('\n>>> New acquisition...')
 
@@ -571,7 +578,7 @@ for sp in setpoints_for_cross_talk:
 
     print('>>> Save the acq data from all channels... Done!\n')
 
-    print('>>> Disable the square wave and set SP = 0 for channel %d...'%(i))
+    print('>>> Disable the square wave and set SP = 0 for channel %02d...'%(i))
 
     PV(pv_square_wave_enable[i]).put(0, wait=True)
     PV(pv_current_setpoint[i]).put(0,   wait=True)
@@ -579,9 +586,9 @@ for sp in setpoints_for_cross_talk:
     PV(pv_amp_enable[i]).put(0, wait=True)
     time.sleep(0.5)
 
-    print('>>> Disable the square wave and set SP = 0 for channel %d... Done!\n'%(i))
+    print('>>> Disable the square wave and set SP = 0 for channel %02d... Done!\n'%(i))
 
-    print('>>> Plot cross talk data for all channels and save figures...')
+    print('>>> Plot crosstalk data for all channels and save figures...')
 
     plt.figure(figsize=[40, 30])
     for j in range(0, channels):
@@ -593,21 +600,21 @@ for sp in setpoints_for_cross_talk:
         plt.ylim([-3e-3, 3e-3])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
-      plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
+      plt.title('Crosstalk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.5)
 
-    plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
+    plt.savefig('Results/%s/crosstalk_sp%sA/current_ch%02d.png' %(serial_number, str(sp), i))
 
     plt.figure(figsize=[14, 8])
     y = data_cross_talk[i+channels]
     plt.plot(y[0:samples_cross_talk],'b')
     plt.xlabel('Sample')
     plt.ylabel('Voltage [V]')
-    plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(i+channels))
+    plt.title('Crosstalk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(i))
     time.sleep(0.5)
-    plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i+channels))
+    plt.savefig('Results/%s/crosstalk_sp%sA/voltage_ch%02d.png' %(serial_number, str(sp), i))
 
-    print('>>> Plot cross talk data for all channels and save figures... Done!\n')
+    print('>>> Plot crosstalk data for all channels and save figures... Done!\n')
 
   data_cross_talk_per_sp[n] = data_cross_talk_full
 
@@ -663,10 +670,10 @@ for sp in setpoints_for_PSD:
     plt.xlim([0, 1e5])
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('PSD [A/$\sqrt{Hz}$]')
-    plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_number) + ']')
+    plt.title('Closed Loop | Power Spectral Density CH' + str(j) + ' Setpoint = ' + str(sp) + 'A [Serial Number: ' + str(serial_str_title) + ']')
     plt.grid(True, which="both")
 
-    plt.savefig('Results/%s/Plot_Data_ClosedLoop_sp%d/%s_PSD_ClosedLoop_CH%d.png' %(serial_number, a, serial_number, j))
+    plt.savefig('Results/%s/psd_closed_loop_sp%sA/psd_ch%02d.png' %(serial_number, str(sp), j))
 
     data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
 
@@ -691,7 +698,7 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 n = 0
 for sp in setpoints_for_cross_talk:
   for i in channels8_11:
-    print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
+    print('\n------------- Crosstalk CHANNEL %02d with SP = %fA --------------------\n'%(i, sp))
 
     print('\n>>> Set the limits for the square wave...')
 
@@ -700,7 +707,7 @@ for sp in setpoints_for_cross_talk:
 
     print('>>> Set the limits for the square wave... Done!')
 
-    print('\n>>> Enable the square wave for channel %d...'%(i))
+    print('\n>>> Enable the square wave for channel %02d...'%(i))
 
     time.sleep(0.2)
     PV(pv_square_wave_enable[i]).put(1, wait=True)
@@ -710,7 +717,7 @@ for sp in setpoints_for_cross_talk:
     PV(pv_amp_enable[i]).put(1, wait=True)
     time.sleep(0.5)
 
-    print('>>> Enable the square wave for channel %d... Done!'%(i))
+    print('>>> Enable the square wave for channel %02d... Done!'%(i))
 
     print('\n>>> New acquisition...')
 
@@ -734,7 +741,7 @@ for sp in setpoints_for_cross_talk:
 
     print('>>> Save the acq data from all channels... Done!\n')
 
-    print('>>> Disable the square wave and set SP = 0 for channel %d...'%(i))
+    print('>>> Disable the square wave and set SP = 0 for channel %02d...'%(i))
 
     PV(pv_square_wave_enable[i]).put(0, wait=True)
     PV(pv_current_setpoint[i]).put(0,   wait=True)
@@ -742,9 +749,9 @@ for sp in setpoints_for_cross_talk:
     PV(pv_amp_enable[i]).put(0, wait=True)
     time.sleep(0.5)
 
-    print('>>> Disable the square wave and set SP = 0 for channel %d... Done!\n'%(i))
+    print('>>> Disable the square wave and set SP = 0 for channel %02d... Done!\n'%(i))
 
-    print('>>> Plot cross talk data for all channels and save figures...')
+    print('>>> Plot crosstalk data for all channels and save figures...')
 
     plt.figure(figsize=[40, 30])
     for j in range(0, channels):
@@ -756,21 +763,21 @@ for sp in setpoints_for_cross_talk:
         plt.ylim([-3e-3, 3e-3])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
-      plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
+      plt.title('Crosstalk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.5)
 
-    plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
+    plt.savefig('Results/%s/crosstalk_sp%sA/current_ch%02d.png' %(serial_number, str(sp), i))
 
     plt.figure(figsize=[14, 8])
     y = data_cross_talk[i+channels]
     plt.plot(y[0:samples_cross_talk],'b')
     plt.xlabel('Sample')
     plt.ylabel('Voltage [V]')
-    plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(i+channels))
+    plt.title('Crosstalk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(i))
     time.sleep(0.5)
-    plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i+channels))
+    plt.savefig('Results/%s/crosstalk_sp%sA/voltage_ch%02d.png' %(serial_number, str(sp), i))
 
-    print('>>> Plot cross talk data for all channels and save figures... Done!\n')
+    print('>>> Plot crosstalk data for all channels and save figures... Done!\n')
 
   data_cross_talk_per_sp[n] = data_cross_talk_full
 
@@ -784,7 +791,7 @@ print('>>> Set zero for the current setpoint inferior limit... Done!')
 
 data['ACQ for Closed Loop Test'] = data_closed_loop_full
 
-data['ACQ for Cross Talk'] = data_cross_talk_per_sp
+data['ACQ for Crosstalk'] = data_cross_talk_per_sp
 
 print('\n---------------------------------------------------------------------------\n')
 
@@ -809,21 +816,21 @@ for sp in setpoints_for_PSD:
     lim = 0.02*abs(sp)
 
   for i in channels0_3:
-    if abs(val_full0_3[a][i]) - abs(sp) > lim:
+    if abs(abs(val_full0_3[a][i]) - abs(sp)) > lim:
       print('>>> FAIL!\n')
-      print('>>> Mean value of channel %d is equal to %f for setpoint %f'%(i, val_full0_3[a][i], sp))
+      print('>>> Mean value of channel %02d is equal to %f for setpoint %f'%(i, val_full0_3[a][i], sp))
   print(val_full0_3[a])
 
   for i in channels4_7:
-    if abs(val_full4_7[a][i-4]) - abs(sp) > lim:
+    if abs(abs(val_full4_7[a][i-4]) - abs(sp)) > lim:
       print('>>> FAIL!\n')
-      print('>>> Mean value of channel %d is equal to %f for setpoint %f'%(i, val_full4_7[a][i-4], sp))
+      print('>>> Mean value of channel %02d is equal to %f for setpoint %f'%(i, val_full4_7[a][i-4], sp))
   print(val_full4_7[a])
 
   for i in channels8_11:
-    if abs(val_full8_11[a][i-8]) - abs(sp) > lim:
+    if abs(abs(val_full8_11[a][i-8]) - abs(sp)) > lim:
       print('>>> FAIL!\n')
-      print('>>> Mean value of channel %d is equal to %f for setpoint %f'%(i, val_full8_11[a][i-8], sp))
+      print('>>> Mean value of channel %02d is equal to %f for setpoint %f'%(i, val_full8_11[a][i-8], sp))
   print(val_full8_11[a])
 
   a = a + 1
