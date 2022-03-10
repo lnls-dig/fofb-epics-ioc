@@ -73,8 +73,8 @@ pv_pi_ti                  = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 for i in range(0, channels):
-  pv_current_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")                      + str(i)          + str("ArrayData"))
-  pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GEN_CH")                      + str(i+channels) + str("ArrayData"))
+  pv_current_ArrayData.append(     str(pv_prefix)  + str("GENConvArrayDataCH")          + str(i))
+  pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GENConvArrayDataCH")          + str(i+channels))
   pv_current_gain.append(          str(pv_prefix)  + str("PSGainWavCH")                 + str(i)          + str("-SP.VAL"))
   pv_voltage_gain.append(          str(pv_prefix)  + str("PSGainWavCH")                 + str(i+channels) + str("-SP.VAL"))
   pv_current_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")               + str(i)          + str("-SP.VAL"))
@@ -175,7 +175,7 @@ data['New current offsets'] = new_offset.tolist()
 data_open_loop = [[], [], [], [], [], [], [], [], [], [], [], []]
 
 for i in range(0, channels):
-  data_open_loop[i] = (PV(pv_current_ArrayData[i]).get()*current_gain).tolist()
+  data_open_loop[i] = (PV(pv_current_ArrayData[i]).get()).tolist()
 
 data['ACQ for Open Loop Test'] = data_open_loop
 
@@ -332,7 +332,7 @@ for sp in setpoints_for_PSD:
   for j in channels0_3:
     plt.figure(figsize=[14, 8])
 
-    f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get()*current_gain, fs)
+    f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get(), fs)
 
     plt.loglog(f, np.sqrt(psd), 'b',
                linewidth=1, marker='h', markerfacecolor='lightgreen',
@@ -347,7 +347,7 @@ for sp in setpoints_for_PSD:
 
     plt.savefig('Results/%s/psd_closed_loop_sp%sA/psd_ch%02d.png' %(serial_number, str(sp), j))
 
-    data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
+    data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()).tolist()
 
     val_full0_3[a][j] = np.mean(data_closed_loop[j])
 
@@ -408,8 +408,9 @@ for sp in setpoints_for_cross_talk:
     print('>>> Save the acq data from all channels...')
 
     for j in range(0, channels):
-      data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
-      data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()*voltage_gain).tolist()
+      data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()).tolist()
+      data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()
+                                     ).tolist()
 
     data_cross_talk_full[i] = data_cross_talk
 
@@ -497,7 +498,7 @@ for sp in setpoints_for_PSD:
   for j in channels4_7:
     plt.figure(figsize=[14, 8])
 
-    f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get()*current_gain, fs)
+    f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get(), fs)
 
     plt.loglog(f, np.sqrt(psd), 'b',
                linewidth=1, marker='h', markerfacecolor='lightgreen',
@@ -512,7 +513,7 @@ for sp in setpoints_for_PSD:
 
     plt.savefig('Results/%s/psd_closed_loop_sp%sA/psd_ch%02d.png' %(serial_number, str(sp), j))
 
-    data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
+    data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()).tolist()
 
     val_full4_7[a][j-4] = np.mean(data_closed_loop[j])
 
@@ -571,8 +572,8 @@ for sp in setpoints_for_cross_talk:
     print('>>> Save the acq data from all channels...')
 
     for j in range(0, channels):
-      data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
-      data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()*voltage_gain).tolist()
+      data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()).tolist()
+      data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()).tolist()
 
     data_cross_talk_full[i] = data_cross_talk
 
@@ -660,7 +661,7 @@ for sp in setpoints_for_PSD:
   for j in channels8_11:
     plt.figure(figsize=[14, 8])
 
-    f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get()*current_gain, fs)
+    f, psd = signal.periodogram(PV(pv_current_ArrayData[j]).get(), fs)
 
     plt.loglog(f, np.sqrt(psd), 'b',
                linewidth=1, marker='h', markerfacecolor='lightgreen',
@@ -675,7 +676,7 @@ for sp in setpoints_for_PSD:
 
     plt.savefig('Results/%s/psd_closed_loop_sp%sA/psd_ch%02d.png' %(serial_number, str(sp), j))
 
-    data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
+    data_closed_loop[j] = (PV(pv_current_ArrayData[j]).get()).tolist()
 
     val_full8_11[a][j-8] = np.mean(data_closed_loop[j])
 
@@ -734,8 +735,8 @@ for sp in setpoints_for_cross_talk:
     print('>>> Save the acq data from all channels...')
 
     for j in range(0, channels):
-      data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()*current_gain).tolist()
-      data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()*voltage_gain).tolist()
+      data_cross_talk[j]          = (PV(pv_current_ArrayData[j]).get()).tolist()
+      data_cross_talk[j+channels] = (PV(pv_voltage_ArrayData[j]).get()).tolist()
 
     data_cross_talk_full[i] = data_cross_talk
 
