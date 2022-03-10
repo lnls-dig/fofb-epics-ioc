@@ -200,12 +200,6 @@ for i in range(0, channels):
 
 print('>>> Plot PSD for all channels and save figures... Done!')
 
-#print('\n>>> Read old json file?')
-#print('Type 1 if YES')
-#print('Type 0 if NO')
-
-#json_file_in = int(input())
-
 if json_file_in == 1:
   # reading data from json file
   with open("Results/%s/data_%s.json"%(serial_number, serial_number), "r") as read_file:
@@ -274,8 +268,8 @@ print('\n-----------------------------------------------------------------------
 print('---------------------------- CLOSED LOOP TEST ----------------------------')
 print('--------------------------------------------------------------------------\n')
 
-channels0_3  = [0, 1, 2, 3]
-channels4_7  = [4, 5, 6, 7]
+channels0_3  = [0, 1,  2,  3]
+channels4_7  = [4, 5,  6,  7]
 channels8_11 = [8, 9, 10, 11]
 
 print('>>> Set the new current offset for all channels...')
@@ -285,17 +279,15 @@ for i in range(0, channels):
 
 print('>>> Set the new current offset for all channels... Done!')
 
-data_closed_loop      = [[], [], [], [], [], [], [], [], [], [], [], []]
-data_closed_loop_full = [[], [], [], [], []]
+data_closed_loop       = [[], [], [], [], [], [], [], [], [], [], [], []]
+data_closed_loop_full  = [[], [], [], [], []]
 
 data_cross_talk        = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 data_cross_talk_full   = [[], [], [], [], [], [], [], [], [], [], [], []]
 data_cross_talk_per_sp = [[], [], []]
 
 val_full0_3            = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
-
 val_full4_7            = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
-
 val_full8_11           = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
 
 print('\n--------------------------------------------------------------------------')
@@ -371,6 +363,7 @@ print('>>> Set the current setpoint limits in zero for all channels... Done!')
 n = 0
 for sp in setpoints_for_cross_talk:
   os.system("mkdir Results/%s/Plot_Data_CrossTalk_sp%d"%(serial_number, n))
+
   for i in channels0_3:
     print('\n------------- Cross Talk CHANNEL %d with SP = %fA --------------------\n'%(i, sp))
 
@@ -432,12 +425,14 @@ for sp in setpoints_for_cross_talk:
       plt.subplot(4,3,j+1)
       y = data_cross_talk[j]
       plt.plot(y[0:samples_cross_talk])
+
       if j != i:
         plt.ylim([-3e-3, 3e-3])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
       plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.5)
+
     plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
 
     plt.figure(figsize=[14, 8])
@@ -452,7 +447,8 @@ for sp in setpoints_for_cross_talk:
     print('>>> Plot cross talk data for all channels and save figures... Done!\n')
 
   data_cross_talk_per_sp[n] = data_cross_talk_full
-  n = n+1
+
+  n = n + 1
 
 print('>>> Set zero for the current setpoint inferior limit...')
 
@@ -516,6 +512,7 @@ for sp in setpoints_for_PSD:
   data_closed_loop_full[a] = data_closed_loop
 
   print('>>> Plot PSD and save figures... Done!')
+
   a = a + 1
 
 print('\n>>> Set the current setpoint limits in zero for all channels...')
@@ -591,12 +588,14 @@ for sp in setpoints_for_cross_talk:
       plt.subplot(4,3,j+1)
       y = data_cross_talk[j]
       plt.plot(y[0:samples_cross_talk])
+
       if j != i:
         plt.ylim([-3e-3, 3e-3])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
       plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.5)
+
     plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
 
     plt.figure(figsize=[14, 8])
@@ -611,7 +610,8 @@ for sp in setpoints_for_cross_talk:
     print('>>> Plot cross talk data for all channels and save figures... Done!\n')
 
   data_cross_talk_per_sp[n] = data_cross_talk_full
-  n = n+1
+
+  n = n + 1
 
 print('>>> Set zero for the current setpoint inferior limit...')
 
@@ -675,6 +675,7 @@ for sp in setpoints_for_PSD:
   data_closed_loop_full[a] = data_closed_loop
 
   print('>>> Plot PSD and save figures... Done!')
+
   a = a + 1
 
 print('\n>>> Set the current setpoint limits in zero for all channels...')
@@ -750,12 +751,14 @@ for sp in setpoints_for_cross_talk:
       plt.subplot(4,3,j+1)
       y = data_cross_talk[j]
       plt.plot(y[0:samples_cross_talk])
+
       if j != i:
         plt.ylim([-3e-3, 3e-3])
       plt.xlabel('Sample')
       plt.ylabel('Current [A]')
       plt.title('Cross Talk SP = ' + str(sp) + 'A in Channel ' + str(i) + ' | ACQ from Channel ' + str(j))
       time.sleep(0.5)
+
     plt.savefig('Results/%s/Plot_Data_CrossTalk_sp%d/%s_CrossTalk_%d.png' %(serial_number, n, serial_number, i))
 
     plt.figure(figsize=[14, 8])
@@ -770,7 +773,8 @@ for sp in setpoints_for_cross_talk:
     print('>>> Plot cross talk data for all channels and save figures... Done!\n')
 
   data_cross_talk_per_sp[n] = data_cross_talk_full
-  n = n+1
+
+  n = n + 1
 
 print('>>> Set zero for the current setpoint inferior limit...')
 
@@ -797,10 +801,13 @@ print('>>> Save data in json file... Done!\n')
 a = 0
 for sp in setpoints_for_PSD:
   print('\n>>> Setpoint =  %f'%(sp))
+
   if sp == 0:
     lim = 5e-3
+
   else:
     lim = 0.02*abs(sp)
+
   for i in channels0_3:
     if abs(val_full0_3[a][i]) - abs(sp) > lim:
       print('>>> FAIL!\n')
@@ -820,4 +827,3 @@ for sp in setpoints_for_PSD:
   print(val_full8_11[a])
 
   a = a + 1
-
