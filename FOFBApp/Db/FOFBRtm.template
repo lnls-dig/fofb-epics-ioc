@@ -243,24 +243,12 @@ record(longin,"$(S)$(RTM_CHAN)DacData-RB"){
     field(VAL, "0")
 }
 
-record(longout,"$(S)$(RTM_CHAN)DacWr-Cmd"){
+record(mbbo,"$(S)$(RTM_CHAN)DacWr-Cmd"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"write DAC data to external IC")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_WR")
-    field(NOBT,"1")
-    field(ZRVL,"0")
-    field(ONVL,"1")
-    field(ZRST,"off")
-    field(ONST,"on")
-    field(VAL, "0")
-}
-record(mbbi,"$(P)$(R)PSDacWr$(RTM_CHAN)-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"write DAC data to external IC")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_WR")
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
