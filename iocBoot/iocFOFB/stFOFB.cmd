@@ -73,7 +73,7 @@ dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=X
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC11:, GAIN=CurrGain, OFFSET=CurrOffset, ACQ_NAME=GEN, WVF_CHAN=CH11,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset, ACQ_NAME=GEN, WVF_CHAN=CH12,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
-dbLoadRecords("${TOP}/db/FOFBData.template", "FS=${FS}, S=${S}, RTM_CHAN=M1:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset, FD=${FD}, ACQ_NAME=GEN, WVF_CHAN=CH13,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
+dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset, ACQ_NAME=GEN, WVF_CHAN=CH13,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M2:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset, ACQ_NAME=GEN, WVF_CHAN=CH14, FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M2:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset, ACQ_NAME=GEN, WVF_CHAN=CH15, FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=C2:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset, ACQ_NAME=GEN, WVF_CHAN=CH16, FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
