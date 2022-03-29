@@ -1,6 +1,6 @@
 ### save_restore setup
 # status-PV prefix
-save_restoreSet_status_prefix("${P}${R}")
+save_restoreSet_status_prefix("${P}${R}${S}")
 # Debug-output level
 save_restoreSet_Debug(0)
 
@@ -40,4 +40,4 @@ set_requestfile_path("$(AUTOSAVE)", "asApp/Db")
 set_requestfile_path("$(AREA_DETECTOR_COMPAT)", "ADApp/Db")
 set_requestfile_path("$(AUTOSAVE)", "asApp/Db")
 
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=${P}${R}")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=${P}${R}${S}")

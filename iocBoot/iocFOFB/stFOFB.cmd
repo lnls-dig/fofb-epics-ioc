@@ -117,5 +117,5 @@ iocInit()
 < initFOFBCommands
 
 # save things every thirty seconds
-create_monitor_set("auto_settings.req", 30,"P=${P}, R=${R}")
+create_monitor_set("auto_settings.req", 30,"P=${P}, R=${R}, S=${S}")
 set_savefile_name("auto_settings.req", "auto_settings_${P}${R}.sav")
