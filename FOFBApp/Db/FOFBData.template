@@ -90,7 +90,6 @@ record(waveform,"$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(WVF_CHAN)")
 record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(WVF_CHAN)")
 {
   field(DESC, "Data calibrated $(ACQ_NAME)")
-  field(NELM, "$(P)$(R)GEN_$(WVF_CHAN)ArrayData.NORD")
   field(INP,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(WVF_CHAN) NPP NMS")
   field(TSEL, "$(P)$(R)GEN_$(WVF_CHAN)ArrayData.TIME")
   field(MALM, "$(NELEMENTS)")
