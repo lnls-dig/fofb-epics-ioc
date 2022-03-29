@@ -29,7 +29,6 @@ record(mbbo,"$(P)$(R)DacDataSrc-Sel"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 record(mbbi,"$(P)$(R)DacDataSrc-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -41,7 +40,6 @@ record(mbbi,"$(P)$(R)DacDataSrc-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagL-Sts"){
@@ -107,7 +105,6 @@ record(mbbo,"$(S)$(RTM_CHAN)PwrState-Sel"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)PwrState-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -119,7 +116,6 @@ record(mbbi,"$(S)$(RTM_CHAN)PwrState-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)TestOpenLoopTriang-Sel"){
@@ -133,7 +129,6 @@ record(mbbo,"$(S)$(RTM_CHAN)TestOpenLoopTriang-Sel"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)TestOpenLoopTriang-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -145,7 +140,6 @@ record(mbbi,"$(S)$(RTM_CHAN)TestOpenLoopTriang-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)TestOpenLoopSquare-Sel"){
@@ -159,7 +153,6 @@ record(mbbo,"$(S)$(RTM_CHAN)TestOpenLoopSquare-Sel"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)TestOpenLoopSquare-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -171,7 +164,7 @@ record(mbbi,"$(S)$(RTM_CHAN)TestOpenLoopSquare-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
+    
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)TestClosedLoopSquare-Sel"){
@@ -185,7 +178,6 @@ record(mbbo,"$(S)$(RTM_CHAN)TestClosedLoopSquare-Sel"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)TestClosedLoopSquare-Sts"){
@@ -198,7 +190,6 @@ record(mbbi,"$(S)$(RTM_CHAN)TestClosedLoopSquare-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)CtrlLoop-Sel"){
@@ -212,7 +203,6 @@ record(mbbo,"$(S)$(RTM_CHAN)CtrlLoop-Sel"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)CtrlLoop-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -224,7 +214,6 @@ record(mbbi,"$(S)$(RTM_CHAN)CtrlLoop-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(longout,"$(S)$(RTM_CHAN)DacData-SP"){
@@ -233,14 +222,12 @@ record(longout,"$(S)$(RTM_CHAN)DacData-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_DATA")
-    field(VAL, "0")
 }
 record(longin,"$(S)$(RTM_CHAN)DacData-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get data to be sent to DAC")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_DAC_DATA")
-    field(VAL, "0")
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)DacWr-Cmd"){
@@ -254,7 +241,6 @@ record(mbbo,"$(S)$(RTM_CHAN)DacWr-Cmd"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    field(VAL, "0")
 }
 
 record(longout,"$(S)$(RTM_CHAN)CtrlLoopKp-SP"){
@@ -263,7 +249,6 @@ record(longout,"$(S)$(RTM_CHAN)CtrlLoopKp-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_KP_DATA")
-    field(VAL, "5000000")
 }
 record(longin,"$(S)$(RTM_CHAN)CtrlLoopKp-RB"){
     field(DTYP,"asynUInt32Digital")
@@ -278,7 +263,6 @@ record(longout,"$(S)$(RTM_CHAN)CtrlLoopTi-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_TI_DATA")
-    field(VAL, "300")
 }
 record(longin,"$(S)$(RTM_CHAN)CtrlLoopTi-RB"){
     field(DTYP,"asynUInt32Digital")
@@ -293,7 +277,6 @@ record(longout,"$(P)$(R)TestPIDacCntMax-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA")
-    field(VAL, "20000")
 }
 record(longin,"$(P)$(R)TestPIDacCntMax-RB"){
     field(DTYP,"asynUInt32Digital")
@@ -308,14 +291,12 @@ record(longout,"$(P)$(R)TestCurrLowLim-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
-    field(VAL, "0")
 }
 record(longin,"$(P)$(R)TestCurrLowLim-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI setpoint inferior limit")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
-    field(VAL, "0")
 }
 
 record(ao,"$(S)$(RTM_CHAN)Current-SP"){
@@ -341,7 +322,6 @@ record(longout,"$(S)$(RTM_CHAN)CurrentRaw-SP"){
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
-    field(VAL, "0")
 }
 record(longin,"$(S)$(RTM_CHAN)CurrentRaw-RB"){
     field(DTYP,"asynUInt32Digital")
