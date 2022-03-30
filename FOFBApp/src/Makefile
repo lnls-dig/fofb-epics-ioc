@@ -44,11 +44,8 @@ FOFB_LIBS += devIocStats
 FOFB_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # Link to system libraries
-FOFB_SYS_LIBS += bpmclient
 FOFB_SYS_LIBS += acqclient
 FOFB_SYS_LIBS += halcsclient
-FOFB_SYS_LIBS += bpmclient
-FOFB_SYS_LIBS += acqclient
 FOFB_SYS_LIBS += errhand
 FOFB_SYS_LIBS += hutils
 FOFB_SYS_LIBS += mlm
@@ -70,11 +67,8 @@ PROD += FOFBCheckInit
 FOFBCheckInit_SRCS += FOFBCheckInit.c
 
 # Link to system libraries
-FOFBCheckInit_SYS_LIBS += bpmclient
 FOFBCheckInit_SYS_LIBS += acqclient
 FOFBCheckInit_SYS_LIBS += halcsclient
-FOFBCheckInit_SYS_LIBS += bpmclient
-FOFBCheckInit_SYS_LIBS += acqclient
 FOFBCheckInit_SYS_LIBS += errhand
 FOFBCheckInit_SYS_LIBS += hutils
 FOFBCheckInit_SYS_LIBS += mlm

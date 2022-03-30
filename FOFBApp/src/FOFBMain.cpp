@@ -1,5 +1,14 @@
-/* FOFBMain.cpp */
-/* Author:  Melissa Aguiar   Date:    03DEZ2021 */
+/* * * * * * * * * * * * * * * *
+ *                             *
+ * FOFBMain.cpp                *
+ *                             *
+ * Author: Melissa Aguiar      *
+ *                             *
+ * Copyright (c) 2022 CNPEM    *
+ *                             *
+ * Created Dec. 03, 2021       *
+ *                             *
+ * * * * * * * * * * * * * * * */
 
 #include <stddef.h>
 #include <stdlib.h>
@@ -13,7 +22,7 @@
 
 int main(int argc,char *argv[])
 {
-    if(argc>=2) {    
+    if(argc>=2) {
         iocsh(argv[1]);
         epicsThreadSleep(.2);
     }

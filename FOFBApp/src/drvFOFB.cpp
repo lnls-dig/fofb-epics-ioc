@@ -1,10 +1,14 @@
-/*
- * drvFOFB.cpp
- *
- * Authors: Melissa Aguiar
- *
- * Created Dec. 03, 2021
- */
+/* * * * * * * * * * * * * * * *
+ *                             *
+ * drvFOFB.cpp                 *
+ *                             *
+ * Author: Melissa Aguiar      *
+ *                             *
+ * Copyright (c) 2022 CNPEM    *
+ *                             *
+ * Created Dec. 03, 2021       *
+ *                             *
+ * * * * * * * * * * * * * * * */
 
 #include <stdlib.h>
 #include <string.h>
@@ -997,7 +1001,7 @@ asynStatus drvFOFB::fofbClientConnect(asynUser* pasynUser)
         fofbClientMonit = halcs_client_new_time (endpoint, verbose, fofbLogFile, timeout);
         if (fofbClientMonit == NULL) {
             asynPrint(pasynUser, ASYN_TRACE_ERROR,
-                    "%s:%s bpmClientConnect failure to create fofbClientMonit instance\n",
+                    "%s:%s fofbClientConnect failure to create fofbClientMonit instance\n",
                     driverName, functionName);
             status = asynError;
             goto create_halcs_client_monit_err;
