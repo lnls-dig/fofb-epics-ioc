@@ -1,3 +1,19 @@
+# # # # # # # # # # # # # # #
+#                           #
+# Arrays database file      #
+#                           #
+# Author: Melissa Aguiar    #
+#                           #
+# Copyright (c) 2022 CNPEM  #
+#                           #
+# Created Dez. 24, 2021     #
+#                           #
+# # # # # # # # # # # # # # #
+
+############################
+# Waveform parameters
+############################
+
 record(waveform,"$(P)$(R)$(ACQ_NAME)ArrayDataWvf")
 {
     field(DESC, "Data waveform $(ACQ_NAME)")

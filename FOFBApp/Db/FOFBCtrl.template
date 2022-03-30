@@ -1,12 +1,17 @@
-#
-# FOFB database file
-#
-# Authors: Melissa Aguiar
-#
-# Created Jan. 25, 2022
-#
+# # # # # # # # # # # # # # #
+#                           #
+# FOFB database file        #
+#                           #
+# Author: Melissa Aguiar    #
+#                           #
+# Copyright (c) 2022 CNPEM  #
+#                           #
+# Created Jan. 25, 2022     #
+#                           #
+# # # # # # # # # # # # # # #
+
 ############################
-# FOFB PROCESSING parameters
+# FOFB CTRL parameters
 ############################
 
 record(longout,"$(P)$(R)FofbProcessingRamWriteEnable-SP"){

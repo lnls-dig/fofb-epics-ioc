@@ -1,6 +1,19 @@
+# # # # # # # # # # # # # # #
+#                           #
+# ACQ database file         #
+#                           #
+# Author: Melissa Aguiar    #
+#                           #
+# Copyright (c) 2022 CNPEM  #
+#                           #
+# Created Dez. 14, 2021     #
+#                           #
+# # # # # # # # # # # # # # #
+
 ##################################
 # Waveform Acquisition parameters
 ##################################
+
 record(longout,"$(P)$(R)$(ACQ_NAME)SamplesPre-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"Set number of pre samples for waveforms")

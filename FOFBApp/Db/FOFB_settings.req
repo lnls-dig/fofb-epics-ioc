@@ -31,7 +31,6 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
 
 # RTM LAMP
-
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCH:, GAIN=CurrGain, OFFSET=CurrOffset
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCV:, GAIN=CurrGain, OFFSET=CurrOffset
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCH:, GAIN=CurrGain, OFFSET=CurrOffset
