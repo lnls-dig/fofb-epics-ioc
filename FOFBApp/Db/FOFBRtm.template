@@ -159,7 +159,6 @@ record(mbbi,"$(S)$(RTM_CHAN)TestOpenLoopSquare-Sts"){
     field(ONVL,"1")
     field(ZRST,"off")
     field(ONST,"on")
-    
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)TestClosedLoopSquare-Sel"){
