@@ -1,10 +1,14 @@
-/*
- * drvFOFB.h
- *
- * Authors: Melissa Aguiar
- *
- * Created Dec. 03, 2021
- */
+/* * * * * * * * * * * * * * * *
+ *                             *
+ * drvFOFB.h                   *
+ *                             *
+ * Author: Melissa Aguiar      *
+ *                             *
+ * Copyright (c) 2022 CNPEM    *
+ *                             *
+ * Created Dec. 03, 2021       *
+ *                             *
+ * * * * * * * * * * * * * * * */
 
 #include "asynNDArrayDriver.h"
 #include <epicsExit.h>
