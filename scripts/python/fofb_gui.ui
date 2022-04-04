@@ -5640,7 +5640,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -6705,7 +6705,7 @@
         <bool>false</bool>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-99M1:PS-FCH:PSAmpOverTempFlagRCH0-Sts</string>
+        <string>SI-99M1:PS-FCH:PSAmpOverTempFlagR-Sts</string>
        </property>
       </widget>
       <widget class="PyDMLabel" name="PyDMLabel_320">
@@ -6857,7 +6857,7 @@
         <bool>false</bool>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-99M1:PS-FCV:PSAmpOverTempFlagRCH1-Sts</string>
+        <string>SI-99M1:PS-FCV:PSAmpOverTempFlagR-Sts</string>
        </property>
       </widget>
       <widget class="PyDMLabel" name="PyDMLabel_324">
@@ -8734,7 +8734,7 @@
         <bool>false</bool>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-99C2:PS-FCH:PSAmpOverCurrFlagLCH4-Sts</string>
+        <string>SI-99C2:PS-FCH:PSAmpOverCurrFlagL-Sts</string>
        </property>
       </widget>
       <zorder>label_100</zorder>
@@ -9851,7 +9851,7 @@
         <bool>false</bool>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-99XX:PS-FC08:PSAmpOverTempFlagRCH8-Sts</string>
+        <string>SI-99XX:PS-FC08:PSAmpOverTempFlagR-Sts</string>
        </property>
       </widget>
       <widget class="PyDMLabel" name="PyDMLabel_121">
