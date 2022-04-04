@@ -35,7 +35,8 @@ samples_cross_talk        = 4000                     # number of samples to plot
 channels                  = 12                       # number of channels (max 12, 8 actually in use)
 pi_kp                     = 5000000                  # PI Kp parameter
 pi_ti                     = 300                      # PI Ti parameter
-pv_prefix                 = "XX-99SL01:DI-FOFBCtrl:" # minicrate
+crate_number              = "99"                     # crate number
+slot_number               = "01"                     # slot number
 current_gain              = 6.25e-5                  # initial value for current gain
 voltage_gain              = 1.12916762036e-4         # initial value for voltage gain
 current_offset            = 0                        # initial value for current offset
@@ -46,13 +47,35 @@ dac_data_values           = [0, 17712, -17712]       # 0V, 2V and -2V
 dac_cnt_max               = 125000                   # 2ms
 data                      = {}                       # json data
 
+# PV prefixes
+if slot_number == "02":
+  prefix_fofb  = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
+else:
+  prefix_fofb  = "XX-" + crate_number + "SL" + slot_number + "RaBPM:BS-FOFBCtrl:"
+
+prefix_rtmch00 = "SI-" + crate_number + "M1:PS-FCH:"
+prefix_rtmch01 = "SI-" + crate_number + "M1:PS-FCV:"
+prefix_rtmch02 = "SI-" + crate_number + "M2:PS-FCH:"
+prefix_rtmch03 = "SI-" + crate_number + "M2:PS-FCV:"
+prefix_rtmch04 = "SI-" + crate_number + "C2:PS-FCH:"
+prefix_rtmch05 = "SI-" + crate_number + "C2:PS-FCV:"
+prefix_rtmch06 = "SI-" + crate_number + "C3:PS-FCH:"
+prefix_rtmch07 = "SI-" + crate_number + "C3:PS-FCV:"
+prefix_rtmch08 = "SI-" + crate_number + "XX:PS-FC08:"
+prefix_rtmch09 = "SI-" + crate_number + "XX:PS-FC09:"
+prefix_rtmch10 = "SI-" + crate_number + "XX:PS-FC10:"
+prefix_rtmch11 = "SI-" + crate_number + "XX:PS-FC11:"
+
+prefix_rtm = [prefix_rtmch00, prefix_rtmch01, prefix_rtmch02, prefix_rtmch03, prefix_rtmch04, prefix_rtmch05,
+              prefix_rtmch06, prefix_rtmch07, prefix_rtmch08, prefix_rtmch09, prefix_rtmch10, prefix_rtmch11]
+
 # global PVs
-pv_acq_trigger_rep        = str(pv_prefix) + str("ACQTriggerRep-Sel")
-pv_acq_trigger_event      = str(pv_prefix) + str("ACQTriggerEvent-Sel")
-pv_acq_samples_pre        = str(pv_prefix) + str("ACQSamplesPre-SP")
-pv_current_setpoint_inf   = str(pv_prefix) + str("PSCurrLimInf-SP")
-pv_dac_cnt_max            = str(pv_prefix) + str("PSPIDacCntMax-SP")
-pv_dac_data_wb            = str(pv_prefix) + str("PSDacDataWb-SP")
+pv_acq_trigger_rep        = str(prefix_fofb) + str("ACQTriggerRep-Sel")
+pv_acq_trigger_event      = str(prefix_fofb) + str("ACQTriggerEvent-Sel")
+pv_acq_samples_pre        = str(prefix_fofb) + str("ACQSamplesPre-SP")
+pv_current_setpoint_inf   = str(prefix_fofb) + str("TestCurrLowLim-SP")
+pv_dac_cnt_max            = str(prefix_fofb) + str("TestPIDacCntMax-SP")
+pv_dac_data_wb            = str(prefix_fofb) + str("DacDataSrc-Sel")
 
 # PVs per channel
 pv_current_ArrayData      = []
@@ -74,22 +97,24 @@ pv_pi_ti                  = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 for i in range(0, channels):
-  pv_current_ArrayData.append(     str(pv_prefix)  + str("GENConvArrayDataCH")          + str(i))
-  pv_voltage_ArrayData.append(     str(pv_prefix)  + str("GENConvArrayDataCH")          + str(i+channels))
-  pv_current_ArrayDataRAW.append(  str(pv_prefix)  + str("GEN_CH")                      + str(i)          + str("ArrayData"))
-  pv_current_gain.append(          str(pv_prefix)  + str("PSGainWavCH")                 + str(i)          + str("-SP.VAL"))
-  pv_voltage_gain.append(          str(pv_prefix)  + str("PSGainWavCH")                 + str(i+channels) + str("-SP.VAL"))
-  pv_current_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")               + str(i)          + str("-SP.VAL"))
-  pv_voltage_offset.append(        str(pv_prefix)  + str("PSOffsetWavCH")               + str(i+channels) + str("-SP.VAL"))
-  pv_current_setpoint.append(      str(pv_prefix)  + str("PSCurrCH")                    + str(i)          + str("-SP.VAL"))
-  pv_current_setpoint_raw.append(  str(pv_prefix)  + str("PSCurrRawCH")                 + str(i)          + str("-SP.VAL"))
-  pv_dac_data.append(              str(pv_prefix)  + str("PSDacDataCH")                 + str(i)          + str("-SP.VAL"))
-  pv_amp_enable.append(            str(pv_prefix)  + str("PSAmpEnCH")                   + str(i)          + str("-Sel.VAL"))
-  pv_pi_enable.append(             str(pv_prefix)  + str("PSPIEnCH")                    + str(i)          + str("-Sel.VAL"))
-  pv_dac_write.append(             str(pv_prefix)  + str("PSDacWrCH")                   + str(i)          + str("-SP.VAL"))
-  pv_square_wave_enable.append(    str(pv_prefix)  + str("PSClosedLoopSquareWavSPEnCH") + str(i)          + str("-Sel"))
-  pv_pi_kp.append(                 str(pv_prefix)  + str("PSPIKpCH")                    + str(i)          + str("-SP.VAL"))
-  pv_pi_ti.append(                 str(pv_prefix)  + str("PSPITiCH")                    + str(i)          + str("-SP.VAL"))
+  pv_current_ArrayData.append(     str(prefix_fofb)  + str("GENConvArrayDataCH") + str(i))
+  pv_voltage_ArrayData.append(     str(prefix_fofb)  + str("GENConvArrayDataCH") + str(i+channels))
+  pv_current_ArrayDataRAW.append(  str(prefix_fofb)  + str("GEN_CH")             + str(i)            + str("ArrayData"))
+
+for pv_prefix in prefix_rtm:
+  pv_current_gain.append(          str(pv_prefix)  + str("CurrGain")             + str("-SP"))
+  pv_voltage_gain.append(          str(pv_prefix)  + str("VoltGain")             + str("-SP"))
+  pv_current_offset.append(        str(pv_prefix)  + str("CurrOffset")           + str("-SP"))
+  pv_voltage_offset.append(        str(pv_prefix)  + str("VoltOffset")           + str("-SP"))
+  pv_current_setpoint.append(      str(pv_prefix)  + str("Current")              + str("-SP"))
+  pv_current_setpoint_raw.append(  str(pv_prefix)  + str("CurrentRaw")           + str("-SP"))
+  pv_dac_data.append(              str(pv_prefix)  + str("DacData")              + str("-SP"))
+  pv_amp_enable.append(            str(pv_prefix)  + str("PwrState")             + str("-Sel"))
+  pv_pi_enable.append(             str(pv_prefix)  + str("CtrlLoop")             + str("-Sel"))
+  pv_dac_write.append(             str(pv_prefix)  + str("DacWr")                + str("-Cmd"))
+  pv_square_wave_enable.append(    str(pv_prefix)  + str("TestClosedLoopSquare") + str("-Sel"))
+  pv_pi_kp.append(                 str(pv_prefix)  + str("CtrlLoopKp")           + str("-SP"))
+  pv_pi_ti.append(                 str(pv_prefix)  + str("CtrlLoopTi")           + str("-SP"))
 
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
@@ -851,3 +876,4 @@ for sp in setpoints_for_PSD:
 print('\n--------------------------------------------------------------------------')
 print('----------------------------- END OF THE TEST ----------------------------')
 print('--------------------------------------------------------------------------\n')
+
