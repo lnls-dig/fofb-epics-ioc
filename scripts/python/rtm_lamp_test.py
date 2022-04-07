@@ -36,7 +36,7 @@ channels                  = 12                       # number of channels (max 1
 pi_kp                     = 5000000                  # PI Kp parameter
 pi_ti                     = 300                      # PI Ti parameter
 crate_number              = "99"                     # crate number
-slot_number               = "01"                     # slot number
+slot_number               = "01"                     # slot number (must be equals to physical_slot*2-1)
 current_gain              = 6.25e-5                  # initial value for current gain
 voltage_gain              = 1.12916762036e-4         # initial value for voltage gain
 current_offset            = 0                        # initial value for current offset
@@ -48,7 +48,7 @@ dac_cnt_max               = 125000                   # 2ms
 data                      = {}                       # json data
 
 # PV prefixes
-if slot_number == "02":
+if slot_number == ("03" or "05"):                    # board connected in physical slot 2 or 3
   prefix_fofb  = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
 else:
   prefix_fofb  = "XX-" + crate_number + "SL" + slot_number + "RaBPM:BS-FOFBCtrl:"

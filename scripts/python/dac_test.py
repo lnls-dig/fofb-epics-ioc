@@ -16,12 +16,12 @@ channels                  = 12                       # number of channels (max 1
 pi_kp                     = 5000000                  # PI Kp parameter
 pi_ti                     = 300                      # PI Ti parameter
 crate_number              = "99"                     # crate number
-slot_number               = "01"                     # slot number
+slot_number               = "01"                     # slot number (must be equals to physical_slot*2-1)
 dac_data_values           = [0, 17712, -17712]       # 0V, 2V and -2V
 dac_cnt_max               = 125000                   # 2ms
 
 # PV prefixes
-if slot_number == "02":
+if slot_number == ("03" or "05"):                    # board connected in physical slot 2 or 3
   prefix_fofb  = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
 else:
   prefix_fofb  = "XX-" + crate_number + "SL" + slot_number + "RaBPM:BS-FOFBCtrl:"
@@ -43,25 +43,25 @@ prefix_rtm = [prefix_rtmch00, prefix_rtmch01, prefix_rtmch02, prefix_rtmch03, pr
               prefix_rtmch06, prefix_rtmch07, prefix_rtmch08, prefix_rtmch09, prefix_rtmch10, prefix_rtmch11]
 
 # global PVs
-pv_dac_cnt_max            = str(prefix_fofb) + str("PSPIDacCntMax-SP")
-pv_dac_data_wb            = str(prefix_fofb) + str("PSDacDataWb-SP")
+pv_dac_cnt_max = str(prefix_fofb) + str("PSPIDacCntMax-SP")
+pv_dac_data_wb = str(prefix_fofb) + str("PSDacDataWb-SP")
 
 # PVs per channel
-pv_dac_data               = []
-pv_amp_enable             = []
-pv_pi_enable              = []
-pv_dac_write              = []
-pv_pi_kp                  = []
-pv_pi_ti                  = []
+pv_dac_data    = []
+pv_amp_enable  = []
+pv_pi_enable   = []
+pv_dac_write   = []
+pv_pi_kp       = []
+pv_pi_ti       = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 for pv_prefix in prefix_rtm:
-  pv_dac_data.append(              str(pv_prefix)  + str("DacData")              + str("-SP"))
-  pv_amp_enable.append(            str(pv_prefix)  + str("PwrState")             + str("-Sel"))
-  pv_pi_enable.append(             str(pv_prefix)  + str("CtrlLoop")             + str("-Sel"))
-  pv_dac_write.append(             str(pv_prefix)  + str("DacWr")                + str("-Cmd"))
-  pv_pi_kp.append(                 str(pv_prefix)  + str("CtrlLoopKp")           + str("-SP"))
-  pv_pi_ti.append(                 str(pv_prefix)  + str("CtrlLoopTi")           + str("-SP"))
+  pv_dac_data.append(   str(pv_prefix) + str("DacData")    + str("-SP"))
+  pv_amp_enable.append( str(pv_prefix) + str("PwrState")   + str("-Sel"))
+  pv_pi_enable.append(  str(pv_prefix) + str("CtrlLoop")   + str("-Sel"))
+  pv_dac_write.append(  str(pv_prefix) + str("DacWr")      + str("-Cmd"))
+  pv_pi_kp.append(      str(pv_prefix) + str("CtrlLoopKp") + str("-SP"))
+  pv_pi_ti.append(      str(pv_prefix) + str("CtrlLoopTi") + str("-SP"))
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
 print('        #                                                   #')
