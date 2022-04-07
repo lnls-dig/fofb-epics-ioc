@@ -1,6 +1,0 @@
-[Unit]
-Description=FOFB IOC %p%I
-After=rc-local.service
-Wants=fofb-ioc@%i.service
-After=fofb-ioc@%i.service
-PartOf=halcs@%i.target

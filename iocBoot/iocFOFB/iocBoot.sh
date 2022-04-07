@@ -25,6 +25,16 @@ if [ "$FOFB_NUMBER" -lt 1 ] || [ "$FOFB_NUMBER" -gt 24 ]; then
     exit 1
 fi
 
+# Select crate number.
+CRATE_NUMBER=$3
+
+if [ -z "$CRATE_NUMBER" ]; then
+    echo "\"CRATE_NUMBER\" variable unset."
+    exit 1
+fi
+
+source ioc-fofb-env.sh $CRATE_NUMBER
+
 export FOFB_CURRENT_PV_AREA_PREFIX=CRATE_${EPICS_PV_CRATE_NUMBER}_FOFB_${FOFB_NUMBER}_PV_AREA_PREFIX
 export FOFB_CURRENT_PV_DEVICE_PREFIX=CRATE_${EPICS_PV_CRATE_NUMBER}_FOFB_${FOFB_NUMBER}_PV_DEVICE_PREFIX
 export EPICS_PV_AREA_PREFIX=${!FOFB_CURRENT_PV_AREA_PREFIX}

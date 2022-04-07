@@ -103,7 +103,3 @@ dbpf "${P}${R}GEN_CH31ArrayData.TSE" -2
 #dbpf "${P}${R}GEN_CH0_STATSComputeHistogram" No
 #dbpf "${P}${R}GEN_CH0_STATSComputeStatistics" Yes
 
-#dbpf "${P}${R}PM_CH0_STATSEnableCallbacks" 1
-
-#dbpf "${P}${R}PM_CH0_STATSComputeHistogram" No
-#dbpf "${P}${R}PM_CH0_STATSComputeStatistics" Yes

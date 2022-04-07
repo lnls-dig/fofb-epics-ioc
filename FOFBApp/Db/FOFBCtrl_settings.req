@@ -7,7 +7,7 @@ $(P)$(R)FofbCtrlCcEnable-SP
 $(P)$(R)FofbCtrlTfsOverride-SP
 $(P)$(R)FofbCtrlBpmId-SP
 $(P)$(R)FofbCtrlTimeFrameLen-SP
-$(P)$(R)FofbCtrlMgtPowerdwn-SP
+$(P)$(R)FofbCtrlMgtPowerdown-SP
 $(P)$(R)FofbCtrlMgtLoopback-SP
 $(P)$(R)FofbCtrlTimeFrameDly-SP
 $(P)$(R)FofbCtrlGoldenOrbX-SP
