@@ -1,3 +1,15 @@
+/* * * * * * * * * * * * * * * *
+ *                             *
+ * FOFBCheckInit.c             *
+ *                             *
+ * Author: Melissa Aguiar      *
+ *                             *
+ * Copyright (c) 2022 CNPEM    *
+ *                             *
+ * Created Dec. 03, 2021       *
+ *                             *
+ * * * * * * * * * * * * * * * */
+
 #include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
@@ -37,7 +49,7 @@ int main (int argc, char *argv [])
 
     /* FIXME: This is rather buggy! */
     /* Simple handling of command-line options. This should be done
- *  *      *      * with getopt, for instance*/
+     * with getopt, for instance*/
     int i;
     for (i = 1; i < argc; i++)
     {

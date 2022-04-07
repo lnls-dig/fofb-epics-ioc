@@ -1,3 +1,19 @@
+# # # # # # # # # # # # # # #
+#                           #
+# Arrays database file      #
+#                           #
+# Author: Melissa Aguiar    #
+#                           #
+# Copyright (c) 2022 CNPEM  #
+#                           #
+# Created Dec. 24, 2021     #
+#                           #
+# # # # # # # # # # # # # # #
+
+############################
+# Waveform parameters
+############################
+
 record(waveform,"$(P)$(R)$(ACQ_NAME)ArrayDataWvf")
 {
     field(DESC, "Data waveform $(ACQ_NAME)")
@@ -90,7 +106,6 @@ record(waveform,"$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(WVF_CHAN)")
 record(subArray,"$(P)$(R)$(ACQ_NAME)ConvArrayData$(WVF_CHAN)")
 {
   field(DESC, "Data calibrated $(ACQ_NAME)")
-  field(NELM, "$(P)$(R)GEN_$(WVF_CHAN)ArrayData.NORD")
   field(INP,  "$(P)$(R)$(ACQ_NAME)ConvArrayDataWvf$(WVF_CHAN) NPP NMS")
   field(TSEL, "$(P)$(R)GEN_$(WVF_CHAN)ArrayData.TIME")
   field(MALM, "$(NELEMENTS)")

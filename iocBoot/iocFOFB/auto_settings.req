@@ -1,4 +1,4 @@
-file "FOFB_settings.req",               P=$(P),  R=$(R)
+file "FOFB_settings.req",               P=$(P),  R=$(R),  S=$(S)
 
 file "NDPluginBase_settings_mod.req",   P=$(P),  R=$(R)GEN_CH0
 file "NDStdArrays_settings.req",        P=$(P),  R=$(R)GEN_CH0

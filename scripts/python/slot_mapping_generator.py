@@ -57,7 +57,6 @@ for j in range(1, slots+1, 1):
       f1.write("CRATE_" + str(i) + "_" + ioc_name + "_" + str(j) + "_PV_AREA_PREFIX=" + pv_area_prefix_others + "-" + str(i) + "SL" + str(j) + '\n')
       f1.write("CRATE_" + str(i) + "_" + ioc_name + "_" + str(j) + "_PV_DEVICE_PREFIX=" + pv_device_prefix + "-" + pv_name_prefix + ":" + '\n'+ '\n')
 
-
 f1.write('\n' + "# --- CRATE 99 (minicrate) ---" + '\n' + '\n')
 for j in range(1, slots+1, 1):
   i = 99
