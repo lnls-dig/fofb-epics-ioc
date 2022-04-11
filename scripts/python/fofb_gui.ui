@@ -22,7 +22,7 @@
      <x>10</x>
      <y>10</y>
      <width>1491</width>
-     <height>921</height>
+     <height>911</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -71,7 +71,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -1489,7 +1489,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-99M2:PS-FCH:CurrOffset-RB</string>
+           <string>SI-99M2:PS-FCV:CurrOffset-RB</string>
           </property>
          </widget>
         </item>
