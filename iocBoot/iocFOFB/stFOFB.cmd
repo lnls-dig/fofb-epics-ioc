@@ -35,20 +35,6 @@ dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC10:, GAIN=CurrGain, OFFSET=CurrOffset, PORT=$(PORT), ADDR=10, TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC11:, GAIN=CurrGain, OFFSET=CurrOffset, PORT=$(PORT), ADDR=11, TIMEOUT=1")
 
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=0,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=1,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M2:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=2,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M2:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=3,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=C2:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=4,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=C2:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=5,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=C3:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=6,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=C3:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=7,  TIMEOUT=1")
-
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC08:, GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=8,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC09:, GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=9,  TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC10:, GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=10, TIMEOUT=1")
-dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=XX:PS-FC11:, GAIN=VoltGain, OFFSET=VoltOffset, PORT=$(PORT), ADDR=11, TIMEOUT=1")
-
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH0,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH1,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH2,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
