@@ -43,6 +43,10 @@ dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH5,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH6,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
 dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH7,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH8,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH9,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH10, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CHAN=CH11, PORT=$(PORT), ADDR=0, TIMEOUT=1")
 
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset, ACQ_NAME=GEN, WVF_CHAN=CH0,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCV:,  GAIN=CurrGain, OFFSET=CurrOffset, ACQ_NAME=GEN, WVF_CHAN=CH1,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
