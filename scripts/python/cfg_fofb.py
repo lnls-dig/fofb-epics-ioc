@@ -17,8 +17,8 @@ import sys
 
 # parameters
 
-crate_number   = sys.argv[1]                          # crate number
-afc_fofb_slot  = sys.argv[2]                          # FOFB slot number (physical_slot*2-1)
+crate_number   = sys.argv[1]                          # crate number (two digits)
+afc_fofb_slot  = sys.argv[2]                          # FOFB slot number (physical_slot*2-1 = two digits)
 trigger_chan   = ["1", "2", "20"]                     # trigger channels
 boards         = [int(afc_fofb_slot), 11, 13, 15, 19] # FOFB and BPMs slot number (physical_slot*2-1)
 rcv_src        = []

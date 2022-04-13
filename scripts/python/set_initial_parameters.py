@@ -23,8 +23,8 @@ samples                   = 10000                    # number of samples for acq
 channels                  = 12                       # number of channels (max 12, 8 actually in use)
 pi_kp                     = 5000000                  # PI Kp parameter
 pi_ti                     = 300                      # PI Ti parameter
-crate_number              = sys.argv[1]              # crate number
-slot_number               = "03"                     # slot number (must be equals to physical_slot*2-1)
+crate_number              = sys.argv[1]              # crate number (two digits)
+slot_number               = sys.argv[2]              # slot number (physical_slot*2-1 = two digits)
 current_gain              = 6.25e-5                  # initial value for current gain
 voltage_gain              = 1.12916762036e-4         # initial value for voltage gain
 current_offset            = 0                        # initial value for current offset
@@ -78,18 +78,18 @@ pv_pi_ti                  = []
 # getting lists of PV names, so we can reutilize them in all tests
 
 for i in range(0, channels):
-  pv_current_ArrayDataRAW.append(  str(prefix_fofb) + str("GEN_CH")              + str(i) + str("ArrayData"))
+  pv_current_ArrayDataRAW.append(str(prefix_fofb) + str("GEN_CH")     + str(i) + str("ArrayData"))
 
 for pv_prefix in prefix_rtm:
-  pv_current_gain.append(          str(pv_prefix)   + str("CurrGain")             + str("-SP"))
-  pv_voltage_gain.append(          str(pv_prefix)   + str("VoltGain")             + str("-SP"))
-  pv_current_offset.append(        str(pv_prefix)   + str("CurrOffset")           + str("-SP"))
-  pv_voltage_offset.append(        str(pv_prefix)   + str("VoltOffset")           + str("-SP"))
-  pv_current_setpoint.append(      str(pv_prefix)   + str("Current")              + str("-SP"))
-  pv_amp_enable.append(            str(pv_prefix)   + str("PwrState")             + str("-Sel"))
-  pv_pi_enable.append(             str(pv_prefix)   + str("CtrlLoop")             + str("-Sel"))
-  pv_pi_kp.append(                 str(pv_prefix)   + str("CtrlLoopKp")           + str("-SP"))
-  pv_pi_ti.append(                 str(pv_prefix)   + str("CtrlLoopTi")           + str("-SP"))
+  pv_current_gain.append(        str(pv_prefix)   + str("CurrGain")   + str("-SP"))
+  pv_voltage_gain.append(        str(pv_prefix)   + str("VoltGain")   + str("-SP"))
+  pv_current_offset.append(      str(pv_prefix)   + str("CurrOffset") + str("-SP"))
+  pv_voltage_offset.append(      str(pv_prefix)   + str("VoltOffset") + str("-SP"))
+  pv_current_setpoint.append(    str(pv_prefix)   + str("Current")    + str("-SP"))
+  pv_amp_enable.append(          str(pv_prefix)   + str("PwrState")   + str("-Sel"))
+  pv_pi_enable.append(           str(pv_prefix)   + str("CtrlLoop")   + str("-Sel"))
+  pv_pi_kp.append(               str(pv_prefix)   + str("CtrlLoopKp") + str("-SP"))
+  pv_pi_ti.append(               str(pv_prefix)   + str("CtrlLoopTi") + str("-SP"))
 
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
@@ -127,7 +127,7 @@ print('>>> Set zero for the current setpoints...')
 
 for i in range(0, channels):
     PV(pv_current_setpoint[i]).put(0, wait=True)
-PV(pv_current_setpoint_inf).put(0, wait=True)
+PV(pv_current_setpoint_inf).put(0,    wait=True)
 
 print('>>> Set zero for the current setpoints... Done!')
 
