@@ -12,16 +12,25 @@
 from epics import PV
 import numpy as np
 from time import sleep
+import sys
 
 # constants
-crate_number   = "99"                            # crate number
-slot_number    = "01"                            # slot number (must be equals to physical_slot*2-1)
+crate_number   = sys.argv[1]      # crate number (two digits)
+slot_number    = sys.argv[2]      # FOFB slot number (physical_slot*2-1 = two digits)
+channels       = 8                # number of FOFB Processing channels
+ram_size       = 2**8             # size of RAM fixed in gateware
+addrs_in_use   = 160              # size of RAM actually in use
+ram_addr       = []               # list with all addresses in use
 
-ram_addr       = np.loadtxt('ram_addr.txt')
-ram_data_in    = np.loadtxt('ram_data_in.txt')
+for j in range(0, channels):
+  for i in range(j*ram_size, j*ram_size + addrs_in_use):
+    ram_addr.append(i)
+
+# load file with RAM coefficients for all channels (size = channels*addrs_in_use)
+ram_data_in    = np.loadtxt('ram_data_in.txt') 
 
 # PV prefixes
-if slot_number == ("03" or "05"):                # board connected in physical slot 2 or 3
+if slot_number == ("03" or "05"): # board connected in physical slot 2 or 3
   pv_prefix    = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
 else:
   pv_prefix    = "XX-" + crate_number + "SL" + slot_number + "RaBPM:BS-FOFBCtrl:"
