@@ -5,6 +5,8 @@ Requires=halcs-be@%i.service
 After=halcs-be@%i.service
 
 [Service]
+User=fofb-epics-ioc
+Group=fofb-epics-ioc
 # Source environment
 EnvironmentFile=/etc/sysconfig/fofb-epics-ioc
 EnvironmentFile=/etc/sysconfig/fofb-epics-ioc-slot-mapping
