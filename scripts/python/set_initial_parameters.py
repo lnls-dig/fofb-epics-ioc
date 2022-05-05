@@ -33,7 +33,7 @@ dac_cnt_max               = 125000                   # 2ms
 
 # PV prefixes
 
-if slot_number == "03" or slot_number == "05" or slot_number == "23":       # board connected in physical slot 2 or 3 or 12
+if slot_number == "03" or slot_number == "05":       # board connected in physical slot 2 or 3
   prefix_fofb  = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
 else:
   prefix_fofb  = "XX-" + crate_number + "SL" + slot_number + "RaBPM:BS-FOFBCtrl:"

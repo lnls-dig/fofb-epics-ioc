@@ -26,7 +26,7 @@ rcv_in_sel     = []
 
 # PV prefixes
 
-if slot_number == "03" or slot_number == "05" or slot_number == "23": # board connected in physical slot 2 or 3
+if slot_number == "03" or slot_number == "05":        # board connected in physical slot 2 or 3
   pv_prefix    = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
 else:
   pv_prefix    = "XX-" + crate_number + "SL" + afc_fofb_slot + "RaBPM:BS-FOFBCtrl:"
