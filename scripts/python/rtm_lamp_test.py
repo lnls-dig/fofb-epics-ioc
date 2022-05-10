@@ -855,19 +855,19 @@ for sp in setpoints_for_PSD:
 
   for i in channels0_3:
     if abs(abs(val_full0_3[a][i]) - abs(sp)) > lim:
-      print('>>> FAIL!\n')
+      print('>>> FAIL!')
       print('>>> Mean value of channel %02d is equal to %f for setpoint %f'%(i, val_full0_3[a][i], sp))
   print(val_full0_3[a])
 
   for i in channels4_7:
     if abs(abs(val_full4_7[a][i-4]) - abs(sp)) > lim:
-      print('>>> FAIL!\n')
+      print('>>> FAIL!')
       print('>>> Mean value of channel %02d is equal to %f for setpoint %f'%(i, val_full4_7[a][i-4], sp))
   print(val_full4_7[a])
 
   for i in channels8_11:
     if abs(abs(val_full8_11[a][i-8]) - abs(sp)) > lim:
-      print('>>> FAIL!\n')
+      print('>>> FAIL!')
       print('>>> Mean value of channel %02d is equal to %f for setpoint %f'%(i, val_full8_11[a][i-8], sp))
   print(val_full8_11[a])
 
