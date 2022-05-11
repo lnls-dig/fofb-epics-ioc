@@ -39,6 +39,20 @@ data                      = {}                       # json data
 crates                    = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
                              "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
 
+print('\n')
+print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
+print('        #                                                   #')
+print('       #   Description: Script to test RTM LAMP open loop    #')
+print('       #                                                     #')
+print('       #                                                     #')
+print('       #   Created: May. 10, 2022                            #')
+print('        #                                                   #')
+print('         # # # # # # # # # # # # # # # # # # # # # # # # # #\n')
+
+print('\n--------------------------------------------------------------------------')
+print('------------------------------ STARTING TEST -----------------------------')
+print('--------------------------------------------------------------------------\n')
+
 for crate_number in crates:
 
   # PV prefixes
@@ -109,19 +123,9 @@ for crate_number in crates:
     pv_dac_write.append(           str(pv_prefix) + str("DacWr")      + str("-Cmd"))
     pv_square_wave_openloop.append(str(pv_prefix) + str("TestOpenLoopSquare") + str("-Sel"))
 
-  print('\n')
-  print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
-  print('        #                                                   #')
-  print('       #   Description: Script to test RTM LAMP open loop    #')
-  print('       #                                                     #')
-  print('       #                                                     #')
-  print('       #   Created: May. 10, 2022                            #')
-  print('        #                                                   #')
-  print('         # # # # # # # # # # # # # # # # # # # # # # # # # #\n')
-
   print('\n--------------------------------------------------------------------------')
-  print('------------------------------ STARTING TEST -----------------------------')
-  print('--------------------------------------------------------------------------\n')
+	print('>> RACK ', crate_number)
+	print('--------------------------------------------------------------------------\n')
 
   print('------------------- Get serial number and data/time ----------------------\n')
 
@@ -399,6 +403,7 @@ for crate_number in crates:
     PV(pv_amp_enable[i]).put(0,                  wait=True)
     PV(pv_pi_enable[i]).put(0,                   wait=True)
     PV(pv_square_wave_openloop[i]).put(0,        wait=True)
+    PV(pv_current_setpoint[i]).put(0,            wait=True)
 
   results.write('\nInductance: ')
   results.write(str(inductance))
@@ -412,8 +417,24 @@ for crate_number in crates:
   results.write(str(mean))
   results.write('\n\n')
 
+  results.write('Max current values: ')
+  results.write(str(max_val))
+  results.write('\n\n')
+
+  results.write('Max current indexes: ')
+  results.write(str(max_idx))
+  results.write('\n\n')
+
+  results.write('Min current values: ')
+  results.write(str(min_val))
+  results.write('\n\n')
+
+  results.write('Min current indexes: ')
+  results.write(str(min_idx))
+  results.write('\n\n')
+
   results.close()
 
-  print('\n--------------------------------------------------------------------------')
-  print('----------------------------------- END ----------------------------------')
-  print('--------------------------------------------------------------------------\n')
+print('\n--------------------------------------------------------------------------')
+print('----------------------------------- END ----------------------------------')
+print('--------------------------------------------------------------------------\n')

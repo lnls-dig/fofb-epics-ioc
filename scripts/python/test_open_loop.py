@@ -411,6 +411,22 @@ results.write('Mean current values: ')
 results.write(str(mean))
 results.write('\n\n')
 
+results.write('Max current values: ')
+results.write(str(max_val))
+results.write('\n\n')
+
+results.write('Max current indexes: ')
+results.write(str(max_idx))
+results.write('\n\n')
+
+results.write('Min current values: ')
+results.write(str(min_val))
+results.write('\n\n')
+
+results.write('Min current indexes: ')
+results.write(str(min_idx))
+results.write('\n\n')
+
 results.close()
 
 print('\n--------------------------------------------------------------------------')
