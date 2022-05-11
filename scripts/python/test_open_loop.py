@@ -188,7 +188,7 @@ print('-------------------------------------------------------------------------
 
 new_offset = np.zeros(channels)
 for i in range(0, channels):
-  new_offset[i] = np.mean(PV(pv_current_ArrayDataRAW[i]).get())
+  new_offset[i] = int(np.mean(PV(pv_current_ArrayDataRAW[i]).get()))
 
 print('New current offset values: \n', new_offset)
 
@@ -397,6 +397,7 @@ for i in range(0, channels):
   PV(pv_amp_enable[i]).put(0,                  wait=True)
   PV(pv_pi_enable[i]).put(0,                   wait=True)
   PV(pv_square_wave_openloop[i]).put(0,        wait=True)
+  PV(pv_current_setpoint[i]).put(0,            wait=True)
 
 results.write('\nInductance: ')
 results.write(str(inductance))
