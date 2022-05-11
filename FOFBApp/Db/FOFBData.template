@@ -63,6 +63,7 @@ record(calc,"$(S)$(RTM_CHAN)$(OFFSET)-RB"){
 record(ao,"$(S)$(RTM_CHAN)$(GAIN)-SP"){
   field(DESC,"set waveform gain")
   field(PINI,"YES")
+  field(PREC,"15")
   field(SCAN,"Passive")
   field(FLNK,"$(S)$(RTM_CHAN)$(GAIN)-RB")
   field(VAL, "1")
@@ -70,6 +71,7 @@ record(ao,"$(S)$(RTM_CHAN)$(GAIN)-SP"){
 record(calc,"$(S)$(RTM_CHAN)$(GAIN)-RB"){
     field(DESC,"get waveform gain")
     field(SCAN,"Passive")
+    field(PREC,"15")
     field(INPA,"$(S)$(RTM_CHAN)$(GAIN)-SP")
     field(CALC, "A")
     field(FLNK,"$(P)$(R)$(ACQ_NAME)ConvArrayDataC$(WVF_CHAN) CPP NMS")
