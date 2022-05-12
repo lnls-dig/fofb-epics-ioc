@@ -74,6 +74,7 @@ pv_amp_enable             = []
 pv_pi_enable              = []
 pv_pi_kp                  = []
 pv_pi_ti                  = []
+pv_square_wave_openloop   = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 
@@ -90,6 +91,7 @@ for pv_prefix in prefix_rtm:
   pv_pi_enable.append(           str(pv_prefix)   + str("CtrlLoop")   + str("-Sel"))
   pv_pi_kp.append(               str(pv_prefix)   + str("CtrlLoopKp") + str("-SP"))
   pv_pi_ti.append(               str(pv_prefix)   + str("CtrlLoopTi") + str("-SP"))
+  pv_square_wave_openloop.append(str(pv_prefix)   + str("TestOpenLoopSquare") + str("-Sel"))
 
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
@@ -114,6 +116,7 @@ for i in range(0, channels):
   PV(pv_pi_ti[i]).put(pi_ti,                   wait=True)
   PV(pv_amp_enable[i]).put(0,                  wait=True)
   PV(pv_pi_enable[i]).put(0,                   wait=True)
+  PV(pv_square_wave_openloop[i]).put(0,        wait=True)
 
 print('>>> Set initial values for gain, offset, PI Kp and PI Ti... Done!\n')
 

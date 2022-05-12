@@ -32,9 +32,10 @@ current_gain              = 6.25e-5                  # initial value for current
 voltage_gain              = 1.12916762036e-4         # initial value for voltage gain
 current_offset            = 0                        # initial value for current offset
 voltage_offset            = 0                        # initial value for voltage offset
-dac_cnt_max               = 62500                    # 1ms
-dac_data                  = 4428                     # 0.5V
-sp_data                   = 22140                    # 2.5V
+dac_cnt_max               = 50000                    # 0.5ms
+dac_data                  = 2689                     # 0.3V
+sp_data                   = 22382                    # 2.5V
+debug                     = 1                        # 1 = activate debug mode
 
 # PV prefixes
 
@@ -90,7 +91,7 @@ pv_square_wave_openloop   = []
 # getting lists of PV names, so we can reutilize them in all tests
 
 for i in range(0, channels):
-  pv_current_ArrayDataRAW.append(str(prefix_fofb) + str("GEN_CH")   + str(i) + str("ArrayData"))
+  pv_current_ArrayDataRAW.append(str(prefix_fofb) + str("GEN_CH")   + str(i)   + str("ArrayData"))
   pv_current_ArrayData.append(   str(prefix_fofb) + str("GENConvArrayDataCH")  + str(i))
 
 for pv_prefix in prefix_rtm:
@@ -116,6 +117,10 @@ print('       #                                                     #')
 print('       #   Created: May. 10, 2022                            #')
 print('        #                                                   #')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #\n')
+if debug == 1:
+  print('\n')
+  print('\033[1;32m Press ENTER to continue... \033[0m')
+  input()
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------------ STARTING TEST -----------------------------')
@@ -147,6 +152,10 @@ results.write('\n')
 results.write(serial_str_title)
 results.write('\n')
 
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
+
 print('>>> Set initial values for gain, offset, PI Kp and PI Ti ...')
 
 # initializing some PVs with default values
@@ -163,15 +172,24 @@ for i in range(0, channels):
 time.sleep(1)
 print('>>> Set initial values for gain, offset, PI Kp and PI Ti... Done!\n')
 
-print('>>> Set the period for 10ms...')
+period = dac_cnt_max/62500
+
+if debug == 1:
+  print('\033[1;32m Press ENTER to continue... \033[0m')
+  input()
+
+print('>>> Set the period for %.2fms...' %(period))
 
 PV(pv_dac_cnt_max).put(dac_cnt_max, wait=True)
 
-print('>>> Set the period for 10ms... Done!\n')
+print('>>> Set the period for %.2fms... Done!\n' %(period))
+
+if debug == 1:
+  print('\033[1;32m Press ENTER to continue... \033[0m')
+  input()
 
 print('\n>>> New acquisition...')
 
-# do an acquisition and stop the event,
 # so the array data will be the same until we do another acquisition
 PV(pv_acq_samples_pre).put(samples, wait=True)
 PV(pv_acq_trigger_rep).put(0,       wait=True)
@@ -179,7 +197,11 @@ PV(pv_acq_trigger_event).put(0,     wait=True)
 time.sleep(0.5) # just to see the waveform change in graphical interface
 PV(pv_acq_trigger_event).put(1,     wait=True)
 
-print('>>> New acquisition... Done!')
+print('>>> New acquisition... Done!\n')
+
+if debug == 1:
+  print('\033[1;32m Press ENTER to continue... \033[0m')
+  input()
 
 print('\n--------------------------------------------------------------------------')
 print('------------------------- Calculate the offset ---------------------------')
@@ -192,28 +214,45 @@ for i in range(0, channels):
 
 print('New current offset values: \n', new_offset)
 
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
+
 print('\n>>> Set the new current offset for all channels...')
 
 for i in range(0, channels):
   PV(pv_current_offset[i]).put(new_offset[i])
 
-print('>>> Set the new current offset for all channels... Done!')
+print('>>> Set the new current offset for all channels... Done!\n')
+
+if debug == 1:
+  print('\033[1;32m Press ENTER to continue... \033[0m')
+  input()
 
 print('\n--------------------------------------------------------------------------')
 print('----------------------- Calculate the resistance -------------------------')
 print('--------------------------------------------------------------------------\n')
 
+if debug == 1:
+  print('\033[1;32m Press ENTER to continue... \033[0m')
+  input()
 
-print('>>> Set 0.5V in DAC data for all channels...')
+dac_data_conv = dac_data * voltage_gain
 
-PV(pv_dac_data_wb).put(1, wait=True)
+print('>>> Set %.2fV in DAC data for all channels...' %(dac_data_conv))
+
+PV(pv_dac_data_wb).put(1,          wait=True)
 
 for i in range(0, channels):
   PV(pv_dac_data[i]).put(dac_data, wait=True)
-  PV(pv_amp_enable[i]).put(1, wait=True)
-  PV(pv_dac_write[i]).put(1, wait=True)
+  PV(pv_amp_enable[i]).put(1,      wait=True)
+  PV(pv_dac_write[i]).put(1,       wait=True)
 
-print('>>> Set 0.5V in DAC data for all channels... Done!')
+print('>>> Set %.2fV in DAC data for all channels... Done!' %(dac_data_conv))
+
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
 
 print('\n>>> New acquisition...')
 
@@ -226,8 +265,32 @@ PV(pv_acq_trigger_event).put(0,     wait=True)
 time.sleep(1) # just to see the waveform change in graphical interface
 PV(pv_acq_trigger_event).put(1,     wait=True)
 
-
 print('>>> New acquisition... Done!')
+
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
+
+print('>>> Set 0V in DAC data for all channels...')
+
+PV(pv_dac_data_wb).put(1,     wait=True)
+
+for i in range(0, channels):
+  PV(pv_dac_data[i]).put(0,   wait=True)
+  PV(pv_amp_enable[i]).put(1, wait=True)
+  PV(pv_dac_write[i]).put(1,  wait=True)
+  time.sleep(0.2)
+  PV(pv_amp_enable[i]).put(0, wait=True)
+  PV(pv_dac_write[i]).put(0,  wait=True)
+
+time.sleep(0.2)
+PV(pv_dac_data_wb).put(0,     wait=True)
+
+print('>>> Set 0V in DAC data for all channels... Done!')
+
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
 
 print('\n>>> Calculate the resistance for each channel...')
 
@@ -235,7 +298,7 @@ resistance = np.zeros(channels)
 mean       = np.zeros(channels)
 
 for i in range(0, channels):
-  resistance[i] = 0.5/np.mean(PV(pv_current_ArrayData[i]).get())
+  resistance[i] = (dac_data*voltage_gain)/np.mean(PV(pv_current_ArrayData[i]).get())
   mean[i]       = np.mean(PV(pv_current_ArrayData[i]).get())
 
 
@@ -244,31 +307,31 @@ print('>>> Calculate the resistance for each channel... Done!')
 print('\n>> Resistance values: \n', resistance)
 print('\n>> Mean current values: \n', mean)
 
-print('\n>>> Disable DAC data for all channels...')
-
-PV(pv_dac_data_wb).put(0,  wait=True)
-for i in range(0, channels):
-  PV(pv_amp_enable[i]).put(0, wait=True)
-  PV(pv_dac_data[i]).put(0, wait=True)
-  PV(pv_dac_write[i]).put(0, wait=True)
-
-print('>>> Disable DAC data for all channels... Done!')
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
 
 print('\n--------------------------------------------------------------------------')
 print('----------------------- Calculate the indutance -------------------------')
 print('--------------------------------------------------------------------------\n')
 
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
+
+sp_data_conv = sp_data*voltage_gain
+
 err = 1
 while err >= 1:
 
-  print('>>> Configure open loop square wave for +-2.5V...')
+  print('>>> Configure open loop square wave for +-%.2fV...' %(sp_data_conv))
 
   for i in range(0, channels):
-    PV(pv_amp_enable[i]).put(0,                  wait=True)
-    PV(pv_pi_enable[i]).put(0,                   wait=True)
-    PV(pv_square_wave_openloop[i]).put(0,        wait=True)
+    PV(pv_amp_enable[i]).put(0,             wait=True)
+    PV(pv_pi_enable[i]).put(0,              wait=True)
+    PV(pv_square_wave_openloop[i]).put(0,   wait=True)
   
-  time.sleep(0.6)
+  time.sleep(0.1)
   PV(pv_current_setpoint_inf).put(-sp_data, wait=True)
   
   for i in range(0, channels):
@@ -276,7 +339,7 @@ while err >= 1:
     PV(pv_square_wave_openloop[i]).put(1,   wait=True)
     PV(pv_amp_enable[i]).put(          1,   wait=True)
 
-  print('>>> Configure open loop square wave for +-2.5V... Done!')
+  print('>>> Configure open loop square wave for +-%.2fV... Done!' %(sp_data_conv))
 
   min_values_1         = np.zeros(channels)
   max_values_1         = np.zeros(channels)
@@ -328,13 +391,13 @@ while err >= 1:
 
     # if the second min or max is not the peak value:
     a = 1
-    if abs(min_values_indexes_1[i] - min_values_indexes_2[i]) < 200:
-      min_values_2[i]       = heapq.nsmallest(2+a, PV(pv_current_ArrayData[i]).get())[-1]
+    if (abs(min_values_indexes_1[i]) - abs(min_values_indexes_2[i])) < 200:
+      min_values_2[i]         = heapq.nsmallest(2+a, PV(pv_current_ArrayData[i]).get())[-1]
       min_values_indexes_2[i] = ((PV(pv_current_ArrayData[i]).get()).tolist()).index(min_values_2[i])
       a = a + 1
     a = 1
-    if abs(max_values_indexes_1[i] - max_values_indexes_2[i]) < 200:
-      max_values_2[i]       = heapq.nlargest(2+a, PV(pv_current_ArrayData[i]).get())[-1]
+    if (abs(max_values_indexes_1[i]) - abs(max_values_indexes_2[i])) < 200:
+      max_values_2[i]         = heapq.nlargest(2+a, PV(pv_current_ArrayData[i]).get())[-1]
       max_values_indexes_2[i] = ((PV(pv_current_ArrayData[i]).get()).tolist()).index(max_values_2[i])
       a = a + 1
 
@@ -378,26 +441,20 @@ while err >= 1:
 
     err = err + cnt_err[i]
 
-print('\n>> Max current values indexes: \n', max_idx)
-
-print('\n>> Min current values indexes: \n', min_idx)
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
 
 print('\n>>> Calculate the inductance for each channel...')
 
 inductance = np.zeros(channels)
 
 for i in range(0, channels):
-  inductance[i] = (resistance[i]*(max_idx[i]-min_idx[i])*1/fs)/(np.log(1-(resistance[i]*(max_val[i]-min_val[i]))/5))
+  inductance[i] = (-resistance[i]*(dac_cnt_max*10e-9))/(np.log((max_val[i]-sp_data_conv/resistance[i])/(min_val[i]-sp_data_conv/resistance[i])))
 
 print('>>> Calculate the inductance for each channel... Done!')
 
 print('\n>> Inductance values: \n', inductance)
-
-for i in range(0, channels):
-  PV(pv_amp_enable[i]).put(0,                  wait=True)
-  PV(pv_pi_enable[i]).put(0,                   wait=True)
-  PV(pv_square_wave_openloop[i]).put(0,        wait=True)
-  PV(pv_current_setpoint[i]).put(0,            wait=True)
 
 results.write('\nInductance: ')
 results.write(str(inductance))
@@ -428,6 +485,10 @@ results.write(str(min_idx))
 results.write('\n\n')
 
 results.close()
+
+for i in range(0, channels):
+  PV(pv_amp_enable[i]).put(0,           wait=True)
+  PV(pv_square_wave_openloop[i]).put(0, wait=True)
 
 print('\n--------------------------------------------------------------------------')
 print('----------------------------------- END ----------------------------------')
