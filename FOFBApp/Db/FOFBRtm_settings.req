@@ -9,7 +9,8 @@ $(S)$(RTM_CHAN)DacWr-Cmd
 $(S)$(RTM_CHAN)CtrlLoopKp-SP
 $(S)$(RTM_CHAN)CtrlLoopTi-SP
 $(P)$(R)TestPIDacCntMax-SP
-$(P)$(R)TestCurrLowLim-SP
+$(P)$(R)TestLowLim-SP
+$(S)$(RTM_CHAN)TestHighLim-SP
 $(S)$(RTM_CHAN)$(GAIN)-SP
 $(S)$(RTM_CHAN)$(OFFSET)-SP
 $(S)$(RTM_CHAN)CurrentRaw-SP
