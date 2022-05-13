@@ -65,7 +65,7 @@ prefix_rtm = [prefix_rtmch00, prefix_rtmch01, prefix_rtmch02, prefix_rtmch03, pr
 pv_acq_trigger_rep        = str(prefix_fofb) + str("ACQTriggerRep-Sel")
 pv_acq_trigger_event      = str(prefix_fofb) + str("ACQTriggerEvent-Sel")
 pv_acq_samples_pre        = str(prefix_fofb) + str("ACQSamplesPre-SP")
-pv_current_setpoint_inf   = str(prefix_fofb) + str("TestCurrLowLim-SP")
+pv_current_setpoint_inf   = str(prefix_fofb) + str("TestLowLim-SP")
 pv_dac_cnt_max            = str(prefix_fofb) + str("TestPIDacCntMax-SP")
 pv_dac_data_wb            = str(prefix_fofb) + str("DacDataSrc-Sel")
 
@@ -99,7 +99,7 @@ for pv_prefix in prefix_rtm:
   pv_voltage_gain.append(        str(pv_prefix) + str("VoltGain")   + str("-SP"))
   pv_current_offset.append(      str(pv_prefix) + str("CurrOffset") + str("-SP"))
   pv_voltage_offset.append(      str(pv_prefix) + str("VoltOffset") + str("-SP"))
-  pv_current_setpoint.append(    str(pv_prefix) + str("CurrentRaw") + str("-SP"))
+  pv_current_setpoint.append(    str(pv_prefix) + str("TestHighLim")+ str("-SP"))
   pv_amp_enable.append(          str(pv_prefix) + str("PwrState")   + str("-Sel"))
   pv_pi_enable.append(           str(pv_prefix) + str("CtrlLoop")   + str("-Sel"))
   pv_pi_kp.append(               str(pv_prefix) + str("CtrlLoopKp") + str("-SP"))

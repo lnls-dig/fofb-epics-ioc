@@ -59,7 +59,7 @@ prefix_rtm = [prefix_rtmch00, prefix_rtmch01, prefix_rtmch02, prefix_rtmch03, pr
 pv_acq_trigger_rep        = str(prefix_fofb) + str("ACQTriggerRep-Sel")
 pv_acq_trigger_event      = str(prefix_fofb) + str("ACQTriggerEvent-Sel")
 pv_acq_samples_pre        = str(prefix_fofb) + str("ACQSamplesPre-SP")
-pv_current_setpoint_inf   = str(prefix_fofb) + str("TestCurrLowLim-SP")
+pv_setpoint_inf           = str(prefix_fofb) + str("TestLowLim-SP")
 pv_dac_cnt_max            = str(prefix_fofb) + str("TestPIDacCntMax-SP")
 
 # PVs per channel
@@ -75,22 +75,24 @@ pv_pi_enable              = []
 pv_pi_kp                  = []
 pv_pi_ti                  = []
 pv_square_wave_openloop   = []
+pv_test_high_lim          = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 
 for i in range(0, channels):
-  pv_current_ArrayDataRAW.append(str(prefix_fofb) + str("GEN_CH")     + str(i) + str("ArrayData"))
+  pv_current_ArrayDataRAW.append(str(prefix_fofb) + str("GEN_CH") + str(i) + str("ArrayData"))
 
 for pv_prefix in prefix_rtm:
-  pv_current_gain.append(        str(pv_prefix)   + str("CurrGain")   + str("-SP"))
-  pv_voltage_gain.append(        str(pv_prefix)   + str("VoltGain")   + str("-SP"))
-  pv_current_offset.append(      str(pv_prefix)   + str("CurrOffset") + str("-SP"))
-  pv_voltage_offset.append(      str(pv_prefix)   + str("VoltOffset") + str("-SP"))
-  pv_current_setpoint.append(    str(pv_prefix)   + str("Current")    + str("-SP"))
-  pv_amp_enable.append(          str(pv_prefix)   + str("PwrState")   + str("-Sel"))
-  pv_pi_enable.append(           str(pv_prefix)   + str("CtrlLoop")   + str("-Sel"))
-  pv_pi_kp.append(               str(pv_prefix)   + str("CtrlLoopKp") + str("-SP"))
-  pv_pi_ti.append(               str(pv_prefix)   + str("CtrlLoopTi") + str("-SP"))
+  pv_current_gain.append(        str(pv_prefix)   + str("CurrGain")           + str("-SP"))
+  pv_voltage_gain.append(        str(pv_prefix)   + str("VoltGain")           + str("-SP"))
+  pv_current_offset.append(      str(pv_prefix)   + str("CurrOffset")         + str("-SP"))
+  pv_voltage_offset.append(      str(pv_prefix)   + str("VoltOffset")         + str("-SP"))
+  pv_current_setpoint.append(    str(pv_prefix)   + str("Current")            + str("-SP"))
+  pv_test_high_lim.append(       str(pv_prefix)   + str("TestHighLim")        + str("-SP"))
+  pv_amp_enable.append(          str(pv_prefix)   + str("PwrState")           + str("-Sel"))
+  pv_pi_enable.append(           str(pv_prefix)   + str("CtrlLoop")           + str("-Sel"))
+  pv_pi_kp.append(               str(pv_prefix)   + str("CtrlLoopKp")         + str("-SP"))
+  pv_pi_ti.append(               str(pv_prefix)   + str("CtrlLoopTi")         + str("-SP"))
   pv_square_wave_openloop.append(str(pv_prefix)   + str("TestOpenLoopSquare") + str("-Sel"))
 
 print('\n')
@@ -130,7 +132,8 @@ print('>>> Set zero for the current setpoints...')
 
 for i in range(0, channels):
     PV(pv_current_setpoint[i]).put(0, wait=True)
-PV(pv_current_setpoint_inf).put(0,    wait=True)
+    PV(pv_test_high_lim[i]).put(0,    wait=True)
+PV(pv_setpoint_inf).put(0,            wait=True)
 
 print('>>> Set zero for the current setpoints... Done!')
 
