@@ -148,7 +148,7 @@ for crate_number in crates:
 
 	new_offset = np.zeros(channels)
 	for i in range(0, channels):
-		new_offset[i] = np.mean(PV(pv_current_ArrayDataRAW[i]).get())
+		new_offset[i] = int(np.mean(PV(pv_current_ArrayDataRAW[i]).get()))
 
 	print('\n>> New current offset values: \n', new_offset)
 
