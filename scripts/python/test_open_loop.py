@@ -22,7 +22,7 @@ from datetime import datetime
 # constants
 
 fs                        = 1/940e-9                 # frequency for PSD calc
-samples                   = 2000                     # number of samples for acquisition
+samples                   = 1500                     # number of samples for acquisition
 channels                  = 8                        # number of channels (max 12, 8 actually in use)
 pi_kp                     = 5000000                  # PI Kp parameter
 pi_ti                     = 300                      # PI Ti parameter
@@ -35,7 +35,7 @@ voltage_offset            = 0                        # initial value for voltage
 dac_cnt_max               = 50000                    # 0.5ms
 dac_data                  = 2689                     # 0.3V
 sp_data                   = 22382                    # 2.5V
-debug                     = 1                        # 1 = activate debug mode
+debug                     = 0                        # 1 = activate debug mode
 
 # PV prefixes
 
@@ -320,26 +320,25 @@ if debug == 1:
   input()
 
 sp_data_conv = sp_data*voltage_gain
+PV(pv_current_setpoint_inf).put(-sp_data, wait=True)
+
+print('>>> Configure open loop square wave for +-%.2fV...' %(sp_data_conv))
+
+if debug == 1:
+  print('\033[1;32m \nPress ENTER to continue... \033[0m')
+  input()
+
+for i in range(0, channels):
+  PV(pv_current_setpoint[i]).put(sp_data, wait=True)
+  PV(pv_square_wave_openloop[i]).put(1,   wait=True)
+  PV(pv_amp_enable[i]).put(          1,   wait=True)
+
+time.sleep(1)
+
+print('>>> Configure open loop square wave for +-%.2fV... Done!' %(sp_data_conv))
 
 err = 1
 while err >= 1:
-
-  print('>>> Configure open loop square wave for +-%.2fV...' %(sp_data_conv))
-
-  for i in range(0, channels):
-    PV(pv_amp_enable[i]).put(0,             wait=True)
-    PV(pv_pi_enable[i]).put(0,              wait=True)
-    PV(pv_square_wave_openloop[i]).put(0,   wait=True)
-  
-  time.sleep(0.1)
-  PV(pv_current_setpoint_inf).put(-sp_data, wait=True)
-  
-  for i in range(0, channels):
-    PV(pv_current_setpoint[i]).put(sp_data, wait=True)
-    PV(pv_square_wave_openloop[i]).put(1,   wait=True)
-    PV(pv_amp_enable[i]).put(          1,   wait=True)
-
-  print('>>> Configure open loop square wave for +-%.2fV... Done!' %(sp_data_conv))
 
   min_values_1         = np.zeros(channels)
   max_values_1         = np.zeros(channels)
@@ -369,8 +368,6 @@ while err >= 1:
   PV(pv_acq_trigger_event).put(0,     wait=True)
   time.sleep(1) # just to see the waveform change in graphical interface
   PV(pv_acq_trigger_event).put(1,     wait=True)
-
-  PV(pv_current_setpoint_inf).put(0,  wait=True)
 
   print('>>> New acquisition... Done!')
 
@@ -445,6 +442,11 @@ if debug == 1:
   print('\033[1;32m \nPress ENTER to continue... \033[0m')
   input()
 
+for i in range(0, channels):
+  PV(pv_amp_enable[i]).put(0,             wait=True)
+  PV(pv_pi_enable[i]).put(0,              wait=True)
+  PV(pv_square_wave_openloop[i]).put(0,   wait=True)
+
 print('\n>>> Calculate the inductance for each channel...')
 
 inductance = np.zeros(channels)
@@ -486,9 +488,11 @@ results.write('\n\n')
 
 results.close()
 
+PV(pv_current_setpoint_inf).put(0,      wait=True)
 for i in range(0, channels):
   PV(pv_amp_enable[i]).put(0,           wait=True)
   PV(pv_square_wave_openloop[i]).put(0, wait=True)
+  PV(pv_current_setpoint[i]).put(0,     wait=True)
 
 print('\n--------------------------------------------------------------------------')
 print('----------------------------------- END ----------------------------------')
