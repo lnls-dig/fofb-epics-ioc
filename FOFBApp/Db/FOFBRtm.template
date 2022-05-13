@@ -285,26 +285,44 @@ record(longin,"$(P)$(R)TestPIDacCntMax-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA")
 }
 
-record(longout,"$(P)$(R)TestCurrLowLim-SP"){
+record(longout,"$(P)$(R)TestLowLim-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI setpoint inferior limit")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
     field(PINI,"YES")
 }
-record(longin,"$(P)$(R)TestCurrLowLim-RB"){
+record(longin,"$(P)$(R)TestLowLim-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI setpoint inferior limit")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_PI_SP_LIM_INF_DATA")
 }
 
+record(longout,"$(S)$(RTM_CHAN)TestHighLim-SP"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"set PI setpoint parameter")
+    field(SCAN,"Passive")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
+    field(PINI,"YES")
+}
+
+record(longin,"$(S)$(RTM_CHAN)TestHighLim-RB"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get PI setpoint parameter in ADC counts")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
+    field(FLNK,"$(S)$(RTM_CHAN)CurrentConv2-SP CPP NMS")
+}
+
 record(ao,"$(S)$(RTM_CHAN)Current-SP"){
-  field(DESC,"set PI setpoint parameter")
-  field(PINI,"YES")
-  field(SCAN,"Passive")
-  field(PREC,"15")
-  field(FLNK,"$(S)$(RTM_CHAN)CurrentConv-SP CPP NMS")
+    field(DESC,"set PI setpoint parameter")
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(PREC,"15")
+    field(DRVH, "0.95")
+    field(DRVL, "-0.95")
+    field(FLNK,"$(S)$(RTM_CHAN)CurrentConv-SP CPP NMS")
 }
 record(calcout,"$(S)$(RTM_CHAN)CurrentConv-SP"){
     field(DESC,"set PI setpoint parameter in ADC counts")
@@ -320,6 +338,8 @@ record(longout,"$(S)$(RTM_CHAN)CurrentRaw-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI setpoint parameter")
     field(SCAN,"Passive")
+    field(DRVH, "15200")
+    field(DRVL, "-15200")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_0_PI_SP_DATA")
     field(PINI,"YES")
 }
@@ -347,4 +367,6 @@ record(ai,"$(S)$(RTM_CHAN)Current-RB"){
     field(DESC,"get PI setpoint parameter")
     field(SCAN,"Passive")
     field(PREC,"15")
+    field(FLINK, "$(S)$(RTM_CHAN)TestHighLim-RB CA NMS")
 }
+
