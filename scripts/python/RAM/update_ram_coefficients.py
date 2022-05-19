@@ -21,7 +21,7 @@ ram_size       = 2**channels      # size of RAM (the same value tha we set in ga
 addrs_in_use   = 80               # number of coefficients (80 horizontal and 80 vertical)
 ram_addr       = []               # list with RAM addresses in use
 ram_data_in    = []               # list with RAM coefficients
-crates         = ["99"] #["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",                                                                                                               "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+crates         = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",                                                                                                               "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
 
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
@@ -53,8 +53,7 @@ for j in range(0, addrs_in_use):
 cnt = 0
 for crate_number in crates:
 	print('>>> Update RAM coefficients for crate ', crate_number)
-	#pv_prefix    = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:"
-	pv_prefix    = "XX-" + crate_number + "SL07RaBPM:BS-FOFBCtrl:"
+	pv_prefix    = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:"
 	addr         = PV(pv_prefix + 'FofbProcessingRamAddr-SP')
 	data_in      = PV(pv_prefix + 'FofbProcessingRamDataIn-SP')
 	write_en     = PV(pv_prefix + 'FofbProcessingRamWriteEnable-SP')
