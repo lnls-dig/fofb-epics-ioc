@@ -10443,19 +10443,6 @@
        <string>${SECTION}-${CRATE}${SLOT}RaBPM:BS-FOFBCtrl:DacDataSrc-Sel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_32">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>142</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TestHighLim:</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
