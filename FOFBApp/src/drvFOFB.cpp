@@ -109,39 +109,39 @@ static const channelMap_t channelMap[CH_END] = {
                           },
                           },
     /* [CH_FOFB] =    */ {CH_HW_FOFB,                           // HwDataChannel
-                          {{-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+                          {{WVF_DATA_CH0,                       // NDArrayData
+                            WVF_DATA_CH1,
+                            WVF_DATA_CH2,
+                            WVF_DATA_CH3,
+                            WVF_DATA_CH4,
+                            WVF_DATA_CH5,
+                            WVF_DATA_CH6,
+                            WVF_DATA_CH7,
+                            WVF_DATA_CH8,
+                            WVF_DATA_CH9,
+                            WVF_DATA_CH10,
+                            WVF_DATA_CH11,
+                            WVF_DATA_CH12,
+                            WVF_DATA_CH13,
+                            WVF_DATA_CH14,
+                            WVF_DATA_CH15,
+                            WVF_DATA_CH16,
+                            WVF_DATA_CH17,
+                            WVF_DATA_CH18,
+                            WVF_DATA_CH19,
+                            WVF_DATA_CH20,
+                            WVF_DATA_CH21,
+                            WVF_DATA_CH22,
+                            WVF_DATA_CH23,
+                            WVF_DATA_CH24,
+                            WVF_DATA_CH25,
+                            WVF_DATA_CH26,
+                            WVF_DATA_CH27,
+                            WVF_DATA_CH28,
+                            WVF_DATA_CH29,
+                            WVF_DATA_CH30,
+                            WVF_DATA_CH31,
+                            WVF_DATA_ALL},
                           },
                           },
 };
@@ -149,8 +149,8 @@ static const channelMap_t channelMap[CH_END] = {
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
 static const channelRevMap_t channelRevMap[CH_HW_END] = {
                         /* EPICS channel */
-     /* [CH_HW_RTM] =       */  {CH_RTM},
-     /* [CH_HW_FOFB] =      */  {CH_FOFB},
+     /* [CH_HW_RTM] =   */ {CH_RTM},
+     /* [CH_HW_FOFB] =  */ {CH_FOFB},
 };
 /* Int32 functions mapping */
 
@@ -364,7 +364,7 @@ asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceN
     static const char *functionName = "getServiceID";
     asynStatus status = asynSuccess;
     int serviceID = 0;
-    int addrMod = 0;
+    int addrMod   = 0;
 
     /* Static mapping. FIXME? */
     /* For these services there's only a single core per FPGA, so serviceID is always 0.
@@ -406,7 +406,7 @@ asynStatus drvFOFB::getFullServiceName (int fofbNumber, int addr, const char *se
 {
     static const char *functionName = "getFullServiceName";
     int coreID = 0;
-    int errs = 0;
+    int errs   = 0;
     /* boardMap structure was removed. FIXME? */
     /* if we want to use board 10, for example, the PV prefix (fofbNumber) will be 10*2-1=19 */
     int board = (fofbNumber+1)/2;
@@ -458,7 +458,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     const char *functionName = "drvFOFB";
 
     /* Create portName so we can create a new AsynUser later */
-    fofbPortName = epicsStrDup(portName);
+    fofbPortName  = epicsStrDup(portName);
     fofbMaxPoints = maxPoints;
 
     this->endpoint = strdup(endpoint);
@@ -479,8 +479,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     this->fofbNumber = fofbNumber;
-    this->verbose = verbose;
-    this->timeout = timeout;
+    this->verbose    = verbose;
+    this->timeout    = timeout;
 
     for (int j = 0; j < NUM_ACQ_CORES_PER_FOFB; ++j) {
         this->readingActive[j] = 0;
@@ -744,7 +744,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setUIntDigitalParam(P_MonitPollTime,                      4,              0xFFFFFFFF); // 4ms = 250 Hz
     setIntegerParam(P_MonitEnable,                                                     0); // Disable by default
 
-    setIntegerParam(    P_FOFBStatus,                                     FOFBStatusIdle);
+    setIntegerParam(P_FOFBStatus,                                         FOFBStatusIdle);
 
     setUIntDigitalParam(P_RtmLampStatus,                      0,              0xFFFFFFFF);
     setUIntDigitalParam(P_RtmLampDacDataFromWb,               0,              0xFFFFFFFF);
