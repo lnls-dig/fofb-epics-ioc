@@ -21,17 +21,56 @@ record(bi,"$(P)$(R)PSStatus-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_STA")
 }
 
-record(mbbi,"$(S)$(RTM_CHAN)AlarmsAmp-Mon"){
+record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagL-Sts"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get over-temperature and over-current flags")
+    field(DESC,"get amplifier left overcurrent flag")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_STA")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_STA_AMP_IFLAG_L")
+    field(PINI,"YES")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
 
-record(waveform,"$(S)$(RTM_CHAN)AlarmsAmpLabels-Cte"){ ##########
-    field(DESC,"get labels for each bit in AlarmsAmp-Mon")
-    field(FTVL,"STRING")
-    field(NELM,"4")
+record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagL-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get amplifier left overtemperature flag")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_STA_AMP_TFLAG_L")
+    field(PINI,"YES")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
+}
+
+record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagR-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get amplifier right overcurrent flag")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_STA_AMP_IFLAG_R")
+    field(PINI,"YES")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
+}
+
+record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagR-Sts"){
+    field(DTYP,"asynUInt32Digital")
+    field(DESC,"get amplifier right overtemperature flag")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))RTMLAMP_OHWR_CH_STA_AMP_TFLAG_R")
+    field(PINI,"YES")
+    field(NOBT,"1")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"over")
+    field(ONST,"ok")
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)PwrState-Sel"){
