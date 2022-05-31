@@ -18,7 +18,7 @@ record(longout,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Chan-SP"){
     field(DTYP,"asynInt32")
     field(PINI,"YES")
     field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER_CHAN")
-    field(VAL, "$(TRIGGER_CHAN)")
+    field(VAL,"$(TRIGGER_CHAN)")
 }
 
 record(longin,"$(P)$(R)$(TRIGGER_NAME)$(TRIGGER_CHAN)Chan-RB"){
