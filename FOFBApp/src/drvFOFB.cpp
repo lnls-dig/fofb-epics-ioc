@@ -156,8 +156,6 @@ static const channelRevMap_t channelRevMap[CH_HW_END] = {
 
 static const functionsAny_t rtmLampSetGetStatusFunc                   = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
                                                                           halcs_get_rtmlamp_ohwr_sta}};
-static const functionsAny_t rtmLampSetGetDacDataFromWbFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
-                                                                          halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
 static const functionsAny_t rtmLampSetGetAmpIFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_amp_iflag_l}};
 static const functionsAny_t rtmLampSetGetAmpTFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
@@ -168,28 +166,28 @@ static const functionsAny_t rtmLampSetGetAmpTFlagRFunc                = {functio
                                                                           halcs_get_rtmlamp_ohwr_amp_tflag_r}};
 static const functionsAny_t rtmLampSetGetAmpEnFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en,
                                                                           halcs_get_rtmlamp_ohwr_amp_en}};
-static const functionsAny_t rtmLampSetGetPIOLTriangEnFunc             = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_ol_triang_enable}};
-static const functionsAny_t rtmLampSetGetPIOLSquareEnFunc             = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_ol_square_enable}};
-static const functionsAny_t rtmLampSetGetPISPSquareEnFunc             = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_sp_square_enable}};
-static const functionsAny_t rtmLampSetGetPIEnFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_enable}};
-static const functionsAny_t rtmLampSetGetDacDataFunc                  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
-                                                                          halcs_get_rtmlamp_ohwr_dac_data}};
-static const functionsAny_t rtmLampSetGetDacWrFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr,
-                                                                          halcs_get_rtmlamp_ohwr_dac_wr}};
+static const functionsAny_t rtmLampSetGetModeFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_mode,
+                                                                          halcs_get_rtmlamp_ohwr_mode}};
 static const functionsAny_t rtmLampSetGetPIKPFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp,
                                                                           halcs_get_rtmlamp_ohwr_pi_kp}};
 static const functionsAny_t rtmLampSetGetPITIFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti,
                                                                           halcs_get_rtmlamp_ohwr_pi_ti}};
 static const functionsAny_t rtmLampSetGetPISPFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp,
                                                                           halcs_get_rtmlamp_ohwr_pi_sp}};
-static const functionsAny_t rtmLampSetGetPIOLDacCntMaxFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_dac_cnt_max,
-                                                                          halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
-static const functionsAny_t rtmLampSetGetPISPLimInfFunc               = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf,
-                                                                          halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
+static const functionsAny_t rtmLampSetGetDacDataFunc                  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
+                                                                          halcs_get_rtmlamp_ohwr_dac_data}};
+static const functionsAny_t rtmLampSetGetLimAFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_lim_a,
+                                                                          halcs_get_rtmlamp_ohwr_lim_a}};
+static const functionsAny_t rtmLampSetGetLimBFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_lim_b,
+                                                                          halcs_get_rtmlamp_ohwr_lim_b}};
+static const functionsAny_t rtmLampSetGetCntFunc                      = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_cnt,
+                                                                          halcs_get_rtmlamp_ohwr_cnt}};
+static const functionsAny_t rtmLampSetGetEffAdcFunc                   = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
+                                                                          halcs_get_rtmlamp_ohwr_eff_adc}};
+static const functionsAny_t rtmLampSetGetEffDacFunc                   = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
+                                                                          halcs_get_rtmlamp_ohwr_eff_dac}};
+static const functionsAny_t rtmLampSetGetEffSpFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
+                                                                          halcs_get_rtmlamp_ohwr_eff_sp}};
 static const functionsAny_t fofbSetGetAcqDataTrigThresFunc            = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres,
                                                                           acq_get_data_trig_thres}};
 static const functionsAny_t fofbSetGetAcqDataTrigPolFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol,
@@ -538,23 +536,22 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
     /* Create rtm_lamp parameters */
     createParam(P_RtmLampStatusString,               asynParamUInt32Digital,        &P_RtmLampStatus);
-    createParam(P_RtmLampDacDataFromWbString,        asynParamUInt32Digital,        &P_RtmLampDacDataFromWb);
     createParam(P_RtmLampAmpIFlagLString,            asynParamUInt32Digital,        &P_RtmLampAmpIFlagL);
     createParam(P_RtmLampAmpTFlagLString,            asynParamUInt32Digital,        &P_RtmLampAmpTFlagL);
     createParam(P_RtmLampAmpIFlagRString,            asynParamUInt32Digital,        &P_RtmLampAmpIFlagR);
     createParam(P_RtmLampAmpTFlagRString,            asynParamUInt32Digital,        &P_RtmLampAmpTFlagR);
     createParam(P_RtmLampAmpEnString,                asynParamUInt32Digital,        &P_RtmLampAmpEn);
-    createParam(P_RtmLampPIOLTriangEnString,         asynParamUInt32Digital,        &P_RtmLampPIOLTriangEn);
-    createParam(P_RtmLampPIOLSquareEnString,         asynParamUInt32Digital,        &P_RtmLampPIOLSquareEn);
-    createParam(P_RtmLampPISPSquareEnString,         asynParamUInt32Digital,        &P_RtmLampPISPSquareEn);
-    createParam(P_RtmLampPIEnString,                 asynParamUInt32Digital,        &P_RtmLampPIEn);
-    createParam(P_RtmLampDacDataString,              asynParamUInt32Digital,        &P_RtmLampDacData);
-    createParam(P_RtmLampDacWrString,                asynParamUInt32Digital,        &P_RtmLampDacWr);
+    createParam(P_RtmLampModeString,                 asynParamUInt32Digital,        &P_RtmLampMode);
     createParam(P_RtmLampPIKPString,                 asynParamUInt32Digital,        &P_RtmLampPIKP);
     createParam(P_RtmLampPITIString,                 asynParamUInt32Digital,        &P_RtmLampPITI);
     createParam(P_RtmLampPISPString,                 asynParamUInt32Digital,        &P_RtmLampPISP);
-    createParam(P_RtmLampPIOLDacCntMaxString,        asynParamUInt32Digital,        &P_RtmLampPIOLDacCntMax);
-    createParam(P_RtmLampPISPLimInfString,           asynParamUInt32Digital,        &P_RtmLampPISPLimInf);
+    createParam(P_RtmLampDacDataString,              asynParamUInt32Digital,        &P_RtmLampDacData);
+    createParam(P_RtmLampLimAString,                 asynParamUInt32Digital,        &P_RtmLampLimA);
+    createParam(P_RtmLampLimBString,                 asynParamUInt32Digital,        &P_RtmLampLimB);
+    createParam(P_RtmLampCntString,                  asynParamUInt32Digital,        &P_RtmLampCnt);
+    createParam(P_RtmLampEffAdcString,               asynParamUInt32Digital,        &P_RtmLampEffAdc);
+    createParam(P_RtmLampEffDacString,               asynParamUInt32Digital,        &P_RtmLampEffDac);
+    createParam(P_RtmLampEffSpString,                asynParamUInt32Digital,        &P_RtmLampEffSp);
     /* Create ADC/TBT/FOFB/MONIT parameters */
     createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
     createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
@@ -645,23 +642,22 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
      * to the parameter library */
 
     fofbHwFunc.emplace(P_RtmLampStatus,               rtmLampSetGetStatusFunc);
-    fofbHwFunc.emplace(P_RtmLampDacDataFromWb,        rtmLampSetGetDacDataFromWbFunc);
     fofbHwFunc.emplace(P_RtmLampAmpIFlagL,            rtmLampSetGetAmpIFlagLFunc);
     fofbHwFunc.emplace(P_RtmLampAmpTFlagL,            rtmLampSetGetAmpTFlagLFunc);
     fofbHwFunc.emplace(P_RtmLampAmpIFlagR,            rtmLampSetGetAmpIFlagRFunc);
     fofbHwFunc.emplace(P_RtmLampAmpTFlagR,            rtmLampSetGetAmpTFlagRFunc);
     fofbHwFunc.emplace(P_RtmLampAmpEn,                rtmLampSetGetAmpEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPIOLTriangEn,         rtmLampSetGetPIOLTriangEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPIOLSquareEn,         rtmLampSetGetPIOLSquareEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPISPSquareEn,         rtmLampSetGetPISPSquareEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPIEn,                 rtmLampSetGetPIEnFunc);
-    fofbHwFunc.emplace(P_RtmLampDacData,              rtmLampSetGetDacDataFunc);
-    fofbHwFunc.emplace(P_RtmLampDacWr,                rtmLampSetGetDacWrFunc);
+    fofbHwFunc.emplace(P_RtmLampMode,                 rtmLampSetGetModeFunc);
     fofbHwFunc.emplace(P_RtmLampPIKP,                 rtmLampSetGetPIKPFunc);
     fofbHwFunc.emplace(P_RtmLampPITI,                 rtmLampSetGetPITIFunc);
     fofbHwFunc.emplace(P_RtmLampPISP,                 rtmLampSetGetPISPFunc);
-    fofbHwFunc.emplace(P_RtmLampPIOLDacCntMax,        rtmLampSetGetPIOLDacCntMaxFunc);
-    fofbHwFunc.emplace(P_RtmLampPISPLimInf,           rtmLampSetGetPISPLimInfFunc);
+    fofbHwFunc.emplace(P_RtmLampDacData,              rtmLampSetGetDacDataFunc);
+    fofbHwFunc.emplace(P_RtmLampLimA,                 rtmLampSetGetLimAFunc);
+    fofbHwFunc.emplace(P_RtmLampLimB,                 rtmLampSetGetLimBFunc);
+    fofbHwFunc.emplace(P_RtmLampCnt,                  rtmLampSetGetCntFunc);
+    fofbHwFunc.emplace(P_RtmLampEffAdc,               rtmLampSetGetEffAdcFunc);
+    fofbHwFunc.emplace(P_RtmLampEffDac,               rtmLampSetGetEffDacFunc);
+    fofbHwFunc.emplace(P_RtmLampEffSp,                rtmLampSetGetEffSpFunc);
     fofbHwFunc.emplace(P_DataTrigChan,                fofbSetGetAcqDataTrigChanFunc);
     fofbHwFunc.emplace(P_TriggerDataThres,            fofbSetGetAcqDataTrigThresFunc);
     fofbHwFunc.emplace(P_TriggerDataPol,              fofbSetGetAcqDataTrigPolFunc);
@@ -747,21 +743,19 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setIntegerParam(P_FOFBStatus,                                         FOFBStatusIdle);
 
     setUIntDigitalParam(P_RtmLampStatus,                      0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampDacDataFromWb,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIOLDacCntMax,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPISPLimInf,                  0,              0xFFFFFFFF);
-
     for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
         setUIntDigitalParam(addr, P_RtmLampAmpEn,             0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIOLTriangEn,      0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIOLSquareEn,      0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPISPSquareEn,      0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIEn,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampDacData,           0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampDacWr,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampMode,              0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampPIKP,              0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampPITI,              0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampPISP,              0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampDacData,           0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampLimA,              0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampLimB,              0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampCnt,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampEffAdc,            0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampEffDac,            0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampEffSp,             0,              0xFFFFFFFF);
     }
 
     for (int addr = 0; addr < MAX_RTM_LAMP_CHANNELS; ++addr) {
