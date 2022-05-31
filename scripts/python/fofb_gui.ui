@@ -1816,7 +1816,7 @@
       <attribute name="title">
        <string>C4</string>
       </attribute>
-      <widget class="QWidget" name="gridLayoutWidget_6">
+      <widget class="QWidget" name="gridLayoutWidget_19">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1825,19 +1825,19 @@
          <height>471</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayout_6">
+       <layout class="QGridLayout" name="gridLayout_19">
         <item row="27" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_10">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_18">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:VoltageRaw-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:VoltageRaw-SP</string>
           </property>
          </widget>
         </item>
         <item row="26" column="0">
-         <widget class="QLabel" name="label_239">
+         <widget class="QLabel" name="label_309">
           <property name="text">
            <string>CurrOffset:</string>
           </property>
@@ -1849,27 +1849,27 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CtrlLoopKp-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopKp-SP</string>
           </property>
          </widget>
         </item>
         <item row="24" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_231">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_243">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:Current-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:Current-SP</string>
           </property>
          </widget>
         </item>
         <item row="26" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_29">
+         <widget class="PyDMLabel" name="PyDMLabel_32">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CurrOffset-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:CurrOffset-RB</string>
           </property>
          </widget>
         </item>
@@ -1881,56 +1881,56 @@
          </widget>
         </item>
         <item row="18" column="0">
-         <widget class="QLabel" name="label_54">
+         <widget class="QLabel" name="label_82">
           <property name="text">
            <string>TestWavePeriod:</string>
           </property>
          </widget>
         </item>
         <item row="23" column="0">
-         <widget class="QLabel" name="label_7">
+         <widget class="QLabel" name="label_21">
           <property name="text">
            <string>CurrentRaw:</string>
           </property>
          </widget>
         </item>
         <item row="25" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_75">
+         <widget class="PyDMLabel" name="PyDMLabel_182">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CurrGain-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:CurrGain-RB</string>
           </property>
          </widget>
         </item>
         <item row="21" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_51">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_96">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CtrlLoopTi-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopTi-SP</string>
           </property>
          </widget>
         </item>
         <item row="18" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_76">
+         <widget class="PyDMLabel" name="PyDMLabel_309">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:TestWavePeriod-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:TestWavePeriod-RB</string>
           </property>
          </widget>
         </item>
         <item row="23" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_77">
+         <widget class="PyDMLabel" name="PyDMLabel_341">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CurrentRaw-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:CurrentRaw-RB</string>
           </property>
          </widget>
         </item>
@@ -1940,73 +1940,73 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:PwrState-Sel</string>
+           <string>SI-${CRATE}C2:PS-FCH:PwrState-Sel</string>
           </property>
          </widget>
         </item>
         <item row="20" column="0">
-         <widget class="QLabel" name="label_55">
+         <widget class="QLabel" name="label_239">
           <property name="text">
            <string>CtrlLoopKp:</string>
           </property>
          </widget>
         </item>
         <item row="24" column="0">
-         <widget class="QLabel" name="label_381">
+         <widget class="QLabel" name="label_413">
           <property name="text">
            <string>Current:</string>
           </property>
          </widget>
         </item>
         <item row="17" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_79">
+         <widget class="PyDMLabel" name="PyDMLabel_366">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:TestLimB-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:TestLimB-RB</string>
           </property>
          </widget>
         </item>
         <item row="23" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_52">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_97">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CurrentRaw-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:CurrentRaw-SP</string>
           </property>
          </widget>
         </item>
         <item row="16" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_53">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_98">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:TestLimA-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:TestLimA-SP</string>
           </property>
          </widget>
         </item>
         <item row="14" column="0">
-         <widget class="QLabel" name="label_56">
+         <widget class="QLabel" name="label_240">
           <property name="text">
            <string>PwrState:</string>
           </property>
          </widget>
         </item>
         <item row="14" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_80">
+         <widget class="PyDMLabel" name="PyDMLabel_367">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:PwrState-Sts</string>
+           <string>SI-${CRATE}C2:PS-FCH:PwrState-Sts</string>
           </property>
          </widget>
         </item>
         <item row="24" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_81">
+         <widget class="PyDMLabel" name="PyDMLabel_368">
           <property name="toolTip">
            <string/>
           </property>
@@ -2017,12 +2017,12 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:Current-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:Current-RB</string>
           </property>
          </widget>
         </item>
         <item row="21" column="0">
-         <widget class="QLabel" name="label_57">
+         <widget class="QLabel" name="label_241">
           <property name="text">
            <string>CtrlLoopTi:</string>
           </property>
@@ -2034,191 +2034,191 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:VoltOffset-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:VoltOffset-SP</string>
           </property>
          </widget>
         </item>
         <item row="16" column="0">
-         <widget class="QLabel" name="label_58">
+         <widget class="QLabel" name="label_242">
           <property name="text">
            <string>TestLimA:</string>
           </property>
          </widget>
         </item>
         <item row="25" column="0">
-         <widget class="QLabel" name="label_240">
+         <widget class="QLabel" name="label_310">
           <property name="text">
            <string>CurrGain:</string>
           </property>
          </widget>
         </item>
         <item row="27" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_82">
+         <widget class="PyDMLabel" name="PyDMLabel_369">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:VoltageRaw-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:VoltageRaw-RB</string>
           </property>
          </widget>
         </item>
         <item row="18" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_54">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_99">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:TestWavePeriod-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:TestWavePeriod-SP</string>
           </property>
          </widget>
         </item>
         <item row="20" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_83">
+         <widget class="PyDMLabel" name="PyDMLabel_370">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CtrlLoopKp-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopKp-RB</string>
           </property>
          </widget>
         </item>
         <item row="29" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_158">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_170">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:VoltGain-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:VoltGain-SP</string>
           </property>
          </widget>
         </item>
         <item row="15" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_84">
+         <widget class="PyDMLabel" name="PyDMLabel_371">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:Mode-Sts</string>
+           <string>SI-${CRATE}C2:PS-FCH:Mode-Sts</string>
           </property>
          </widget>
         </item>
         <item row="29" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_85">
+         <widget class="PyDMLabel" name="PyDMLabel_372">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:VoltGain-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:VoltGain-RB</string>
           </property>
          </widget>
         </item>
         <item row="17" column="0">
-         <widget class="QLabel" name="label_59">
+         <widget class="QLabel" name="label_311">
           <property name="text">
            <string>TestLimB:</string>
           </property>
          </widget>
         </item>
         <item row="30" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_86">
+         <widget class="PyDMLabel" name="PyDMLabel_373">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:VoltOffset-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:VoltOffset-RB</string>
           </property>
          </widget>
         </item>
         <item row="26" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_159">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_191">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CurrOffset-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:CurrOffset-SP</string>
           </property>
          </widget>
         </item>
         <item row="29" column="0">
-         <widget class="QLabel" name="label_241">
+         <widget class="QLabel" name="label_312">
           <property name="text">
            <string>VoltGain:</string>
           </property>
          </widget>
         </item>
         <item row="17" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_55">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_100">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:TestLimA-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:TestLimA-SP</string>
           </property>
          </widget>
         </item>
         <item row="27" column="0">
-         <widget class="QLabel" name="label_60">
+         <widget class="QLabel" name="label_320">
           <property name="text">
            <string>VoltageRaw:</string>
           </property>
          </widget>
         </item>
         <item row="15" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_45">
+         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_56">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:Mode-Sel</string>
+           <string>SI-${CRATE}C2:PS-FCH:Mode-Sel</string>
           </property>
          </widget>
         </item>
         <item row="21" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_87">
+         <widget class="PyDMLabel" name="PyDMLabel_374">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CtrlLoopTi-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopTi-RB</string>
           </property>
          </widget>
         </item>
         <item row="16" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_88">
+         <widget class="PyDMLabel" name="PyDMLabel_375">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:TestLimA-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:TestLimA-RB</string>
           </property>
          </widget>
         </item>
         <item row="25" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_160">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_192">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:CurrGain-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:CurrGain-SP</string>
           </property>
          </widget>
         </item>
         <item row="30" column="0">
-         <widget class="QLabel" name="label_242">
+         <widget class="QLabel" name="label_321">
           <property name="text">
            <string>VoltOffset:</string>
           </property>
          </widget>
         </item>
         <item row="28" column="0">
-         <widget class="QLabel" name="label_419">
+         <widget class="QLabel" name="label_430">
           <property name="text">
            <string>Voltage:</string>
           </property>
          </widget>
         </item>
         <item row="28" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_182">
+         <widget class="PyDMLabel" name="PyDMLabel_376">
           <property name="toolTip">
            <string/>
           </property>
@@ -2229,17 +2229,17 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:Voltage-RB</string>
+           <string>SI-${CRATE}C2:PS-FCH:Voltage-RB</string>
           </property>
          </widget>
         </item>
         <item row="28" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_232">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_244">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCH:Voltage-SP</string>
+           <string>SI-${CRATE}C2:PS-FCH:Voltage-SP</string>
           </property>
          </widget>
         </item>
@@ -2250,7 +2250,7 @@
       <attribute name="title">
        <string>C5</string>
       </attribute>
-      <widget class="QWidget" name="gridLayoutWidget_7">
+      <widget class="QWidget" name="gridLayoutWidget_20">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -2259,19 +2259,19 @@
          <height>471</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayout_7">
+       <layout class="QGridLayout" name="gridLayout_20">
         <item row="27" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_11">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_26">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:VoltageRaw-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:VoltageRaw-SP</string>
           </property>
          </widget>
         </item>
         <item row="26" column="0">
-         <widget class="QLabel" name="label_243">
+         <widget class="QLabel" name="label_319">
           <property name="text">
            <string>CurrOffset:</string>
           </property>
@@ -2283,88 +2283,88 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CtrlLoopKp-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopKp-SP</string>
           </property>
          </widget>
         </item>
         <item row="24" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_233">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_245">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:Current-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:Current-SP</string>
           </property>
          </widget>
         </item>
         <item row="26" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_30">
+         <widget class="PyDMLabel" name="PyDMLabel_54">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CurrOffset-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:CurrOffset-RB</string>
           </property>
          </widget>
         </item>
         <item row="15" column="0">
-         <widget class="QLabel" name="label_34">
+         <widget class="QLabel" name="label_53">
           <property name="text">
            <string>Mode:</string>
           </property>
          </widget>
         </item>
         <item row="18" column="0">
-         <widget class="QLabel" name="label_61">
+         <widget class="QLabel" name="label_243">
           <property name="text">
            <string>TestWavePeriod:</string>
           </property>
          </widget>
         </item>
         <item row="23" column="0">
-         <widget class="QLabel" name="label_8">
+         <widget class="QLabel" name="label_34">
           <property name="text">
            <string>CurrentRaw:</string>
           </property>
          </widget>
         </item>
         <item row="25" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_89">
+         <widget class="PyDMLabel" name="PyDMLabel_340">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CurrGain-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:CurrGain-RB</string>
           </property>
          </widget>
         </item>
         <item row="21" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_56">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_101">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CtrlLoopTi-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopTi-SP</string>
           </property>
          </widget>
         </item>
         <item row="18" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_90">
+         <widget class="PyDMLabel" name="PyDMLabel_377">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:TestWavePeriod-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:TestWavePeriod-RB</string>
           </property>
          </widget>
         </item>
         <item row="23" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_91">
+         <widget class="PyDMLabel" name="PyDMLabel_378">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CurrentRaw-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:CurrentRaw-RB</string>
           </property>
          </widget>
         </item>
@@ -2374,73 +2374,73 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:PwrState-Sel</string>
+           <string>SI-${CRATE}C2:PS-FCV:PwrState-Sel</string>
           </property>
          </widget>
         </item>
         <item row="20" column="0">
-         <widget class="QLabel" name="label_62">
+         <widget class="QLabel" name="label_244">
           <property name="text">
            <string>CtrlLoopKp:</string>
           </property>
          </widget>
         </item>
         <item row="24" column="0">
-         <widget class="QLabel" name="label_382">
+         <widget class="QLabel" name="label_419">
           <property name="text">
            <string>Current:</string>
           </property>
          </widget>
         </item>
         <item row="17" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_93">
+         <widget class="PyDMLabel" name="PyDMLabel_379">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:TestLimB-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:TestLimB-RB</string>
           </property>
          </widget>
         </item>
         <item row="23" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_57">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_102">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CurrentRaw-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:CurrentRaw-SP</string>
           </property>
          </widget>
         </item>
         <item row="16" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_58">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_103">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:TestLimA-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:TestLimA-SP</string>
           </property>
          </widget>
         </item>
         <item row="14" column="0">
-         <widget class="QLabel" name="label_63">
+         <widget class="QLabel" name="label_245">
           <property name="text">
            <string>PwrState:</string>
           </property>
          </widget>
         </item>
         <item row="14" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_94">
+         <widget class="PyDMLabel" name="PyDMLabel_380">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:PwrState-Sts</string>
+           <string>SI-${CRATE}C2:PS-FCV:PwrState-Sts</string>
           </property>
          </widget>
         </item>
         <item row="24" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_95">
+         <widget class="PyDMLabel" name="PyDMLabel_381">
           <property name="toolTip">
            <string/>
           </property>
@@ -2451,12 +2451,12 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:Current-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:Current-RB</string>
           </property>
          </widget>
         </item>
         <item row="21" column="0">
-         <widget class="QLabel" name="label_64">
+         <widget class="QLabel" name="label_322">
           <property name="text">
            <string>CtrlLoopTi:</string>
           </property>
@@ -2468,191 +2468,191 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:VoltOffset-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:VoltOffset-SP</string>
           </property>
          </widget>
         </item>
         <item row="16" column="0">
-         <widget class="QLabel" name="label_65">
+         <widget class="QLabel" name="label_323">
           <property name="text">
            <string>TestLimA:</string>
           </property>
          </widget>
         </item>
         <item row="25" column="0">
-         <widget class="QLabel" name="label_244">
+         <widget class="QLabel" name="label_324">
           <property name="text">
            <string>CurrGain:</string>
           </property>
          </widget>
         </item>
         <item row="27" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_96">
+         <widget class="PyDMLabel" name="PyDMLabel_382">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:VoltageRaw-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:VoltageRaw-RB</string>
           </property>
          </widget>
         </item>
         <item row="18" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_59">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_104">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:TestWavePeriod-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:TestWavePeriod-SP</string>
           </property>
          </widget>
         </item>
         <item row="20" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_132">
+         <widget class="PyDMLabel" name="PyDMLabel_383">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CtrlLoopKp-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopKp-RB</string>
           </property>
          </widget>
         </item>
         <item row="29" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_161">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_193">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:VoltGain-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:VoltGain-SP</string>
           </property>
          </widget>
         </item>
         <item row="15" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_161">
+         <widget class="PyDMLabel" name="PyDMLabel_384">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:Mode-Sts</string>
+           <string>SI-${CRATE}C2:PS-FCV:Mode-Sts</string>
           </property>
          </widget>
         </item>
         <item row="29" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_162">
+         <widget class="PyDMLabel" name="PyDMLabel_385">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:VoltGain-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:VoltGain-RB</string>
           </property>
          </widget>
         </item>
         <item row="17" column="0">
-         <widget class="QLabel" name="label_66">
+         <widget class="QLabel" name="label_325">
           <property name="text">
            <string>TestLimB:</string>
           </property>
          </widget>
         </item>
         <item row="30" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_163">
+         <widget class="PyDMLabel" name="PyDMLabel_386">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:VoltOffset-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:VoltOffset-RB</string>
           </property>
          </widget>
         </item>
         <item row="26" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_162">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_194">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CurrOffset-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:CurrOffset-SP</string>
           </property>
          </widget>
         </item>
         <item row="29" column="0">
-         <widget class="QLabel" name="label_245">
+         <widget class="QLabel" name="label_326">
           <property name="text">
            <string>VoltGain:</string>
           </property>
          </widget>
         </item>
         <item row="17" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_60">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_105">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:TestLimA-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:TestLimA-SP</string>
           </property>
          </widget>
         </item>
         <item row="27" column="0">
-         <widget class="QLabel" name="label_67">
+         <widget class="QLabel" name="label_327">
           <property name="text">
            <string>VoltageRaw:</string>
           </property>
          </widget>
         </item>
         <item row="15" column="2">
-         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_54">
+         <widget class="PyDMEnumComboBox" name="PyDMEnumComboBox_57">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:Mode-Sel</string>
+           <string>SI-${CRATE}C2:PS-FCV:Mode-Sel</string>
           </property>
          </widget>
         </item>
         <item row="21" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_164">
+         <widget class="PyDMLabel" name="PyDMLabel_387">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CtrlLoopTi-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopTi-RB</string>
           </property>
          </widget>
         </item>
         <item row="16" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_165">
+         <widget class="PyDMLabel" name="PyDMLabel_388">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:TestLimA-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:TestLimA-RB</string>
           </property>
          </widget>
         </item>
         <item row="25" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_163">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_195">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:CurrGain-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:CurrGain-SP</string>
           </property>
          </widget>
         </item>
         <item row="30" column="0">
-         <widget class="QLabel" name="label_319">
+         <widget class="QLabel" name="label_328">
           <property name="text">
            <string>VoltOffset:</string>
           </property>
          </widget>
         </item>
         <item row="28" column="0">
-         <widget class="QLabel" name="label_420">
+         <widget class="QLabel" name="label_431">
           <property name="text">
            <string>Voltage:</string>
           </property>
          </widget>
         </item>
         <item row="28" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_340">
+         <widget class="PyDMLabel" name="PyDMLabel_389">
           <property name="toolTip">
            <string/>
           </property>
@@ -2663,17 +2663,17 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:Voltage-RB</string>
+           <string>SI-${CRATE}C2:PS-FCV:Voltage-RB</string>
           </property>
          </widget>
         </item>
         <item row="28" column="2">
-         <widget class="PyDMLineEdit" name="PyDMLineEdit_234">
+         <widget class="PyDMLineEdit" name="PyDMLineEdit_246">
           <property name="toolTip">
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C1:PS-FCV:Voltage-SP</string>
+           <string>SI-${CRATE}C2:PS-FCV:Voltage-SP</string>
           </property>
          </widget>
         </item>
@@ -2700,7 +2700,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:VoltageRaw-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:VoltageRaw-SP</string>
           </property>
          </widget>
         </item>
@@ -2717,7 +2717,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopKp-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:CtrlLoopKp-SP</string>
           </property>
          </widget>
         </item>
@@ -2727,7 +2727,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:Current-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:Current-SP</string>
           </property>
          </widget>
         </item>
@@ -2737,7 +2737,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CurrOffset-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:CurrOffset-RB</string>
           </property>
          </widget>
         </item>
@@ -2768,7 +2768,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CurrGain-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:CurrGain-RB</string>
           </property>
          </widget>
         </item>
@@ -2778,7 +2778,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopTi-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:CtrlLoopTi-SP</string>
           </property>
          </widget>
         </item>
@@ -2788,7 +2788,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:TestWavePeriod-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:TestWavePeriod-RB</string>
           </property>
          </widget>
         </item>
@@ -2798,7 +2798,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CurrentRaw-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:CurrentRaw-RB</string>
           </property>
          </widget>
         </item>
@@ -2808,7 +2808,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:PwrState-Sel</string>
+           <string>SI-${CRATE}C3:PS-FCH:PwrState-Sel</string>
           </property>
          </widget>
         </item>
@@ -2832,7 +2832,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:TestLimB-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:TestLimB-RB</string>
           </property>
          </widget>
         </item>
@@ -2842,7 +2842,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CurrentRaw-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:CurrentRaw-SP</string>
           </property>
          </widget>
         </item>
@@ -2852,7 +2852,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:TestLimA-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:TestLimA-SP</string>
           </property>
          </widget>
         </item>
@@ -2869,7 +2869,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:PwrState-Sts</string>
+           <string>SI-${CRATE}C3:PS-FCH:PwrState-Sts</string>
           </property>
          </widget>
         </item>
@@ -2885,7 +2885,7 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:Current-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:Current-RB</string>
           </property>
          </widget>
         </item>
@@ -2902,7 +2902,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:VoltOffset-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:VoltOffset-SP</string>
           </property>
          </widget>
         </item>
@@ -2926,7 +2926,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:VoltageRaw-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:VoltageRaw-RB</string>
           </property>
          </widget>
         </item>
@@ -2936,7 +2936,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:TestWavePeriod-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:TestWavePeriod-SP</string>
           </property>
          </widget>
         </item>
@@ -2946,7 +2946,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopKp-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:CtrlLoopKp-RB</string>
           </property>
          </widget>
         </item>
@@ -2956,7 +2956,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:VoltGain-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:VoltGain-SP</string>
           </property>
          </widget>
         </item>
@@ -2966,7 +2966,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:Mode-Sts</string>
+           <string>SI-${CRATE}C3:PS-FCH:Mode-Sts</string>
           </property>
          </widget>
         </item>
@@ -2976,7 +2976,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:VoltGain-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:VoltGain-RB</string>
           </property>
          </widget>
         </item>
@@ -2993,7 +2993,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:VoltOffset-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:VoltOffset-RB</string>
           </property>
          </widget>
         </item>
@@ -3003,7 +3003,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CurrOffset-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:CurrOffset-SP</string>
           </property>
          </widget>
         </item>
@@ -3020,7 +3020,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:TestLimA-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:TestLimA-SP</string>
           </property>
          </widget>
         </item>
@@ -3037,7 +3037,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:Mode-Sel</string>
+           <string>SI-${CRATE}C3:PS-FCH:Mode-Sel</string>
           </property>
          </widget>
         </item>
@@ -3047,7 +3047,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CtrlLoopTi-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:CtrlLoopTi-RB</string>
           </property>
          </widget>
         </item>
@@ -3057,7 +3057,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:TestLimA-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:TestLimA-RB</string>
           </property>
          </widget>
         </item>
@@ -3067,7 +3067,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:CurrGain-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:CurrGain-SP</string>
           </property>
          </widget>
         </item>
@@ -3097,7 +3097,7 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:Voltage-RB</string>
+           <string>SI-${CRATE}C3:PS-FCH:Voltage-RB</string>
           </property>
          </widget>
         </item>
@@ -3107,7 +3107,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCH:Voltage-SP</string>
+           <string>SI-${CRATE}C3:PS-FCH:Voltage-SP</string>
           </property>
          </widget>
         </item>
@@ -3134,7 +3134,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:VoltageRaw-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:VoltageRaw-SP</string>
           </property>
          </widget>
         </item>
@@ -3151,7 +3151,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopKp-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:CtrlLoopKp-SP</string>
           </property>
          </widget>
         </item>
@@ -3161,7 +3161,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:Current-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:Current-SP</string>
           </property>
          </widget>
         </item>
@@ -3171,7 +3171,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CurrOffset-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:CurrOffset-RB</string>
           </property>
          </widget>
         </item>
@@ -3202,7 +3202,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CurrGain-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:CurrGain-RB</string>
           </property>
          </widget>
         </item>
@@ -3212,7 +3212,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopTi-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:CtrlLoopTi-SP</string>
           </property>
          </widget>
         </item>
@@ -3222,7 +3222,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:TestWavePeriod-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:TestWavePeriod-RB</string>
           </property>
          </widget>
         </item>
@@ -3232,7 +3232,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CurrentRaw-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:CurrentRaw-RB</string>
           </property>
          </widget>
         </item>
@@ -3242,7 +3242,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:PwrState-Sel</string>
+           <string>SI-${CRATE}C3:PS-FCV:PwrState-Sel</string>
           </property>
          </widget>
         </item>
@@ -3266,7 +3266,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:TestLimB-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:TestLimB-RB</string>
           </property>
          </widget>
         </item>
@@ -3276,7 +3276,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CurrentRaw-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:CurrentRaw-SP</string>
           </property>
          </widget>
         </item>
@@ -3286,7 +3286,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:TestLimA-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:TestLimA-SP</string>
           </property>
          </widget>
         </item>
@@ -3303,7 +3303,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:PwrState-Sts</string>
+           <string>SI-${CRATE}C3:PS-FCV:PwrState-Sts</string>
           </property>
          </widget>
         </item>
@@ -3319,7 +3319,7 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:Current-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:Current-RB</string>
           </property>
          </widget>
         </item>
@@ -3336,7 +3336,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:VoltOffset-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:VoltOffset-SP</string>
           </property>
          </widget>
         </item>
@@ -3360,7 +3360,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:VoltageRaw-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:VoltageRaw-RB</string>
           </property>
          </widget>
         </item>
@@ -3370,7 +3370,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:TestWavePeriod-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:TestWavePeriod-SP</string>
           </property>
          </widget>
         </item>
@@ -3380,7 +3380,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopKp-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:CtrlLoopKp-RB</string>
           </property>
          </widget>
         </item>
@@ -3390,7 +3390,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:VoltGain-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:VoltGain-SP</string>
           </property>
          </widget>
         </item>
@@ -3400,7 +3400,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:Mode-Sts</string>
+           <string>SI-${CRATE}C3:PS-FCV:Mode-Sts</string>
           </property>
          </widget>
         </item>
@@ -3410,7 +3410,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-v:VoltGain-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:VoltGain-RB</string>
           </property>
          </widget>
         </item>
@@ -3427,7 +3427,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:VoltOffset-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:VoltOffset-RB</string>
           </property>
          </widget>
         </item>
@@ -3437,7 +3437,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CurrOffset-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:CurrOffset-SP</string>
           </property>
          </widget>
         </item>
@@ -3454,7 +3454,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:TestLimA-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:TestLimA-SP</string>
           </property>
          </widget>
         </item>
@@ -3471,7 +3471,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:Mode-Sel</string>
+           <string>SI-${CRATE}C3:PS-FCV:Mode-Sel</string>
           </property>
          </widget>
         </item>
@@ -3481,7 +3481,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CtrlLoopTi-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:CtrlLoopTi-RB</string>
           </property>
          </widget>
         </item>
@@ -3491,7 +3491,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:TestLimA-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:TestLimA-RB</string>
           </property>
          </widget>
         </item>
@@ -3501,7 +3501,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:CurrGain-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:CurrGain-SP</string>
           </property>
          </widget>
         </item>
@@ -3531,7 +3531,7 @@
            <bool>true</bool>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:Voltage-RB</string>
+           <string>SI-${CRATE}C3:PS-FCV:Voltage-RB</string>
           </property>
          </widget>
         </item>
@@ -3541,7 +3541,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}C2:PS-FCV:Voltage-SP</string>
+           <string>SI-${CRATE}C3:PS-FCV:Voltage-SP</string>
           </property>
          </widget>
         </item>
@@ -4278,7 +4278,7 @@
            <string/>
           </property>
           <property name="channel" stdset="0">
-           <string>SI-${CRATE}XX:PS-v:VoltGain-RB</string>
+           <string>SI-${CRATE}XX:PS-FC09:VoltGain-RB</string>
           </property>
          </widget>
         </item>
