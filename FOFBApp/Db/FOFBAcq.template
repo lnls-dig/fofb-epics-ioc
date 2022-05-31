@@ -294,7 +294,7 @@ record(mbbo,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sel"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"adc")
+    field(ZRST,"rtm_lamp")
     field(ONST,"fofb")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }
@@ -306,7 +306,7 @@ record(mbbi,"$(P)$(R)$(ACQ_NAME)DataTrigChan-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"adc")
+    field(ZRST,"rtm_lamp")
     field(ONST,"fofb")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))ACQ_DATA_TRIG_CHAN")
 }

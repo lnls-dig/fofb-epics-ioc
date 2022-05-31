@@ -11,7 +11,7 @@
 # # # # # # # # # # # # # # #
 
 ############################
-# FOFB CTRL parameters
+# FOFB CTRL RAM parameters
 ############################
 
 record(longout,"$(P)$(R)FofbProcessingRamWriteEnable-SP"){
@@ -56,17 +56,10 @@ record(longin,"$(P)$(R)FofbProcessingRamDataIn-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_IN")
 }
 
-record(longout,"$(P)$(R)FofbProcessingRamDataOut-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set ram data output")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
-    field(PINI,"YES")
-}
 record(longin,"$(P)$(R)FofbProcessingRamDataOut-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get ram data output")
-    field(SCAN,".5 second")
+    field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
 }
 
