@@ -30,8 +30,8 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagL-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"over")
-    field(ONST,"ok")
+    field(ZRST,"ok")
+    field(ONST,"over")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagL-Sts"){
@@ -43,8 +43,8 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagL-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"over")
-    field(ONST,"ok")
+    field(ZRST,"ok")
+    field(ONST,"over")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagR-Sts"){
@@ -56,8 +56,8 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagR-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"over")
-    field(ONST,"ok")
+    field(ZRST,"ok")
+    field(ONST,"over")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagR-Sts"){
@@ -69,8 +69,8 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagR-Sts"){
     field(NOBT,"1")
     field(ZRVL,"0")
     field(ONVL,"1")
-    field(ZRST,"over")
-    field(ONST,"ok")
+    field(ZRST,"ok")
+    field(ONST,"over")
 }
 
 record(mbbo,"$(S)$(RTM_CHAN)PwrState-Sel"){
@@ -165,18 +165,18 @@ record(longin,"$(S)$(RTM_CHAN)CtrlLoopTi-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_TI_DATA")
 }
 
-record(longout,"$(P)$(R)TestWavePeriod-SP"){
+record(longout,"$(S)$(RTM_CHAN)TestWavePeriod-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set square wave test period in 10ns steps")
+    field(DESC,"set sqr wave test period in 10ns steps")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_CNT_DATA")
     field(PINI,"YES")
     field(DRVH,"4194303")
     field(DRVL,"0")
 }
-record(longin,"$(P)$(R)TestWavePeriod-RB"){
+record(longin,"$(S)$(RTM_CHAN)TestWavePeriod-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get square wave test period in 10ns steps")
+    field(DESC,"get sqr wave test period in 10ns steps")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_CNT_DATA")
 }
