@@ -97,7 +97,7 @@ record(mbbi,"$(S)$(RTM_CHAN)PwrState-Sts"){
     field(ONST,"amplifier_enbl")
 }
 
-record(mbbo,"$(S)$(RTM_CHAN)Mode-Sel"){
+record(mbbo,"$(S)$(RTM_CHAN)OpMode-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set power supply mode")
     field(SCAN,"Passive")
@@ -115,7 +115,7 @@ record(mbbo,"$(S)$(RTM_CHAN)Mode-Sel"){
     field(THST,"closed_loop_test_sqr")
     field(FRST,"closed_loop_fofb")
 }
-record(mbbi,"$(S)$(RTM_CHAN)Mode-Sts"){
+record(mbbi,"$(S)$(RTM_CHAN)OpMode-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get power supply mode")
     field(SCAN,"I/O Intr")
@@ -373,18 +373,18 @@ record(ai,"$(S)$(RTM_CHAN)Voltage-Mon"){
     field(PREC,"15")
 }
 
-record(longin,"$(S)$(RTM_CHAN)CurrentRefRaw-Mon"){
+record(longin,"$(S)$(RTM_CHAN)CurrentRawRef-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get current reference monitor (raw)")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
-    field(FLNK,"$(S)$(RTM_CHAN)CurrentRefRawConv-SP CPP NMS")
+    field(FLNK,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP CPP NMS")
 }
 
-record(calcout,"$(S)$(RTM_CHAN)CurrentRefRawConv-SP"){
+record(calcout,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP"){
     field(SCAN,"Passive")
     field(PREC,"15")
-    field(INPA,"$(S)$(RTM_CHAN)CurrentRefRaw-Mon")
+    field(INPA,"$(S)$(RTM_CHAN)CurrentRawRef-Mon")
     field(INPB,"$(S)$(RTM_CHAN)CurrGain-SP")
     field(INPC,"$(S)$(RTM_CHAN)CurrOffset-SP")
     field(CALC,"B*(A-C)")
