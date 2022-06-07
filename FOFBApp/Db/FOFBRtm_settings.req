@@ -1,5 +1,5 @@
 $(S)$(RTM_CHAN)PwrState-Sel
-$(S)$(RTM_CHAN)Mode-Sel
+$(S)$(RTM_CHAN)OpMode-Sel
 $(S)$(RTM_CHAN)TestWavePeriod-SP
 $(S)$(RTM_CHAN)CtrlLoopKp-SP
 $(S)$(RTM_CHAN)CtrlLoopTi-SP
