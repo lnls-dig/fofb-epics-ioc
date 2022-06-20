@@ -241,7 +241,7 @@ record(longout,"$(S)$(RTM_CHAN)CurrentRaw-SP"){
     field(SCAN,"Passive")
     field(DRVH,"15200")
     field(DRVL,"-15200")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_REG_CH_PI_SP_DATA")
+    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_SP_DATA")
     field(PINI,"YES")
 }
 

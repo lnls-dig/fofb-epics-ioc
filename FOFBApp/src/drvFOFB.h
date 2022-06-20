@@ -383,9 +383,9 @@ private:
 #define P_RtmLampPITIString                     "WB_RTMLAMP_OHWR_CH_PI_TI_DATA"             /* asynUInt32Digital,      r/w */
 #define P_RtmLampPISPString                     "WB_RTMLAMP_OHWR_CH_PI_SP_DATA"             /* asynUInt32Digital,      r/w */
 #define P_RtmLampDacDataString                  "WB_RTMLAMP_OHWR_CH_DAC_DATA"               /* asynUInt32Digital,      r/w */
-#define P_RtmLampLimAString                     "WB_RTMLAMP_OHWR_LIM_A"                     /* asynUInt32Digital,      r/w */
-#define P_RtmLampLimBString                     "WB_RTMLAMP_OHWR_LIM_B"                     /* asynUInt32Digital,      r/w */
-#define P_RtmLampCntString                      "WB_RTMLAMP_OHWR_CNT"                       /* asynUInt32Digital,      r/w */
+#define P_RtmLampLimAString                     "WB_RTMLAMP_OHWR_CH_LIM_A"                  /* asynUInt32Digital,      r/w */
+#define P_RtmLampLimBString                     "WB_RTMLAMP_OHWR_CH_LIM_B"                  /* asynUInt32Digital,      r/w */
+#define P_RtmLampCntString                      "WB_RTMLAMP_OHWR_CH_CNT_DATA"               /* asynUInt32Digital,      r/w */
 #define P_RtmLampEffAdcString                   "WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_ADC"        /* asynUInt32Digital,      r/o */
 #define P_RtmLampEffDacString                   "WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_DAC"        /* asynUInt32Digital,      r/o */
 #define P_RtmLampEffSpString                    "WB_RTMLAMP_OHWR_CH_SP_EFF_SP"              /* asynUInt32Digital,      r/o */
