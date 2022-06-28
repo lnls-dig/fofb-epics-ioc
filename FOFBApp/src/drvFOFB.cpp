@@ -743,7 +743,11 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setIntegerParam(P_FOFBStatus,                                         FOFBStatusIdle);
 
     setUIntDigitalParam(P_RtmLampStatus,                      0,              0xFFFFFFFF);
-    for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
+    for (int addr = 0; addr < MAX_RTM_LAMP_CHANNELS; ++addr) {
+        setUIntDigitalParam(addr, P_RtmLampAmpIFlagL,         0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampAmpTFlagL,         0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampAmpIFlagR,         0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampAmpTFlagR,         0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampAmpEn,             0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampMode,              0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampPIKP,              0,              0xFFFFFFFF);
@@ -756,13 +760,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(addr, P_RtmLampEffAdc,            0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampEffDac,            0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampEffSp,             0,              0xFFFFFFFF);
-    }
-
-    for (int addr = 0; addr < MAX_RTM_LAMP_CHANNELS; ++addr) {
-        setUIntDigitalParam(addr, P_RtmLampAmpIFlagL,         0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampAmpTFlagL,         0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampAmpIFlagR,         0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampAmpTFlagR,         0,              0xFFFFFFFF);
     }
 
     /* Set acquisition parameters */
