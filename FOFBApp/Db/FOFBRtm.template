@@ -18,7 +18,7 @@ record(bi,"$(P)$(R)PSStatus-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get rtm lamp status register")
     field(SCAN,".1 second")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_STA")
+    field(INP,"@asynMask($(PORT),0,0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_STA")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagL-Sts"){
