@@ -2876,7 +2876,9 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *s
     getServiceChan (this->fofbNumber, addr, func.serviceName, &serviceChan);
 
     /* Execute registered function */
-    err = func.read(fofbClient, serviceChanStr, serviceChan, &functionParam.argUInt32);
+    epicsUInt32 tmp = 0;
+    err = func.read(fofbClient, serviceChanStr, serviceChan, &tmp);
+    functionParam.argUInt32 = tmp;
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: failure executing read function for service %s\n",
