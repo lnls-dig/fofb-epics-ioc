@@ -182,36 +182,36 @@ record(longin,"$(S)$(RTM_CHAN)TestWavePeriod-RB"){
 }
 
 record(longout,"$(S)$(RTM_CHAN)TestLimA-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set square wave test limit A")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_A")
+    field(OUT,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_A")
     field(PINI,"YES")
     field(DRVH,"32767")
     field(DRVL,"-32768")
 }
 record(longin,"$(S)$(RTM_CHAN)TestLimA-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get square wave test limit A")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_A")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_A")
 }
 
 record(longout,"$(S)$(RTM_CHAN)TestLimB-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set square wave test limit B")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_B")
+    field(OUT,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_B")
     field(PINI,"YES")
     field(DRVH,"32767")
     field(DRVL,"-32768")
 }
 
 record(longin,"$(S)$(RTM_CHAN)TestLimB-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get square wave test limit B")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_B")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_LIM_B")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentConv2-SP CPP NMS")
 }
 
@@ -236,20 +236,20 @@ record(calcout,"$(S)$(RTM_CHAN)CurrentConv-SP"){
 }
 
 record(longout,"$(S)$(RTM_CHAN)CurrentRaw-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set manual current control (raw)")
     field(SCAN,"Passive")
     field(DRVH,"15200")
     field(DRVL,"-15200")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_SP_DATA")
+    field(OUT,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_SP_DATA")
     field(PINI,"YES")
 }
 
 record(longin,"$(S)$(RTM_CHAN)CurrentRaw-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get manual current control (raw)")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_SP_DATA")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_SP_DATA")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentConv2-SP CPP NMS")
 }
 
@@ -289,20 +289,20 @@ record(calcout,"$(S)$(RTM_CHAN)VoltageConv-SP"){
 }
 
 record(longout,"$(S)$(RTM_CHAN)VoltageRaw-SP"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"set manual voltage control (raw)")
     field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_DAC_DATA")
+    field(OUT,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_DAC_DATA")
     field(PINI,"YES")
     field(DRVH,"32767")
     field(DRVL,"-32768")
 }
 
 record(longin,"$(S)$(RTM_CHAN)VoltageRaw-RB"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get manual voltage control (raw)")
     field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_DAC_DATA")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_DAC_DATA")
     field(FLNK,"$(S)$(RTM_CHAN)VoltageConv2-SP CPP NMS")
 }
 
@@ -324,10 +324,10 @@ record(ai,"$(S)$(RTM_CHAN)Voltage-RB"){
 }
 
 record(longin,"$(S)$(RTM_CHAN)CurrentRaw-Mon"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get current monitor (raw)")
     field(SCAN,".1 second")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_ADC")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_ADC")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentRawConv-SP CPP NMS")
 }
 
@@ -349,10 +349,10 @@ record(ai,"$(S)$(RTM_CHAN)Current-Mon"){
 }
 
 record(longin,"$(S)$(RTM_CHAN)VoltageRaw-Mon"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get voltage monitor (raw)")
     field(SCAN,".1 second")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_DAC")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_DAC")
     field(FLNK,"$(S)$(RTM_CHAN)VoltageRawConv-SP CPP NMS")
 }
 
@@ -374,10 +374,10 @@ record(ai,"$(S)$(RTM_CHAN)Voltage-Mon"){
 }
 
 record(longin,"$(S)$(RTM_CHAN)CurrentRawRef-Mon"){
-    field(DTYP,"asynUInt32Digital")
+    field(DTYP,"asynInt32")
     field(DESC,"get current reference monitor (raw)")
     field(SCAN,".1 second")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP CPP NMS")
 }
 

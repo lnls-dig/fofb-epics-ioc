@@ -544,14 +544,14 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_RtmLampModeString,                 asynParamUInt32Digital,        &P_RtmLampMode);
     createParam(P_RtmLampPIKPString,                 asynParamUInt32Digital,        &P_RtmLampPIKP);
     createParam(P_RtmLampPITIString,                 asynParamUInt32Digital,        &P_RtmLampPITI);
-    createParam(P_RtmLampPISPString,                 asynParamUInt32Digital,        &P_RtmLampPISP);
-    createParam(P_RtmLampDacDataString,              asynParamUInt32Digital,        &P_RtmLampDacData);
-    createParam(P_RtmLampLimAString,                 asynParamUInt32Digital,        &P_RtmLampLimA);
-    createParam(P_RtmLampLimBString,                 asynParamUInt32Digital,        &P_RtmLampLimB);
+    createParam(P_RtmLampPISPString,                 asynParamInt32,                &P_RtmLampPISP);
+    createParam(P_RtmLampDacDataString,              asynParamInt32,                &P_RtmLampDacData);
+    createParam(P_RtmLampLimAString,                 asynParamInt32,                &P_RtmLampLimA);
+    createParam(P_RtmLampLimBString,                 asynParamInt32,                &P_RtmLampLimB);
     createParam(P_RtmLampCntString,                  asynParamUInt32Digital,        &P_RtmLampCnt);
-    createParam(P_RtmLampEffAdcString,               asynParamUInt32Digital,        &P_RtmLampEffAdc);
-    createParam(P_RtmLampEffDacString,               asynParamUInt32Digital,        &P_RtmLampEffDac);
-    createParam(P_RtmLampEffSpString,                asynParamUInt32Digital,        &P_RtmLampEffSp);
+    createParam(P_RtmLampEffAdcString,               asynParamInt32,                &P_RtmLampEffAdc);
+    createParam(P_RtmLampEffDacString,               asynParamInt32,                &P_RtmLampEffDac);
+    createParam(P_RtmLampEffSpString,                asynParamInt32,                &P_RtmLampEffSp);
     /* Create ADC/TBT/FOFB/MONIT parameters */
     createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
     createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
@@ -752,14 +752,14 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(addr, P_RtmLampMode,              0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampPIKP,              0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampPITI,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPISP,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampDacData,           0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampLimA,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampLimB,              0,              0xFFFFFFFF);
+        setIntegerParam(    addr, P_RtmLampPISP,              0);
+        setIntegerParam(    addr, P_RtmLampDacData,           0);
+        setIntegerParam(    addr, P_RtmLampLimA,              0);
+        setIntegerParam(    addr, P_RtmLampLimB,              0);
         setUIntDigitalParam(addr, P_RtmLampCnt,               0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampEffAdc,            0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampEffDac,            0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampEffSp,             0,              0xFFFFFFFF);
+        setIntegerParam(    addr, P_RtmLampEffAdc,            0);
+        setIntegerParam(    addr, P_RtmLampEffDac,            0);
+        setIntegerParam(    addr, P_RtmLampEffSp,             0);
     }
 
     /* Set acquisition parameters */
@@ -2860,7 +2860,7 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *s
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char serviceChanStr[SERVICE_NAME_SIZE];
     int status = asynSuccess;
-    epicsUInt32 serviceChan = 0;
+    epicsUInt32 serviceChan = 0, tmp = 0;
 
     /* Create full service name*/
     status = getFullServiceName (this->fofbNumber, addr, func.serviceName,
@@ -2876,7 +2876,6 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *s
     getServiceChan (this->fofbNumber, addr, func.serviceName, &serviceChan);
 
     /* Execute registered function */
-    epicsUInt32 tmp = 0;
     err = func.read(fofbClient, serviceChanStr, serviceChan, &tmp);
     functionParam.argUInt32 = tmp;
     if (err != HALCS_CLIENT_SUCCESS) {
