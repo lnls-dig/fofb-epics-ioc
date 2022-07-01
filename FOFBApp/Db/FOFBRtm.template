@@ -17,14 +17,14 @@
 record(bi,"$(P)$(R)PSStatus-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get rtm lamp status register")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_STA")
 }
 
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagL-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier left overcurrent flag")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_STA_AMP_IFLAG_L")
     field(PINI,"YES")
     field(NOBT,"1")
@@ -37,7 +37,7 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagL-Sts"){
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagL-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier left overtemperature flag")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_STA_AMP_TFLAG_L")
     field(PINI,"YES")
     field(NOBT,"1")
@@ -50,7 +50,7 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagL-Sts"){
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagR-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier right overcurrent flag")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_STA_AMP_IFLAG_R")
     field(PINI,"YES")
     field(NOBT,"1")
@@ -63,7 +63,7 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverCurrFlagR-Sts"){
 record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagR-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get amplifier right overtemperature flag")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_STA_AMP_TFLAG_R")
     field(PINI,"YES")
     field(NOBT,"1")
@@ -326,7 +326,7 @@ record(ai,"$(S)$(RTM_CHAN)Voltage-RB"){
 record(longin,"$(S)$(RTM_CHAN)CurrentRaw-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get current monitor (raw)")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_ADC")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentRawConv-SP CPP NMS")
 }
@@ -351,7 +351,7 @@ record(ai,"$(S)$(RTM_CHAN)Current-Mon"){
 record(longin,"$(S)$(RTM_CHAN)VoltageRaw-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get voltage monitor (raw)")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_DAC")
     field(FLNK,"$(S)$(RTM_CHAN)VoltageRawConv-SP CPP NMS")
 }
@@ -376,7 +376,7 @@ record(ai,"$(S)$(RTM_CHAN)Voltage-Mon"){
 record(longin,"$(S)$(RTM_CHAN)CurrentRawRef-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get current reference monitor (raw)")
-    field(SCAN,"I/O Intr")
+    field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP CPP NMS")
 }
