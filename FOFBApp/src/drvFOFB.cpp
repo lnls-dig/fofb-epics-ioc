@@ -3055,6 +3055,8 @@ asynStatus drvFOFB::setParam32(int functionId, epicsUInt32 mask, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+    /* Read parameter back from HW to update paramList */
+    updateUInt32Params(0xFFFFFFFF, addr, functionId, functionId, false);
 
 get_param_err:
     return (asynStatus)status;
@@ -3111,6 +3113,8 @@ asynStatus drvFOFB::setParamInteger(int functionId, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+    /* Read parameter back from HW to update paramList */
+    updateIntegerParams(addr, functionId, functionId, false);
 
 get_param_err:
     return (asynStatus)status;
@@ -3165,6 +3169,8 @@ asynStatus drvFOFB::setParamDouble(int functionId, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+    /* Read parameter back from HW to update paramList */
+    updateDoubleParams(addr, functionId, functionId, false);
 
 get_param_err:
     return status;
