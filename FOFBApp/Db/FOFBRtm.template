@@ -73,6 +73,24 @@ record(mbbi,"$(S)$(RTM_CHAN)PSAmpOverTempFlagR-Sts"){
     field(ONST,"over")
 }
 
+record(calcout, "$(S)$(RTM_CHAN)AlarmsAmp-Mon"){
+    field(DESC, "Over-temperature and over-current flags")
+    field(SCAN, ".1 second")
+    field(INPA, "$(S)$(RTM_CHAN)PSAmpOverCurrFlagL CA")
+    field(INPB, "$(S)$(RTM_CHAN)PSAmpOverTempFlagL CA")
+    field(INPC, "$(S)$(RTM_CHAN)PSAmpOverCurrFlagR CA")
+    field(INPD, "$(S)$(RTM_CHAN)PSAmpOverTempFlagR CP")
+    field(CALC, "(D<<3)|(C<<2)|(B<<1)|A")
+    field(HIHI, "1")
+    field(HHSV, "MAJOR")
+}
+
+record(waveform, "$(S)$(RTM_CHAN)AlarmsAmp-Cte"){
+    field(DESC, "Labels for each bit in AlarmsAmp-Mon")
+    field(FTVL, "STRING")
+    field(NELM, "4")
+}
+
 record(mbbo,"$(S)$(RTM_CHAN)PwrState-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set amplifier enable status")

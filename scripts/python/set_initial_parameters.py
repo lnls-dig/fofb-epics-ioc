@@ -75,6 +75,7 @@ pv_pi_ti                  = []
 pv_test_cnt               = []
 pv_test_lim_a             = []
 pv_test_lim_b             = []
+pv_alarmsamp_cte          = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 
@@ -94,6 +95,7 @@ for pv_prefix in prefix_rtm:
   pv_test_cnt.append(            str(pv_prefix)   + str("TestWavePeriod")     + str("-SP"))
   pv_test_lim_a.append(          str(pv_prefix)   + str("TestLimA")           + str("-SP"))
   pv_test_lim_b.append(          str(pv_prefix)   + str("TestLimB")           + str("-SP"))
+  pv_alarmsamp_cte.append(pv_prefix + "AlarmsAmp-Cte")
 
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
@@ -109,6 +111,13 @@ print('>>> Set initial values for gain, offset, PI Kp and PI Ti ...')
 
 # initializing some PVs with default values
 
+alarmsamp_names = [
+  "amplifier left overcurrent flag",
+  "amplifier left overtemperature flag",
+  "amplifier right overcurrent flag",
+  "amplifier right overtemperature flag"
+]
+
 for i in range(0, channels):
   PV(pv_current_gain[i]).put(current_gain,     wait=True)
   PV(pv_current_offset[i]).put(current_offset, wait=True)
@@ -118,6 +127,7 @@ for i in range(0, channels):
   PV(pv_pi_ti[i]).put(pi_ti,                   wait=True)
   PV(pv_rtm_mode[i]).put("open_loop_manual",   wait=True)
   PV(pv_amp_enable[i]).put(0,                  wait=True)
+  PV(pv_alarmsamp_cte[i]).put(alarmsamp_names, wait=True)
 
 print('>>> Set initial values for gain, offset, PI Kp and PI Ti... Done!\n')
 

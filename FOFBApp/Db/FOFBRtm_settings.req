@@ -1,3 +1,4 @@
+$(S)$(RTM_CHAN)AlarmsAmp-Cte
 $(S)$(RTM_CHAN)PwrState-Sel
 $(S)$(RTM_CHAN)OpMode-Sel
 $(S)$(RTM_CHAN)TestWavePeriod-SP
