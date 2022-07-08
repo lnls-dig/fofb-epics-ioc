@@ -676,10 +676,10 @@ class drvFOFB : public asynNDArrayDriver {
 
     private:
         /* Our data */
-        halcs_client_t *fofbClient;
-        halcs_client_t *fofbClientMonit;
-        acq_client_t *fofbClientAcqParam[NUM_ACQ_CORES_PER_FOFB];
-        acq_client_t *fofbClientAcq[NUM_ACQ_CORES_PER_FOFB];
+        halcs_client_t *fofbClient = nullptr;
+        halcs_client_t *fofbClientMonit = nullptr;
+        acq_client_t *fofbClientAcqParam[NUM_ACQ_CORES_PER_FOFB] = {};
+        acq_client_t *fofbClientAcq[NUM_ACQ_CORES_PER_FOFB] = {};
         char *endpoint;
         int fofbNumber;
         int fofbMaxPoints;
