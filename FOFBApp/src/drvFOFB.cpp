@@ -286,16 +286,6 @@ static const functionsAny_t fofbCtrlSetGetFodProcessTimeFunc          = {functio
                                                                           halcs_get_fofb_ctrl_fod_process_time}};
 static const functionsAny_t fofbCtrlSetGetBpmCntFunc                  = {functionsUInt32_t{"FOFB_CTRL", NULL,
                                                                           halcs_get_fofb_ctrl_bpm_count}};
-static const functionsAny_t fofbCtrlSetGetBpmIdRdbackFunc             = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_bpm_id_rdback}};
-static const functionsAny_t fofbCtrlSetGetTfLengthRdbackFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_tf_length_rdback}};
-static const functionsAny_t fofbCtrlSetGetPowerdownRdbackFunc         = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_powerdown_rdback}};
-static const functionsAny_t fofbCtrlSetGetLoopbackRdbackFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_loopback_rdback}};
-static const functionsAny_t fofbCtrlSetGetFaivalRdbackFunc            = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_faival_rdback}};
 static const functionsAny_t fofbCtrlSetGetToaRdEnFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_en,
                                                                           halcs_get_fofb_ctrl_toa_rd_en}};
 static const functionsAny_t fofbCtrlSetGetToaRdStrFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_str,
@@ -626,11 +616,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_FofbCtrlTxPckCntString,            asynParamUInt32Digital,        &P_FofbCtrlTxPckCnt);
     createParam(P_FofbCtrlFodProcessTimeString,      asynParamUInt32Digital,        &P_FofbCtrlFodProcessTime);
     createParam(P_FofbCtrlBpmCntString,              asynParamUInt32Digital,        &P_FofbCtrlBpmCnt);
-    createParam(P_FofbCtrlBpmIdRdbackString,         asynParamUInt32Digital,        &P_FofbCtrlBpmIdRdback);
-    createParam(P_FofbCtrlTfLengthRdbackString,      asynParamUInt32Digital,        &P_FofbCtrlTfLengthRdback);
-    createParam(P_FofbCtrlPowerdownRdbackString,     asynParamUInt32Digital,        &P_FofbCtrlPowerdownRdback);
-    createParam(P_FofbCtrlLoopbackRdbackString,      asynParamUInt32Digital,        &P_FofbCtrlLoopbackRdback);
-    createParam(P_FofbCtrlFaivalRdbackString,        asynParamUInt32Digital,        &P_FofbCtrlFaivalRdback);
     createParam(P_FofbCtrlToaRdEnString,             asynParamUInt32Digital,        &P_FofbCtrlToaRdEn);
     createParam(P_FofbCtrlToaRdStrString,            asynParamUInt32Digital,        &P_FofbCtrlToaRdStr);
     createParam(P_FofbCtrlToaDataString,             asynParamUInt32Digital,        &P_FofbCtrlToaData);
@@ -707,11 +692,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_FofbCtrlTxPckCnt,            fofbCtrlSetGetTxPckCntFunc);
     fofbHwFunc.emplace(P_FofbCtrlFodProcessTime,      fofbCtrlSetGetFodProcessTimeFunc);
     fofbHwFunc.emplace(P_FofbCtrlBpmCnt,              fofbCtrlSetGetBpmCntFunc);
-    fofbHwFunc.emplace(P_FofbCtrlBpmIdRdback,         fofbCtrlSetGetBpmIdRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlTfLengthRdback,      fofbCtrlSetGetTfLengthRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlPowerdownRdback,     fofbCtrlSetGetPowerdownRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlLoopbackRdback,      fofbCtrlSetGetLoopbackRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlFaivalRdback,        fofbCtrlSetGetFaivalRdbackFunc);
     fofbHwFunc.emplace(P_FofbCtrlToaRdEn,             fofbCtrlSetGetToaRdEnFunc);
     fofbHwFunc.emplace(P_FofbCtrlToaRdStr,            fofbCtrlSetGetToaRdStrFunc);
     fofbHwFunc.emplace(P_FofbCtrlToaData,             fofbCtrlSetGetToaDataFunc);
@@ -854,11 +834,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setUIntDigitalParam(P_FofbCtrlTxPckCnt,                   0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlFodProcessTime,             0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlBpmCnt,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlBpmIdRdback,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTfLengthRdback,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlPowerdownRdback,            0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlLoopbackRdback,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFaivalRdback,               0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlToaRdEn,                    0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlToaRdStr,                   0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlToaData,                    0,              0xFFFFFFFF);

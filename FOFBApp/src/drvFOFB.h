@@ -459,11 +459,6 @@ private:
 #define P_FofbCtrlTxPckCntString                "FOFB_CC_TX_PCK_CNT_1"                      /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlFodProcessTimeString          "FOFB_CC_FOD_PROCESS_TIME"                  /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlBpmCntString                  "FOFB_CC_BPM_COUNT"                         /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlBpmIdRdbackString             "FOFB_CC_BPM_ID_RDBACK"                     /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlTfLengthRdbackString          "FOFB_CC_TF_LENGTH_RDBACK"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlPowerdownRdbackString         "FOFB_CC_POWERDOWN_RDBACK"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlLoopbackRdbackString          "FOFB_CC_LOOPBACK_RDBACK"                   /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlFaivalRdbackString            "FOFB_CC_FAIVAL_RDBACK"                     /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlToaRdEnString                 "FOFB_CC_TOA_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlToaRdStrString                "FOFB_CC_TOA_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlToaDataString                 "FOFB_CC_TOA_DATA_VAL"                      /* asynUInt32Digital,      r/o */
@@ -661,11 +656,6 @@ class drvFOFB : public asynNDArrayDriver {
         int P_FofbCtrlTxPckCnt;
         int P_FofbCtrlFodProcessTime;
         int P_FofbCtrlBpmCnt;
-        int P_FofbCtrlBpmIdRdback;
-        int P_FofbCtrlTfLengthRdback;
-        int P_FofbCtrlPowerdownRdback;
-        int P_FofbCtrlLoopbackRdback;
-        int P_FofbCtrlFaivalRdback;
         int P_FofbCtrlToaRdEn;
         int P_FofbCtrlToaRdStr;
         int P_FofbCtrlToaData;
