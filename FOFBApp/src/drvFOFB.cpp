@@ -427,8 +427,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     maxBuffers, maxMemory, /* maxBuffers, maxMemory */
-                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
-                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask | asynFloat32ArrayMask,    /* Interface mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynFloat32ArrayMask,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
                     1, /* Autoconnect */
                     0, /* Default priority */
@@ -576,6 +576,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerRcvInSelString,             asynParamUInt32Digital,        &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
+    createParam("FOFB_COEFF",                        asynParamFloat32Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlActPartString,             asynParamUInt32Digital,        &P_FofbCtrlActPart);
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -2484,6 +2485,29 @@ asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
                 "%s:%s: function=%d, name=%s\n",
                 driverName, functionName, function, paramName);
     return status;
+}
+
+asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, size_t nElements)
+{
+    const int function = pasynUser->reason;
+    int addr;
+    getAddress(pasynUser, &addr);
+
+    if (function == P_FofbCoeff && addr < MAX_RTM_LAMP_CHANNELS) {
+        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+        memcpy(fofbCoeff[addr], value, to_write * sizeof *value);
+
+        /* TODO: Plug in HALCS:
+         * - write fofbCoeff[addr] to hardware
+         * - read new values from hardware into fofbCoeff[addr] */
+
+        /* send new values to -RB PV */
+        doCallbacksFloat32Array(fofbCoeff[addr], to_write, function, addr);
+
+        return asynSuccess;
+    } else {
+        return asynNDArrayDriver::writeFloat32Array(pasynUser, value, nElements);
+    }
 }
 
 /********************************************************************/
