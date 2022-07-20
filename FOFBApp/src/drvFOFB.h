@@ -487,6 +487,9 @@ class drvFOFB : public asynNDArrayDriver {
         virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
         virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
 
+        virtual asynStatus readFloat32Array(asynUser *, epicsFloat32 *, size_t, size_t *);
+        virtual asynStatus writeFloat32Array(asynUser *, epicsFloat32 *, size_t);
+
         /* These methods are overwritten from asynPortDriver */
         virtual asynStatus connect(asynUser* pasynUser);
         virtual asynStatus disconnect(asynUser* pasynUser);
@@ -629,6 +632,7 @@ class drvFOFB : public asynNDArrayDriver {
         int P_FofbProcessingRamAddr;
         int P_FofbProcessingRamDataIn;
         int P_FofbProcessingRamDataOut;
+        int P_FofbCoeff;
         int P_FofbCtrlActPart;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;
@@ -685,6 +689,8 @@ class drvFOFB : public asynNDArrayDriver {
         epicsEventId activeAcqEventId[NUM_ACQ_CORES_PER_FOFB];
         epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> fofbHwFunc;
+
+        epicsFloat32 fofbCoeff[320] = {};
 
         /* Our private methods */
 

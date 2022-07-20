@@ -16,6 +16,7 @@
 #include <errno.h>
 #include <math.h>
 
+#include <dbDefs.h>
 #include <epicsTypes.h>
 #include <epicsTime.h>
 #include <epicsThread.h>
@@ -435,8 +436,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     maxBuffers, maxMemory, /* maxBuffers, maxMemory */
-                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
-                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask | asynFloat32ArrayMask,    /* Interface mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynFloat32ArrayMask,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
                     1, /* Autoconnect */
                     0, /* Default priority */
@@ -588,6 +589,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_FofbProcessingRamAddrString,       asynParamUInt32Digital,        &P_FofbProcessingRamAddr);
     createParam(P_FofbProcessingRamDataInString,     asynParamUInt32Digital,        &P_FofbProcessingRamDataIn);
     createParam(P_FofbProcessingRamDataOutString,    asynParamUInt32Digital,        &P_FofbProcessingRamDataOut);
+    createParam("FOFB_COEFF",                        asynParamFloat64Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlActPartString,             asynParamUInt32Digital,        &P_FofbCtrlActPart);
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -2505,6 +2507,51 @@ asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
                 "%s:%s: function=%d, name=%s\n",
                 driverName, functionName, function, paramName);
     return status;
+}
+
+asynStatus drvFOFB::readFloat32Array(asynUser *pasynUser, epicsFloat32 *value, size_t nElements, size_t *nIn)
+{
+    const int function = pasynUser->reason;
+
+    if (function == P_FofbCoeff) {
+        /* XXX: Remove this? It shouldn't actually run, since we are using
+         * doCallbacksFloat32Array below */
+        size_t to_read = std::min(nElements, NELEMENTS(fofbCoeff));
+        memcpy(value, fofbCoeff, to_read * sizeof *value);
+        *nIn = to_read;
+
+        return asynSuccess;
+    } else {
+        /* Not actually implemented for now, but helps with forward compatibility */
+        return asynNDArrayDriver::readFloat32Array(pasynUser, value, nElements, nIn);
+    }
+}
+
+asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, size_t nElements)
+{
+    const int function = pasynUser->reason;
+    int addr;
+    getAddress(pasynUser, &addr);
+
+    if (function == P_FofbCoeff) {
+        size_t to_write = std::min(nElements, NELEMENTS(fofbCoeff));
+        memcpy(fofbCoeff, value, to_write * sizeof *value);
+
+        /* TODO: Plug in HALCS */
+        puts("write implemented");
+        printf("new coeff: ");
+        for (epicsFloat32 v: fofbCoeff) {
+            printf("%f, ", v);
+        }
+        printf("\n");
+
+        /* send new values to -RB PV */
+        doCallbacksFloat32Array(fofbCoeff, to_write, function, addr);
+
+        return asynSuccess;
+    } else {
+        return asynNDArrayDriver::writeFloat32Array(pasynUser, value, nElements);
+    }
 }
 
 /********************************************************************/

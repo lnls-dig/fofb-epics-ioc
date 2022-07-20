@@ -63,6 +63,23 @@ record(longin,"$(P)$(R)FofbProcessingRamDataOut-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
 }
 
+record(waveform, "$(P)$(R)FofbCoefficients-SP"){
+    field(DESC, "Coefficients")
+    field(DTYP, "asynFloat32ArrayOut")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
+    field(FTVL, "FLOAT")
+    field(NELM, "320")
+}
+record(waveform, "$(P)$(R)FofbCoefficients-RB"){
+    field(DESC, "Coefficients")
+    field(DTYP, "asynFloat32ArrayIn")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
+    field(FTVL, "FLOAT")
+    field(NELM, "320")
+}
+
 ############################
 # FOFB CTRL parameters
 ############################
