@@ -11,59 +11,6 @@
 # # # # # # # # # # # # # # #
 
 ############################
-# FOFB CTRL RAM parameters
-############################
-
-record(longout,"$(P)$(R)FofbProcessingRamWriteEnable-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set ram enable bit")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_WRITE")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)FofbProcessingRamWriteEnable-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get ram enable bit")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_WRITE")
-}
-
-record(longout,"$(P)$(R)FofbProcessingRamAddr-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set ram address")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_ADDR")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)FofbProcessingRamAddr-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get ram address")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_ADDR")
-}
-
-record(longout,"$(P)$(R)FofbProcessingRamDataIn-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set ram data input")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_IN")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)FofbProcessingRamDataIn-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get ram data input")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_IN")
-}
-
-record(longin,"$(P)$(R)FofbProcessingRamDataOut-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get ram data output")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_PROCESSING_RAM_DATA_OUT")
-}
-
-############################
 # FOFB CTRL parameters
 ############################
 

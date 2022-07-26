@@ -428,10 +428,6 @@ private:
 #define P_TriggerTrnSrcString                   "TRIGGER_TRN_SRC"                           /* asynUInt32Digital,      r/w */
 #define P_TriggerRcvInSelString                 "TRIGGER_RCV_IN_SEL"                        /* asynUInt32Digital,      r/w */
 #define P_TriggerTrnOutSelString                "TRIGGER_TRN_OUT_SEL"                       /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamDataOutString        "FOFB_PROCESSING_RAM_DATA_OUT"              /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlActPartString                 "FOFB_CC_CFG_VAL_ACT_PART"                  /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlErrClrString                  "FOFB_CC_CFG_VAL_ERR_CLR"                   /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlCcEnableString                "FOFB_CC_CFG_VAL_CC_ENABLE"                 /* asynUInt32Digital,      r/w */
@@ -625,10 +621,6 @@ class drvFOFB : public asynNDArrayDriver {
         int P_TriggerTrnSrc;
         int P_TriggerRcvInSel;
         int P_TriggerTrnOutSel;
-        int P_FofbProcessingRamWrite;
-        int P_FofbProcessingRamAddr;
-        int P_FofbProcessingRamDataIn;
-        int P_FofbProcessingRamDataOut;
         int P_FofbCtrlActPart;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;

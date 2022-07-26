@@ -1,6 +1,3 @@
-$(P)$(R)FofbProcessingRamWriteEnable-SP
-$(P)$(R)FofbProcessingRamAddr-SP
-$(P)$(R)FofbProcessingRamDataIn-SP
 $(P)$(R)FofbCtrlActPart-SP
 $(P)$(R)FofbCtrlErrClr-SP
 $(P)$(R)FofbCtrlCcEnable-SP

@@ -224,14 +224,6 @@ static const functionsAny_t fofbSetGetTrigRcvSelFunc                  = {functio
                                                                           halcs_get_trigger_rcv_in_sel}};
 static const functionsAny_t fofbSetGetTrigTrnSelFunc                  = {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel,
                                                                           halcs_get_trigger_transm_out_sel}};
-static const functionsAny_t fofbProcessingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write,
-                                                                          halcs_get_fofb_processing_ram_write}};
-static const functionsAny_t fofbProcessingSetGetRamAddrFunc           = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr,
-                                                                          halcs_get_fofb_processing_ram_addr}};
-static const functionsAny_t fofbProcessingSetGetRamDataInFunc         = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_in,
-                                                                          halcs_get_fofb_processing_ram_data_in}};
-static const functionsAny_t fofbProcessingSetGetRamDataOutFunc        = {functionsUInt32_t{"FOFB_PROCESSING", NULL,
-                                                                          halcs_get_fofb_processing_ram_data_out}};
 static const functionsAny_t fofbCtrlSetGetActPartFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_act_part,
                                                                           halcs_get_fofb_ctrl_act_part}};
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
@@ -584,10 +576,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerRcvInSelString,             asynParamUInt32Digital,        &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
-    createParam(P_FofbProcessingRamWriteString,      asynParamUInt32Digital,        &P_FofbProcessingRamWrite);
-    createParam(P_FofbProcessingRamAddrString,       asynParamUInt32Digital,        &P_FofbProcessingRamAddr);
-    createParam(P_FofbProcessingRamDataInString,     asynParamUInt32Digital,        &P_FofbProcessingRamDataIn);
-    createParam(P_FofbProcessingRamDataOutString,    asynParamUInt32Digital,        &P_FofbProcessingRamDataOut);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlActPartString,             asynParamUInt32Digital,        &P_FofbCtrlActPart);
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -661,10 +649,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_TriggerTrnSrc,               fofbSetGetTrigTrnSrcFunc);
     fofbHwFunc.emplace(P_TriggerRcvInSel,             fofbSetGetTrigRcvSelFunc);
     fofbHwFunc.emplace(P_TriggerTrnOutSel,            fofbSetGetTrigTrnSelFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamWrite,      fofbProcessingSetGetRamWriteFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamAddr,       fofbProcessingSetGetRamAddrFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamDataIn,     fofbProcessingSetGetRamDataInFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamDataOut,    fofbProcessingSetGetRamDataOutFunc);
     fofbHwFunc.emplace(P_FofbCtrlActPart,             fofbCtrlSetGetActPartFunc);
     fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
@@ -801,11 +785,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerRcvInSel,  1,              0xFFFFFFFF);
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
-
-    setUIntDigitalParam(P_FofbProcessingRamWrite,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbProcessingRamAddr,              0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbProcessingRamDataIn,            0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbProcessingRamDataOut,           0,              0xFFFFFFFF);
 
     setUIntDigitalParam(P_FofbCtrlActPart,                    0,              0xFFFFFFFF);
     setUIntDigitalParam(P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
