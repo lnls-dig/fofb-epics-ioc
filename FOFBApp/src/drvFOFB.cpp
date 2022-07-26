@@ -330,6 +330,9 @@ asynStatus drvFOFB::getServiceChan (int fofbNumber, int addr, const char *servic
     if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
         chan = addr % MAX_TRIGGERS;
     }
+    else if (streq(serviceName, "FOFB_CTRL")) {
+        chan = addr % NUM_FOFB_CC_CHANNELS_PER_FOFB_CC;
+    }
     else {
         chan = addr;
     }
@@ -359,6 +362,10 @@ asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceN
     else if (streq(serviceName, "TRIGGER_MUX")) {
         addrMod = addr/MAX_TRIGGERS;
     }
+    else if (streq(serviceName, "FOFB_CTRL")) {
+        *serviceIDArg = addr / NUM_FOFB_CC_CHANNELS_PER_FOFB_CC;
+        return asynSuccess;
+    }
     else {
         addrMod = 0;
     }
@@ -387,7 +394,6 @@ asynStatus drvFOFB::getFullServiceName (int fofbNumber, int addr, const char *se
     static const char *functionName = "getFullServiceName";
     int coreID = 0;
     int errs   = 0;
-    /* boardMap structure was removed. FIXME? */
     /* if we want to use board 10, for example, the PV prefix (fofbNumber) will be 10*2-1=19 */
     int board = (fofbNumber+1)/2;
 
@@ -787,39 +793,43 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
 
-    setUIntDigitalParam(P_FofbCtrlActPart,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlBpmId,                      0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTimeFrameLen,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlMgtPowerdown,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlMgtLoopback,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTimeFrameDly,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlGoldenOrbX,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlGoldenOrbY,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlCustFeature,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRxPolarity,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlPayloadsel,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFofbdatasel,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFirmwareVer,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlSysStatus,                  0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlLinkPartner,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlLinkUp,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTimeFrameCount,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlHardErrCnt,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlSoftErrCnt,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFrameErrCnt,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRxPckCnt,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTxPckCnt,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFodProcessTime,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlBpmCnt,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlToaRdEn,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlToaRdStr,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlToaData,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRcbRdEn,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
+    for (int addr: {0, 8}) {
+        setUIntDigitalParam(addr, P_FofbCtrlActPart,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlBpmId,                      0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameLen,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlMgtPowerdown,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlMgtLoopback,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameDly,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbX,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbY,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlCustFeature,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRxPolarity,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlPayloadsel,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFofbdatasel,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFirmwareVer,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlSysStatus,                  0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlLinkUp,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameCount,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFodProcessTime,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlBpmCnt,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaRdEn,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaRdStr,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaData,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbRdEn,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
+    }
+    for (int addr = 0; addr < NUM_FOFB_CC_CORES_PER_FOFB * NUM_FOFB_CC_CHANNELS_PER_FOFB_CC; addr++) {
+        setUIntDigitalParam(addr, P_FofbCtrlLinkPartner,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlHardErrCnt,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlSoftErrCnt,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFrameErrCnt,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRxPckCnt,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTxPckCnt,                   0,              0xFFFFFFFF);
+    }
 
     /* Write to HW */
     for (int trig_core = 0; trig_core < NUM_TRIG_CORES_PER_FOFB; ++trig_core) {

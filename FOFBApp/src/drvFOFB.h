@@ -31,6 +31,13 @@ using linb::bad_any_cast;
 #define MAX_ARRAY_POINTS              200000
 #define FOFB_TIMEOUT                  1.0
 
+/* We have two DCC cores, and therefore two FOFB_CC cores to control them:
+ * - FMC core (0)
+ * - P2P core (1) */
+#define NUM_FOFB_CC_CORES_PER_FOFB 2
+/* We have 8 channels on each FOFB_CC register set */
+#define NUM_FOFB_CC_CHANNELS_PER_FOFB_CC 8
+
 typedef enum {
     FOFBIDReg = 0,
     FOFBIDEnd,
@@ -110,7 +117,7 @@ typedef enum {
  * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_FOFB*MAX_TRIGGERS)
 /* Get the greater between them */
-#define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
+#define MAX_ADDR                    MAX(MAX_WAVEFORMS, MAX(MAX_TRIGGERS_ALL_ACQ, NUM_FOFB_CC_CORES_PER_FOFB * NUM_FOFB_CC_CHANNELS_PER_FOFB_CC))
 /* Number of Monitoring waveforms */
 #define MAX_MONIT_DATA              10
 
