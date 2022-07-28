@@ -14,20 +14,6 @@
 # FOFB CTRL parameters
 ############################
 
-record(longout,"$(P)$(R)$(FOFB_CC)ActPart-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set FOFB CC module to read configuration")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_ACT_PART")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)$(FOFB_CC)ActPart-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get FOFB CC module to read configuration")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CFG_VAL_ACT_PART")
-}
-
 record(bo,"$(P)$(R)$(FOFB_CC)ErrClr-Cmd"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"clears gigabit transceiver errors")

@@ -436,7 +436,6 @@ private:
 #define P_TriggerTrnSrcString                   "TRIGGER_TRN_SRC"                           /* asynUInt32Digital,      r/w */
 #define P_TriggerRcvInSelString                 "TRIGGER_RCV_IN_SEL"                        /* asynUInt32Digital,      r/w */
 #define P_TriggerTrnOutSelString                "TRIGGER_TRN_OUT_SEL"                       /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlActPartString                 "FOFB_CC_CFG_VAL_ACT_PART"                  /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlErrClrString                  "FOFB_CC_CFG_VAL_ERR_CLR"                   /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlCcEnableString                "FOFB_CC_CFG_VAL_CC_ENABLE"                 /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlTfsOverrideString             "FOFB_CC_CFG_VAL_TFS_OVERRIDE"              /* asynUInt32Digital,      r/w */
@@ -632,7 +631,6 @@ class drvFOFB : public asynNDArrayDriver {
         int P_TriggerRcvInSel;
         int P_TriggerTrnOutSel;
         int P_FofbCoeff;
-        int P_FofbCtrlActPart;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;
         int P_FofbCtrlTfsOverride;
