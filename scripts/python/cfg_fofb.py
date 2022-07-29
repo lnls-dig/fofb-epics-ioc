@@ -1,99 +1,91 @@
-  # # # # # # # # # # # # # # # # # # # # # # # # # #
- #                                                   #
-#   Description: Script to configure FOFB/BPM boards  #
-#                                                     #
-#   Author: Melissa Aguiar                            #
-#                                                     #
-#   Created: Apr. 13, 2022                            #
- #                                                   #
-  # # # # # # # # # # # # # # # # # # # # # # # # # #
+'''Script to configure FOFB_CC cores across FOFB and BPM AFCs
 
-# importing libraries
+Receives as argument each crate number we are interested in configuring.
+'''
 
 from time import sleep
 from epics import PV
 import numpy as np
 import sys
 
-# parameters
+rtmlamp_slot = 3
+fofb_ctrl_offs = 480
 
-crate_number   = sys.argv[1]                          # crate number (two digits)
-afc_fofb_slot  = sys.argv[2]                          # FOFB slot number (physical_slot*2-1 = two digits)
-trigger_chan   = ["1", "2", "20"]                     # trigger channels
-boards         = [int(afc_fofb_slot), 11, 13, 15, 19] # FOFB and BPMs slot number (physical_slot*2-1)
-rcv_src        = []
-rcv_in_sel     = []
+crates   = [f"{int(i):02}" for i in sys.argv[1:]]
+# FOFB and BPMs slot number (physical_slot*2-1)
 
-# PV prefixes
+# XXX: is this slot sequence correct?
+slots = [rtmlamp_slot, 13, 15, 17, 19]
 
-if slot_number == "03" or slot_number == "05":        # board connected in physical slot 2 or 3
-  pv_prefix    = "IA-" + crate_number + "RaBPM:BS-FOFBCtrl:" 
-else:
-  pv_prefix    = "XX-" + crate_number + "SL" + afc_fofb_slot + "RaBPM:BS-FOFBCtrl:"
+trigger_chans = [1, 2, 20]
 
-cc_enable      = PV(pv_prefix + 'FofbCtrlCcEnable-SP')
-bpm_id         = PV(pv_prefix + 'FofbCtrlBpmId-SP')
-time_frame_len = PV(pv_prefix + 'FofbCtrlTimeFrameLen-SP')
-bpm_id_rdback  = PV(pv_prefix + 'FofbCtrlBpmIdRdback-RB')
+def pv_prefix_gen(slot, crate):
+	pv_prefix = None
+	if slot == rtmlamp_slot:
+		# board connected to physical slot 2 == RTMLAMP
+		pv_prefix = "IA-" + crate + "RaBPM:BS-FOFBCtrl:"
+	else:
+		pv_prefix = "XX-" + crate + "SL" + str(slot) + ":DI-BPM:"
 
-amc5_state     = PV('XX-'+ crate_number + 'SL01:TI-AMCFPGAEVR:AMC5State-Sel')
+	return pv_prefix
 
-for i in trigger_chan:
-	rcv_src.append(PV(pv_prefix    + 'TRIGGER' + i + 'RcvSrc-Sel'))
-	rcv_in_sel.append(PV(pv_prefix + 'TRIGGER' + i + 'RcvInSel-SP'))
+def fofb_ctrl_pv_list_gen(name, slot, crate):
+	pv_prefix = pv_prefix_gen(slot, crate)
+	pv_list = [PV(pv_prefix + "P2P:" + name)]
+	if slot == rtmlamp_slot:
+		# has additional FOFB_CC core
+		pv_list.append(PV(pv_prefix + "FMC:" + name))
 
-print('\n')
-print('  # # # # # # # # # # # # # # # # # # # # # # # # # #')
-print(' #                                                   #')
-print('#   Description: Script to configure FOFB/BPM boards  #')
-print('#                                                     #')
-print('#                                                     #')
-print('#   Created: Apr. 13, 2022                            #')
-print(' #                                                   #')
-print('  # # # # # # # # # # # # # # # # # # # # # # # # # #\n')
+	for pv in pv_list:
+		success = pv.wait_for_connection(.5)
+		if not success:
+			raise RuntimeError(f"connection to '{pv.pvname}' wasn't successful")
 
-# Configure FOFB/BPM boards
+	return pv_list
 
-amc5_state.put(0, wait=True)
-print("-------------------------------------------------------")
-print("amc5_state     : " + str(amc5_state.get()))
+def put_pv(pv_list, value):
+	for pv in pv_list:
+		print(f"Writing '{value}' into '{pv.pvname}'...")
+		pv.put(value, wait=True)
+		# FIXME: sleep added because CCEnable wasn't being updated fast enough for some reason
+		sleep(.3)
+		new_value = pv.get()
+		if new_value != value:
+			print(f"{pv.info}")
+			raise RuntimeError(f"writing into '{pv.pvname}' wasn't successful: '{new_value}' != '{value}'")
 
-time_frame_len.put(5000, wait=True)
+for crate in crates:
+	print(f"Configuring crate {crate}...")
 
-print("-------------------------------------------------------")
-print("time_frame_len : " + str(time_frame_len.get()))
+	amc5_state = PV("XX-" + crate + "SL01:TI-AMCFPGAEVR:AMC5State-Sel")
+	amc5_state.put(0, wait=True)
 
-for i in boards:
-	print("-------------------------------------------------------")
-	bpm_id.put(i, wait=True)
-	cc_enable.put(0, wait=True)
+	for slot in slots:
+		pv_prefix = pv_prefix_gen(slot, crate)
+		phys_slot = (slot + 1) // 2
 
-	print("bpm_id         : " + str(bpm_id.get()))
-	print("\ncc_enable      : " + str(cc_enable.get()))
+		cc_enable = fofb_ctrl_pv_list_gen("CCEnable-SP", slot, crate)
+		bpm_id = fofb_ctrl_pv_list_gen("BPMId-SP", slot, crate)
+		time_frame_len = fofb_ctrl_pv_list_gen("TimeFrameLen-SP", slot, crate)
 
-	sleep(0.3)
-	cc_enable.put(1, wait=True)
-	sleep(0.3)
+		put_pv(cc_enable, 0)
 
-	print("cc_enable      : " + str(cc_enable.get()))
-	print("\nbpm_id_rdback  : " + str(bpm_id_rdback.get()))
+		put_pv(time_frame_len, 5000)
 
-	# Configure Trigger
-	for i in range(0, np.size(trigger_chan)):
-		rcv_src[i].put(0, wait=True)
-		rcv_in_sel[i].put(5, wait=True)
+		bpm_id_value = None
+		if slot == rtmlamp_slot:
+			bpm_id_value = fofb_ctrl_offs + int(crate) - 1
+		else:
+			bpm_id_value = 8 * (int(crate) - 1) + 2 * (phys_slot - 7)
+		put_pv(bpm_id, bpm_id_value)
 
-	for i in range(0, np.size(trigger_chan)):
-		print("\nrcv_src        : " + str(rcv_src[i].get()))
-		print("rcv_in_sel     : " + str(rcv_in_sel[i].get()))
+		put_pv(cc_enable, 1)
 
-amc5_state.put(1, wait=True)
-bpm_id.put(-1, wait=True)
-print("-------------------------------------------------------")
-print("amc5_state     : " + str(amc5_state.get()))
-print("-------------------------------------------------------")
+		if slot != rtmlamp_slot:
+			for trigger in trigger_chans:
+				rcv_src = [PV(pv_prefix + "TRIGGER" + str(trigger) + "RcvSrc-Sel")]
+				rcv_in_sel = [PV(pv_prefix + "TRIGGER" + str(trigger) + "RcvInSel-SP")]
+				put_pv(rcv_src, 0)
+				put_pv(rcv_in_sel, 5)
 
-print('\n-------------------------------------------------------')
-print('----------------------- END ---------------------------')
-print('-------------------------------------------------------\n')
-
+	amc5_state.put(1, wait=True)
