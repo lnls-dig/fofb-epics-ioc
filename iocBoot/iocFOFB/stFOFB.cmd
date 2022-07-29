@@ -37,6 +37,8 @@ dbLoadRecords("${TOP}/FOFBApp/Db/FOFBRtm.template", "P=${P}, R=${R}, S=${S}, RTM
 
 < fofb_cc.cmd
 
+dbLoadRecords("${TOP}/FOFBApp/Db/RefOrbit.template", "P=${P}, R=${R}, PORT=$(PORT), TIMEOUT=1")
+
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset, ACQ_NAME=GEN, WVF_CHAN=CH0,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M1:PS-FCV:,  GAIN=CurrGain, OFFSET=CurrOffset, ACQ_NAME=GEN, WVF_CHAN=CH1,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")
 dbLoadRecords("${TOP}/db/FOFBData.template", "P=${P}, R=${R}, S=${S}, RTM_CHAN=M2:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset, ACQ_NAME=GEN, WVF_CHAN=CH2,  FTVL=FLOAT, NELEMENTS=$(WAVEFORM_MAX_POINTS)")

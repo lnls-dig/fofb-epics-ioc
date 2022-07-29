@@ -62,3 +62,5 @@ file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC11:, GAIN=
 # FOFB CTRL
 file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=FMC:
 file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=P2P:
+
+file "RefOrbit.req", P=$(P), R=$(R)
