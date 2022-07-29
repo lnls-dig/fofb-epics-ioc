@@ -19,6 +19,7 @@ record(waveform, "$(S)$(RTM_CHAN)CoeffArray-SP"){
     field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
     field(FTVL, "FLOAT")
     field(NELM, "320")
+    field(PINI, "YES")
 }
 record(waveform, "$(S)$(RTM_CHAN)CoeffArray-RB"){
     field(DESC, "Get FOFB coefficients")

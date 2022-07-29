@@ -10,6 +10,7 @@ record(waveform, "$(P)$(R)RefOrbit-SP"){
     field(INP, "@asyn($(PORT),0,$(TIMEOUT))REF_ORBIT")
     field(FTVL, "LONG")
     field(NELM, "320")
+    field(PINI, "YES")
 }
 
 record(waveform, "$(P)$(R)RefOrbit-RB"){
