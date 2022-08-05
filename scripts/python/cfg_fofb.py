@@ -57,9 +57,6 @@ def put_pv(pv_list, value):
 for crate in crates:
 	print(f"Configuring crate {crate}...")
 
-	amc5_state = PV("XX-" + crate + "SL01:TI-AMCFPGAEVR:AMC5State-Sel")
-	amc5_state.put(0, wait=True)
-
 	for slot in slots:
 		pv_prefix = pv_prefix_gen(slot, crate)
 		phys_slot = (slot + 1) // 2
@@ -88,4 +85,5 @@ for crate in crates:
 				put_pv(rcv_src, 0)
 				put_pv(rcv_in_sel, 5)
 
-	amc5_state.put(1, wait=True)
+evg_evt10 = PV("AS-RaMO:TI-EVG:Evt10ExtTrig-Cmd")
+evg_evt10.put("ON", wait=True)
