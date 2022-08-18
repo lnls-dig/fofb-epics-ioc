@@ -60,7 +60,7 @@ file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC10:, GAIN=
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC11:, GAIN=VoltGain, OFFSET=VoltOffset
 
 # FOFB CTRL
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=FMC:
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=P2P:
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=DCCFMC
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=DCCP2P
 
 file "RefOrbit.req", P=$(P), R=$(R)
