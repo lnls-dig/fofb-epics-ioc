@@ -435,3 +435,27 @@ record(ai,"$(S)$(RTM_CHAN)CurrentRef-Mon"){
     field(SCAN,"Passive")
     field(PREC,"15")
 }
+
+record(mbbo,"$(S)$(RTM_CHAN)TrigEn-Sel"){
+    field(DTYP,"asynInt32")
+    field(DESC,"set trigger enable status")
+    field(SCAN,"Passive")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))WB_RTMLAMP_OHWR_CH_CTL_TRIG_EN")
+    field(PINI,"YES")
+    field(NOBT,"0")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}
+record(mbbi,"$(S)$(RTM_CHAN)TrigEn-Sts"){
+    field(DTYP,"asynInt32")
+    field(DESC,"get trigger enable status")
+    field(SCAN,"I/O Intr")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))WB_RTMLAMP_OHWR_CH_CTL_TRIG_EN")
+    field(NOBT,"0")
+    field(ZRVL,"0")
+    field(ONVL,"1")
+    field(ZRST,"disable")
+    field(ONST,"enable")
+}

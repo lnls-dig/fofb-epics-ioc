@@ -13,3 +13,4 @@ $(S)$(RTM_CHAN)CurrentRaw-SP
 $(S)$(RTM_CHAN)Current-SP
 $(S)$(RTM_CHAN)VoltageRaw-SP
 $(S)$(RTM_CHAN)Voltage-SP
+$(S)$(RTM_CHAN)TrigEn-Sel
