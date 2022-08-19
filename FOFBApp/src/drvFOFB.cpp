@@ -188,6 +188,8 @@ static const functionsAny_t rtmLampSetGetEffDacFunc                   = {functio
                                                                           halcs_get_rtmlamp_ohwr_eff_dac}};
 static const functionsAny_t rtmLampSetGetEffSpFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_eff_sp}};
+static const functionsAny_t rtmLampSetGetTrigEnFunc                   = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_trig_en,
+                                                                          halcs_get_rtmlamp_ohwr_trig_en}};
 static const functionsAny_t fofbSetGetAcqDataTrigThresFunc            = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres,
                                                                           acq_get_data_trig_thres}};
 static const functionsAny_t fofbSetGetAcqDataTrigPolFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol,
@@ -538,6 +540,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_RtmLampEffAdcString,               asynParamInt32,                &P_RtmLampEffAdc);
     createParam(P_RtmLampEffDacString,               asynParamInt32,                &P_RtmLampEffDac);
     createParam(P_RtmLampEffSpString,                asynParamInt32,                &P_RtmLampEffSp);
+    createParam("WB_RTMLAMP_OHWR_CH_CTL_TRIG_EN",    asynParamInt32,                &P_RtmLampTrigEn);
     /* Create ADC/TBT/FOFB/MONIT parameters */
     createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
     createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
@@ -636,6 +639,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_RtmLampEffAdc,               rtmLampSetGetEffAdcFunc);
     fofbHwFunc.emplace(P_RtmLampEffDac,               rtmLampSetGetEffDacFunc);
     fofbHwFunc.emplace(P_RtmLampEffSp,                rtmLampSetGetEffSpFunc);
+    fofbHwFunc.emplace(P_RtmLampTrigEn,               rtmLampSetGetTrigEnFunc);
     fofbHwFunc.emplace(P_DataTrigChan,                fofbSetGetAcqDataTrigChanFunc);
     fofbHwFunc.emplace(P_TriggerDataThres,            fofbSetGetAcqDataTrigThresFunc);
     fofbHwFunc.emplace(P_TriggerDataPol,              fofbSetGetAcqDataTrigPolFunc);
@@ -728,6 +732,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setIntegerParam(    addr, P_RtmLampEffAdc,            0);
         setIntegerParam(    addr, P_RtmLampEffDac,            0);
         setIntegerParam(    addr, P_RtmLampEffSp,             0);
+        setIntegerParam(    addr, P_RtmLampTrigEn,            0);
     }
 
     /* Set acquisition parameters */

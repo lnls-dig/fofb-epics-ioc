@@ -592,6 +592,7 @@ class drvFOFB : public asynNDArrayDriver {
         int P_RtmLampEffAdc;
         int P_RtmLampEffDac;
         int P_RtmLampEffSp;
+        int P_RtmLampTrigEn;
         int P_FOFBStatus;
         int P_AdcRate;
         int P_TbtRate;
