@@ -2532,8 +2532,6 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
         uint32_t fixed_point_pos;
         smio_fofb_processing_data_block_t fixed_point_coeffs_sp = {0},
             fixed_point_coeffs_rb = {0};
-        bool is_done;
-        uint32_t trial;
 
         /* get malamute service name */
         status = this->getFullServiceName(this->fofbNumber, addr,
@@ -2554,65 +2552,45 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
             goto err_halcs_failed;
         }
 
-        #define FOFB_COEFF_OPTS_RETRIES 5
+        /* write this->fofbCoeff[addr] to hardware */
+        // floating-point to fixed-point conversion
+        for(uint32_t i = 0; i < NUM_FOFB_COEFF; i++) {
+            fixed_point_coeffs_sp.data[i] =
+                (uint32_t)(this->fofbCoeff[addr][i]*(1 << fixed_point_pos));
+        }
 
-        is_done = false;
-        trial = 0;
-        while(!is_done && trial < FOFB_COEFF_OPTS_RETRIES) {
-            /* write this->fofbCoeff[addr] to hardware */
-            // floating-point to fixed-point conversion
+        err = halcs_fofb_processing_coeff_ram_bank_write(this->fofbClient,
+            service, addr, fixed_point_coeffs_sp);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_coeff_ram_bank_write failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        }
+
+        /* read new values from hardware into this->fofbCoeff[addr] */
+        err = halcs_fofb_processing_coeff_ram_bank_read(this->fofbClient,
+            service, addr, &fixed_point_coeffs_rb);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_coeff_ram_bank_read failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        } else {
+            // fixed-point to floating-point conversion
             for(uint32_t i = 0; i < NUM_FOFB_COEFF; i++) {
-                fixed_point_coeffs_sp.data[i] =
-                    (uint32_t)(this->fofbCoeff[addr][i]*(1 << fixed_point_pos));
+                this->fofbCoeff[addr][i] =
+                    (((float)((int)fixed_point_coeffs_rb.data[i]))/
+                    (float)(1 << fixed_point_pos));
             }
 
-            err = halcs_fofb_processing_coeff_ram_bank_write(this->fofbClient,
-                service, addr, fixed_point_coeffs_sp);
-            if(err != HALCS_CLIENT_SUCCESS) {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "halcs_fofb_processing_coeff_ram_bank_write failed\n");
-                status = asynError;
-                goto err_halcs_failed;
-            }
-
-            /* read new values from hardware into this->fofbCoeff[addr] */
-            err = halcs_fofb_processing_coeff_ram_bank_read(this->fofbClient,
-                service, addr, &fixed_point_coeffs_rb);
-            if(err != HALCS_CLIENT_SUCCESS) {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "halcs_fofb_processing_coeff_ram_bank_read failed\n");
-                status = asynError;
-                goto err_halcs_failed;
-            } else {
-                // fixed-point to floating-point conversion
-                for(uint32_t i = 0; i < NUM_FOFB_COEFF; i++) {
-                    this->fofbCoeff[addr][i] =
-                        (((float)((int)fixed_point_coeffs_rb.data[i]))/
-                        (float)(1 << fixed_point_pos));
-                }
-
-                /* send new values to -RB PV */
-                doCallbacksFloat32Array(fofbCoeff[addr], to_write, function,
-                    addr);
-
-                if(memcmp(fixed_point_coeffs_sp.data,
-                    fixed_point_coeffs_rb.data, NUM_FOFB_COEFF*sizeof(uint32_t))
-                    == 0) {
-                        is_done = true;
-                }
-            }
+            /* send new values to -RB PV */
+            doCallbacksFloat32Array(fofbCoeff[addr], to_write, function,
+                addr);
+        }
 
 err_get_full_service_name:
 err_halcs_failed:
-            if(!is_done) {
-                asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                    "Channel %d failed on trial %u\n", addr, trial);
-
-                #define DELAY_BETWEEN_RETRIES 5
-                epicsThreadSleep(DELAY_BETWEEN_RETRIES);
-            }
-            trial++;
-        }
 
         return status;
     } else {
