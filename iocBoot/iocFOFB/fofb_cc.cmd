@@ -1,0 +1,21 @@
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, PORT=$(PORT), ADDR=0, TIMEOUT=1")
+
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH0,  PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH1,  PORT=$(PORT), ADDR=1, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH2,  PORT=$(PORT), ADDR=2, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH3,  PORT=$(PORT), ADDR=3, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH4,  PORT=$(PORT), ADDR=4, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH5,  PORT=$(PORT), ADDR=5, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH6,  PORT=$(PORT), ADDR=6, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCFMC, FOFB_CHAN=CH7,  PORT=$(PORT), ADDR=7, TIMEOUT=1")
+
+dbLoadRecords("${TOP}/FOFBApp/Db/FOFBCtrl.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, PORT=$(PORT), ADDR=8, TIMEOUT=1")
+
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH0,  PORT=$(PORT), ADDR=8,  TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH1,  PORT=$(PORT), ADDR=9,  TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH2,  PORT=$(PORT), ADDR=10, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH3,  PORT=$(PORT), ADDR=11, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH4,  PORT=$(PORT), ADDR=12, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH5,  PORT=$(PORT), ADDR=13, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH6,  PORT=$(PORT), ADDR=14, TIMEOUT=1")
+dbLoadRecords("${TOP}/FOFBApp/Db/Ctrl_channel.template", "P=${P}, R=${R}, FOFB_CC=DCCP2P, FOFB_CHAN=CH7,  PORT=$(PORT), ADDR=15, TIMEOUT=1")

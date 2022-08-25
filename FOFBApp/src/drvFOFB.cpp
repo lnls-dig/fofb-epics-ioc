@@ -109,39 +109,39 @@ static const channelMap_t channelMap[CH_END] = {
                           },
                           },
     /* [CH_FOFB] =    */ {CH_HW_FOFB,                           // HwDataChannel
-                          {{-1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1,
-                            -1},
+                          {{WVF_DATA_CH0,                       // NDArrayData
+                            WVF_DATA_CH1,
+                            WVF_DATA_CH2,
+                            WVF_DATA_CH3,
+                            WVF_DATA_CH4,
+                            WVF_DATA_CH5,
+                            WVF_DATA_CH6,
+                            WVF_DATA_CH7,
+                            WVF_DATA_CH8,
+                            WVF_DATA_CH9,
+                            WVF_DATA_CH10,
+                            WVF_DATA_CH11,
+                            WVF_DATA_CH12,
+                            WVF_DATA_CH13,
+                            WVF_DATA_CH14,
+                            WVF_DATA_CH15,
+                            WVF_DATA_CH16,
+                            WVF_DATA_CH17,
+                            WVF_DATA_CH18,
+                            WVF_DATA_CH19,
+                            WVF_DATA_CH20,
+                            WVF_DATA_CH21,
+                            WVF_DATA_CH22,
+                            WVF_DATA_CH23,
+                            WVF_DATA_CH24,
+                            WVF_DATA_CH25,
+                            WVF_DATA_CH26,
+                            WVF_DATA_CH27,
+                            WVF_DATA_CH28,
+                            WVF_DATA_CH29,
+                            WVF_DATA_CH30,
+                            WVF_DATA_CH31,
+                            WVF_DATA_ALL},
                           },
                           },
 };
@@ -149,15 +149,13 @@ static const channelMap_t channelMap[CH_END] = {
 /* FIXME: This reverse mapping must match the maximum hwDataChannel for ChannelMap */
 static const channelRevMap_t channelRevMap[CH_HW_END] = {
                         /* EPICS channel */
-     /* [CH_HW_RTM] =       */  {CH_RTM},
-     /* [CH_HW_FOFB] =      */  {CH_FOFB},
+     /* [CH_HW_RTM] =   */ {CH_RTM},
+     /* [CH_HW_FOFB] =  */ {CH_FOFB},
 };
 /* Int32 functions mapping */
 
 static const functionsAny_t rtmLampSetGetStatusFunc                   = {functionsUInt32_t{"RTMLAMP_OHWR", NULL ,
                                                                           halcs_get_rtmlamp_ohwr_sta}};
-static const functionsAny_t rtmLampSetGetDacDataFromWbFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data_from_wb,
-                                                                          halcs_get_rtmlamp_ohwr_dac_data_from_wb}};
 static const functionsAny_t rtmLampSetGetAmpIFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_amp_iflag_l}};
 static const functionsAny_t rtmLampSetGetAmpTFlagLFunc                = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
@@ -168,28 +166,28 @@ static const functionsAny_t rtmLampSetGetAmpTFlagRFunc                = {functio
                                                                           halcs_get_rtmlamp_ohwr_amp_tflag_r}};
 static const functionsAny_t rtmLampSetGetAmpEnFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_amp_en,
                                                                           halcs_get_rtmlamp_ohwr_amp_en}};
-static const functionsAny_t rtmLampSetGetPIOLTriangEnFunc             = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_triang_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_ol_triang_enable}};
-static const functionsAny_t rtmLampSetGetPIOLSquareEnFunc             = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_square_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_ol_square_enable}};
-static const functionsAny_t rtmLampSetGetPISPSquareEnFunc             = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_square_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_sp_square_enable}};
-static const functionsAny_t rtmLampSetGetPIEnFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_enable,
-                                                                          halcs_get_rtmlamp_ohwr_pi_enable}};
-static const functionsAny_t rtmLampSetGetDacDataFunc                  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
-                                                                          halcs_get_rtmlamp_ohwr_dac_data}};
-static const functionsAny_t rtmLampSetGetDacWrFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_wr,
-                                                                          halcs_get_rtmlamp_ohwr_dac_wr}};
+static const functionsAny_t rtmLampSetGetModeFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_mode,
+                                                                          halcs_get_rtmlamp_ohwr_mode}};
 static const functionsAny_t rtmLampSetGetPIKPFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_kp,
                                                                           halcs_get_rtmlamp_ohwr_pi_kp}};
 static const functionsAny_t rtmLampSetGetPITIFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ti,
                                                                           halcs_get_rtmlamp_ohwr_pi_ti}};
 static const functionsAny_t rtmLampSetGetPISPFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp,
                                                                           halcs_get_rtmlamp_ohwr_pi_sp}};
-static const functionsAny_t rtmLampSetGetPIOLDacCntMaxFunc            = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_ol_dac_cnt_max,
-                                                                          halcs_get_rtmlamp_ohwr_pi_ol_dac_cnt_max}};
-static const functionsAny_t rtmLampSetGetPISPLimInfFunc               = {functionsUInt32_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_pi_sp_lim_inf,
-                                                                          halcs_get_rtmlamp_ohwr_pi_sp_lim_inf}};
+static const functionsAny_t rtmLampSetGetDacDataFunc                  = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_dac_data,
+                                                                          halcs_get_rtmlamp_ohwr_dac_data}};
+static const functionsAny_t rtmLampSetGetLimAFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_lim_a,
+                                                                          halcs_get_rtmlamp_ohwr_lim_a}};
+static const functionsAny_t rtmLampSetGetLimBFunc                     = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_lim_b,
+                                                                          halcs_get_rtmlamp_ohwr_lim_b}};
+static const functionsAny_t rtmLampSetGetCntFunc                      = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_cnt,
+                                                                          halcs_get_rtmlamp_ohwr_cnt}};
+static const functionsAny_t rtmLampSetGetEffAdcFunc                   = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
+                                                                          halcs_get_rtmlamp_ohwr_eff_adc}};
+static const functionsAny_t rtmLampSetGetEffDacFunc                   = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
+                                                                          halcs_get_rtmlamp_ohwr_eff_dac}};
+static const functionsAny_t rtmLampSetGetEffSpFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
+                                                                          halcs_get_rtmlamp_ohwr_eff_sp}};
 static const functionsAny_t fofbSetGetAcqDataTrigThresFunc            = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres,
                                                                           acq_get_data_trig_thres}};
 static const functionsAny_t fofbSetGetAcqDataTrigPolFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol,
@@ -226,16 +224,6 @@ static const functionsAny_t fofbSetGetTrigRcvSelFunc                  = {functio
                                                                           halcs_get_trigger_rcv_in_sel}};
 static const functionsAny_t fofbSetGetTrigTrnSelFunc                  = {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel,
                                                                           halcs_get_trigger_transm_out_sel}};
-static const functionsAny_t fofbProcessingSetGetRamWriteFunc          = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_write,
-                                                                          halcs_get_fofb_processing_ram_write}};
-static const functionsAny_t fofbProcessingSetGetRamAddrFunc           = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_addr,
-                                                                          halcs_get_fofb_processing_ram_addr}};
-static const functionsAny_t fofbProcessingSetGetRamDataInFunc         = {functionsUInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_ram_data_in,
-                                                                          halcs_get_fofb_processing_ram_data_in}};
-static const functionsAny_t fofbProcessingSetGetRamDataOutFunc        = {functionsUInt32_t{"FOFB_PROCESSING", NULL,
-                                                                          halcs_get_fofb_processing_ram_data_out}};
-static const functionsAny_t fofbCtrlSetGetActPartFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_act_part,
-                                                                          halcs_get_fofb_ctrl_act_part}};
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
 static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cc_enable,
@@ -288,16 +276,6 @@ static const functionsAny_t fofbCtrlSetGetFodProcessTimeFunc          = {functio
                                                                           halcs_get_fofb_ctrl_fod_process_time}};
 static const functionsAny_t fofbCtrlSetGetBpmCntFunc                  = {functionsUInt32_t{"FOFB_CTRL", NULL,
                                                                           halcs_get_fofb_ctrl_bpm_count}};
-static const functionsAny_t fofbCtrlSetGetBpmIdRdbackFunc             = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_bpm_id_rdback}};
-static const functionsAny_t fofbCtrlSetGetTfLengthRdbackFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_tf_length_rdback}};
-static const functionsAny_t fofbCtrlSetGetPowerdownRdbackFunc         = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_powerdown_rdback}};
-static const functionsAny_t fofbCtrlSetGetLoopbackRdbackFunc          = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_loopback_rdback}};
-static const functionsAny_t fofbCtrlSetGetFaivalRdbackFunc            = {functionsUInt32_t{"FOFB_CTRL", NULL,
-                                                                          halcs_get_fofb_ctrl_faival_rdback}};
 static const functionsAny_t fofbCtrlSetGetToaRdEnFunc                 = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_en,
                                                                           halcs_get_fofb_ctrl_toa_rd_en}};
 static const functionsAny_t fofbCtrlSetGetToaRdStrFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_toa_rd_str,
@@ -350,6 +328,9 @@ asynStatus drvFOFB::getServiceChan (int fofbNumber, int addr, const char *servic
     if (streq(serviceName, "TRIGGER_MUX") || streq(serviceName, "TRIGGER_IFACE")) {
         chan = addr % MAX_TRIGGERS;
     }
+    else if (streq(serviceName, "FOFB_CTRL")) {
+        chan = addr % NUM_FOFB_CC_CHANNELS_PER_FOFB_CC;
+    }
     else {
         chan = addr;
     }
@@ -364,7 +345,7 @@ asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceN
     static const char *functionName = "getServiceID";
     asynStatus status = asynSuccess;
     int serviceID = 0;
-    int addrMod = 0;
+    int addrMod   = 0;
 
     /* Static mapping. FIXME? */
     /* For these services there's only a single core per FPGA, so serviceID is always 0.
@@ -378,6 +359,10 @@ asynStatus drvFOFB::getServiceID (int fofbNumber, int addr, const char *serviceN
     }
     else if (streq(serviceName, "TRIGGER_MUX")) {
         addrMod = addr/MAX_TRIGGERS;
+    }
+    else if (streq(serviceName, "FOFB_CTRL")) {
+        *serviceIDArg = addr / NUM_FOFB_CC_CHANNELS_PER_FOFB_CC;
+        return asynSuccess;
     }
     else {
         addrMod = 0;
@@ -406,8 +391,7 @@ asynStatus drvFOFB::getFullServiceName (int fofbNumber, int addr, const char *se
 {
     static const char *functionName = "getFullServiceName";
     int coreID = 0;
-    int errs = 0;
-    /* boardMap structure was removed. FIXME? */
+    int errs   = 0;
     /* if we want to use board 10, for example, the PV prefix (fofbNumber) will be 10*2-1=19 */
     int board = (fofbNumber+1)/2;
 
@@ -447,8 +431,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
    : asynNDArrayDriver(portName,
                     MAX_ADDR, /* maxAddr */
                     maxBuffers, maxMemory, /* maxBuffers, maxMemory */
-                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask,    /* Interface mask     */
-                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask,                      /* Interrupt mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynDrvUserMask | asynInt32ArrayMask | asynFloat32ArrayMask,    /* Interface mask     */
+                    asynUInt32DigitalMask | asynInt32Mask | asynInt16ArrayMask | asynFloat64Mask | asynGenericPointerMask | asynInt32ArrayMask | asynFloat32ArrayMask,                      /* Interrupt mask     */
                     ASYN_CANBLOCK | ASYN_MULTIDEVICE, /* asynFlags.  This driver blocks it is multi-device */
                     1, /* Autoconnect */
                     0, /* Default priority */
@@ -458,7 +442,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     const char *functionName = "drvFOFB";
 
     /* Create portName so we can create a new AsynUser later */
-    fofbPortName = epicsStrDup(portName);
+    fofbPortName  = epicsStrDup(portName);
     fofbMaxPoints = maxPoints;
 
     this->endpoint = strdup(endpoint);
@@ -479,8 +463,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     this->fofbNumber = fofbNumber;
-    this->verbose = verbose;
-    this->timeout = timeout;
+    this->verbose    = verbose;
+    this->timeout    = timeout;
 
     for (int j = 0; j < NUM_ACQ_CORES_PER_FOFB; ++j) {
         this->readingActive[j] = 0;
@@ -538,23 +522,22 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 
     /* Create rtm_lamp parameters */
     createParam(P_RtmLampStatusString,               asynParamUInt32Digital,        &P_RtmLampStatus);
-    createParam(P_RtmLampDacDataFromWbString,        asynParamUInt32Digital,        &P_RtmLampDacDataFromWb);
     createParam(P_RtmLampAmpIFlagLString,            asynParamUInt32Digital,        &P_RtmLampAmpIFlagL);
     createParam(P_RtmLampAmpTFlagLString,            asynParamUInt32Digital,        &P_RtmLampAmpTFlagL);
     createParam(P_RtmLampAmpIFlagRString,            asynParamUInt32Digital,        &P_RtmLampAmpIFlagR);
     createParam(P_RtmLampAmpTFlagRString,            asynParamUInt32Digital,        &P_RtmLampAmpTFlagR);
     createParam(P_RtmLampAmpEnString,                asynParamUInt32Digital,        &P_RtmLampAmpEn);
-    createParam(P_RtmLampPIOLTriangEnString,         asynParamUInt32Digital,        &P_RtmLampPIOLTriangEn);
-    createParam(P_RtmLampPIOLSquareEnString,         asynParamUInt32Digital,        &P_RtmLampPIOLSquareEn);
-    createParam(P_RtmLampPISPSquareEnString,         asynParamUInt32Digital,        &P_RtmLampPISPSquareEn);
-    createParam(P_RtmLampPIEnString,                 asynParamUInt32Digital,        &P_RtmLampPIEn);
-    createParam(P_RtmLampDacDataString,              asynParamUInt32Digital,        &P_RtmLampDacData);
-    createParam(P_RtmLampDacWrString,                asynParamUInt32Digital,        &P_RtmLampDacWr);
+    createParam(P_RtmLampModeString,                 asynParamUInt32Digital,        &P_RtmLampMode);
     createParam(P_RtmLampPIKPString,                 asynParamUInt32Digital,        &P_RtmLampPIKP);
     createParam(P_RtmLampPITIString,                 asynParamUInt32Digital,        &P_RtmLampPITI);
-    createParam(P_RtmLampPISPString,                 asynParamUInt32Digital,        &P_RtmLampPISP);
-    createParam(P_RtmLampPIOLDacCntMaxString,        asynParamUInt32Digital,        &P_RtmLampPIOLDacCntMax);
-    createParam(P_RtmLampPISPLimInfString,           asynParamUInt32Digital,        &P_RtmLampPISPLimInf);
+    createParam(P_RtmLampPISPString,                 asynParamInt32,                &P_RtmLampPISP);
+    createParam(P_RtmLampDacDataString,              asynParamInt32,                &P_RtmLampDacData);
+    createParam(P_RtmLampLimAString,                 asynParamInt32,                &P_RtmLampLimA);
+    createParam(P_RtmLampLimBString,                 asynParamInt32,                &P_RtmLampLimB);
+    createParam(P_RtmLampCntString,                  asynParamUInt32Digital,        &P_RtmLampCnt);
+    createParam(P_RtmLampEffAdcString,               asynParamInt32,                &P_RtmLampEffAdc);
+    createParam(P_RtmLampEffDacString,               asynParamInt32,                &P_RtmLampEffDac);
+    createParam(P_RtmLampEffSpString,                asynParamInt32,                &P_RtmLampEffSp);
     /* Create ADC/TBT/FOFB/MONIT parameters */
     createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
     createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
@@ -597,12 +580,9 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerRcvInSelString,             asynParamUInt32Digital,        &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
-    createParam(P_FofbProcessingRamWriteString,      asynParamUInt32Digital,        &P_FofbProcessingRamWrite);
-    createParam(P_FofbProcessingRamAddrString,       asynParamUInt32Digital,        &P_FofbProcessingRamAddr);
-    createParam(P_FofbProcessingRamDataInString,     asynParamUInt32Digital,        &P_FofbProcessingRamDataIn);
-    createParam(P_FofbProcessingRamDataOutString,    asynParamUInt32Digital,        &P_FofbProcessingRamDataOut);
+    createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrbit);
+    createParam("FOFB_COEFF",                        asynParamFloat32Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
-    createParam(P_FofbCtrlActPartString,             asynParamUInt32Digital,        &P_FofbCtrlActPart);
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
     createParam(P_FofbCtrlCcEnableString,            asynParamUInt32Digital,        &P_FofbCtrlCcEnable);
     createParam(P_FofbCtrlTfsOverrideString,         asynParamUInt32Digital,        &P_FofbCtrlTfsOverride);
@@ -629,11 +609,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_FofbCtrlTxPckCntString,            asynParamUInt32Digital,        &P_FofbCtrlTxPckCnt);
     createParam(P_FofbCtrlFodProcessTimeString,      asynParamUInt32Digital,        &P_FofbCtrlFodProcessTime);
     createParam(P_FofbCtrlBpmCntString,              asynParamUInt32Digital,        &P_FofbCtrlBpmCnt);
-    createParam(P_FofbCtrlBpmIdRdbackString,         asynParamUInt32Digital,        &P_FofbCtrlBpmIdRdback);
-    createParam(P_FofbCtrlTfLengthRdbackString,      asynParamUInt32Digital,        &P_FofbCtrlTfLengthRdback);
-    createParam(P_FofbCtrlPowerdownRdbackString,     asynParamUInt32Digital,        &P_FofbCtrlPowerdownRdback);
-    createParam(P_FofbCtrlLoopbackRdbackString,      asynParamUInt32Digital,        &P_FofbCtrlLoopbackRdback);
-    createParam(P_FofbCtrlFaivalRdbackString,        asynParamUInt32Digital,        &P_FofbCtrlFaivalRdback);
     createParam(P_FofbCtrlToaRdEnString,             asynParamUInt32Digital,        &P_FofbCtrlToaRdEn);
     createParam(P_FofbCtrlToaRdStrString,            asynParamUInt32Digital,        &P_FofbCtrlToaRdStr);
     createParam(P_FofbCtrlToaDataString,             asynParamUInt32Digital,        &P_FofbCtrlToaData);
@@ -645,23 +620,22 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
      * to the parameter library */
 
     fofbHwFunc.emplace(P_RtmLampStatus,               rtmLampSetGetStatusFunc);
-    fofbHwFunc.emplace(P_RtmLampDacDataFromWb,        rtmLampSetGetDacDataFromWbFunc);
     fofbHwFunc.emplace(P_RtmLampAmpIFlagL,            rtmLampSetGetAmpIFlagLFunc);
     fofbHwFunc.emplace(P_RtmLampAmpTFlagL,            rtmLampSetGetAmpTFlagLFunc);
     fofbHwFunc.emplace(P_RtmLampAmpIFlagR,            rtmLampSetGetAmpIFlagRFunc);
     fofbHwFunc.emplace(P_RtmLampAmpTFlagR,            rtmLampSetGetAmpTFlagRFunc);
     fofbHwFunc.emplace(P_RtmLampAmpEn,                rtmLampSetGetAmpEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPIOLTriangEn,         rtmLampSetGetPIOLTriangEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPIOLSquareEn,         rtmLampSetGetPIOLSquareEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPISPSquareEn,         rtmLampSetGetPISPSquareEnFunc);
-    fofbHwFunc.emplace(P_RtmLampPIEn,                 rtmLampSetGetPIEnFunc);
-    fofbHwFunc.emplace(P_RtmLampDacData,              rtmLampSetGetDacDataFunc);
-    fofbHwFunc.emplace(P_RtmLampDacWr,                rtmLampSetGetDacWrFunc);
+    fofbHwFunc.emplace(P_RtmLampMode,                 rtmLampSetGetModeFunc);
     fofbHwFunc.emplace(P_RtmLampPIKP,                 rtmLampSetGetPIKPFunc);
     fofbHwFunc.emplace(P_RtmLampPITI,                 rtmLampSetGetPITIFunc);
     fofbHwFunc.emplace(P_RtmLampPISP,                 rtmLampSetGetPISPFunc);
-    fofbHwFunc.emplace(P_RtmLampPIOLDacCntMax,        rtmLampSetGetPIOLDacCntMaxFunc);
-    fofbHwFunc.emplace(P_RtmLampPISPLimInf,           rtmLampSetGetPISPLimInfFunc);
+    fofbHwFunc.emplace(P_RtmLampDacData,              rtmLampSetGetDacDataFunc);
+    fofbHwFunc.emplace(P_RtmLampLimA,                 rtmLampSetGetLimAFunc);
+    fofbHwFunc.emplace(P_RtmLampLimB,                 rtmLampSetGetLimBFunc);
+    fofbHwFunc.emplace(P_RtmLampCnt,                  rtmLampSetGetCntFunc);
+    fofbHwFunc.emplace(P_RtmLampEffAdc,               rtmLampSetGetEffAdcFunc);
+    fofbHwFunc.emplace(P_RtmLampEffDac,               rtmLampSetGetEffDacFunc);
+    fofbHwFunc.emplace(P_RtmLampEffSp,                rtmLampSetGetEffSpFunc);
     fofbHwFunc.emplace(P_DataTrigChan,                fofbSetGetAcqDataTrigChanFunc);
     fofbHwFunc.emplace(P_TriggerDataThres,            fofbSetGetAcqDataTrigThresFunc);
     fofbHwFunc.emplace(P_TriggerDataPol,              fofbSetGetAcqDataTrigPolFunc);
@@ -680,11 +654,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_TriggerTrnSrc,               fofbSetGetTrigTrnSrcFunc);
     fofbHwFunc.emplace(P_TriggerRcvInSel,             fofbSetGetTrigRcvSelFunc);
     fofbHwFunc.emplace(P_TriggerTrnOutSel,            fofbSetGetTrigTrnSelFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamWrite,      fofbProcessingSetGetRamWriteFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamAddr,       fofbProcessingSetGetRamAddrFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamDataIn,     fofbProcessingSetGetRamDataInFunc);
-    fofbHwFunc.emplace(P_FofbProcessingRamDataOut,    fofbProcessingSetGetRamDataOutFunc);
-    fofbHwFunc.emplace(P_FofbCtrlActPart,             fofbCtrlSetGetActPartFunc);
     fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
     fofbHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
@@ -711,11 +680,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_FofbCtrlTxPckCnt,            fofbCtrlSetGetTxPckCntFunc);
     fofbHwFunc.emplace(P_FofbCtrlFodProcessTime,      fofbCtrlSetGetFodProcessTimeFunc);
     fofbHwFunc.emplace(P_FofbCtrlBpmCnt,              fofbCtrlSetGetBpmCntFunc);
-    fofbHwFunc.emplace(P_FofbCtrlBpmIdRdback,         fofbCtrlSetGetBpmIdRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlTfLengthRdback,      fofbCtrlSetGetTfLengthRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlPowerdownRdback,     fofbCtrlSetGetPowerdownRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlLoopbackRdback,      fofbCtrlSetGetLoopbackRdbackFunc);
-    fofbHwFunc.emplace(P_FofbCtrlFaivalRdback,        fofbCtrlSetGetFaivalRdbackFunc);
     fofbHwFunc.emplace(P_FofbCtrlToaRdEn,             fofbCtrlSetGetToaRdEnFunc);
     fofbHwFunc.emplace(P_FofbCtrlToaRdStr,            fofbCtrlSetGetToaRdStrFunc);
     fofbHwFunc.emplace(P_FofbCtrlToaData,             fofbCtrlSetGetToaDataFunc);
@@ -744,31 +708,26 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     setUIntDigitalParam(P_MonitPollTime,                      4,              0xFFFFFFFF); // 4ms = 250 Hz
     setIntegerParam(P_MonitEnable,                                                     0); // Disable by default
 
-    setIntegerParam(    P_FOFBStatus,                                     FOFBStatusIdle);
+    setIntegerParam(P_FOFBStatus,                                         FOFBStatusIdle);
 
     setUIntDigitalParam(P_RtmLampStatus,                      0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampDacDataFromWb,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPIOLDacCntMax,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_RtmLampPISPLimInf,                  0,              0xFFFFFFFF);
-
-    for (int addr = 0; addr < NUM_ACQ_CORES_PER_FOFB; ++addr) {
-        setUIntDigitalParam(addr, P_RtmLampAmpEn,             0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIOLTriangEn,      0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIOLSquareEn,      0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPISPSquareEn,      0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIEn,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampDacData,           0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampDacWr,             0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPIKP,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPITI,              0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_RtmLampPISP,              0,              0xFFFFFFFF);
-    }
-
     for (int addr = 0; addr < MAX_RTM_LAMP_CHANNELS; ++addr) {
         setUIntDigitalParam(addr, P_RtmLampAmpIFlagL,         0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampAmpTFlagL,         0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampAmpIFlagR,         0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_RtmLampAmpTFlagR,         0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampAmpEn,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampMode,              0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampPIKP,              0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_RtmLampPITI,              0,              0xFFFFFFFF);
+        setIntegerParam(    addr, P_RtmLampPISP,              0);
+        setIntegerParam(    addr, P_RtmLampDacData,           0);
+        setIntegerParam(    addr, P_RtmLampLimA,              0);
+        setIntegerParam(    addr, P_RtmLampLimB,              0);
+        setUIntDigitalParam(addr, P_RtmLampCnt,               0,              0xFFFFFFFF);
+        setIntegerParam(    addr, P_RtmLampEffAdc,            0);
+        setIntegerParam(    addr, P_RtmLampEffDac,            0);
+        setIntegerParam(    addr, P_RtmLampEffSp,             0);
     }
 
     /* Set acquisition parameters */
@@ -831,49 +790,42 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
 
-    setUIntDigitalParam(P_FofbProcessingRamWrite,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbProcessingRamAddr,              0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbProcessingRamDataIn,            0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbProcessingRamDataOut,           0,              0xFFFFFFFF);
-
-    setUIntDigitalParam(P_FofbCtrlActPart,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlBpmId,                      0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTimeFrameLen,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlMgtPowerdown,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlMgtLoopback,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTimeFrameDly,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlGoldenOrbX,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlGoldenOrbY,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlCustFeature,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRxPolarity,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlPayloadsel,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFofbdatasel,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFirmwareVer,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlSysStatus,                  0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlLinkPartner,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlLinkUp,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTimeFrameCount,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlHardErrCnt,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlSoftErrCnt,                 0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFrameErrCnt,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRxPckCnt,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTxPckCnt,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFodProcessTime,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlBpmCnt,                     0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlBpmIdRdback,                0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlTfLengthRdback,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlPowerdownRdback,            0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlLoopbackRdback,             0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlFaivalRdback,               0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlToaRdEn,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlToaRdStr,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlToaData,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRcbRdEn,                    0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
-    setUIntDigitalParam(P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
+    for (int addr: {0, 8}) {
+        setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlBpmId,                      0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameLen,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlMgtPowerdown,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlMgtLoopback,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameDly,               0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbX,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbY,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlCustFeature,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRxPolarity,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlPayloadsel,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFofbdatasel,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFirmwareVer,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlSysStatus,                  0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlLinkUp,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTimeFrameCount,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFodProcessTime,             0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlBpmCnt,                     0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaRdEn,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaRdStr,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlToaData,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbRdEn,                    0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbRdStr,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRcbData,                    0,              0xFFFFFFFF);
+    }
+    for (int addr = 0; addr < NUM_FOFB_CC_CORES_PER_FOFB * NUM_FOFB_CC_CHANNELS_PER_FOFB_CC; addr++) {
+        setUIntDigitalParam(addr, P_FofbCtrlLinkPartner,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlHardErrCnt,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlSoftErrCnt,                 0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlFrameErrCnt,                0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlRxPckCnt,                   0,              0xFFFFFFFF);
+        setUIntDigitalParam(addr, P_FofbCtrlTxPckCnt,                   0,              0xFFFFFFFF);
+    }
 
     /* Write to HW */
     for (int trig_core = 0; trig_core < NUM_TRIG_CORES_PER_FOFB; ++trig_core) {
@@ -2541,6 +2493,50 @@ asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     return status;
 }
 
+asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements)
+{
+    const int function = pasynUser->reason;
+
+    if (function == P_RefOrbit) {
+        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+        memcpy(refOrbit, value, to_write * sizeof *value);
+
+        /* TODO: Plug in HALCS:
+         * - write refOrbit to hardware
+         * - read new values from hardware into refOrbit */
+
+        /* send new values to -RB PV; we only support addr 0 here */
+        doCallbacksInt32Array(refOrbit, to_write, function, 0);
+
+        return asynSuccess;
+    } else {
+        return asynNDArrayDriver::writeInt32Array(pasynUser, value, nElements);
+    }
+}
+
+asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, size_t nElements)
+{
+    const int function = pasynUser->reason;
+    int addr;
+    getAddress(pasynUser, &addr);
+
+    if (function == P_FofbCoeff && addr < MAX_RTM_LAMP_CHANNELS) {
+        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+        memcpy(fofbCoeff[addr], value, to_write * sizeof *value);
+
+        /* TODO: Plug in HALCS:
+         * - write fofbCoeff[addr] to hardware
+         * - read new values from hardware into fofbCoeff[addr] */
+
+        /* send new values to -RB PV */
+        doCallbacksFloat32Array(fofbCoeff[addr], to_write, function, addr);
+
+        return asynSuccess;
+    } else {
+        return asynNDArrayDriver::writeFloat32Array(pasynUser, value, nElements);
+    }
+}
+
 /********************************************************************/
 /************ Function Mapping Overloaded Write functions ***********/
 /********************************************************************/
@@ -2625,6 +2621,11 @@ asynStatus drvFOFB::executeHwWriteFunction(int functionId, int addr,
 
     /* Execute overloaded function for each function type we know of */
     status = func->second.executeHwWrite(*this, service, addr, functionParam);
+
+    if (status == asynSuccess && streq(funcService, "FOFB_CTRL")) {
+        /* Force hardware to read and apply parameter change */
+        halcs_set_fofb_ctrl_act_part(fofbClient, service, 1);
+    }
 
 get_reg_func_err:
 get_service_err:
@@ -2869,7 +2870,7 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *s
     halcs_client_err_e err = HALCS_CLIENT_SUCCESS;
     char serviceChanStr[SERVICE_NAME_SIZE];
     int status = asynSuccess;
-    epicsUInt32 serviceChan = 0;
+    epicsUInt32 serviceChan = 0, tmp = 0;
 
     /* Create full service name*/
     status = getFullServiceName (this->fofbNumber, addr, func.serviceName,
@@ -2885,7 +2886,8 @@ asynStatus drvFOFB::doExecuteHwReadFunction(functionsUInt32Chan_t &func, char *s
     getServiceChan (this->fofbNumber, addr, func.serviceName, &serviceChan);
 
     /* Execute registered function */
-    err = func.read(fofbClient, serviceChanStr, serviceChan, &functionParam.argUInt32);
+    err = func.read(fofbClient, serviceChanStr, serviceChan, &tmp);
+    functionParam.argUInt32 = tmp;
     if (err != HALCS_CLIENT_SUCCESS) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: failure executing read function for service %s\n",
@@ -3064,6 +3066,8 @@ asynStatus drvFOFB::setParam32(int functionId, epicsUInt32 mask, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+    /* Read parameter back from HW to update paramList */
+    updateUInt32Params(0xFFFFFFFF, addr, functionId, functionId, false);
 
 get_param_err:
     return (asynStatus)status;
@@ -3120,6 +3124,8 @@ asynStatus drvFOFB::setParamInteger(int functionId, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+    /* Read parameter back from HW to update paramList */
+    updateIntegerParams(addr, functionId, functionId, false);
 
 get_param_err:
     return (asynStatus)status;
@@ -3174,6 +3180,8 @@ asynStatus drvFOFB::setParamDouble(int functionId, int addr)
     }
 
     status = executeHwWriteFunction(functionId, addr, functionArgs);
+    /* Read parameter back from HW to update paramList */
+    updateDoubleParams(addr, functionId, functionId, false);
 
 get_param_err:
     return status;

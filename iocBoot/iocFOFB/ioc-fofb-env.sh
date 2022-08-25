@@ -6,8 +6,6 @@ export EPICS_CA_MAX_ARRAY_BYTES=50000000
 export PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/epics/base/bin/linux-x86_64
 export EPICS_RTM_SECTION_PREFIX=SI-$1
 
-
-
 # --- CRATE 1 ---
 
 # Crate 1 - FOFB slot 1 - XX-01SL01RaBPM:BS-FOFBCtrl

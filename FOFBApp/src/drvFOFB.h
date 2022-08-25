@@ -31,6 +31,13 @@ using linb::bad_any_cast;
 #define MAX_ARRAY_POINTS              200000
 #define FOFB_TIMEOUT                  1.0
 
+/* We have two DCC cores, and therefore two FOFB_CC cores to control them:
+ * - FMC core (0)
+ * - P2P core (1) */
+#define NUM_FOFB_CC_CORES_PER_FOFB 2
+/* We have 8 channels on each FOFB_CC register set */
+#define NUM_FOFB_CC_CHANNELS_PER_FOFB_CC 8
+
 typedef enum {
     FOFBIDReg = 0,
     FOFBIDEnd,
@@ -110,7 +117,7 @@ typedef enum {
  * Triggers, from either ACQ core */
 #define MAX_TRIGGERS_ALL_ACQ        (NUM_ACQ_CORES_PER_FOFB*MAX_TRIGGERS)
 /* Get the greater between them */
-#define MAX_ADDR                    MAX(MAX_WAVEFORMS,MAX_TRIGGERS_ALL_ACQ)
+#define MAX_ADDR                    MAX(MAX_WAVEFORMS, MAX(MAX_TRIGGERS_ALL_ACQ, NUM_FOFB_CC_CORES_PER_FOFB * NUM_FOFB_CC_CHANNELS_PER_FOFB_CC))
 /* Number of Monitoring waveforms */
 #define MAX_MONIT_DATA              10
 
@@ -183,6 +190,7 @@ typedef enum {
 #define FOFB_NUMBER_MAX               MAX_FOFBS
 
 #define MAX_RTM_LAMP_CHANNELS         12
+#define NUM_FOFB_COEFF                320
 
 /* FOFB Channel structure */
 typedef struct {
@@ -372,24 +380,23 @@ private:
 /* These are the drvInfo strings that are used to identify the parameters.
  * They are used by asyn clients, including standard asyn device support */
 
-#define P_RtmLampStatusString                   "RTMLAMP_OHWR_STA"                          /* asynUInt32Digital,      r/o */
-#define P_RtmLampDacDataFromWbString            "RTMLAMP_OHWR_CTL_DAC_DATA_FROM_WB"         /* asynUInt32Digital,      r/w */
-#define P_RtmLampAmpIFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_L"         /* asynUInt32Digital,      r/o */
-#define P_RtmLampAmpTFlagLString                "RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_L"         /* asynUInt32Digital,      r/o */
-#define P_RtmLampAmpIFlagRString                "RTMLAMP_OHWR_CH_0_STA_AMP_IFLAG_R"         /* asynUInt32Digital,      r/o */
-#define P_RtmLampAmpTFlagRString                "RTMLAMP_OHWR_CH_0_STA_AMP_TFLAG_R"         /* asynUInt32Digital,      r/o */
-#define P_RtmLampAmpEnString                    "RTMLAMP_OHWR_CH_0_CTL_AMP_EN"              /* asynUInt32Digital,      r/w */
-#define P_RtmLampPIOLTriangEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_OL_TRIANG_ENABLE" /* asynUInt32Digital,      r/w */
-#define P_RtmLampPIOLSquareEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_OL_SQUARE_ENABLE" /* asynUInt32Digital,      r/w */
-#define P_RtmLampPISPSquareEnString             "RTMLAMP_OHWR_CH_0_CTL_PI_SP_SQUARE_ENABLE" /* asynUInt32Digital,      r/w */
-#define P_RtmLampPIEnString                     "RTMLAMP_OHWR_CH_0_CTL_PI_ENABLE"           /* asynUInt32Digital,      r/w */
-#define P_RtmLampDacDataString                  "RTMLAMP_OHWR_CH_0_DAC_DATA"                /* asynUInt32Digital,      r/w */
-#define P_RtmLampDacWrString                    "RTMLAMP_OHWR_CH_0_DAC_WR"                  /* asynUInt32Digital,      r/w */
-#define P_RtmLampPIKPString                     "RTMLAMP_OHWR_CH_0_PI_KP_DATA"              /* asynUInt32Digital,      r/w */
-#define P_RtmLampPITIString                     "RTMLAMP_OHWR_CH_0_PI_TI_DATA"              /* asynUInt32Digital,      r/w */
-#define P_RtmLampPISPString                     "RTMLAMP_OHWR_CH_0_PI_SP_DATA"              /* asynUInt32Digital,      r/w */
-#define P_RtmLampPIOLDacCntMaxString            "RTMLAMP_OHWR_PI_OL_DAC_CNT_MAX_DATA"       /* asynUInt32Digital,      r/w */
-#define P_RtmLampPISPLimInfString               "RTMLAMP_OHWR_PI_SP_LIM_INF_DATA"           /* asynUInt32Digital,      r/w */
+#define P_RtmLampStatusString                   "WB_RTMLAMP_OHWR_STA"                       /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpIFlagLString                "WB_RTMLAMP_OHWR_CH_STA_AMP_IFLAG_L"        /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpTFlagLString                "WB_RTMLAMP_OHWR_CH_STA_AMP_TFLAG_L"        /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpIFlagRString                "WB_RTMLAMP_OHWR_CH_STA_AMP_IFLAG_R"        /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpTFlagRString                "WB_RTMLAMP_OHWR_CH_STA_AMP_TFLAG_R"        /* asynUInt32Digital,      r/o */
+#define P_RtmLampAmpEnString                    "WB_RTMLAMP_OHWR_CH_CTL_AMP_EN"             /* asynUInt32Digital,      r/w */
+#define P_RtmLampModeString                     "WB_RTMLAMP_OHWR_CH_CTL_MODE"               /* asynUInt32Digital,      r/w */
+#define P_RtmLampPIKPString                     "WB_RTMLAMP_OHWR_CH_PI_KP_DATA"             /* asynUInt32Digital,      r/w */
+#define P_RtmLampPITIString                     "WB_RTMLAMP_OHWR_CH_PI_TI_DATA"             /* asynUInt32Digital,      r/w */
+#define P_RtmLampPISPString                     "WB_RTMLAMP_OHWR_CH_PI_SP_DATA"             /* asynUInt32Digital,      r/w */
+#define P_RtmLampDacDataString                  "WB_RTMLAMP_OHWR_CH_DAC_DATA"               /* asynUInt32Digital,      r/w */
+#define P_RtmLampLimAString                     "WB_RTMLAMP_OHWR_CH_LIM_A"                  /* asynUInt32Digital,      r/w */
+#define P_RtmLampLimBString                     "WB_RTMLAMP_OHWR_CH_LIM_B"                  /* asynUInt32Digital,      r/w */
+#define P_RtmLampCntString                      "WB_RTMLAMP_OHWR_CH_CNT_DATA"               /* asynUInt32Digital,      r/w */
+#define P_RtmLampEffAdcString                   "WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_ADC"        /* asynUInt32Digital,      r/o */
+#define P_RtmLampEffDacString                   "WB_RTMLAMP_OHWR_CH_ADC_DAC_EFF_DAC"        /* asynUInt32Digital,      r/o */
+#define P_RtmLampEffSpString                    "WB_RTMLAMP_OHWR_CH_SP_EFF_SP"              /* asynUInt32Digital,      r/o */
 #define P_AdcRateString                         "INFO_ADCRATE"                              /* asynUInt32Digital,      r/o */
 #define P_TbtRateString                         "INFO_TBTRATE"                              /* asynUInt32Digital,      r/o */
 #define P_FofbRateString                        "INFO_FOFBRATE"                             /* asynUInt32Digital,      r/o */
@@ -429,11 +436,6 @@ private:
 #define P_TriggerTrnSrcString                   "TRIGGER_TRN_SRC"                           /* asynUInt32Digital,      r/w */
 #define P_TriggerRcvInSelString                 "TRIGGER_RCV_IN_SEL"                        /* asynUInt32Digital,      r/w */
 #define P_TriggerTrnOutSelString                "TRIGGER_TRN_OUT_SEL"                       /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamWriteString          "FOFB_PROCESSING_RAM_WRITE"                 /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamAddrString           "FOFB_PROCESSING_RAM_ADDR"                  /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamDataInString         "FOFB_PROCESSING_RAM_DATA_IN"               /* asynUInt32Digital,      r/w */
-#define P_FofbProcessingRamDataOutString        "FOFB_PROCESSING_RAM_DATA_OUT"              /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlActPartString                 "FOFB_CC_CFG_VAL_ACT_PART"                  /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlErrClrString                  "FOFB_CC_CFG_VAL_ERR_CLR"                   /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlCcEnableString                "FOFB_CC_CFG_VAL_CC_ENABLE"                 /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlTfsOverrideString             "FOFB_CC_CFG_VAL_TFS_OVERRIDE"              /* asynUInt32Digital,      r/w */
@@ -460,11 +462,6 @@ private:
 #define P_FofbCtrlTxPckCntString                "FOFB_CC_TX_PCK_CNT_1"                      /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlFodProcessTimeString          "FOFB_CC_FOD_PROCESS_TIME"                  /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlBpmCntString                  "FOFB_CC_BPM_COUNT"                         /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlBpmIdRdbackString             "FOFB_CC_BPM_ID_RDBACK"                     /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlTfLengthRdbackString          "FOFB_CC_TF_LENGTH_RDBACK"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlPowerdownRdbackString         "FOFB_CC_POWERDOWN_RDBACK"                  /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlLoopbackRdbackString          "FOFB_CC_LOOPBACK_RDBACK"                   /* asynUInt32Digital,      r/o */
-#define P_FofbCtrlFaivalRdbackString            "FOFB_CC_FAIVAL_RDBACK"                     /* asynUInt32Digital,      r/o */
 #define P_FofbCtrlToaRdEnString                 "FOFB_CC_TOA_CTL_RD_EN"                     /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlToaRdStrString                "FOFB_CC_TOA_CTL_RD_STR"                    /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlToaDataString                 "FOFB_CC_TOA_DATA_VAL"                      /* asynUInt32Digital,      r/o */
@@ -492,6 +489,9 @@ class drvFOFB : public asynNDArrayDriver {
         virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
         virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
         virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
+
+        virtual asynStatus writeFloat32Array(asynUser *, epicsFloat32 *, size_t);
+        virtual asynStatus writeInt32Array(asynUser *, epicsInt32 *, size_t);
 
         /* These methods are overwritten from asynPortDriver */
         virtual asynStatus connect(asynUser* pasynUser);
@@ -576,23 +576,22 @@ class drvFOFB : public asynNDArrayDriver {
 
         int P_RtmLampStatus;
         #define FIRST_COMMAND P_RtmLampStatus
-        int P_RtmLampDacDataFromWb;
         int P_RtmLampAmpIFlagL;
         int P_RtmLampAmpTFlagL;
         int P_RtmLampAmpIFlagR;
         int P_RtmLampAmpTFlagR;
         int P_RtmLampAmpEn;
-        int P_RtmLampPIOLTriangEn;
-        int P_RtmLampPIOLSquareEn;
-        int P_RtmLampPISPSquareEn;
-        int P_RtmLampPIEn;
-        int P_RtmLampDacData;
-        int P_RtmLampDacWr;
+        int P_RtmLampMode;
         int P_RtmLampPIKP;
         int P_RtmLampPITI;
         int P_RtmLampPISP;
-        int P_RtmLampPIOLDacCntMax;
-        int P_RtmLampPISPLimInf;
+        int P_RtmLampDacData;
+        int P_RtmLampLimA;
+        int P_RtmLampLimB;
+        int P_RtmLampCnt;
+        int P_RtmLampEffAdc;
+        int P_RtmLampEffDac;
+        int P_RtmLampEffSp;
         int P_FOFBStatus;
         int P_AdcRate;
         int P_TbtRate;
@@ -632,11 +631,8 @@ class drvFOFB : public asynNDArrayDriver {
         int P_TriggerTrnSrc;
         int P_TriggerRcvInSel;
         int P_TriggerTrnOutSel;
-        int P_FofbProcessingRamWrite;
-        int P_FofbProcessingRamAddr;
-        int P_FofbProcessingRamDataIn;
-        int P_FofbProcessingRamDataOut;
-        int P_FofbCtrlActPart;
+        int P_RefOrbit;
+        int P_FofbCoeff;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;
         int P_FofbCtrlTfsOverride;
@@ -663,11 +659,6 @@ class drvFOFB : public asynNDArrayDriver {
         int P_FofbCtrlTxPckCnt;
         int P_FofbCtrlFodProcessTime;
         int P_FofbCtrlBpmCnt;
-        int P_FofbCtrlBpmIdRdback;
-        int P_FofbCtrlTfLengthRdback;
-        int P_FofbCtrlPowerdownRdback;
-        int P_FofbCtrlLoopbackRdback;
-        int P_FofbCtrlFaivalRdback;
         int P_FofbCtrlToaRdEn;
         int P_FofbCtrlToaRdStr;
         int P_FofbCtrlToaData;
@@ -678,10 +669,10 @@ class drvFOFB : public asynNDArrayDriver {
 
     private:
         /* Our data */
-        halcs_client_t *fofbClient;
-        halcs_client_t *fofbClientMonit;
-        acq_client_t *fofbClientAcqParam[NUM_ACQ_CORES_PER_FOFB];
-        acq_client_t *fofbClientAcq[NUM_ACQ_CORES_PER_FOFB];
+        halcs_client_t *fofbClient = nullptr;
+        halcs_client_t *fofbClientMonit = nullptr;
+        acq_client_t *fofbClientAcqParam[NUM_ACQ_CORES_PER_FOFB] = {};
+        acq_client_t *fofbClientAcq[NUM_ACQ_CORES_PER_FOFB] = {};
         char *endpoint;
         int fofbNumber;
         int fofbMaxPoints;
@@ -697,6 +688,9 @@ class drvFOFB : public asynNDArrayDriver {
         epicsEventId activeAcqEventId[NUM_ACQ_CORES_PER_FOFB];
         epicsEventId activeMonitEnableEventId;
         std::unordered_map<int, functionsAny_t> fofbHwFunc;
+
+        epicsInt32 refOrbit[NUM_FOFB_COEFF] = {};
+        epicsFloat32 fofbCoeff[MAX_RTM_LAMP_CHANNELS][NUM_FOFB_COEFF] = {};
 
         /* Our private methods */
 

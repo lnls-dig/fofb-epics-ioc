@@ -22,14 +22,14 @@ fs                        = 1/940e-9                 # frequency for PSD calc
 samples                   = 10000                    # number of samples for acquisition
 channels                  = 12                       # number of channels (max 12, 8 actually in use)
 pi_kp                     = 5000000                  # PI Kp parameter
-pi_ti                     = 300                      # PI Ti parameter
+pi_ti                     = 2000                     # PI Ti parameter
 crate_number              = sys.argv[1]              # crate number (two digits)
 slot_number               = sys.argv[2]              # slot number (physical_slot*2-1 = two digits)
 current_gain              = 6.25e-5                  # initial value for current gain
 voltage_gain              = 1.12916762036e-4         # initial value for voltage gain
 current_offset            = 0                        # initial value for current offset
 voltage_offset            = 0                        # initial value for voltage offset
-dac_cnt_max               = 125000                   # 2ms
+dac_cnt_max               = 99999                    # 2ms
 
 # PV prefixes
 
@@ -59,8 +59,6 @@ prefix_rtm = [prefix_rtmch00, prefix_rtmch01, prefix_rtmch02, prefix_rtmch03, pr
 pv_acq_trigger_rep        = str(prefix_fofb) + str("ACQTriggerRep-Sel")
 pv_acq_trigger_event      = str(prefix_fofb) + str("ACQTriggerEvent-Sel")
 pv_acq_samples_pre        = str(prefix_fofb) + str("ACQSamplesPre-SP")
-pv_setpoint_inf           = str(prefix_fofb) + str("TestLowLim-SP")
-pv_dac_cnt_max            = str(prefix_fofb) + str("TestPIDacCntMax-SP")
 
 # PVs per channel
 
@@ -69,13 +67,15 @@ pv_current_gain           = []
 pv_voltage_gain           = []
 pv_current_offset         = []
 pv_voltage_offset         = []
+pv_rtm_mode               = []
 pv_current_setpoint       = []
 pv_amp_enable             = []
-pv_pi_enable              = []
 pv_pi_kp                  = []
 pv_pi_ti                  = []
-pv_square_wave_openloop   = []
-pv_test_high_lim          = []
+pv_test_cnt               = []
+pv_test_lim_a             = []
+pv_test_lim_b             = []
+pv_alarmsamp_cte          = []
 
 # getting lists of PV names, so we can reutilize them in all tests
 
@@ -87,13 +87,15 @@ for pv_prefix in prefix_rtm:
   pv_voltage_gain.append(        str(pv_prefix)   + str("VoltGain")           + str("-SP"))
   pv_current_offset.append(      str(pv_prefix)   + str("CurrOffset")         + str("-SP"))
   pv_voltage_offset.append(      str(pv_prefix)   + str("VoltOffset")         + str("-SP"))
+  pv_rtm_mode.append(            str(pv_prefix)   + str("OpMode")             + str("-Sel"))
   pv_current_setpoint.append(    str(pv_prefix)   + str("Current")            + str("-SP"))
-  pv_test_high_lim.append(       str(pv_prefix)   + str("TestHighLim")        + str("-SP"))
   pv_amp_enable.append(          str(pv_prefix)   + str("PwrState")           + str("-Sel"))
-  pv_pi_enable.append(           str(pv_prefix)   + str("CtrlLoop")           + str("-Sel"))
   pv_pi_kp.append(               str(pv_prefix)   + str("CtrlLoopKp")         + str("-SP"))
   pv_pi_ti.append(               str(pv_prefix)   + str("CtrlLoopTi")         + str("-SP"))
-  pv_square_wave_openloop.append(str(pv_prefix)   + str("TestOpenLoopSquare") + str("-Sel"))
+  pv_test_cnt.append(            str(pv_prefix)   + str("TestWavePeriod")     + str("-SP"))
+  pv_test_lim_a.append(          str(pv_prefix)   + str("TestLimA")           + str("-SP"))
+  pv_test_lim_b.append(          str(pv_prefix)   + str("TestLimB")           + str("-SP"))
+  pv_alarmsamp_cte.append(pv_prefix + "AlarmsAmp-Cte")
 
 print('\n')
 print('         # # # # # # # # # # # # # # # # # # # # # # # # # #')
@@ -109,6 +111,13 @@ print('>>> Set initial values for gain, offset, PI Kp and PI Ti ...')
 
 # initializing some PVs with default values
 
+alarmsamp_names = [
+  "amplifier left overcurrent flag",
+  "amplifier left overtemperature flag",
+  "amplifier right overcurrent flag",
+  "amplifier right overtemperature flag"
+]
+
 for i in range(0, channels):
   PV(pv_current_gain[i]).put(current_gain,     wait=True)
   PV(pv_current_offset[i]).put(current_offset, wait=True)
@@ -116,24 +125,28 @@ for i in range(0, channels):
   PV(pv_voltage_offset[i]).put(voltage_offset, wait=True)
   PV(pv_pi_kp[i]).put(pi_kp,                   wait=True)
   PV(pv_pi_ti[i]).put(pi_ti,                   wait=True)
+  PV(pv_rtm_mode[i]).put("open_loop_manual",   wait=True)
   PV(pv_amp_enable[i]).put(0,                  wait=True)
-  PV(pv_pi_enable[i]).put(0,                   wait=True)
-  PV(pv_square_wave_openloop[i]).put(0,        wait=True)
+  PV(pv_alarmsamp_cte[i]).put(alarmsamp_names, wait=True)
 
 print('>>> Set initial values for gain, offset, PI Kp and PI Ti... Done!\n')
 
-print('>>> Set the period for 10ms...')
+# divide (dac_cnt_max+1) by clock frequency and multiply by 2*1000
+# to get total period in milieconds
+dac_cnt_max_ms = (dac_cnt_max+1) / 100e6 * 2e3
+print('>>> Set the period for ' + str(dac_cnt_max_ms) + 'ms...')
 
-PV(pv_dac_cnt_max).put(dac_cnt_max, wait=True)
+for i in range(0, channels):
+  PV(pv_test_cnt[i]).put(dac_cnt_max, wait=True)
 
-print('>>> Set the period for 10ms... Done!\n')
+print('>>> Set the period for ' + str(dac_cnt_max_ms) + 'ms... Done!\n')
 
 print('>>> Set zero for the current setpoints...')
 
 for i in range(0, channels):
-    PV(pv_current_setpoint[i]).put(0, wait=True)
-    PV(pv_test_high_lim[i]).put(0,    wait=True)
-PV(pv_setpoint_inf).put(0,            wait=True)
+  PV(pv_current_setpoint[i]).put(0, wait=True)
+  PV(pv_test_lim_a[i]).put(0,       wait=True)
+  PV(pv_test_lim_b[i]).put(0,       wait=True)
 
 print('>>> Set zero for the current setpoints... Done!')
 

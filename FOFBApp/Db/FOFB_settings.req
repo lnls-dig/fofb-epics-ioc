@@ -31,28 +31,28 @@ file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=22, TRIGGER_NA
 file "FOFBTrigger_settings.req",     P=$(P), R=$(R), TRIGGER_CHAN=23, TRIGGER_NAME=TRIGGER
 
 # RTM LAMP
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCH:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCV:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCH:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCV:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCH:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCV:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCH:, GAIN=CurrGain, OFFSET=CurrOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCV:, GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCV:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCV:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCV:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCH:,  GAIN=CurrGain, OFFSET=CurrOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCV:,  GAIN=CurrGain, OFFSET=CurrOffset
 
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC08:, GAIN=CurrGain, OFFSET=CurrOffset
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC09:, GAIN=CurrGain, OFFSET=CurrOffset
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC10:, GAIN=CurrGain, OFFSET=CurrOffset
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC11:, GAIN=CurrGain, OFFSET=CurrOffset
 
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCH:, GAIN=VoltGain, OFFSET=VoltOffset
-file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCV:, GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M1:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=M2:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C2:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCH:,  GAIN=VoltGain, OFFSET=VoltOffset
+file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=C3:PS-FCV:,  GAIN=VoltGain, OFFSET=VoltOffset
 
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC08:, GAIN=VoltGain, OFFSET=VoltOffset
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC09:, GAIN=VoltGain, OFFSET=VoltOffset
@@ -60,16 +60,7 @@ file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC10:, GAIN=
 file "FOFBRtm_settings.req", P=$(P), R=$(R), S=$(S), RTM_CHAN=XX:PS-FC11:, GAIN=VoltGain, OFFSET=VoltOffset
 
 # FOFB CTRL
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH0
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH1
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH2
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH3
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH4
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH5
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH6
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH7
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH8
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH9
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH10
-file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CHAN=CH11
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=DCCFMC
+file "FOFBCtrl_settings.req", P=$(P), R=$(R), FOFB_CC=DCCP2P
 
+file "RefOrbit.req", P=$(P), R=$(R)
