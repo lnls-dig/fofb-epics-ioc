@@ -2554,9 +2554,15 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
 
         /* write this->fofbCoeff[addr] to hardware */
         // floating-point to fixed-point conversion
-        for(uint32_t i = 0; i < NUM_FOFB_COEFF; i++) {
+        for(uint32_t i = 0; i < NUM_FOFB_COEFF/2; i++) {
+            // x coeffs: lower SRAM half
             fixed_point_coeffs_sp.data[i] =
                 (uint32_t)(this->fofbCoeff[addr][i]*(1 << fixed_point_pos));
+            // y coeffs: upper SRAM half
+            fixed_point_coeffs_sp.data[
+                FOFB_PROCESSING_MAX_NUM_OF_COEFFS/2 + i] =
+                    (uint32_t)(this->fofbCoeff[addr][i + NUM_FOFB_COEFF/2]*
+                        (1 << fixed_point_pos));
         }
 
         err = halcs_fofb_processing_coeff_ram_bank_write(this->fofbClient,
@@ -2578,10 +2584,16 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
             goto err_halcs_failed;
         } else {
             // fixed-point to floating-point conversion
-            for(uint32_t i = 0; i < NUM_FOFB_COEFF; i++) {
+            for(uint32_t i = 0; i < NUM_FOFB_COEFF/2; i++) {
+                // x coeffs: lower SRAM half
                 this->fofbCoeff[addr][i] =
                     (((float)((int)fixed_point_coeffs_rb.data[i]))/
-                    (float)(1 << fixed_point_pos));
+                        (float)(1 << fixed_point_pos));
+                // y coeffs: upper SRAM half
+                this->fofbCoeff[addr][NUM_FOFB_COEFF/2 + i] =
+                    (((float)((int)fixed_point_coeffs_rb.data[
+                        FOFB_PROCESSING_MAX_NUM_OF_COEFFS/2 + i]))/
+                            (float)(1 << fixed_point_pos));
             }
 
             /* send new values to -RB PV */
