@@ -2544,11 +2544,11 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
         }
 
         /* getting fixed-point position from hw */
-        err = halcs_get_fofb_processing_fixed_point_pos(this->fofbClient,
+        err = halcs_get_fofb_processing_coeffs_fixed_point_pos(this->fofbClient,
             service, &fixed_point_pos);
         if(err != HALCS_CLIENT_SUCCESS) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "halcs_get_fofb_processing_fixed_point_pos failed\n");
+                "halcs_get_fofb_processing_coeffs_fixed_point_pos failed\n");
             goto err_halcs_failed;
         }
 
@@ -2560,26 +2560,26 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
                 (uint32_t)(this->fofbCoeff[addr][i]*(1 << fixed_point_pos));
             // y coeffs: upper SRAM half
             fixed_point_coeffs_sp.data[
-                FOFB_PROCESSING_MAX_NUM_OF_COEFFS/2 + i] =
+                FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2 + i] =
                     (uint32_t)(this->fofbCoeff[addr][i + NUM_FOFB_COEFF/2]*
                         (1 << fixed_point_pos));
         }
 
-        err = halcs_fofb_processing_coeff_ram_bank_write(this->fofbClient,
+        err = halcs_fofb_processing_coeffs_ram_bank_write(this->fofbClient,
             service, addr, fixed_point_coeffs_sp);
         if(err != HALCS_CLIENT_SUCCESS) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "halcs_fofb_processing_coeff_ram_bank_write failed\n");
+                "halcs_fofb_processing_coeffs_ram_bank_write failed\n");
             status = asynError;
             goto err_halcs_failed;
         }
 
         /* read new values from hardware into this->fofbCoeff[addr] */
-        err = halcs_fofb_processing_coeff_ram_bank_read(this->fofbClient,
+        err = halcs_fofb_processing_coeffs_ram_bank_read(this->fofbClient,
             service, addr, &fixed_point_coeffs_rb);
         if(err != HALCS_CLIENT_SUCCESS) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-                "halcs_fofb_processing_coeff_ram_bank_read failed\n");
+                "halcs_fofb_processing_coeffs_ram_bank_read failed\n");
             status = asynError;
             goto err_halcs_failed;
         } else {
@@ -2592,7 +2592,7 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
                 // y coeffs: upper SRAM half
                 this->fofbCoeff[addr][NUM_FOFB_COEFF/2 + i] =
                     (((float)((int)fixed_point_coeffs_rb.data[
-                        FOFB_PROCESSING_MAX_NUM_OF_COEFFS/2 + i]))/
+                        FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2 + i]))/
                             (float)(1 << fixed_point_pos));
             }
 
