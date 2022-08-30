@@ -2516,22 +2516,95 @@ asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size
 
 asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, size_t nElements)
 {
+    asynStatus status = asynSuccess;
+    const char *functionName = "writeFloat32Array";
     const int function = pasynUser->reason;
     int addr;
+
     getAddress(pasynUser, &addr);
 
     if (function == P_FofbCoeff && addr < MAX_RTM_LAMP_CHANNELS) {
         size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
         memcpy(fofbCoeff[addr], value, to_write * sizeof *value);
 
-        /* TODO: Plug in HALCS:
-         * - write fofbCoeff[addr] to hardware
-         * - read new values from hardware into fofbCoeff[addr] */
+        halcs_client_err_e err;
+        char service[SERVICE_NAME_SIZE];
+        uint32_t fixed_point_pos;
+        smio_fofb_processing_data_block_t fixed_point_coeffs_sp = {0},
+            fixed_point_coeffs_rb = {0};
 
-        /* send new values to -RB PV */
-        doCallbacksFloat32Array(fofbCoeff[addr], to_write, function, addr);
+        /* get malamute service name */
+        status = this->getFullServiceName(this->fofbNumber, addr,
+            "FOFB_PROCESSING", service, sizeof(service));
+        if(status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            goto err_get_full_service_name;
+        }
 
-        return asynSuccess;
+        /* getting fixed-point position from hw */
+        err = halcs_get_fofb_processing_fixed_point_pos(this->fofbClient,
+            service, &fixed_point_pos);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_get_fofb_processing_fixed_point_pos failed\n");
+            goto err_halcs_failed;
+        }
+
+        /* write this->fofbCoeff[addr] to hardware */
+        // floating-point to fixed-point conversion
+        for(uint32_t i = 0; i < NUM_FOFB_COEFF/2; i++) {
+            // x coeffs: lower SRAM half
+            fixed_point_coeffs_sp.data[i] =
+                (uint32_t)(this->fofbCoeff[addr][i]*(1 << fixed_point_pos));
+            // y coeffs: upper SRAM half
+            fixed_point_coeffs_sp.data[
+                FOFB_PROCESSING_MAX_NUM_OF_COEFFS/2 + i] =
+                    (uint32_t)(this->fofbCoeff[addr][i + NUM_FOFB_COEFF/2]*
+                        (1 << fixed_point_pos));
+        }
+
+        err = halcs_fofb_processing_coeff_ram_bank_write(this->fofbClient,
+            service, addr, fixed_point_coeffs_sp);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_coeff_ram_bank_write failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        }
+
+        /* read new values from hardware into this->fofbCoeff[addr] */
+        err = halcs_fofb_processing_coeff_ram_bank_read(this->fofbClient,
+            service, addr, &fixed_point_coeffs_rb);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_coeff_ram_bank_read failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        } else {
+            // fixed-point to floating-point conversion
+            for(uint32_t i = 0; i < NUM_FOFB_COEFF/2; i++) {
+                // x coeffs: lower SRAM half
+                this->fofbCoeff[addr][i] =
+                    (((float)((int)fixed_point_coeffs_rb.data[i]))/
+                        (float)(1 << fixed_point_pos));
+                // y coeffs: upper SRAM half
+                this->fofbCoeff[addr][NUM_FOFB_COEFF/2 + i] =
+                    (((float)((int)fixed_point_coeffs_rb.data[
+                        FOFB_PROCESSING_MAX_NUM_OF_COEFFS/2 + i]))/
+                            (float)(1 << fixed_point_pos));
+            }
+
+            /* send new values to -RB PV */
+            doCallbacksFloat32Array(fofbCoeff[addr], to_write, function,
+                addr);
+        }
+
+err_get_full_service_name:
+err_halcs_failed:
+
+        return status;
     } else {
         return asynNDArrayDriver::writeFloat32Array(pasynUser, value, nElements);
     }
