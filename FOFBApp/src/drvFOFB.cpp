@@ -2500,7 +2500,7 @@ asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size
     const int function = pasynUser->reason;
 
     if (function == P_RefOrbit) {
-        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+        size_t to_write = std::min(nElements, (size_t) NUM_FOFB_COEFF);
         memcpy(refOrbit, value, to_write * sizeof *value);
 
         halcs_client_err_e err;
@@ -2520,11 +2520,11 @@ asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size
         /* write this->refOrbit to hardware */
         // x setpoints: lower ram half
         memcpy(setpoints.data, this->refOrbit,
-            (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+            (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
         // y setpoints: upper ram half
-        memcpy(&setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2],
-            &this->refOrbit[NUM_FOFB_COEFF/2],
-            (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+        memcpy(&setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2],
+            &this->refOrbit[NUM_FOFB_COEFF / 2],
+            (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
 
         err = halcs_fofb_processing_setpoints_ram_bank_write(this->fofbClient,
             service, setpoints);
@@ -2546,11 +2546,11 @@ asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size
         } else {
             // x setpoints: lower ram half
             memcpy(this->refOrbit, setpoints.data,
-                (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+                (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
             // y setpoints: upper ram half
-            memcpy(&this->refOrbit[NUM_FOFB_COEFF/2],
-                &setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2],
-                (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+            memcpy(&this->refOrbit[NUM_FOFB_COEFF / 2],
+                &setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2],
+                (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
 
             /* send new values to -RB PV; we only support addr 0 here */
             doCallbacksInt32Array(this->refOrbit, to_write, function, 0);
@@ -2575,14 +2575,13 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
     getAddress(pasynUser, &addr);
 
     if (function == P_FofbCoeff && addr < MAX_RTM_LAMP_CHANNELS) {
-        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+        size_t to_write = std::min(nElements, (size_t) NUM_FOFB_COEFF);
         memcpy(fofbCoeff[addr], value, to_write * sizeof *value);
 
         halcs_client_err_e err;
         char service[SERVICE_NAME_SIZE];
         uint32_t fixed_point_pos;
-        smio_fofb_processing_data_block_t fixed_point_coeffs_sp = {0},
-            fixed_point_coeffs_rb = {0};
+        smio_fofb_processing_data_block_t coeffs = {0};
 
         /* get malamute service name */
         status = this->getFullServiceName(this->fofbNumber, addr,
@@ -2605,19 +2604,18 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
 
         /* write this->fofbCoeff[addr] to hardware */
         // floating-point to fixed-point conversion
-        for(uint32_t i = 0; i < NUM_FOFB_COEFF/2; i++) {
-            // x coeffs: lower SRAM half
-            fixed_point_coeffs_sp.data[i] =
-                (uint32_t)(this->fofbCoeff[addr][i]*(1 << fixed_point_pos));
-            // y coeffs: upper SRAM half
-            fixed_point_coeffs_sp.data[
-                FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2 + i] =
-                    (uint32_t)(this->fofbCoeff[addr][i + NUM_FOFB_COEFF/2]*
-                        (1 << fixed_point_pos));
+        for(uint32_t i = 0; i < NUM_FOFB_COEFF / 2; i++) {
+            // x coeffs: lower ram half
+            coeffs.data[i] =
+                (uint32_t) (this->fofbCoeff[addr][i] * (1 << fixed_point_pos));
+            // y coeffs: upper ram half
+            coeffs.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2 + i] =
+                (uint32_t) (this->fofbCoeff[addr][i + NUM_FOFB_COEFF / 2] *
+                    (1 << fixed_point_pos));
         }
 
         err = halcs_fofb_processing_coeffs_ram_bank_write(this->fofbClient,
-            service, addr, fixed_point_coeffs_sp);
+            service, addr, coeffs);
         if(err != HALCS_CLIENT_SUCCESS) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "halcs_fofb_processing_coeffs_ram_bank_write failed\n");
@@ -2627,7 +2625,7 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
 
         /* read new values from hardware into this->fofbCoeff[addr] */
         err = halcs_fofb_processing_coeffs_ram_bank_read(this->fofbClient,
-            service, addr, &fixed_point_coeffs_rb);
+            service, addr, &coeffs);
         if(err != HALCS_CLIENT_SUCCESS) {
             asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
                 "halcs_fofb_processing_coeffs_ram_bank_read failed\n");
@@ -2635,20 +2633,20 @@ asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, 
             goto err_halcs_failed;
         } else {
             // fixed-point to floating-point conversion
-            for(uint32_t i = 0; i < NUM_FOFB_COEFF/2; i++) {
-                // x coeffs: lower SRAM half
+            for(uint32_t i = 0; i < NUM_FOFB_COEFF / 2; i++) {
+                // x coeffs: lower ram half
                 this->fofbCoeff[addr][i] =
-                    (((float)((int)fixed_point_coeffs_rb.data[i]))/
-                        (float)(1 << fixed_point_pos));
-                // y coeffs: upper SRAM half
-                this->fofbCoeff[addr][NUM_FOFB_COEFF/2 + i] =
-                    (((float)((int)fixed_point_coeffs_rb.data[
-                        FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2 + i]))/
-                            (float)(1 << fixed_point_pos));
+                    ((float) ((int32_t) coeffs.data[i])) /
+                        ((float) (1 << fixed_point_pos));
+                // y coeffs: upper ram half
+                this->fofbCoeff[addr][NUM_FOFB_COEFF / 2 + i] =
+                    ((float) ((int32_t) coeffs.data[
+                        FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2 + i])) /
+                           ((float) (1 << fixed_point_pos));
             }
 
             /* send new values to -RB PV */
-            doCallbacksFloat32Array(fofbCoeff[addr], to_write, function,
+            doCallbacksFloat32Array(this->fofbCoeff[addr], to_write, function,
                 addr);
         }
 
