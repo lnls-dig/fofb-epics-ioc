@@ -2495,20 +2495,71 @@ asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 
 asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements)
 {
+    asynStatus status = asynSuccess;
+    const char *functionName = "writeInt32Array";
     const int function = pasynUser->reason;
 
     if (function == P_RefOrbit) {
         size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
         memcpy(refOrbit, value, to_write * sizeof *value);
 
-        /* TODO: Plug in HALCS:
-         * - write refOrbit to hardware
-         * - read new values from hardware into refOrbit */
+        halcs_client_err_e err;
+        char service[SERVICE_NAME_SIZE];
+        smio_fofb_processing_data_block_t setpoints = {0};
 
-        /* send new values to -RB PV; we only support addr 0 here */
-        doCallbacksInt32Array(refOrbit, to_write, function, 0);
+        /* get malamute service name; we only support addr 0 here  */
+        status = this->getFullServiceName(this->fofbNumber, 0,
+            "FOFB_PROCESSING", service, sizeof(service));
+        if(status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            goto err_get_full_service_name;
+        }
 
-        return asynSuccess;
+        /* write this->refOrbit to hardware */
+        // x setpoints: lower ram half
+        memcpy(setpoints.data, this->refOrbit,
+            (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+        // y setpoints: upper ram half
+        memcpy(&setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2],
+            &this->refOrbit[NUM_FOFB_COEFF/2],
+            (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+
+        err = halcs_fofb_processing_setpoints_ram_bank_write(this->fofbClient,
+            service, setpoints);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_setpoints_ram_bank_write failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        }
+
+        /* read new values from hardware into this->refOrbit */
+        err = halcs_fofb_processing_setpoints_ram_bank_read(this->fofbClient,
+            service, &setpoints);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_setpoints_ram_bank_read failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        } else {
+            // x setpoints: lower ram half
+            memcpy(this->refOrbit, setpoints.data,
+                (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+            // y setpoints: upper ram half
+            memcpy(&this->refOrbit[NUM_FOFB_COEFF/2],
+                &setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS/2],
+                (NUM_FOFB_COEFF/2)*sizeof(uint32_t));
+
+            /* send new values to -RB PV; we only support addr 0 here */
+            doCallbacksInt32Array(this->refOrbit, to_write, function, 0);
+        }
+
+err_get_full_service_name:
+err_halcs_failed:
+
+        return status;
     } else {
         return asynNDArrayDriver::writeInt32Array(pasynUser, value, nElements);
     }
