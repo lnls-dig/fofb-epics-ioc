@@ -1,10 +1,10 @@
-$(S)$(RTM_CHAN)CoeffArray-SP
+$(S)$(RTM_CHAN)InvRespMatRow-SP
 $(S)$(RTM_CHAN)AlarmsAmp-Cte
 $(S)$(RTM_CHAN)PwrState-Sel
-$(S)$(RTM_CHAN)OpMode-Sel
+$(S)$(RTM_CHAN)CurrLoopMode-Sel
 $(S)$(RTM_CHAN)TestWavePeriod-SP
-$(S)$(RTM_CHAN)CtrlLoopKp-SP
-$(S)$(RTM_CHAN)CtrlLoopTi-SP
+$(S)$(RTM_CHAN)CurrLoopKp-SP
+$(S)$(RTM_CHAN)CurrLoopTi-SP
 $(S)$(RTM_CHAN)TestLimA-SP
 $(S)$(RTM_CHAN)TestLimB-SP
 $(S)$(RTM_CHAN)$(GAIN)-SP
