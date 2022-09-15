@@ -5,9 +5,6 @@ $(P)$(R)$(FOFB_CC)TimeFrameLen-SP
 $(P)$(R)$(FOFB_CC)MGTPowerdown-SP
 $(P)$(R)$(FOFB_CC)MGTLoopback-SP
 $(P)$(R)$(FOFB_CC)TimeFrameDly-SP
-$(P)$(R)$(FOFB_CC)GoldenOrbX-SP
-$(P)$(R)$(FOFB_CC)GoldenOrbY-SP
-$(P)$(R)$(FOFB_CC)CustFeature-SP
 $(P)$(R)$(FOFB_CC)RxPolarity-SP
 $(P)$(R)$(FOFB_CC)PayloadSel-SP
 $(P)$(R)$(FOFB_CC)DataSel-SP

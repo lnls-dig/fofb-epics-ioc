@@ -444,9 +444,6 @@ private:
 #define P_FofbCtrlMgtPowerdownString            "FOFB_CC_MGT_POWERDOWN"                     /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlMgtLoopbackString             "FOFB_CC_MGT_LOOPBACK"                      /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlTimeFrameDlyString            "FOFB_CC_TIME_FRAME_DLY"                    /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlGoldenOrbXString              "FOFB_CC_GOLDEN_ORB_X"                      /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlGoldenOrbYString              "FOFB_CC_GOLDEN_ORB_Y"                      /* asynUInt32Digital,      r/w */
-#define P_FofbCtrlCustFeatureString             "FOFB_CC_CUST_FEATURE"                      /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlRxPolarityString              "FOFB_CC_RXPOLARITY"                        /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlPayloadselString              "FOFB_CC_PAYLOADSEL"                        /* asynUInt32Digital,      r/w */
 #define P_FofbCtrlFofbdataselString             "FOFB_CC_FOFBDATASEL"                       /* asynUInt32Digital,      r/w */
@@ -642,9 +639,6 @@ class drvFOFB : public asynNDArrayDriver {
         int P_FofbCtrlMgtPowerdown;
         int P_FofbCtrlMgtLoopback;
         int P_FofbCtrlTimeFrameDly;
-        int P_FofbCtrlGoldenOrbX;
-        int P_FofbCtrlGoldenOrbY;
-        int P_FofbCtrlCustFeature;
         int P_FofbCtrlRxPolarity;
         int P_FofbCtrlPayloadsel;
         int P_FofbCtrlFofbdatasel;
