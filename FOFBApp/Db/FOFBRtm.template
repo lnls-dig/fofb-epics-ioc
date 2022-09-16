@@ -10,26 +10,6 @@
 #                           #
 # # # # # # # # # # # # # # #
 
-# FOFB Coefficients for each channel
-
-record(waveform, "$(S)$(RTM_CHAN)InvRespMatRow-SP"){
-    field(DESC, "Set FOFB coefficients")
-    field(DTYP, "asynFloat32ArrayOut")
-    field(SCAN, "Passive")
-    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
-    field(FTVL, "FLOAT")
-    field(NELM, "320")
-    field(PINI, "YES")
-}
-record(waveform, "$(S)$(RTM_CHAN)InvRespMatRow-RB"){
-    field(DESC, "Get FOFB coefficients")
-    field(DTYP, "asynFloat32ArrayIn")
-    field(SCAN, "I/O Intr")
-    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
-    field(FTVL, "FLOAT")
-    field(NELM, "320")
-}
-
 ############################
 # RTM LAMP parameters
 ############################
