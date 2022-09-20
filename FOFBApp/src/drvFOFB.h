@@ -630,6 +630,9 @@ class drvFOFB : public asynNDArrayDriver {
         int P_TriggerRcvInSel;
         int P_TriggerTrnOutSel;
         int P_RefOrbit;
+        int P_AccGain;
+        int P_AccFreeze;
+        int P_AccClear;
         int P_FofbCoeff;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;

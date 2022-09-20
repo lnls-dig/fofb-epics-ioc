@@ -226,6 +226,11 @@ static const functionsAny_t fofbSetGetTrigRcvSelFunc                  = {functio
                                                                           halcs_get_trigger_rcv_in_sel}};
 static const functionsAny_t fofbSetGetTrigTrnSelFunc                  = {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel,
                                                                           halcs_get_trigger_transm_out_sel}};
+
+static const functionsAny_t fofbCtrlSetGetAccGainFunc                 = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_gain, halcs_get_fofb_processing_acc_gain}};
+static const functionsAny_t fofbCtrlSetGetAccFreezeFunc               = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_ctl_freeze, halcs_get_fofb_processing_acc_ctl_freeze}};
+static const functionsAny_t fofbCtrlSetGetAccClearFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_ctl_clear, NULL}};
+
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
 static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cc_enable,
@@ -588,6 +593,9 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
     createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrbit);
+    createParam("ACC_GAIN",                          asynParamFloat64,              &P_AccGain);
+    createParam("ACC_FREEZE",                        asynParamInt32,                &P_AccFreeze);
+    createParam("ACC_CLEAR",                         asynParamInt32,                &P_AccClear);
     createParam("FOFB_COEFF",                        asynParamFloat32Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -659,6 +667,9 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_TriggerTrnSrc,               fofbSetGetTrigTrnSrcFunc);
     fofbHwFunc.emplace(P_TriggerRcvInSel,             fofbSetGetTrigRcvSelFunc);
     fofbHwFunc.emplace(P_TriggerTrnOutSel,            fofbSetGetTrigTrnSelFunc);
+    fofbHwFunc.emplace(P_AccGain,                     fofbCtrlSetGetAccGainFunc);
+    fofbHwFunc.emplace(P_AccFreeze,                   fofbCtrlSetGetAccFreezeFunc);
+    fofbHwFunc.emplace(P_AccClear,                    fofbCtrlSetGetAccClearFunc);
     fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
     fofbHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
@@ -794,6 +805,10 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     for (int addr: {0, 8}) {
+        setIntegerParam(addr, P_AccGain, 0);
+        setIntegerParam(addr, P_AccFreeze, 0);
+        setIntegerParam(addr, P_AccClear, 0);
+
         setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
@@ -3307,6 +3322,11 @@ asynStatus drvFOFB::setParamDouble(int functionId, int addr)
         goto get_param_err;
     }
 
+    /* Convert floating point value to fixed point for the hw write function */
+    if (functionId == P_AccGain) {
+        functionArgs.argUInt32 = float2fixed(functionArgs.argFloat64, acc_gains_fixed_point_pos);
+    }
+
     status = executeHwWriteFunction(functionId, addr, functionArgs);
     /* Read parameter back from HW to update paramList */
     updateDoubleParams(addr, functionId, functionId, false);
@@ -3335,6 +3355,12 @@ asynStatus drvFOFB::getParamDouble(int functionId, epicsFloat64 *param, int addr
     }
 
     status = executeHwReadFunction(functionId, addr, functionArgs);
+
+    /* Convert fixed point from hw to float */
+    if (functionId == P_AccGain) {
+        functionArgs.argFloat64 = fixed2float(functionArgs.argUInt32, acc_gains_fixed_point_pos);
+    }
+
     if (status == asynSuccess) {
         *param = functionArgs.argFloat64;
     }
