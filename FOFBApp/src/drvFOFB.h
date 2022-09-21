@@ -686,6 +686,7 @@ class drvFOFB : public asynNDArrayDriver {
 
         epicsInt32 refOrbit[NUM_FOFB_COEFF] = {};
         epicsFloat32 fofbCoeff[MAX_RTM_LAMP_CHANNELS][NUM_FOFB_COEFF] = {};
+        uint32_t coeffs_fixed_point_pos, acc_gains_fixed_point_pos;
 
         /* Our private methods */
 
