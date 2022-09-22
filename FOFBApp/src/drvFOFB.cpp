@@ -593,6 +593,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
     createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrbit);
+    createParam("COEFFS_FIXED",                      asynParamInt32,                &P_CoeffsFixedPointPos);
+    createParam("ACC_GAINS_FIXED",                   asynParamInt32,                &P_AccGainsFixedPointPos);
     createParam("ACC_GAIN",                          asynParamFloat64,              &P_AccGain);
     createParam("ACC_FREEZE",                        asynParamInt32,                &P_AccFreeze);
     createParam("ACC_CLEAR",                         asynParamInt32,                &P_AccClear);
@@ -929,6 +931,10 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
             "halcs_get_fofb_processing_acc_gains_fixed_point_pos failed\n");
         goto invalid_fofb_number_err;
     }
+
+    setIntegerParam(0, P_CoeffsFixedPointPos, coeffs_fixed_point_pos);
+    setIntegerParam(0, P_AccGainsFixedPointPos, acc_gains_fixed_point_pos);
+    callParamCallbacks(0);
 
     epicsAtExit(exitHandlerC, this);
     return;

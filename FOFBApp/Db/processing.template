@@ -20,3 +20,14 @@ record(waveform, "$(P)$(R)RefOrbit-RB"){
     field(FTVL, "LONG")
     field(NELM, "320")
 }
+
+record(longin, "$(P)$(R)FOFBInvRepMatFixedPointPos-Cte"){
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT),0,$(TIMEOUT))COEFFS_FIXED")
+}
+record(longin, "$(P)$(R)FOFBAccGainsFixedPointPos-Cte"){
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT),0,$(TIMEOUT))ACC_GAINS_FIXED")
+}
