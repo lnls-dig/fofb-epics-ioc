@@ -10,7 +10,7 @@ record(mbbo, "$(S)$(RTM_CHAN)OpMode-Sel"){
     field(ONVL, "1")
     field(ZRST, "fofb")
     field(ONST, "manual")
-    field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperPauseAccumulator.PROC CA")
+    field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperChooseOperation.PROC CA")
 }
 record(mbbi, "$(S)$(RTM_CHAN)OpMode-Sts"){
     field(DESC, "FOFB operation mode")
@@ -24,34 +24,54 @@ record(mbbi, "$(S)$(RTM_CHAN)OpMode-Sts"){
     field(TWST, "unknonwn")
 }
 
+# OpMode starts here, by choosing which operation we are going to run
+record(calcout, "$(S)$(RTM_CHAN)OpModeHelperChooseOperation"){
+    field(SCAN, "Passive")
+    field(INPA, "$(S)$(RTM_CHAN)OpMode-Sel")
+    field(CALC, "(A=0) ? 2 : 1")
+    field(OUT, "$(S)$(RTM_CHAN)OpModeHelperTriggerOperation.SELN CA")
+    field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperTriggerOperation.PROC CA")
+}
+record(fanout, "$(S)$(RTM_CHAN)OpModeHelperTriggerOperation"){
+    field(SCAN, "Passive")
+    field(SELM, "Specified")
+    field(SELL, "0")
+    field(LNK1, "$(S)$(RTM_CHAN)OpModeHelperPauseAccumulator")
+    field(LNK2, "$(S)$(RTM_CHAN)OpModeHelperSetPSMode")
+}
+
+# pause accumulator + copy current happens only for MANUAL
 record(longout, "$(S)$(RTM_CHAN)OpModeHelperPauseAccumulator"){
     field(SCAN, "Passive")
-    # this won't have any effect when transitioning from manual->fofb mode,
-    # but simplifies the implementation
     field(VAL, "1")
     field(OUT, "$(S)$(RTM_CHAN)FOFBAccFreeze-Sel CA")
-    field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperCopyCurrent.PROC CA")
+    field(FLNK, "$(S)$(RTM_CHAN)CurrentRawRefPassive.PROC PP")
 }
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperCopyCurrent"){
     field(SCAN, "Passive")
-    field(INPA, "$(S)$(RTM_CHAN)CurrentRawRef-Mon")
+    field(INPA, "$(S)$(RTM_CHAN)CurrentRawRefPassive CP")
     field(CALC, "A")
     field(OUT, "$(S)$(RTM_CHAN)CurrentRaw-SP CA")
     field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperSetPSMode.PROC CA")
 }
+
+# set ps mode + (possibly) resume accumulator happens for both!
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperSetPSMode"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)OpMode-Sel")
-    field(CALC, "(A=1) ? 2 : 4")
+    field(CALC, "(A=0) ? 4 : 2")
     field(OUT, "$(S)$(RTM_CHAN)CurrLoopMode-Sel CA")
     field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperResumeAccumulator.PROC CA")
 }
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperResumeAccumulator"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)OpMode-Sel")
-    field(CALC, "(A=1) ? 1 : 0")
+    # if in fofb mode, resume accumulator
+    field(CALC, "(A=0) ? 0 : 1")
     field(OUT, "$(S)$(RTM_CHAN)FOFBAccFreeze-Sel CA")
 }
+
+# propagate CurrLoopMode-Sts back to OpMode-Sts
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperSetOpMode"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)CurrLoopMode-Sts CP")

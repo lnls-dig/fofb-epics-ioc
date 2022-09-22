@@ -398,6 +398,13 @@ record(longin,"$(S)$(RTM_CHAN)CurrentRawRef-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP CPP NMS")
 }
+record(longin,"$(S)$(RTM_CHAN)CurrentRawRefPassive"){
+    field(DTYP,"asynInt32")
+    field(DESC,"get current reference monitor (raw)")
+    field(SCAN,"Passive")
+    field(PINI,"YES")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
+}
 
 record(calcout,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP"){
     field(SCAN,"Passive")
