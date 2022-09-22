@@ -12,7 +12,6 @@ record(waveform, "$(P)$(R)RefOrbit-SP"){
     field(NELM, "320")
     field(PINI, "YES")
 }
-
 record(waveform, "$(P)$(R)RefOrbit-RB"){
     field(DESC, "Get reference orbit")
     field(DTYP, "asynInt32ArrayIn")
