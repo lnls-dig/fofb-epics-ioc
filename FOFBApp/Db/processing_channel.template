@@ -73,6 +73,21 @@ record(ai, "$(S)$(RTM_CHAN)FOFBAccGain-RB"){
     field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))ACC_GAIN")
 }
 
+record(calcout, "$(S)$(RTM_CHAN)FOFBAccGainHelperMax"){
+    field(SCAN, "Passive")
+    field(INPA, "$(P)$(R)FOFBAccGainsFixedPointPos-Cte CP")
+    # 0x7fffffff shifted A bits to the right
+    # # FIXME: needs 0.9999 scaling due to otherwise rounding to a bad value
+    field(CALC, "0.9999 * 2147483647.0 / (2.0 ^ A)")
+    field(OUT, "$(S)$(RTM_CHAN)FOFBAccGain-SP.DRVH CA")
+}
+record(calcout, "$(S)$(RTM_CHAN)FOFBAccGainHelperMin"){
+    field(SCAN, "Passive")
+    field(INPA, "$(S)$(RTM_CHAN)FOFBAccGainHelperMax CP")
+    field(CALC, "-A")
+    field(OUT, "$(S)$(RTM_CHAN)FOFBAccGain-SP.DRVL CA")
+}
+
 record(bo, "$(S)$(RTM_CHAN)FOFBAccFreeze-Sel"){
     field(DESC, "Freeze accumulator")
     field(DTYP, "asynInt32")
