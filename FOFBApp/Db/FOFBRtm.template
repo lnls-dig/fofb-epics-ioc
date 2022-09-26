@@ -404,6 +404,7 @@ record(longin,"$(S)$(RTM_CHAN)CurrentRawRefPassive"){
     field(SCAN,"Passive")
     field(PINI,"YES")
     field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
+    field(FLNK,"$(S)$(RTM_CHAN)OpModeHelperCopyCurrent.PROC CA")
 }
 
 record(calcout,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP"){

@@ -47,9 +47,10 @@ record(longout, "$(S)$(RTM_CHAN)OpModeHelperPauseAccumulator"){
     field(OUT, "$(S)$(RTM_CHAN)FOFBAccFreeze-Sel CA")
     field(FLNK, "$(S)$(RTM_CHAN)CurrentRawRefPassive.PROC PP")
 }
+# this record will be triggered by FLNK in CurrentRawRefPassive
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperCopyCurrent"){
     field(SCAN, "Passive")
-    field(INPA, "$(S)$(RTM_CHAN)CurrentRawRefPassive CP")
+    field(INPA, "$(S)$(RTM_CHAN)CurrentRawRefPassive CA")
     field(CALC, "A")
     field(OUT, "$(S)$(RTM_CHAN)CurrentRaw-SP CA")
     field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperSetPSMode.PROC CA")
