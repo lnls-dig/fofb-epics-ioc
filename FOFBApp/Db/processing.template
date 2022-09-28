@@ -3,7 +3,7 @@
 
 # Reference orbits (in X and Y) for all BPM devices
 
-record(waveform, "$(P)$(R)RefOrbit-SP"){
+record(waveform, "$(P)$(R)RefOrb-SP"){
     field(DESC, "Set reference orbit")
     field(DTYP, "asynInt32ArrayOut")
     field(SCAN, "Passive")
@@ -12,7 +12,7 @@ record(waveform, "$(P)$(R)RefOrbit-SP"){
     field(NELM, "320")
     field(PINI, "YES")
 }
-record(waveform, "$(P)$(R)RefOrbit-RB"){
+record(waveform, "$(P)$(R)RefOrb-RB"){
     field(DESC, "Get reference orbit")
     field(DTYP, "asynInt32ArrayIn")
     field(SCAN, "I/O Intr")

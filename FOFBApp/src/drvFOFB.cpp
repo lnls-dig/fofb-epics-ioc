@@ -592,7 +592,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerRcvInSelString,             asynParamUInt32Digital,        &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
-    createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrbit);
+    createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrb);
     createParam("COEFFS_FIXED",                      asynParamInt32,                &P_CoeffsFixedPointPos);
     createParam("ACC_GAINS_FIXED",                   asynParamInt32,                &P_AccGainsFixedPointPos);
     createParam("ACC_GAIN",                          asynParamFloat64,              &P_AccGain);
@@ -2542,7 +2542,7 @@ asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size
     const char *functionName = "writeInt32Array";
     const int function = pasynUser->reason;
 
-    if (function == P_RefOrbit) {
+    if (function == P_RefOrb) {
         size_t to_write = std::min(nElements, (size_t) NUM_FOFB_COEFF);
         memcpy(refOrbit, value, to_write * sizeof *value);
 
