@@ -102,6 +102,7 @@ record(mbbo,"$(S)$(RTM_CHAN)PwrState-Sel"){
     field(ONVL,"1")
     field(ZRST,"amplifier_dsbl")
     field(ONST,"amplifier_enbl")
+    field(VAL,"0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)PwrState-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -132,6 +133,7 @@ record(mbbo,"$(S)$(RTM_CHAN)CurrLoopMode-Sel"){
     field(TWST,"closed_loop_manual")
     field(THST,"closed_loop_test_sqr")
     field(FRST,"closed_loop_fofb")
+    field(VAL,"0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)CurrLoopMode-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -314,6 +316,7 @@ record(longout,"$(S)$(RTM_CHAN)VoltageRaw-SP"){
     field(PINI,"YES")
     field(DRVH,"32767")
     field(DRVL,"-32768")
+    field(VAL,"0")
 }
 
 record(longin,"$(S)$(RTM_CHAN)VoltageRaw-RB"){
@@ -402,7 +405,6 @@ record(longin,"$(S)$(RTM_CHAN)CurrentRawRefPassive"){
     field(DTYP,"asynInt32")
     field(DESC,"get current reference monitor (raw)")
     field(SCAN,"Passive")
-    field(PINI,"YES")
     field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
     field(FLNK,"$(S)$(RTM_CHAN)OpModeHelperCopyCurrent.PROC CA")
 }

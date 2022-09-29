@@ -1,7 +1,5 @@
 $(S)$(RTM_CHAN)InvRespMatRow-SP
 $(S)$(RTM_CHAN)AlarmsAmp-Cte
-$(S)$(RTM_CHAN)PwrState-Sel
-$(S)$(RTM_CHAN)CurrLoopMode-Sel
 $(S)$(RTM_CHAN)TestWavePeriod-SP
 $(S)$(RTM_CHAN)CurrLoopKp-SP
 $(S)$(RTM_CHAN)CurrLoopTi-SP
@@ -11,6 +9,5 @@ $(S)$(RTM_CHAN)$(GAIN)-SP
 $(S)$(RTM_CHAN)$(OFFSET)-SP
 $(S)$(RTM_CHAN)CurrentRaw-SP
 $(S)$(RTM_CHAN)Current-SP
-$(S)$(RTM_CHAN)VoltageRaw-SP
 $(S)$(RTM_CHAN)Voltage-SP
 $(S)$(RTM_CHAN)TrigEn-Sel
