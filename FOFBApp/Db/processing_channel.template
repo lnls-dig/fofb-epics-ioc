@@ -8,8 +8,8 @@ record(mbbo, "$(S)$(RTM_CHAN)OpMode-Sel"){
     field(PINI, "YES")
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(ZRST, "fofb")
-    field(ONST, "manual")
+    field(ZRST, "manual")
+    field(ONST, "fofb")
     field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperChooseOperation.PROC CA")
 }
 record(mbbi, "$(S)$(RTM_CHAN)OpMode-Sts"){
@@ -19,8 +19,8 @@ record(mbbi, "$(S)$(RTM_CHAN)OpMode-Sts"){
     field(ZRVL, "0")
     field(ONVL, "1")
     field(TWVL, "2")
-    field(ZRST, "fofb")
-    field(ONST, "manual")
+    field(ZRST, "manual")
+    field(ONST, "fofb")
     field(TWST, "unknonwn")
 }
 
@@ -28,7 +28,7 @@ record(mbbi, "$(S)$(RTM_CHAN)OpMode-Sts"){
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperChooseOperation"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)OpMode-Sel")
-    field(CALC, "(A=0) ? 2 : 1")
+    field(CALC, "(A=1) ? 2 : 1")
     field(OUT, "$(S)$(RTM_CHAN)OpModeHelperTriggerOperation.SELN CA")
     field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperTriggerOperation.PROC CA")
 }
@@ -60,7 +60,7 @@ record(calcout, "$(S)$(RTM_CHAN)OpModeHelperCopyCurrent"){
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperSetPSMode"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)OpMode-Sel")
-    field(CALC, "(A=0) ? 4 : 2")
+    field(CALC, "(A=1) ? 4 : 2")
     field(OUT, "$(S)$(RTM_CHAN)CurrLoopMode-Sel CA")
     field(FLNK, "$(S)$(RTM_CHAN)OpModeHelperResumeAccumulator.PROC CA")
 }
@@ -68,7 +68,7 @@ record(calcout, "$(S)$(RTM_CHAN)OpModeHelperResumeAccumulator"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)OpMode-Sel")
     # if in fofb mode, resume accumulator
-    field(CALC, "(A=0) ? 0 : 1")
+    field(CALC, "(A=1) ? 0 : 1")
     field(OUT, "$(S)$(RTM_CHAN)FOFBAccFreeze-Sel CA")
 }
 
@@ -76,7 +76,7 @@ record(calcout, "$(S)$(RTM_CHAN)OpModeHelperResumeAccumulator"){
 record(calcout, "$(S)$(RTM_CHAN)OpModeHelperSetOpMode"){
     field(SCAN, "Passive")
     field(INPA, "$(S)$(RTM_CHAN)CurrLoopMode-Sts CP")
-    field(CALC, "(A=4) ? 0 : ((A=2) ? 1 : 2)")
+    field(CALC, "(A=2) ? 0 : ((A=4) ? 1 : 2)")
     field(OUT, "$(S)$(RTM_CHAN)OpMode-Sts CA")
 }
 
