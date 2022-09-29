@@ -807,7 +807,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     }
 
     for (int addr: {0, 8}) {
-        setIntegerParam(addr, P_AccGain, 0);
+        setDoubleParam(addr, P_AccGain, 0.);
         setIntegerParam(addr, P_AccFreeze, 0);
         setIntegerParam(addr, P_AccClear, 0);
 
