@@ -230,6 +230,8 @@ static const functionsAny_t fofbSetGetTrigTrnSelFunc                  = {functio
 static const functionsAny_t fofbCtrlSetGetAccGainFunc                 = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_gain, halcs_get_fofb_processing_acc_gain}};
 static const functionsAny_t fofbCtrlSetGetAccFreezeFunc               = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_ctl_freeze, halcs_get_fofb_processing_acc_ctl_freeze}};
 static const functionsAny_t fofbCtrlSetGetAccClearFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_ctl_clear, NULL}};
+static const functionsAny_t fofbCtrlSetGetSpMaxFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_sp_max, halcs_get_fofb_processing_sp_max}};
+static const functionsAny_t fofbCtrlSetGetSpMinFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_sp_min, halcs_get_fofb_processing_sp_min}};
 
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
@@ -598,6 +600,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam("ACC_GAIN",                          asynParamFloat64,              &P_AccGain);
     createParam("ACC_FREEZE",                        asynParamInt32,                &P_AccFreeze);
     createParam("ACC_CLEAR",                         asynParamInt32,                &P_AccClear);
+    createParam("SP_MAX",                            asynParamInt32,                &P_SpMax);
+    createParam("SP_MIN",                            asynParamInt32,                &P_SpMin);
     createParam("FOFB_COEFF",                        asynParamFloat32Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -672,6 +676,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_AccGain,                     fofbCtrlSetGetAccGainFunc);
     fofbHwFunc.emplace(P_AccFreeze,                   fofbCtrlSetGetAccFreezeFunc);
     fofbHwFunc.emplace(P_AccClear,                    fofbCtrlSetGetAccClearFunc);
+    fofbHwFunc.emplace(P_SpMax,                       fofbCtrlSetGetSpMaxFunc);
+    fofbHwFunc.emplace(P_SpMin,                       fofbCtrlSetGetSpMinFunc);
     fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
     fofbHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
@@ -810,6 +816,8 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setDoubleParam(addr, P_AccGain, 0.);
         setIntegerParam(addr, P_AccFreeze, 0);
         setIntegerParam(addr, P_AccClear, 0);
+        setIntegerParam(addr, P_SpMax, 0);
+        setIntegerParam(addr, P_SpMin, 0);
 
         setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
