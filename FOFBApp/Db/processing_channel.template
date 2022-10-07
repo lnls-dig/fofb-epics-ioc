@@ -138,6 +138,32 @@ record(bo, "$(S)$(RTM_CHAN)FOFBAccClear-Cmd"){
     field(ONAM, "clear_accumulator")
 }
 
+record(longout, "$(S)$(RTM_CHAN)FOFBAccSatMaxRaw-SP"){
+    field(DESC, "Set ctrl max current")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_MAX")
+}
+record(longin, "$(S)$(RTM_CHAN)FOFBAccSatMaxRaw-RB"){
+    field(DESC, "Get ctrl max current")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_MAX")
+}
+
+record(longout, "$(S)$(RTM_CHAN)FOFBAccSatMinRaw-SP"){
+    field(DESC, "Set ctrl min current")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_MIN")
+}
+record(longin, "$(S)$(RTM_CHAN)FOFBAccSatMinRaw-RB"){
+    field(DESC, "Get ctrl min current")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_MIN")
+}
+
 record(waveform, "$(S)$(RTM_CHAN)InvRespMatRow-SP"){
     field(DESC, "Set FOFB coefficients")
     field(DTYP, "asynFloat32ArrayOut")
