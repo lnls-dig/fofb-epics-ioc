@@ -151,6 +151,31 @@ record(longin, "$(S)$(RTM_CHAN)FOFBAccSatMaxRaw-RB"){
     field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_MAX")
 }
 
+record(ao, "$(S)$(RTM_CHAN)FOFBAccSatMax-SP"){
+    field(DESC, "Set ctrl max current")
+    field(SCAN, "Passive")
+    field(EGU, "A")
+    field(DRVH,"0.95")
+    field(DRVL,"-0.95")
+    field(FLNK, "$(S)$(RTM_CHAN)FOFBAccSatMaxConv.PROC CA")
+}
+record(calcout, "$(S)$(RTM_CHAN)FOFBAccSatMaxConv"){
+    field(SCAN,"Passive")
+    field(INPA,"$(S)$(RTM_CHAN)FOFBAccSatMax-SP")
+    field(INPB,"$(S)$(RTM_CHAN)CurrGain-SP")
+    field(INPC,"$(S)$(RTM_CHAN)CurrOffset-SP")
+    field(CALC,"A/B+C")
+    field(OUT,"$(S)$(RTM_CHAN)FOFBAccSatMaxRaw-SP CA")
+}
+record(calc, "$(S)$(RTM_CHAN)FOFBAccSatMax-RB"){
+    field(DESC, "Get ctrl max current")
+    field(EGU, "A")
+    field(INPA,"$(S)$(RTM_CHAN)FOFBAccSatMaxRaw-RB CP")
+    field(INPB,"$(S)$(RTM_CHAN)CurrGain-SP")
+    field(INPC,"$(S)$(RTM_CHAN)CurrOffset-SP")
+    field(CALC,"B*(A-C)")
+}
+
 record(longout, "$(S)$(RTM_CHAN)FOFBAccSatMinRaw-SP"){
     field(DESC, "Set ctrl min current")
     field(DTYP, "asynInt32")
@@ -162,6 +187,31 @@ record(longin, "$(S)$(RTM_CHAN)FOFBAccSatMinRaw-RB"){
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))SP_MIN")
+}
+
+record(ao, "$(S)$(RTM_CHAN)FOFBAccSatMin-SP"){
+    field(DESC, "Set ctrl max current")
+    field(SCAN, "Passive")
+    field(EGU, "A")
+    field(DRVH,"0.95")
+    field(DRVL,"-0.95")
+    field(FLNK, "$(S)$(RTM_CHAN)FOFBAccSatMinConv.PROC CA")
+}
+record(calcout, "$(S)$(RTM_CHAN)FOFBAccSatMinConv"){
+    field(SCAN,"Passive")
+    field(INPA,"$(S)$(RTM_CHAN)FOFBAccSatMin-SP")
+    field(INPB,"$(S)$(RTM_CHAN)CurrGain-SP")
+    field(INPC,"$(S)$(RTM_CHAN)CurrOffset-SP")
+    field(CALC,"A/B+C")
+    field(OUT,"$(S)$(RTM_CHAN)FOFBAccSatMinRaw-SP CA")
+}
+record(calc, "$(S)$(RTM_CHAN)FOFBAccSatMin-RB"){
+    field(DESC, "Get ctrl max current")
+    field(EGU, "A")
+    field(INPA,"$(S)$(RTM_CHAN)FOFBAccSatMinRaw-RB CP")
+    field(INPB,"$(S)$(RTM_CHAN)CurrGain-SP")
+    field(INPC,"$(S)$(RTM_CHAN)CurrOffset-SP")
+    field(CALC,"B*(A-C)")
 }
 
 record(waveform, "$(S)$(RTM_CHAN)InvRespMatRow-SP"){
