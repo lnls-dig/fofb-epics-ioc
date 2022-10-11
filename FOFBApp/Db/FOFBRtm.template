@@ -10,26 +10,6 @@
 #                           #
 # # # # # # # # # # # # # # #
 
-# FOFB Coefficients for each channel
-
-record(waveform, "$(S)$(RTM_CHAN)CoeffArray-SP"){
-    field(DESC, "Set FOFB coefficients")
-    field(DTYP, "asynFloat32ArrayOut")
-    field(SCAN, "Passive")
-    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
-    field(FTVL, "FLOAT")
-    field(NELM, "320")
-    field(PINI, "YES")
-}
-record(waveform, "$(S)$(RTM_CHAN)CoeffArray-RB"){
-    field(DESC, "Get FOFB coefficients")
-    field(DTYP, "asynFloat32ArrayIn")
-    field(SCAN, "I/O Intr")
-    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))FOFB_COEFF")
-    field(FTVL, "FLOAT")
-    field(NELM, "320")
-}
-
 ############################
 # RTM LAMP parameters
 ############################
@@ -122,6 +102,7 @@ record(mbbo,"$(S)$(RTM_CHAN)PwrState-Sel"){
     field(ONVL,"1")
     field(ZRST,"amplifier_dsbl")
     field(ONST,"amplifier_enbl")
+    field(VAL,"0")
 }
 record(mbbi,"$(S)$(RTM_CHAN)PwrState-Sts"){
     field(DTYP,"asynUInt32Digital")
@@ -135,7 +116,7 @@ record(mbbi,"$(S)$(RTM_CHAN)PwrState-Sts"){
     field(ONST,"amplifier_enbl")
 }
 
-record(mbbo,"$(S)$(RTM_CHAN)OpMode-Sel"){
+record(mbbo,"$(S)$(RTM_CHAN)CurrLoopMode-Sel"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set power supply mode")
     field(SCAN,"Passive")
@@ -152,8 +133,9 @@ record(mbbo,"$(S)$(RTM_CHAN)OpMode-Sel"){
     field(TWST,"closed_loop_manual")
     field(THST,"closed_loop_test_sqr")
     field(FRST,"closed_loop_fofb")
+    field(VAL,"0")
 }
-record(mbbi,"$(S)$(RTM_CHAN)OpMode-Sts"){
+record(mbbi,"$(S)$(RTM_CHAN)CurrLoopMode-Sts"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get power supply mode")
     field(SCAN,"I/O Intr")
@@ -171,7 +153,7 @@ record(mbbi,"$(S)$(RTM_CHAN)OpMode-Sts"){
     field(FRST,"closed_loop_fofb")
 }
 
-record(longout,"$(S)$(RTM_CHAN)CtrlLoopKp-SP"){
+record(longout,"$(S)$(RTM_CHAN)CurrLoopKp-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI Kp parameter")
     field(SCAN,"Passive")
@@ -180,14 +162,14 @@ record(longout,"$(S)$(RTM_CHAN)CtrlLoopKp-SP"){
     field(DRVH,"67108863")
     field(DRVL,"0")
 }
-record(longin,"$(S)$(RTM_CHAN)CtrlLoopKp-RB"){
+record(longin,"$(S)$(RTM_CHAN)CurrLoopKp-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI Kp parameter")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_PI_KP_DATA")
 }
 
-record(longout,"$(S)$(RTM_CHAN)CtrlLoopTi-SP"){
+record(longout,"$(S)$(RTM_CHAN)CurrLoopTi-SP"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"set PI Ti parameter")
     field(SCAN,"Passive")
@@ -196,7 +178,7 @@ record(longout,"$(S)$(RTM_CHAN)CtrlLoopTi-SP"){
     field(DRVH,"67108863")
     field(DRVL,"0")
 }
-record(longin,"$(S)$(RTM_CHAN)CtrlLoopTi-RB"){
+record(longin,"$(S)$(RTM_CHAN)CurrLoopTi-RB"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get PI Ti parameter")
     field(SCAN,"I/O Intr")
@@ -334,6 +316,7 @@ record(longout,"$(S)$(RTM_CHAN)VoltageRaw-SP"){
     field(PINI,"YES")
     field(DRVH,"32767")
     field(DRVL,"-32768")
+    field(VAL,"0")
 }
 
 record(longin,"$(S)$(RTM_CHAN)VoltageRaw-RB"){
@@ -417,6 +400,13 @@ record(longin,"$(S)$(RTM_CHAN)CurrentRawRef-Mon"){
     field(SCAN,".1 second")
     field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
     field(FLNK,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP CPP NMS")
+}
+record(longin,"$(S)$(RTM_CHAN)CurrentRawRefPassive"){
+    field(DTYP,"asynInt32")
+    field(DESC,"get current reference monitor (raw)")
+    field(SCAN,"Passive")
+    field(INP,"@asynMask($(PORT),$(ADDR),-16,$(TIMEOUT))WB_RTMLAMP_OHWR_CH_SP_EFF_SP")
+    field(FLNK,"$(S)$(RTM_CHAN)OpModeHelperCopyCurrent.PROC CA")
 }
 
 record(calcout,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP"){
