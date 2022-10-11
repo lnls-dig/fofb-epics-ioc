@@ -265,6 +265,15 @@ record(longout,"$(S)$(RTM_CHAN)CurrentRaw-SP"){
     field(PINI,"YES")
 }
 
+record(calcout,"$(S)$(RTM_CHAN)CurrentRawPropagateSP"){
+    field(SCAN,"Passive")
+    field(INPA,"$(S)$(RTM_CHAN)CurrentRaw-SP CP")
+    field(INPB,"$(S)$(RTM_CHAN)CurrGain-SP")
+    field(INPC,"$(S)$(RTM_CHAN)CurrOffset-SP")
+    field(CALC,"B*(A-C)")
+    field(OUT,"$(S)$(RTM_CHAN)Current-SP NPP")
+}
+
 record(longin,"$(S)$(RTM_CHAN)CurrentRaw-RB"){
     field(DTYP,"asynInt32")
     field(DESC,"get manual current control (raw)")
