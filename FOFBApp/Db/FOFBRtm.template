@@ -236,7 +236,8 @@ record(longin,"$(S)$(RTM_CHAN)TestLimB-RB"){
 }
 
 record(ao,"$(S)$(RTM_CHAN)Current-SP"){
-    field(DESC,"set manual current control (in ampers)")
+    field(DESC,"set manual current control")
+    field(EGU,"A")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(PREC,"15")
@@ -294,13 +295,15 @@ record(calcout,"$(S)$(RTM_CHAN)CurrentConv2-SP"){
 }
 
 record(ai,"$(S)$(RTM_CHAN)Current-RB"){
-    field(DESC,"get manual current control (in ampers)")
+    field(DESC,"get manual current control")
+    field(EGU,"A")
     field(SCAN,"Passive")
     field(PREC,"15")
 }
 
 record(ao,"$(S)$(RTM_CHAN)Voltage-SP"){
-    field(DESC,"set manual voltage control (in volts)")
+    field(DESC,"set manual voltage control")
+    field(EGU,"V")
     field(PINI,"YES")
     field(SCAN,"Passive")
     field(PREC,"15")
@@ -348,7 +351,8 @@ record(calcout,"$(S)$(RTM_CHAN)VoltageConv2-SP"){
 }
 
 record(ai,"$(S)$(RTM_CHAN)Voltage-RB"){
-    field(DESC,"get manual voltage control (in volts)")
+    field(DESC,"get manual voltage control")
+    field(EGU,"V")
     field(SCAN,"Passive")
     field(PREC,"15")
 }
@@ -373,7 +377,8 @@ record(calcout,"$(S)$(RTM_CHAN)CurrentRawConv-SP"){
 }
 
 record(ai,"$(S)$(RTM_CHAN)Current-Mon"){
-    field(DESC,"get current monitor (in ampers)")
+    field(DESC,"get current monitor")
+    field(EGU,"A")
     field(SCAN,"Passive")
     field(PREC,"15")
 }
@@ -398,7 +403,8 @@ record(calcout,"$(S)$(RTM_CHAN)VoltageRawConv-SP"){
 }
 
 record(ai,"$(S)$(RTM_CHAN)Voltage-Mon"){
-    field(DESC,"get voltage monitor (in volts)")
+    field(DESC,"get voltage monitor")
+    field(EGU,"V")
     field(SCAN,"Passive")
     field(PREC,"15")
 }
@@ -430,7 +436,8 @@ record(calcout,"$(S)$(RTM_CHAN)CurrentRawRefConv-SP"){
 }
 
 record(ai,"$(S)$(RTM_CHAN)CurrentRef-Mon"){
-    field(DESC,"get current monitor (in ampers)")
+    field(DESC,"get current ref monitor")
+    field(EGU,"A")
     field(SCAN,"Passive")
     field(PREC,"15")
 }
