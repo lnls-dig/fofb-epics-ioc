@@ -21,6 +21,24 @@ record(bi, "$(P)$(R)MaxOrbDistortionEnbl-Sts"){
     field(ONAM, "enabled")
 }
 
+record(bo, "$(P)$(R)MinBPMCntEnbl-Sel"){
+    field(DESC, "Enable FOFB packet loss interlock")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    field(OUT, "@asyn($(PORT))INTLK_PACKET_EN")
+    field(ZNAM, "disabled")
+    field(ONAM, "enabled")
+}
+record(bi, "$(P)$(R)MinBPMCntEnbl-Sts"){
+    field(DESC, "Enable FOFB packet loss interlock")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT))INTLK_PACKET_EN")
+    field(ZNAM, "disabled")
+    field(ONAM, "enabled")
+}
+
 record(bo, "$(P)$(R)Reset-Cmd"){
     field(DESC, "Clear FOFB error flags")
     field(DTYP, "asynInt32")
@@ -54,6 +72,20 @@ record(longin, "$(P)$(R)MaxOrbDistortion-RB"){
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
     field(INP, "@asyn($(PORT))ORB_DISTORT_LIMIT")
+}
+
+record(longout, "$(P)$(R)MinBPMCnt-SP"){
+    field(DESC, "Min packets for for FOFB interlock")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    field(OUT, "@asyn($(PORT))MIN_NUM_PACKET")
+}
+record(longin, "$(P)$(R)MinBPMCnt-RB"){
+    field(DESC, "Min packets for FOFB interlock")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(PORT))MIN_NUM_PACKET")
 }
 
 record(waveform, "$(P)$(R)RefOrb-SP"){
