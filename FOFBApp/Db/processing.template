@@ -39,7 +39,7 @@ record(bi, "$(P)$(R)MinBPMCntEnbl-Sts"){
     field(ONAM, "enabled")
 }
 
-record(bo, "$(P)$(R)Reset-Cmd"){
+record(bo, "$(P)$(R)LoopIntlkReset-Cmd"){
     field(DESC, "Clear FOFB error flags")
     field(DTYP, "asynInt32")
     field(SCAN, "Passive")
@@ -50,7 +50,7 @@ record(bo, "$(P)$(R)Reset-Cmd"){
     field(ONAM, "clear_flags")
 }
 
-record(longin, "$(P)$(R)Intlk-Mon"){
+record(longin, "$(P)$(R)LoopIntlk-Mon"){
     field(DESC, "Monitor FOFB interlock status")
     field(DTYP, "asynInt32")
     field(SCAN, ".1 second")
