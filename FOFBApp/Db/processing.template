@@ -8,7 +8,7 @@ record(bo, "$(P)$(R)MaxOrbDistortionEnbl-Sel"){
     field(DTYP, "asynInt32")
     field(SCAN, "Passive")
     field(PINI, "YES")
-    field(OUT, "@asyn($(PORT))INTLK_EN")
+    field(OUT, "@asyn($(PORT))INTLK_ORB_EN")
     field(ZNAM, "disabled")
     field(ONAM, "enabled")
 }
@@ -16,7 +16,7 @@ record(bi, "$(P)$(R)MaxOrbDistortionEnbl-Sts"){
     field(DESC, "Enable FOFB orbit interlock")
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
-    field(INP, "@asyn($(PORT))INTLK_EN")
+    field(INP, "@asyn($(PORT))INTLK_ORB_EN")
     field(ZNAM, "disabled")
     field(ONAM, "enabled")
 }
