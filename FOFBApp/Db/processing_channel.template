@@ -154,6 +154,7 @@ record(longin, "$(S)$(RTM_CHAN)FOFBAccSatMaxRaw-RB"){
 record(ao, "$(S)$(RTM_CHAN)FOFBAccSatMax-SP"){
     field(DESC, "Set ctrl max current")
     field(SCAN, "Passive")
+    field(PINI, "YES")
     field(EGU, "A")
     field(DRVH,"0.95")
     field(DRVL,"-0.95")
@@ -192,6 +193,7 @@ record(longin, "$(S)$(RTM_CHAN)FOFBAccSatMinRaw-RB"){
 record(ao, "$(S)$(RTM_CHAN)FOFBAccSatMin-SP"){
     field(DESC, "Set ctrl max current")
     field(SCAN, "Passive")
+    field(PINI, "YES")
     field(EGU, "A")
     field(DRVH,"0.95")
     field(DRVL,"-0.95")

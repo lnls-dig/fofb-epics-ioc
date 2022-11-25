@@ -233,6 +233,13 @@ static const functionsAny_t fofbCtrlSetGetAccClearFunc                = {functio
 static const functionsAny_t fofbCtrlSetGetSpMaxFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_sp_max, halcs_get_fofb_processing_sp_max}};
 static const functionsAny_t fofbCtrlSetGetSpMinFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_sp_min, halcs_get_fofb_processing_sp_min}};
 
+static const functionsAny_t fofbCtrlSetGetIntlkOrbEn = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_intlk_orb_en, halcs_get_fofb_processing_intlk_orb_en}};
+static const functionsAny_t fofbCtrlSetGetIntlkPacketEn = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_intlk_packet_en, halcs_get_fofb_processing_intlk_packet_en}};
+static const functionsAny_t fofbCtrlSetGetIntlkClr = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_intlk_clr, NULL}};
+static const functionsAny_t fofbCtrlSetGetIntlkSta = {functionsInt32_t{"FOFB_PROCESSING", NULL, halcs_get_fofb_processing_intlk_sta}};
+static const functionsAny_t fofbCtrlSetGetOrbDistortLimit = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_loop_orb_distort_limit, halcs_get_fofb_processing_loop_orb_distort_limit}};
+static const functionsAny_t fofbCtrlSetGetMinNumPacket = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_min_num_packet, halcs_get_fofb_processing_min_num_packet}};
+
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
 static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cc_enable,
@@ -602,6 +609,12 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam("ACC_CLEAR",                         asynParamInt32,                &P_AccClear);
     createParam("SP_MAX",                            asynParamInt32,                &P_SpMax);
     createParam("SP_MIN",                            asynParamInt32,                &P_SpMin);
+    createParam("INTLK_ORB_EN",                      asynParamInt32,                &P_FofbIntlkOrbEn);
+    createParam("INTLK_PACKET_EN",                   asynParamInt32,                &P_FofbIntlkPacketEn);
+    createParam("INTLK_CLR",                         asynParamInt32,                &P_FofbIntlkClr);
+    createParam("INTLK_STA",                         asynParamInt32,                &P_FofbIntlkSta);
+    createParam("ORB_DISTORT_LIMIT",                 asynParamInt32,                &P_FofbOrbDistortLimit);
+    createParam("MIN_NUM_PACKET",                    asynParamInt32,                &P_FofbMinNumPacket);
     createParam("FOFB_COEFF",                        asynParamFloat32Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -678,6 +691,12 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_AccClear,                    fofbCtrlSetGetAccClearFunc);
     fofbHwFunc.emplace(P_SpMax,                       fofbCtrlSetGetSpMaxFunc);
     fofbHwFunc.emplace(P_SpMin,                       fofbCtrlSetGetSpMinFunc);
+    fofbHwFunc.emplace(P_FofbIntlkOrbEn,              fofbCtrlSetGetIntlkOrbEn);
+    fofbHwFunc.emplace(P_FofbIntlkPacketEn,           fofbCtrlSetGetIntlkPacketEn);
+    fofbHwFunc.emplace(P_FofbIntlkClr,                fofbCtrlSetGetIntlkClr);
+    fofbHwFunc.emplace(P_FofbIntlkSta,                fofbCtrlSetGetIntlkSta);
+    fofbHwFunc.emplace(P_FofbOrbDistortLimit,         fofbCtrlSetGetOrbDistortLimit);
+    fofbHwFunc.emplace(P_FofbMinNumPacket,            fofbCtrlSetGetMinNumPacket);
     fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
     fofbHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
@@ -812,6 +831,12 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
 
+    setIntegerParam(0, P_FofbIntlkOrbEn, 0);
+    setIntegerParam(0, P_FofbIntlkPacketEn, 0);
+    setIntegerParam(0, P_FofbIntlkClr, 0);
+    setIntegerParam(0, P_FofbIntlkSta, 0);
+    setIntegerParam(0, P_FofbOrbDistortLimit, 0);
+    setIntegerParam(0, P_FofbMinNumPacket, 0);
     for (int addr: {0, 8}) {
         setDoubleParam(addr, P_AccGain, 0.);
         setIntegerParam(addr, P_AccFreeze, 0);

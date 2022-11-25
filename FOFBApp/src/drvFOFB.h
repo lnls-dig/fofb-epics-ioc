@@ -637,6 +637,12 @@ class drvFOFB : public asynNDArrayDriver {
         int P_AccClear;
         int P_SpMax;
         int P_SpMin;
+        int P_FofbIntlkOrbEn;
+        int P_FofbIntlkPacketEn;
+        int P_FofbIntlkClr;
+        int P_FofbIntlkSta;
+        int P_FofbOrbDistortLimit;
+        int P_FofbMinNumPacket;
         int P_FofbCoeff;
         int P_FofbCtrlErrClr;
         int P_FofbCtrlCcEnable;
