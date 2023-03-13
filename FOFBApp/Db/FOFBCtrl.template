@@ -82,30 +82,30 @@ record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameLen-RB"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_LEN")
 }
 
-record(longout,"$(P)$(R)$(FOFB_CC)MgtPowerdown-SP"){
+record(longout,"$(P)$(R)$(FOFB_CC)MGTPowerdown-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set mgt powerdown")
+    field(DESC,"set GB transceiver powerdown")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_POWERDOWN")
     field(PINI,"YES")
 }
-record(longin,"$(P)$(R)$(FOFB_CC)MgtPowerdown-RB"){
+record(longin,"$(P)$(R)$(FOFB_CC)MGTPowerdown-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get mgt powerdown")
+    field(DESC,"get GB transceiver powerdown")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_POWERDOWN")
 }
 
-record(longout,"$(P)$(R)$(FOFB_CC)MgtLoopback-SP"){
+record(longout,"$(P)$(R)$(FOFB_CC)MGTLoopback-SP"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"set mgt loopback")
+    field(DESC,"set GB transceiver loopback")
     field(SCAN,"Passive")
     field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_LOOPBACK")
     field(PINI,"YES")
 }
-record(longin,"$(P)$(R)$(FOFB_CC)MgtLoopback-RB"){
+record(longin,"$(P)$(R)$(FOFB_CC)MGTLoopback-RB"){
     field(DTYP,"asynUInt32Digital")
-    field(DESC,"get mgt loopback")
+    field(DESC,"get GB transceiver loopback")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_MGT_LOOPBACK")
 }
@@ -122,48 +122,6 @@ record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameDly-RB"){
     field(DESC,"get time frame delay")
     field(SCAN,"I/O Intr")
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_TIME_FRAME_DLY")
-}
-
-record(longout,"$(P)$(R)$(FOFB_CC)GoldenOrbX-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set golden orbit x")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_X")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)$(FOFB_CC)GoldenOrbX-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get golden orbit x")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_X")
-}
-
-record(longout,"$(P)$(R)$(FOFB_CC)GoldenOrbY-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set golden orbit y")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_Y")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)$(FOFB_CC)GoldenOrbY-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get golden orbit y")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_GOLDEN_ORB_Y")
-}
-
-record(longout,"$(P)$(R)$(FOFB_CC)CustFeature-SP"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"set cust feature")
-    field(SCAN,"Passive")
-    field(OUT,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CUST_FEATURE")
-    field(PINI,"YES")
-}
-record(longin,"$(P)$(R)$(FOFB_CC)CustFeature-RB"){
-    field(DTYP,"asynUInt32Digital")
-    field(DESC,"get cust feature")
-    field(SCAN,"I/O Intr")
-    field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_CUST_FEATURE")
 }
 
 record(longout,"$(P)$(R)$(FOFB_CC)RxPolarity-SP"){
@@ -229,7 +187,7 @@ record(longin,"$(P)$(R)$(FOFB_CC)LinkUp-Mon"){
     field(INP,"@asynMask($(PORT),$(ADDR),0xFFFFFFFF,$(TIMEOUT))FOFB_CC_LINK_UP")
 }
 
-record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameCount-Mon"){
+record(longin,"$(P)$(R)$(FOFB_CC)TimeFrameCnt-Mon"){
     field(DTYP,"asynUInt32Digital")
     field(DESC,"get time frame count")
     field(SCAN,".5 second")

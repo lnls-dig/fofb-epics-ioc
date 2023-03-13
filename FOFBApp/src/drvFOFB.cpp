@@ -188,6 +188,8 @@ static const functionsAny_t rtmLampSetGetEffDacFunc                   = {functio
                                                                           halcs_get_rtmlamp_ohwr_eff_dac}};
 static const functionsAny_t rtmLampSetGetEffSpFunc                    = {functionsUInt32Chan_t{"RTMLAMP_OHWR", NULL,
                                                                           halcs_get_rtmlamp_ohwr_eff_sp}};
+static const functionsAny_t rtmLampSetGetTrigEnFunc                   = {functionsUInt32Chan_t{"RTMLAMP_OHWR", halcs_set_rtmlamp_ohwr_trig_en,
+                                                                          halcs_get_rtmlamp_ohwr_trig_en}};
 static const functionsAny_t fofbSetGetAcqDataTrigThresFunc            = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_thres,
                                                                           acq_get_data_trig_thres}};
 static const functionsAny_t fofbSetGetAcqDataTrigPolFunc              = {functionsUInt32Acq_t{"ACQ", acq_set_data_trig_pol,
@@ -224,6 +226,20 @@ static const functionsAny_t fofbSetGetTrigRcvSelFunc                  = {functio
                                                                           halcs_get_trigger_rcv_in_sel}};
 static const functionsAny_t fofbSetGetTrigTrnSelFunc                  = {functionsUInt32Chan_t{"TRIGGER_MUX", halcs_set_trigger_transm_out_sel,
                                                                           halcs_get_trigger_transm_out_sel}};
+
+static const functionsAny_t fofbCtrlSetGetAccGainFunc                 = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_gain, halcs_get_fofb_processing_acc_gain}};
+static const functionsAny_t fofbCtrlSetGetAccFreezeFunc               = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_ctl_freeze, halcs_get_fofb_processing_acc_ctl_freeze}};
+static const functionsAny_t fofbCtrlSetGetAccClearFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_acc_ctl_clear, NULL}};
+static const functionsAny_t fofbCtrlSetGetSpMaxFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_sp_max, halcs_get_fofb_processing_sp_max}};
+static const functionsAny_t fofbCtrlSetGetSpMinFunc                = {functionsUInt32Chan_t{"FOFB_PROCESSING", halcs_set_fofb_processing_sp_min, halcs_get_fofb_processing_sp_min}};
+
+static const functionsAny_t fofbCtrlSetGetIntlkOrbEn = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_intlk_orb_en, halcs_get_fofb_processing_intlk_orb_en}};
+static const functionsAny_t fofbCtrlSetGetIntlkPacketEn = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_intlk_packet_en, halcs_get_fofb_processing_intlk_packet_en}};
+static const functionsAny_t fofbCtrlSetGetIntlkClr = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_intlk_clr, NULL}};
+static const functionsAny_t fofbCtrlSetGetIntlkSta = {functionsInt32_t{"FOFB_PROCESSING", NULL, halcs_get_fofb_processing_intlk_sta}};
+static const functionsAny_t fofbCtrlSetGetOrbDistortLimit = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_loop_orb_distort_limit, halcs_get_fofb_processing_loop_orb_distort_limit}};
+static const functionsAny_t fofbCtrlSetGetMinNumPacket = {functionsInt32_t{"FOFB_PROCESSING", halcs_set_fofb_processing_min_num_packet, halcs_get_fofb_processing_min_num_packet}};
+
 static const functionsAny_t fofbCtrlSetGeErrClrFunc                   = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_err_clr,
                                                                           halcs_get_fofb_ctrl_err_clr}};
 static const functionsAny_t fofbCtrlSetGetCcEnableFunc                = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cc_enable,
@@ -240,12 +256,6 @@ static const functionsAny_t fofbCtrlSetGetMgtLoopbackFunc             = {functio
                                                                           halcs_get_fofb_ctrl_mgt_loopback}};
 static const functionsAny_t fofbCtrlSetGetTimeFrameDlyFunc            = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_time_frame_dly,
                                                                           halcs_get_fofb_ctrl_time_frame_dly}};
-static const functionsAny_t fofbCtrlSetGetGoldenOrbXFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_golden_orb_x,
-                                                                          halcs_get_fofb_ctrl_golden_orb_x}};
-static const functionsAny_t fofbCtrlSetGetGoldenOrbYFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_golden_orb_y,
-                                                                          halcs_get_fofb_ctrl_golden_orb_y}};
-static const functionsAny_t fofbCtrlSetGetCustFeatureFunc             = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_cust_feature,
-                                                                          halcs_get_fofb_ctrl_cust_feature}};
 static const functionsAny_t fofbCtrlSetGetRxPolarityFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_rx_polarity,
                                                                           halcs_get_fofb_ctrl_rx_polarity}};
 static const functionsAny_t fofbCtrlSetGetPayloadselFunc              = {functionsUInt32_t{"FOFB_CTRL", halcs_set_fofb_ctrl_payloadsel,
@@ -310,6 +320,15 @@ static taskParams_t taskMonitParams = {
 
 void acqTask(void *drvPvt);
 void acqMonitTask(void *drvPvt);
+
+static uint32_t float2fixed(double v, unsigned point_pos)
+{
+    return v * (1 << point_pos);
+}
+static double fixed2float(uint32_t v, unsigned point_pos)
+{
+    return (double)(int32_t)v / (1 << point_pos);
+}
 
 static void exitHandlerC(void *pPvt)
 {
@@ -440,6 +459,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
 {
     asynStatus status;
     const char *functionName = "drvFOFB";
+    halcs_client_err_e err;
 
     /* Create portName so we can create a new AsynUser later */
     fofbPortName  = epicsStrDup(portName);
@@ -538,6 +558,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_RtmLampEffAdcString,               asynParamInt32,                &P_RtmLampEffAdc);
     createParam(P_RtmLampEffDacString,               asynParamInt32,                &P_RtmLampEffDac);
     createParam(P_RtmLampEffSpString,                asynParamInt32,                &P_RtmLampEffSp);
+    createParam("WB_RTMLAMP_OHWR_CH_CTL_TRIG_EN",    asynParamInt32,                &P_RtmLampTrigEn);
     /* Create ADC/TBT/FOFB/MONIT parameters */
     createParam(P_AdcRateString,                     asynParamUInt32Digital,        &P_AdcRate);
     createParam(P_TbtRateString,                     asynParamUInt32Digital,        &P_TbtRate);
@@ -580,7 +601,20 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_TriggerRcvInSelString,             asynParamUInt32Digital,        &P_TriggerRcvInSel);
     createParam(P_TriggerTrnOutSelString,            asynParamUInt32Digital,        &P_TriggerTrnOutSel);
     /* Create fofb_processing parameters */
-    createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrbit);
+    createParam("REF_ORBIT",                         asynParamInt32Array,           &P_RefOrb);
+    createParam("COEFFS_FIXED",                      asynParamInt32,                &P_CoeffsFixedPointPos);
+    createParam("ACC_GAINS_FIXED",                   asynParamInt32,                &P_AccGainsFixedPointPos);
+    createParam("ACC_GAIN",                          asynParamFloat64,              &P_AccGain);
+    createParam("ACC_FREEZE",                        asynParamInt32,                &P_AccFreeze);
+    createParam("ACC_CLEAR",                         asynParamInt32,                &P_AccClear);
+    createParam("SP_MAX",                            asynParamInt32,                &P_SpMax);
+    createParam("SP_MIN",                            asynParamInt32,                &P_SpMin);
+    createParam("INTLK_ORB_EN",                      asynParamInt32,                &P_FofbIntlkOrbEn);
+    createParam("INTLK_PACKET_EN",                   asynParamInt32,                &P_FofbIntlkPacketEn);
+    createParam("INTLK_CLR",                         asynParamInt32,                &P_FofbIntlkClr);
+    createParam("INTLK_STA",                         asynParamInt32,                &P_FofbIntlkSta);
+    createParam("ORB_DISTORT_LIMIT",                 asynParamInt32,                &P_FofbOrbDistortLimit);
+    createParam("MIN_NUM_PACKET",                    asynParamInt32,                &P_FofbMinNumPacket);
     createParam("FOFB_COEFF",                        asynParamFloat32Array,         &P_FofbCoeff);
     /* Create fofb_ctrl parameters */
     createParam(P_FofbCtrlErrClrString,              asynParamUInt32Digital,        &P_FofbCtrlErrClr);
@@ -591,9 +625,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     createParam(P_FofbCtrlMgtPowerdownString,        asynParamUInt32Digital,        &P_FofbCtrlMgtPowerdown);
     createParam(P_FofbCtrlMgtLoopbackString,         asynParamUInt32Digital,        &P_FofbCtrlMgtLoopback);
     createParam(P_FofbCtrlTimeFrameDlyString,        asynParamUInt32Digital,        &P_FofbCtrlTimeFrameDly);
-    createParam(P_FofbCtrlGoldenOrbXString,          asynParamUInt32Digital,        &P_FofbCtrlGoldenOrbX);
-    createParam(P_FofbCtrlGoldenOrbYString,          asynParamUInt32Digital,        &P_FofbCtrlGoldenOrbY);
-    createParam(P_FofbCtrlCustFeatureString,         asynParamUInt32Digital,        &P_FofbCtrlCustFeature);
     createParam(P_FofbCtrlRxPolarityString,          asynParamUInt32Digital,        &P_FofbCtrlRxPolarity);
     createParam(P_FofbCtrlPayloadselString,          asynParamUInt32Digital,        &P_FofbCtrlPayloadsel);
     createParam(P_FofbCtrlFofbdataselString,         asynParamUInt32Digital,        &P_FofbCtrlFofbdatasel);
@@ -636,6 +667,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_RtmLampEffAdc,               rtmLampSetGetEffAdcFunc);
     fofbHwFunc.emplace(P_RtmLampEffDac,               rtmLampSetGetEffDacFunc);
     fofbHwFunc.emplace(P_RtmLampEffSp,                rtmLampSetGetEffSpFunc);
+    fofbHwFunc.emplace(P_RtmLampTrigEn,               rtmLampSetGetTrigEnFunc);
     fofbHwFunc.emplace(P_DataTrigChan,                fofbSetGetAcqDataTrigChanFunc);
     fofbHwFunc.emplace(P_TriggerDataThres,            fofbSetGetAcqDataTrigThresFunc);
     fofbHwFunc.emplace(P_TriggerDataPol,              fofbSetGetAcqDataTrigPolFunc);
@@ -654,6 +686,17 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_TriggerTrnSrc,               fofbSetGetTrigTrnSrcFunc);
     fofbHwFunc.emplace(P_TriggerRcvInSel,             fofbSetGetTrigRcvSelFunc);
     fofbHwFunc.emplace(P_TriggerTrnOutSel,            fofbSetGetTrigTrnSelFunc);
+    fofbHwFunc.emplace(P_AccGain,                     fofbCtrlSetGetAccGainFunc);
+    fofbHwFunc.emplace(P_AccFreeze,                   fofbCtrlSetGetAccFreezeFunc);
+    fofbHwFunc.emplace(P_AccClear,                    fofbCtrlSetGetAccClearFunc);
+    fofbHwFunc.emplace(P_SpMax,                       fofbCtrlSetGetSpMaxFunc);
+    fofbHwFunc.emplace(P_SpMin,                       fofbCtrlSetGetSpMinFunc);
+    fofbHwFunc.emplace(P_FofbIntlkOrbEn,              fofbCtrlSetGetIntlkOrbEn);
+    fofbHwFunc.emplace(P_FofbIntlkPacketEn,           fofbCtrlSetGetIntlkPacketEn);
+    fofbHwFunc.emplace(P_FofbIntlkClr,                fofbCtrlSetGetIntlkClr);
+    fofbHwFunc.emplace(P_FofbIntlkSta,                fofbCtrlSetGetIntlkSta);
+    fofbHwFunc.emplace(P_FofbOrbDistortLimit,         fofbCtrlSetGetOrbDistortLimit);
+    fofbHwFunc.emplace(P_FofbMinNumPacket,            fofbCtrlSetGetMinNumPacket);
     fofbHwFunc.emplace(P_FofbCtrlErrClr,              fofbCtrlSetGeErrClrFunc);
     fofbHwFunc.emplace(P_FofbCtrlCcEnable,            fofbCtrlSetGetCcEnableFunc);
     fofbHwFunc.emplace(P_FofbCtrlTfsOverride,         fofbCtrlSetGetTfsOverrideFunc);
@@ -662,9 +705,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
     fofbHwFunc.emplace(P_FofbCtrlMgtPowerdown,        fofbCtrlSetGetMgtPowerdownFunc);
     fofbHwFunc.emplace(P_FofbCtrlMgtLoopback,         fofbCtrlSetGetMgtLoopbackFunc);
     fofbHwFunc.emplace(P_FofbCtrlTimeFrameDly,        fofbCtrlSetGetTimeFrameDlyFunc);
-    fofbHwFunc.emplace(P_FofbCtrlGoldenOrbX,          fofbCtrlSetGetGoldenOrbXFunc);
-    fofbHwFunc.emplace(P_FofbCtrlGoldenOrbY,          fofbCtrlSetGetGoldenOrbYFunc);
-    fofbHwFunc.emplace(P_FofbCtrlCustFeature,         fofbCtrlSetGetCustFeatureFunc);
     fofbHwFunc.emplace(P_FofbCtrlRxPolarity,          fofbCtrlSetGetRxPolarityFunc);
     fofbHwFunc.emplace(P_FofbCtrlPayloadsel,          fofbCtrlSetGetPayloadselFunc);
     fofbHwFunc.emplace(P_FofbCtrlFofbdatasel,         fofbCtrlSetGetFofbdataselFunc);
@@ -728,6 +768,7 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setIntegerParam(    addr, P_RtmLampEffAdc,            0);
         setIntegerParam(    addr, P_RtmLampEffDac,            0);
         setIntegerParam(    addr, P_RtmLampEffSp,             0);
+        setIntegerParam(    addr, P_RtmLampTrigEn,            0);
     }
 
     /* Set acquisition parameters */
@@ -790,7 +831,19 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(i*MAX_TRIGGERS + CH_DFLT_TRIGGER_SW_CHAN, P_TriggerTrnOutSel, 0,              0xFFFFFFFF);
     }
 
+    setIntegerParam(0, P_FofbIntlkOrbEn, 0);
+    setIntegerParam(0, P_FofbIntlkPacketEn, 0);
+    setIntegerParam(0, P_FofbIntlkClr, 0);
+    setIntegerParam(0, P_FofbIntlkSta, 0);
+    setIntegerParam(0, P_FofbOrbDistortLimit, 0);
+    setIntegerParam(0, P_FofbMinNumPacket, 0);
     for (int addr: {0, 8}) {
+        setDoubleParam(addr, P_AccGain, 0.);
+        setIntegerParam(addr, P_AccFreeze, 0);
+        setIntegerParam(addr, P_AccClear, 0);
+        setIntegerParam(addr, P_SpMax, 0);
+        setIntegerParam(addr, P_SpMin, 0);
+
         setUIntDigitalParam(addr, P_FofbCtrlErrClr,                     0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlCcEnable,                   0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlTfsOverride,                0,              0xFFFFFFFF);
@@ -799,9 +852,6 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         setUIntDigitalParam(addr, P_FofbCtrlMgtPowerdown,               0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlMgtLoopback,                0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlTimeFrameDly,               0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbX,                 0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_FofbCtrlGoldenOrbY,                 0,              0xFFFFFFFF);
-        setUIntDigitalParam(addr, P_FofbCtrlCustFeature,                0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlRxPolarity,                 0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlPayloadsel,                 0,              0xFFFFFFFF);
         setUIntDigitalParam(addr, P_FofbCtrlFofbdatasel,                0,              0xFFFFFFFF);
@@ -892,6 +942,32 @@ drvFOFB::drvFOFB(const char *portName, const char *endpoint, int fofbNumber,
         pasynManager->exceptionConnect(pasynUser);
     }
 #endif
+
+    /* Get fixed point information */
+
+    char service[SERVICE_NAME_SIZE];
+    /* we force addr=0 here, since it's one value for the whole device */
+    this->getFullServiceName(this->fofbNumber, 0,
+        "FOFB_PROCESSING", service, sizeof(service));
+
+    err = halcs_get_fofb_processing_coeffs_fixed_point_pos(this->fofbClient,
+        service, &coeffs_fixed_point_pos);
+    if(err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "halcs_get_fofb_processing_coeffs_fixed_point_pos failed\n");
+        goto invalid_fofb_number_err;
+    }
+    err = halcs_get_fofb_processing_acc_gains_fixed_point_pos(this->fofbClient,
+        service, &acc_gains_fixed_point_pos);
+    if(err != HALCS_CLIENT_SUCCESS) {
+        asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+            "halcs_get_fofb_processing_acc_gains_fixed_point_pos failed\n");
+        goto invalid_fofb_number_err;
+    }
+
+    setIntegerParam(0, P_CoeffsFixedPointPos, coeffs_fixed_point_pos);
+    setIntegerParam(0, P_AccGainsFixedPointPos, acc_gains_fixed_point_pos);
+    callParamCallbacks(0);
 
     epicsAtExit(exitHandlerC, this);
     return;
@@ -2495,20 +2571,71 @@ asynStatus drvFOFB::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 
 asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements)
 {
+    asynStatus status = asynSuccess;
+    const char *functionName = "writeInt32Array";
     const int function = pasynUser->reason;
 
-    if (function == P_RefOrbit) {
-        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+    if (function == P_RefOrb) {
+        size_t to_write = std::min(nElements, (size_t) NUM_FOFB_COEFF);
         memcpy(refOrbit, value, to_write * sizeof *value);
 
-        /* TODO: Plug in HALCS:
-         * - write refOrbit to hardware
-         * - read new values from hardware into refOrbit */
+        halcs_client_err_e err;
+        char service[SERVICE_NAME_SIZE];
+        smio_fofb_processing_data_block_t setpoints = {0};
 
-        /* send new values to -RB PV; we only support addr 0 here */
-        doCallbacksInt32Array(refOrbit, to_write, function, 0);
+        /* get malamute service name; we only support addr 0 here  */
+        status = this->getFullServiceName(this->fofbNumber, 0,
+            "FOFB_PROCESSING", service, sizeof(service));
+        if(status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            goto err_get_full_service_name;
+        }
 
-        return asynSuccess;
+        /* write this->refOrbit to hardware */
+        // x setpoints: lower ram half
+        memcpy(setpoints.data, this->refOrbit,
+            (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
+        // y setpoints: upper ram half
+        memcpy(&setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2],
+            &this->refOrbit[NUM_FOFB_COEFF / 2],
+            (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
+
+        err = halcs_fofb_processing_setpoints_ram_bank_write(this->fofbClient,
+            service, setpoints);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_setpoints_ram_bank_write failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        }
+
+        /* read new values from hardware into this->refOrbit */
+        err = halcs_fofb_processing_setpoints_ram_bank_read(this->fofbClient,
+            service, &setpoints);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_setpoints_ram_bank_read failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        } else {
+            // x setpoints: lower ram half
+            memcpy(this->refOrbit, setpoints.data,
+                (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
+            // y setpoints: upper ram half
+            memcpy(&this->refOrbit[NUM_FOFB_COEFF / 2],
+                &setpoints.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2],
+                (NUM_FOFB_COEFF / 2) * sizeof(uint32_t));
+
+            /* send new values to -RB PV; we only support addr 0 here */
+            doCallbacksInt32Array(this->refOrbit, to_write, function, 0);
+        }
+
+err_get_full_service_name:
+err_halcs_failed:
+
+        return status;
     } else {
         return asynNDArrayDriver::writeInt32Array(pasynUser, value, nElements);
     }
@@ -2516,22 +2643,77 @@ asynStatus drvFOFB::writeInt32Array(asynUser *pasynUser, epicsInt32 *value, size
 
 asynStatus drvFOFB::writeFloat32Array(asynUser *pasynUser, epicsFloat32 *value, size_t nElements)
 {
+    asynStatus status = asynSuccess;
+    const char *functionName = "writeFloat32Array";
     const int function = pasynUser->reason;
     int addr;
+
     getAddress(pasynUser, &addr);
 
     if (function == P_FofbCoeff && addr < MAX_RTM_LAMP_CHANNELS) {
-        size_t to_write = std::min(nElements, (size_t)NUM_FOFB_COEFF);
+        size_t to_write = std::min(nElements, (size_t) NUM_FOFB_COEFF);
         memcpy(fofbCoeff[addr], value, to_write * sizeof *value);
 
-        /* TODO: Plug in HALCS:
-         * - write fofbCoeff[addr] to hardware
-         * - read new values from hardware into fofbCoeff[addr] */
+        halcs_client_err_e err;
+        char service[SERVICE_NAME_SIZE];
+        smio_fofb_processing_data_block_t coeffs = {0};
 
-        /* send new values to -RB PV */
-        doCallbacksFloat32Array(fofbCoeff[addr], to_write, function, addr);
+        /* get malamute service name */
+        status = this->getFullServiceName(this->fofbNumber, addr,
+            "FOFB_PROCESSING", service, sizeof(service));
+        if(status) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s:%s: error calling getFullServiceName, status=%d\n",
+                driverName, functionName, status);
+            goto err_get_full_service_name;
+        }
 
-        return asynSuccess;
+        /* write this->fofbCoeff[addr] to hardware */
+        // floating-point to fixed-point conversion
+        for(uint32_t i = 0; i < NUM_FOFB_COEFF / 2; i++) {
+            // x coeffs: lower ram half
+            coeffs.data[i] = float2fixed(this->fofbCoeff[addr][i], coeffs_fixed_point_pos);
+            // y coeffs: upper ram half
+            coeffs.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2 + i] =
+                float2fixed(this->fofbCoeff[addr][i + NUM_FOFB_COEFF / 2], coeffs_fixed_point_pos);
+        }
+
+        err = halcs_fofb_processing_coeffs_ram_bank_write(this->fofbClient,
+            service, addr, coeffs);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_coeffs_ram_bank_write failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        }
+
+        /* read new values from hardware into this->fofbCoeff[addr] */
+        err = halcs_fofb_processing_coeffs_ram_bank_read(this->fofbClient,
+            service, addr, &coeffs);
+        if(err != HALCS_CLIENT_SUCCESS) {
+            asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
+                "halcs_fofb_processing_coeffs_ram_bank_read failed\n");
+            status = asynError;
+            goto err_halcs_failed;
+        } else {
+            // fixed-point to floating-point conversion
+            for(uint32_t i = 0; i < NUM_FOFB_COEFF / 2; i++) {
+                // x coeffs: lower ram half
+                this->fofbCoeff[addr][i] = fixed2float(coeffs.data[i], coeffs_fixed_point_pos);
+                // y coeffs: upper ram half
+                this->fofbCoeff[addr][NUM_FOFB_COEFF / 2 + i] =
+                    fixed2float(coeffs.data[FOFB_PROCESSING_DATA_BLOCK_MAX_PARAMS / 2 + i], coeffs_fixed_point_pos);
+            }
+
+            /* send new values to -RB PV */
+            doCallbacksFloat32Array(this->fofbCoeff[addr], to_write, function,
+                addr);
+        }
+
+err_get_full_service_name:
+err_halcs_failed:
+
+        return status;
     } else {
         return asynNDArrayDriver::writeFloat32Array(pasynUser, value, nElements);
     }
@@ -3179,6 +3361,11 @@ asynStatus drvFOFB::setParamDouble(int functionId, int addr)
         goto get_param_err;
     }
 
+    /* Convert floating point value to fixed point for the hw write function */
+    if (functionId == P_AccGain) {
+        functionArgs.argUInt32 = float2fixed(functionArgs.argFloat64, acc_gains_fixed_point_pos);
+    }
+
     status = executeHwWriteFunction(functionId, addr, functionArgs);
     /* Read parameter back from HW to update paramList */
     updateDoubleParams(addr, functionId, functionId, false);
@@ -3207,6 +3394,12 @@ asynStatus drvFOFB::getParamDouble(int functionId, epicsFloat64 *param, int addr
     }
 
     status = executeHwReadFunction(functionId, addr, functionArgs);
+
+    /* Convert fixed point from hw to float */
+    if (functionId == P_AccGain) {
+        functionArgs.argFloat64 = fixed2float(functionArgs.argUInt32, acc_gains_fixed_point_pos);
+    }
+
     if (status == asynSuccess) {
         *param = functionArgs.argFloat64;
     }
